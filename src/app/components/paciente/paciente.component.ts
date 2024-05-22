@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { PacienteModel } from '../paciente.model';
 import { NgForm } from '@angular/forms';
 import { PacienteService } from '../../service/paciente.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-paciente',
@@ -15,7 +16,8 @@ export class PacienteComponent implements OnInit{
 paciente:PacienteModel = new PacienteModel();
 
 constructor(private servicio : PacienteService,
-            private parametro : ActivatedRoute){}
+            private parametro : ActivatedRoute,
+            private ruta: Router){}
 
 ngOnInit(): void {
     let id = this.parametro.snapshot.paramMap.get('id');
@@ -49,14 +51,17 @@ guardar( form: NgForm ){
     console.log(data)
 
         Swal.fire({
-        title: 'Exito',  
+        title: 'Exito!!',  
         text: `${this.paciente.nombres} se ha guardado exitosamente!!`,
         icon: 'success',
         timer: 1800,
         showConfirmButton: false
         })
    });
-  
+   setTimeout(()=>{
+     this.ruta.navigate(['/pacientes'])
+
+   },1500);
 }
 
 limpiar(form:NgForm){

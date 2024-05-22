@@ -4,13 +4,18 @@ import { HomeComponent } from './components/home/home.component';
 import { PacientesComponent } from './components/pacientes/pacientes.component';
 import { PacienteComponent } from './components/paciente/paciente.component';
 import { DetalleComponent } from './components/paciente/detalle/detalle.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'registro', component: RegistroComponent},
   { path: 'pacientes', component: PacientesComponent},
   { path: 'pacientes/:id', component: PacienteComponent},
   { path: 'pacientes/:paciente/:id', component: DetalleComponent},
-  { path: '**', pathMatch: 'full', redirectTo: 'pacientes'}
+  { path: '**', pathMatch: 'full', redirectTo: 'registro'}
 ];
 
 @NgModule({

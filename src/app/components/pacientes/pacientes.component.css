@@ -107,3 +107,17 @@
     box-shadow: none;
   }
 
+  .log-out{
+    font-size: 26px;
+    position: absolute;
+    top: 22%;
+    left: 94%;
+    cursor: pointer;
+    transition: all 250ms;
+    color: grey;
+  }
+  .log-out:hover{
+    color: rgb(45, 45, 45);
+    
+  }
+

@@ -1,0 +1,67 @@
+<div class="container forms animate__animated animate__fadeIn">
+    <div class="form login">
+        <div class="form content">
+            <h1>Iniciar Sesión</h1>
+
+            <form (submit)="ingresar(f)"
+            #f="ngForm">
+                
+                <div class="field input-field">
+                    <input type="text" 
+                    placeholder="Email" 
+                    class="form-control input"
+                    #email="ngModel"
+                    name="email"
+                    [(ngModel)]="usuario.email"
+                    required
+                    [class.is-invalid]="email.invalid && email.touched">
+                    <small *ngIf="email.invalid && email.touched"
+                    class="avisos form-text text-danger animate__animated animate__fadeIn">correo no válido
+                    </small>
+                </div>
+                
+                <div class="field input-field">
+                    <input [type]="mostrar? 'text' : 'password'" 
+                            placeholder="Password" 
+                            class="form-control password"
+                            name="password"
+                            [(ngModel)]="usuario.password"
+                            required
+                            minlength="6">
+                                  
+                    <small *ngIf="f.submitted && f.controls['password'].errors"
+                        class=" avisos form-text text-danger">contraseña debe contener al menos 6 caracteres
+                    </small>
+                    <div *ngIf="!mostrar">
+                        <i (click)='toggleMostrar()' class="fa fa-eye-slash eye-icon"></i>
+                    </div>
+                    <div *ngIf="mostrar">
+                        <i (click)='toggleMostrar()' class="fa fa-eye eye-icon"></i>
+                    </div>
+                </div>
+
+                <div class="c d-flex">
+                    <div class="contact100-form-checkbox justify-content-center">
+                        <input [(ngModel)]="saveUser"  class="check input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-check label-checkbox100" for="ckb1">
+                         Recordar Usuario
+                        </label>
+                    </div>
+                
+                    <div class="form-link forgot">
+                        <a href="#" class="forpas forgot-pass">Olvidó el password?</a>
+                    </div>
+                </div>
+
+                <div class="field button-field">
+                    <button>Ingresar</button>
+                </div>
+               
+                <div class="form-link">
+                   <span> No tienes una cuenta?<a routerLink="/registro" class="signup-link">Registrarse</a></span> 
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

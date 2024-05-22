@@ -7,10 +7,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { PacientesComponent } from './components/pacientes/pacientes.component';
 import { PacienteComponent } from './components/paciente/paciente.component';
 import { HomeComponent } from './components/home/home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DetalleComponent } from './components/paciente/detalle/detalle.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { LoginComponent } from './components/login/login.component';
+
 
 
 
@@ -22,13 +25,16 @@ import { LoadingComponent } from './components/loading/loading.component';
     PacienteComponent,
     HomeComponent,
     DetalleComponent,
-    LoadingComponent
+    LoadingComponent,
+    RegistroComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
 
    
   ],

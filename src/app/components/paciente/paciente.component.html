@@ -3,6 +3,13 @@
 <div class="container mt-4 animate__animated animate__fadeIn">
     <div class="row">
         <div class="col">
+            
+            <div class="row">
+                <div class="col">
+                    <i routerLink="/pacientes" class=" atras fa-solid fa-circle-left"></i>
+                </div>
+            </div>
+            
             <h1>Paciente: <small>{{paciente.nombres}}</small></h1>
             <hr> 
             
@@ -16,7 +23,7 @@
                 <div class="form-group pId">
                     <label>Paciente ID</label>
                     <input type="text" 
-                    class="form-control" 
+                    class="form-control Id" 
                     [(ngModel)]="paciente.id"
                     name="id"
                     placeholder="Paciente ID" 
@@ -77,7 +84,7 @@
                 <div class="form-group text-center">
 
                     <button  class="btn btn-primary m-2 boton"> Agregar</button>
-
+                        
                 </div>
             </form>
         </div>
