@@ -3,7 +3,12 @@
     margin: o;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'poppins',sans-serif;
+
+    
+}
+body{
+    
+background-color: #e1ebee;
 }
 
 .container{
@@ -12,15 +17,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #4070f4;
+    background-color: #ffffff;
+
 }
 
 .form{
     border-radius: 6px;
-    background: #fff;
+    background: #f0f8ff;
     width: 100%;
     max-width: 430px;
     padding: 30px;
+    
 }
 
 h1{
@@ -52,17 +59,32 @@ form .field{
 }
 ::placeholder{
     opacity: .5;
+    letter-spacing: 1px;
+    font-size: 11px;
+
+}
+
+.field input:focus{
+   
+   border-color: #66769f;
+   box-shadow: none;
+
+
 }
 
 .field input{
     font-size: 13px;
     padding: 0 15px;
-    border: 1px solid #cacaca;
+    border: 2px solid #cacaca;
+    transition: all .3s ease;
+}
+::placeholder{
+    
 }
 
 .eye-icon{
     font-size: 12px;
-    color: #8b8b8b;
+    color: #66769f;
     position: absolute;
     top: 50%;
     right: 8%;

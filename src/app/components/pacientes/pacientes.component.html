@@ -2,48 +2,47 @@
 
 <div class="container mb-3 animate__animated animate__fadeInRightBig">
 
-    <div class="row">
-        <div class="col">
-            <button routerLink="/pacientes/nuevo" 
-            class=" btnA btn btn-outline-primary btn-lg">
-            <i class="fa-solid fa-plus faI"></i>
-            </button>
-            <div class="bloque">Agregar</div>
-            <div class="row">
-              <div class="col">
-                  <i routerLink="/login" class=" log-out fa-solid fa-arrow-right-from-bracket"></i>
+    
 
-              </div>
-            </div>
-            
-        </div>
-    </div>
-</div>
-
-<div class="container animate__animated animate__fadeInRightBig">
+<div class="container2 animate__animated animate__fadeInRightBig">
     <div class="row">
         <div class="col">
             <h1>Lista de Pacientes</h1>
             <hr>
-        
-            <table class="table animate__animated animate__fadeIn fast">
-                <thead class="table-primary">
-                  <tr >
+            <div class="row">
+              <div class="col">
+                  <button routerLink="/pacientes/nuevo" 
+                  class=" btnA btn btn-outline-primary btn-lg">
+                  <i class="fa-solid fa-user-plus faI"></i>
+                  </button>
+
+                  
+                  
+              </div>
+          </div>
+      </div>
+            <table class="large table animate__animated animate__fadeIn fast">
+                <thead class="table-primary th">
+                  <tr>
                     <th scope="col"></th>
                     <th scope="col">Nombre Completo</th>
                     <th scope="col">Cédula</th>
                     <th scope="col">Correo</th>
+                    <th scope="col">Fecha de la cita</th>
                     <th scope="col"></th>
+                    
                   </tr>
                 </thead>
                 <tbody *ngFor="let paciente of pacientes; let i = index">
                   <tr >
                     
-                    <th class="textP" scope="row">{{i + 1}}</th>
+                    <td class="textP" scope="row">{{i + 1}}</td>
                     <td class="textP-1"><a class="enlaceNombre" [routerLink]="['/pacientes/paciente',paciente.id]">{{paciente.nombres}}</a></td>
                     <td class="textP">{{paciente.cedula}}</td>
                     <td class="textP">{{paciente.correo}}</td>
+                    <td class="textP-3"><span class="cita" *ngIf="!paciente.turno">No tine cita</span>{{paciente.turno}}</td>
                     <td class="d-flex justify-content-md-center">
+                      <button type="button" [routerLink]="['/pacientes','pacientes','id',paciente.id]" class="btn btn-outline-success botin3 "><i class="fa-solid fa-calendar-days"></i></button>
                         <button type="button" [routerLink]="['/pacientes',paciente.id]" class="btn btn-outline-primary botin "><i class="fa-solid fa-pen"></i></button>
                         <button type="button" (click)="borrar(i,paciente)" class="btn btn-outline-danger botin2"><i class="fa-solid fa-trash basura"></i></button>
                     </td>

@@ -36,7 +36,9 @@ saveUser:boolean = false;
         allowOutsideClick: false,
         icon: 'error',
         title: 'error',
-        text: 'Hay errores en el formulario'
+        text: 'Hay errores en el formulario',
+        showConfirmButton: false,
+        timer: 2000
 
       });  
        return;
@@ -44,7 +46,15 @@ saveUser:boolean = false;
       this.auth.login(this.usuario).subscribe(data =>{
         console.log(data);
         Swal.close()
-        this.ruta.navigateByUrl('/pacientes');
+        Swal.fire({
+          allowOutsideClick: false,
+          icon: 'success',
+          title: 'Exito',
+          timer: 1500,
+          showConfirmButton: false
+  
+        });  
+        this.ruta.navigateByUrl('/home');
         if(this.saveUser){
           localStorage.setItem('email', this.usuario.email)
           
@@ -54,8 +64,10 @@ saveUser:boolean = false;
           
           icon: 'error',
           title: 'Error al autenticar',
-          text: err.error.error.message
-  
+          showConfirmButton: false,
+          timer: 2000,
+          text: err.error.error.message,
+          allowOutsideClick: false,
         });
         this.ruta.navigateByUrl('/login');
         console.log(err.error.error.message);
