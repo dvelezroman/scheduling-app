@@ -4,13 +4,34 @@
 }
 .container{
     position: relative;
+    margin-left: 5rem;
+.form{
+    margin-left:2.5rem;
+}
+
+}
+.tP{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.addP{
+    font-weight: 300px;
+}
+.tlP{
+    font-weight: 400;
+}
+.nP{
+    font-weight: 300;
 }
 .Id{
     opacity: .7;
 }
 
 .form-group{
-    margin-top: 10px;
+    margin-top: 15px;
+}
+.botonElim{
+    margin-left: 2rem;
 }
 .boton {
     background-color: rgb(70, 135, 209);
@@ -21,11 +42,10 @@
     background-color: rgb(34, 106, 187);
 }
 .atras{
-    color: rgb(41, 28, 53);
+    color: rgb(70, 135, 209);
     font-size: 25px;
-    position: absolute;
-    top: 10px;
-    left:-10%;
+    display: none;
+    margin-left: 6rem;
     z-index: 1;
     cursor: pointer;
     transition: all 300ms;

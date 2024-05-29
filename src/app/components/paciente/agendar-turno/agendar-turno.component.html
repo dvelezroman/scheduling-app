@@ -1,0 +1,46 @@
+<!--<app-detalle [paciente]="paciente"></app-detalle>-->
+<div class="row">
+    <div class="col">
+        <i routerLink="/pacientes" class=" atras fa-solid fa-circle-left"></i>
+    </div>
+</div>
+
+<div class="container mt-4 animate__animated animate__fadeIn">
+    
+    <div class="row">
+        <div class="col">
+            <h1>Agendar un turno</h1>
+            <hr class="hr">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>Paciente: <small>{{paciente.nombres}}</small></h3>
+            <div>
+                <p *ngIf="paciente.turno">Tiene cita para el <span> {{paciente.turno | date: 'fullDate':'':'es'}}</span></p>
+                <p class="info" *ngIf="!paciente.turno">No tiene cita</p>
+            </div>
+            <div><p class="cambiar" *ngIf="paciente.turno">Desea hacer un cambio de fecha?</p></div>
+            
+            <form  [formGroup]="formTurno" (submit)="agendar()">
+                
+                <div class="inputFecha field input-field mt-3 m-5">
+                    <label *ngIf="!paciente.turno">Seleccionar fecha:</label>
+                    <label *ngIf="paciente.turno">Seleccionar otra fecha:</label>
+                    <input type="date" appFecha
+                    [min]="fechaMinimaString"
+                    [max]="fechaMaximaString"
+                    class="form-control input"
+                    [class.is-invalid]=""
+                    formControlName="fecha"
+                    required>
+                            
+                    <button class="btn btn-outline">Agendar</button>
+                </div>
+
+            </form>
+                
+        </div>
+    </div>
+</div>
+
