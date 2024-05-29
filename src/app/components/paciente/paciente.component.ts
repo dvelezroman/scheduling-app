@@ -15,10 +15,21 @@ import Swal from 'sweetalert2';
 export class PacienteComponent implements OnInit{
 paciente:PacienteModel = new PacienteModel();
 auth:boolean = true;
+nombres:string; 
+cedula:number; 
+correo:string; 
+telefono:number; 
+direccion:string;
 
 constructor(private servicio : PacienteService,
             private parametro : ActivatedRoute,
-            private ruta: Router){}
+            private ruta: Router){
+              this.nombres = this.paciente.nombres;
+              this.cedula = this.paciente.cedula;
+              this.correo = this.paciente.correo;
+              this.telefono = this.paciente.telefono;
+              this.direccion = this.paciente.direccion;
+            }
 
 ngOnInit(): void {
     let id = this.parametro.snapshot.paramMap.get('id');
@@ -33,7 +44,15 @@ ngOnInit(): void {
 
 guardar( form: NgForm ){
   if(form.invalid){
-    console.log('formulario no enviado');
+    Object.values(form.controls).forEach( control => control.markAllAsTouched() );
+    //console.log('formulario no enviado');
+    Swal.fire({
+      title: 'Error!!',  
+      text: `no has completado el formulario`,
+      icon: 'error',
+      timer: 2500,
+      showConfirmButton: false
+      })
     return;
   }
 
