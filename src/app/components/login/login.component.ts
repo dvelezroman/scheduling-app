@@ -23,9 +23,9 @@ saveUser:boolean = false;
   ngOnInit(): void {
     if(localStorage.getItem('email')){
       this.usuario.email = localStorage.getItem('email');
-        this.saveUser = true;
+        //this.saveUser = true;
     }
-    console.log(this.saveUser);
+   // console.log(this.saveUser);
   } 
   
 
@@ -44,7 +44,7 @@ saveUser:boolean = false;
        return;
       }
       this.auth.login(this.usuario).subscribe(data =>{
-        console.log(data);
+       // console.log(data);
         Swal.close()
         Swal.fire({
           allowOutsideClick: false,
@@ -70,7 +70,7 @@ saveUser:boolean = false;
           allowOutsideClick: false,
         });
         this.ruta.navigateByUrl('/login');
-        console.log(err.error.error.message);
+       // console.log(err.error.error.message);
       });
 
   }

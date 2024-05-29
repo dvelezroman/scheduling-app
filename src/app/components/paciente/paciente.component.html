@@ -7,6 +7,15 @@
 </div>
 
 <div class="container mt-4 m animate__animated animate__fadeIn">
+   
+    <ul *ngIf="auth">
+
+        <li class="row">
+            <h4 [routerLink]="['/noAuth']" (click)="cerrarSesion()"  class="log-out">Cerrar Sesión</h4>
+        </li>
+  
+    </ul> 
+
     <div class="row">
         <div class="col tP">
             
@@ -20,8 +29,8 @@
         <div class="col">
             <form class="form" (submit)="guardar(f)"
             #f="ngForm">
-            <button  type="button" (click)="limpiar(f)" *ngIf="paciente.id" class="botonElim btn btn-outline-primary">Eliminar campos</button>
-                <div class="form-group pId">
+          <!--   <button  type="button" (click)="limpiar(f)" *ngIf="paciente.id" class="botonElim btn btn-outline-primary">Eliminar campos</button>
+               <div class="form-group pId">
                     <label>Paciente ID</label>
                     <input type="text" 
                     class="form-control Id" 
@@ -31,7 +40,7 @@
                     disabled="disabled">
                     <small class="form-text text-muted"></small>
                 </div>
-                <br>
+                <br>-->
                 
                 <div class="form-group">
                     <label>Nombre Completo</label>
@@ -81,11 +90,12 @@
                     required>
                 </div>
 
-                <hr>
-                <div class="form-group text-center">
+                
+                <div class="group-boton">
 
                     <button *ngIf="!paciente.id"  class="btn btn-primary m-2 boton"> Agregar</button>
-                    <button  *ngIf="paciente.id" class="btn btn-primary m-2 boton"> Actualizar</button>   
+                    <button  *ngIf="paciente.id" class="btn btn-primary m-2 boton"> Actualizar</button> 
+                    <button routerLink="/pacientes" class="btn btn-secondary m-2"> Cancelar</button>    
                 </div>
             </form>
         </div>

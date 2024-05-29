@@ -1,8 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ul *ngIf="auth">
+
+        <li class="row">
+          <h4 [routerLink]="['/inicio']" (click)="cerrarSesion()"  class="log-out">Cerrar Sesión</h4>
+        </li>
+      
+      </ul> 
+    </div>
+  </div>
+</div>
 
 
 <div class="container mb-3 animate__animated animate__fadeInRightBig">
 
-    
+   
 
 <div class="container2 animate__animated animate__fadeInRightBig">
     <div class="row">

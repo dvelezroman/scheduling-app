@@ -30,12 +30,24 @@
 .form-group{
     margin-top: 15px;
 }
+.group-boton{
+    margin-top: 30px;
+    text-align: center;
+}
 .botonElim{
     margin-left: 2rem;
 }
 .boton {
+    margin-top: 30px;
     background-color: rgb(70, 135, 209);
     border: none;
+}
+.boton2{
+    background-color: rgb(152, 145, 135);
+    border: rgb(247, 169, 25);
+}
+boton2:focus{
+    color: orange;
 }
 
 .boton:hover{
@@ -54,3 +66,24 @@
 .atras:hover{
     transform: scale(1.2);
 }
+
+.log-out{
+
+    font-size: 13px;
+    position: absolute;
+    top: -85px;
+    left: 86%;
+    cursor: pointer;
+    transition: all 250ms;
+    color: rgb(0, 0, 0);
+    font-weight: 300;
+    z-index: 1;
+    transition: all .5s;
+    z-index: 1;
+
+  }
+  .log-out:hover{
+    color: rgb(71, 70, 70);
+    
+    
+  }

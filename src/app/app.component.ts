@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import { UsuarioServicesService } from './service/usuario.services.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,4 @@ import { Component} from '@angular/core';
 export class AppComponent {
 
 
-  title = 'medi-app';
 }

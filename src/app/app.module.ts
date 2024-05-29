@@ -15,6 +15,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { AgendarTurnoComponent } from './components/paciente/agendar-turno/agendar-turno.component';
 import { DatePipe } from '@angular/common';
+import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-no-auth.component';
 
 
 
@@ -30,7 +31,8 @@ import { DatePipe } from '@angular/common';
     LoadingComponent,
     RegistroComponent,
     LoginComponent,
-    AgendarTurnoComponent
+    AgendarTurnoComponent,
+    InicioNoAuthComponent
   ],
   imports: [
     BrowserModule,

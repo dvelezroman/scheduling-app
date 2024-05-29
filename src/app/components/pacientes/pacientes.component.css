@@ -151,6 +151,26 @@ table tr th{
     border: none;
     box-shadow: none;
   }
+  .log-out{
+
+    font-size: 13px;
+    position: absolute;
+    top: 45px;
+    left: 83%;
+    cursor: pointer;
+    transition: all 250ms;
+    color: rgb(0, 0, 0);
+    font-weight: 300;
+    z-index: 1;
+    transition: all .5s;
+    z-index: 1;
+
+  }
+  .log-out:hover{
+    color: rgb(71, 70, 70);
+    
+    
+  }
 
   
 

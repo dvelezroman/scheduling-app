@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class PacienteComponent implements OnInit{
 paciente:PacienteModel = new PacienteModel();
+auth:boolean = true;
 
 constructor(private servicio : PacienteService,
             private parametro : ActivatedRoute,
@@ -76,6 +77,16 @@ guardar( form: NgForm ){
 limpiar(form:NgForm){
   this.paciente.id.delete
   return form.reset();
+}
+cerrarSesion(){
+  localStorage.removeItem('token');
+  if(this.auth){
+    this.auth = true;
+  }else{
+    this.auth = false
+  }
+
+
 }
 
 

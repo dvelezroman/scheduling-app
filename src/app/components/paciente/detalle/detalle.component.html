@@ -5,14 +5,14 @@
 </div>
 
 
-<div class="container mt-4">
+<div class="container">
     <h2 class="titulo"> Datos del Paciente </h2>
     <hr>
 
 </div>
 
 
-<div class="container">
+<div class="container-sm">
     <div class="row">
         <div class="col">
             <ul class="lista">
@@ -23,6 +23,9 @@
                 <li><h3 class="listChild">Domicilio: <small class="listParent">{{paciente.direccion}}</small> </h3></li>
                 <div *ngIf="paciente.turno"><li><h3 class="listChild" >Fecha de la cita: <small class="listParent">{{paciente.turno | date:'fullDate':'default':'es'}}</small> </h3></li></div>
             </ul>
+            <div class="boton">
+                <button class="btn btn-secondary" routerLink="/pacientes">Regresar</button>
+            </div>
         </div>
     </div>
 </div>

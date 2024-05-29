@@ -1,17 +1,4 @@
-.log-out{
-    font-size: 22px;
-    position: absolute;
-    top: 6%;
-    left: 94%;
-    cursor: pointer;
-    transition: all 250ms;
-    color: grey;
 
-  }
-  .log-out:hover{
-    color: rgb(45, 45, 45);
-    
-  }
   .cont{
     transition: all .4s;
   }
@@ -39,3 +26,23 @@
   transition: all .2s;
   text-align: center;
  }
+ .log-out{
+  display: felx;
+  font-size: 13px;
+  position: absolute;
+  top: 45px;
+  left: 83%;
+  cursor: pointer;
+  transition: all 250ms;
+  color: rgb(0, 0, 0);
+  font-weight: 300;
+  z-index: 1;
+  transition: all .5s;
+  z-index: 1;
+
+}
+.log-out:hover{
+  color: rgb(71, 70, 70);
+  
+  
+}

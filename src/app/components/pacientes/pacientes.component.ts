@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class PacientesComponent implements OnInit {
 loading:boolean = false;
+auth:boolean = true;
 senal:boolean =true;
 pacientes: PacienteModel[] = [];
 constructor(private servicio : PacienteService ){}
@@ -49,6 +50,16 @@ borrar(id:number, paciente:PacienteModel){
       }
     };
    });
+
+}
+cerrarSesion(){
+  localStorage.removeItem('token');
+  if(this.auth){
+    this.auth = true;
+  }else{
+    this.auth = false
+  }
+
 
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PacienteModel } from '../models/paciente.model';
 import { PacienteService } from '../../service/paciente.service';
 
@@ -13,6 +13,8 @@ cita: Date = new Date();
 paciente:PacienteModel[] = [];
 numeroPacientes:number;
 numeroTurnos:string;
+auth:boolean = true;
+@Output() valorB = new EventEmitter<boolean>();
 constructor(private servicio : PacienteService){
 
 }
@@ -25,5 +27,17 @@ ngOnInit(): void {
 
 
 })
+
+}
+cerrarSesion(){
+  localStorage.removeItem('token');
+  if(this.auth){
+    this.auth = false;
+    this.valorB.emit(this.auth);
+  }else{
+    this.auth = true;
+  }
+
+
 }
 }

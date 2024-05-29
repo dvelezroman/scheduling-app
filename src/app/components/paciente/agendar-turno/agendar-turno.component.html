@@ -1,4 +1,12 @@
 <!--<app-detalle [paciente]="paciente"></app-detalle>-->
+<ul *ngIf="auth">
+
+    <li class="row">
+        <h4 [routerLink]="['/noAuth']" (click)="cerrarSesion()"  class="log-out">Cerrar Sesión</h4>
+    </li>
+
+</ul> 
+
 <div class="row">
     <div class="col">
         <i routerLink="/pacientes" class=" atras fa-solid fa-circle-left"></i>
@@ -8,14 +16,14 @@
 <div class="container mt-4 animate__animated animate__fadeIn">
     
     <div class="row">
-        <div class="col">
-            <h1>Agendar un turno</h1>
+        <div class="col titulo1">
+            <h2>Agendar un turno</h2>
             <hr class="hr">
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h3>Paciente: <small>{{paciente.nombres}}</small></h3>
+        <div class="col titulo4">
+            <h4>Paciente: <small>{{paciente.nombres}}</small></h4>
             <div>
                 <p *ngIf="paciente.turno">Tiene cita para el <span> {{paciente.turno | date: 'fullDate':'':'es'}}</span></p>
                 <p class="info" *ngIf="!paciente.turno">No tiene cita</p>
@@ -35,7 +43,8 @@
                     formControlName="fecha"
                     required>
                             
-                    <button class="btn btn-outline">Agendar</button>
+                    <button class="btn btn-primary">Agendar</button>
+                    <button class="btn btn-secondary boton2" routerLink="/pacientes">Cancelar</button>
                 </div>
 
             </form>

@@ -3,11 +3,13 @@
         "apykey",
         "botin",
         "cedula",
+        "Cesion",
         "direccion",
         "Heroe",
         "nitce",
         "parametro",
         "peticion",
+        "Sesion",
         "Swal",
         "sweetalert",
         "telefono"

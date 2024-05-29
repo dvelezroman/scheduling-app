@@ -1,20 +1,30 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, Output } from '@angular/core';
 import { UsuarioModel } from '../components/models/usuario.model';
 import { map } from 'rxjs';
+import { EventEmitter } from 'stream';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioServicesService {
+export class UsuarioServicesService implements OnInit {
 apykey = 'AIzaSyD865HzIS-rxI3S6_K_mUAxMi-ipxDs7z0';
 url = 'https://identitytoolkit.googleapis.com/v1/accounts';
 crearUsuario = ':signUp?key=';
 iniciarSesion = ':signInWithPassword?key=[API_KEY]';
 userToken:string;
-constructor(private http :HttpClient) { }
+valorBoolean:boolean = false;
+  
 
+
+
+constructor(private http :HttpClient) { 
+
+}
+ngOnInit(): void {
+
+}
 
   registrar(usuario:UsuarioModel){
     const auth = {
@@ -55,6 +65,7 @@ constructor(private http :HttpClient) { }
 
   
   almacenarToken(idToken:string){
+    this.userToken = idToken
     localStorage.setItem('token', idToken);
   }
   
@@ -70,6 +81,14 @@ constructor(private http :HttpClient) { }
   
   
   autenticado():boolean{
-    return this.userToken.length > 2;
+    if(localStorage.getItem('token')){
+      this.valorBoolean = true;
+      return true;
+    }else{
+      this.valorBoolean = false;
+      return false;
+    }
   }
+
+
 }

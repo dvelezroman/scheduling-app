@@ -24,6 +24,8 @@ export class AgendarTurnoComponent implements OnInit {
   fechaMaximaString:string;
   fechaMinimaString:string;
 
+  auth:boolean = true;
+
   
   constructor(private parametro: ActivatedRoute,
               private servicio : PacienteService,
@@ -61,7 +63,7 @@ export class AgendarTurnoComponent implements OnInit {
 
     agendar(){
       if(this.formTurno.invalid){
-        console.log('Agrege una fecha');
+        console.log('Agregue una fecha');
         Swal.fire({
           title: "No has seleccionado una fecha",
           text : 'Seleccione un dia entre lunes a viernes',
@@ -103,6 +105,16 @@ export class AgendarTurnoComponent implements OnInit {
      // },3000)
 
       return;
+    }
+    cerrarSesion(){
+      localStorage.removeItem('token');
+      if(this.auth){
+        this.auth = true;
+      }else{
+        this.auth = false
+      }
+    
+    
     }
   
 
