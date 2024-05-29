@@ -13,6 +13,8 @@ import { DetalleComponent } from './components/paciente/detalle/detalle.componen
 import { LoadingComponent } from './components/loading/loading.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
+import { AgendarTurnoComponent } from './components/paciente/agendar-turno/agendar-turno.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -27,7 +29,8 @@ import { LoginComponent } from './components/login/login.component';
     DetalleComponent,
     LoadingComponent,
     RegistroComponent,
-    LoginComponent
+    LoginComponent,
+    AgendarTurnoComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,9 @@ import { LoginComponent } from './components/login/login.component';
    
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    DatePipe,
+
   ],
   bootstrap: [AppComponent]
 })

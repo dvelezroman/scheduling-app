@@ -7,5 +7,6 @@ export class PacienteModel{
     correo:any;
     telefono:number;
     direccion:any;
+    turno:string;
 
 }

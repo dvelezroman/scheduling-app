@@ -1,25 +1,26 @@
 
 
-<div class="container mt-4 animate__animated animate__fadeIn">
+<div class="row">
+    <div class="col">
+        <i routerLink="/pacientes" class=" atras fa-solid fa-circle-left"></i>
+    </div>
+</div>
+
+<div class="container mt-4 m animate__animated animate__fadeIn">
     <div class="row">
-        <div class="col">
+        <div class="col tP">
             
-            <div class="row">
-                <div class="col">
-                    <i routerLink="/pacientes" class=" atras fa-solid fa-circle-left"></i>
-                </div>
-            </div>
-            
-            <h1>Paciente: <small>{{paciente.nombres}}</small></h1>
+            <h1 *ngIf="paciente.id" class="tlP">Paciente: <small class="nP">{{paciente.nombres}}</small></h1>
+            <h1 *ngIf="!paciente.id" class="addP">Agregar Paciente</h1>
             <hr> 
             
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <form (submit)="guardar(f)"
+            <form class="form" (submit)="guardar(f)"
             #f="ngForm">
-            <button  type="button" (click)="limpiar(f)" class="btn btn-outline-primary">Eliminar datos del campo</button>
+            <button  type="button" (click)="limpiar(f)" *ngIf="paciente.id" class="botonElim btn btn-outline-primary">Eliminar campos</button>
                 <div class="form-group pId">
                     <label>Paciente ID</label>
                     <input type="text" 
@@ -83,8 +84,8 @@
                 <hr>
                 <div class="form-group text-center">
 
-                    <button  class="btn btn-primary m-2 boton"> Agregar</button>
-                        
+                    <button *ngIf="!paciente.id"  class="btn btn-primary m-2 boton"> Agregar</button>
+                    <button  *ngIf="paciente.id" class="btn btn-primary m-2 boton"> Actualizar</button>   
                 </div>
             </form>
         </div>

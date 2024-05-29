@@ -1,0 +1,41 @@
+.log-out{
+    font-size: 22px;
+    position: absolute;
+    top: 6%;
+    left: 94%;
+    cursor: pointer;
+    transition: all 250ms;
+    color: grey;
+
+  }
+  .log-out:hover{
+    color: rgb(45, 45, 45);
+    
+  }
+  .cont{
+    transition: all .4s;
+  }
+  .cont:hover{
+    transform: scale(1.1);
+  }
+  .container{
+    width: 80vh;
+    background-color: #eeebe8;
+    margin-top: 3rem;
+    padding: 4rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 15px;
+  }
+  h3{
+    font-size: 15px;
+
+  }
+  .notice{
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .3s;
+  }
+ .col{
+  transition: all .2s;
+  text-align: center;
+ }

@@ -1,3 +1,20 @@
 
 
-<app-pacientes/>
+<div class="row">
+    <div class="col">
+        <i routerLink="/login" class=" log-out fa-solid fa-arrow-right-from-bracket"></i>
+
+    </div>
+  </div>
+  <div class="cont">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+               <a class="notice" routerLink="/pacientes"><h3>Tienes {{numeroPacientes}} <span *ngIf="numeroPacientes<2">paciente agregado</span><span *ngIf="numeroPacientes>1">pacientes agregados</span> </h3></a> 
+                <h3 *ngIf="numeroPacientes<1"> No tienes pacientes agregados</h3>
+            </div>
+        </div>
+    
+      </div>
+  </div>
+  

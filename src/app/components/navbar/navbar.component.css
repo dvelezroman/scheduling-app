@@ -1,11 +1,16 @@
     .navbar{
         padding: 1.5rem;
-        background-color: #a5cef6;
+        height: 7rem;
+        box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
+
     }
+
 
     .navbar-collapse{
         align-items: center;
         justify-content: start;
+
     }
 
      .icon{
@@ -14,9 +19,13 @@
         margin-right: 2rem;
         font-size: 2.5rem;
     }
+    .barra{
+        background-color: #77a2da;
+    }
 
     .nav-link{
-        font-size: 21px;
+        font-size: 14px;
+        font-weight: 300;
 
     }
 
