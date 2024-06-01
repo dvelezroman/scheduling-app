@@ -21,8 +21,9 @@ saveUser:boolean = false;
 }
 
   ngOnInit(): void {
-    if(localStorage.getItem('email')){
-      this.usuario.email = localStorage.getItem('email');
+    if(localStorage.getItem('name')){
+      this.usuario.email = localStorage.getItem('name');
+
         //this.saveUser = true;
     }
    // console.log(this.saveUser);
@@ -56,8 +57,7 @@ saveUser:boolean = false;
         });  
         this.ruta.navigateByUrl('/home');
         if(this.saveUser){
-          localStorage.setItem('email', this.usuario.email)
-          
+          localStorage.setItem('name', this.usuario.email)
         }
       },(err)=>{
         Swal.fire({

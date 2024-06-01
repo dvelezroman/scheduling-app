@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit, Output } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { UsuarioModel } from '../components/models/usuario.model';
-import { map } from 'rxjs';
-import { EventEmitter } from 'stream';
+import { BehaviorSubject, map } from 'rxjs';
+
 
 
 @Injectable({
@@ -15,12 +15,20 @@ crearUsuario = ':signUp?key=';
 iniciarSesion = ':signInWithPassword?key=[API_KEY]';
 userToken:string;
 valorBoolean:boolean = false;
-  
-
+nombreUsuario:string;
+private emailUsuario = new BehaviorSubject<string>(this.getStoredUserName());
+private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
 
 constructor(private http :HttpClient) { 
 
+}
+get usuarioActual(){
+  return this.emailUsuario.asObservable();
+  
+}
+get isLoggedIn(){
+  return this.loggedIn.asObservable();
 }
 ngOnInit(): void {
 
@@ -36,6 +44,9 @@ ngOnInit(): void {
 
       map( resp => {
         this.almacenarToken(resp['idToken']);
+        this.almacenarUserName(usuario.email);
+        this.emailUsuario.next(usuario.email);
+        this.loggedIn.next(true);
         return resp;
       })
 
@@ -53,6 +64,11 @@ ngOnInit(): void {
 
       map( resp => {
         this.almacenarToken(resp['idToken']);
+        this.almacenarUserName(usuario.email);
+
+        this.emailUsuario.next(usuario.email);
+        this.loggedIn.next(true);
+        console.log(resp)
         return resp;
       })
 
@@ -60,35 +76,92 @@ ngOnInit(): void {
   }
 
   cerrarCesion(){
-    localStorage.removeItem('token');
+    this.removeItem('token');
+    this.removeItem('userName');
+    localStorage.removeItem('email');
+    this.emailUsuario.next('');
+    this.loggedIn.next(false);
+  }
+
+  hasToken(): boolean {
+    return !!this.getItem('token');
+  }
+
+  getStoredUserName(): string {
+    return this.getItem('userName') || '';
   }
 
   
   almacenarToken(idToken:string){
     this.userToken = idToken
-    localStorage.setItem('token', idToken);
+    this.setItem('token', idToken);
   }
   
   
   obtenerToken(){
     if(localStorage.getItem('token')){
-      this.userToken = localStorage.getItem('token')
+      this.userToken = this.getItem('token')
     }else{
       this.userToken = '';
     }
     return this.userToken;
   }
-  
-  
+   almacenarUserName(email: string) {
+    this.setItem('userName', email);
+  }
+
+   obtenerUserName() {
+    const emailStorage = localStorage.getItem('userName');
+    if (emailStorage) {
+      this.emailUsuario.next(emailStorage);
+    }
+  }
+  almacenarEmail(email: string) {
+    this.setItem('email', email);
+  }
+
+   obtenerEmail() {
+    const emailStorage = localStorage.getItem('email');
+    if (emailStorage) {
+      this.emailUsuario.next(emailStorage);
+    }
+  }
+
   autenticado():boolean{
-    if(localStorage.getItem('token')){
+    if(this.getItem('token')){
       this.valorBoolean = true;
+      this.loggedIn.next(true);
       return true;
     }else{
       this.valorBoolean = false;
+      this.loggedIn.next(false);
       return false;
     }
   }
 
+//metodos que configura el localstorage undefined//
+
+        setItem(key: string, value: string) {
+            if (typeof localStorage !== 'undefined') {
+              localStorage.setItem(key, value);
+            }
+          }
+
+        getItem(key: string): string | null {
+            if (typeof localStorage !== 'undefined') {
+              return localStorage.getItem(key);
+            }
+            return null;
+          }
+
+        removeItem(key: string) {
+            if (typeof localStorage !== 'undefined') {
+              localStorage.removeItem(key);
+            }
+          }
+
+  
+  
 
 }
+

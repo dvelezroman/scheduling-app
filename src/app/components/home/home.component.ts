@@ -31,6 +31,9 @@ ngOnInit(): void {
 }
 cerrarSesion(){
   localStorage.removeItem('token');
+  localStorage.removeItem('userName');
+  localStorage.removeItem('email');
+
   if(this.auth){
     this.auth = false;
     this.valorB.emit(this.auth);

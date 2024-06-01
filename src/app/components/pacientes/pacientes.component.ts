@@ -25,15 +25,16 @@ constructor(private servicio : PacienteService,
  ){}
 
  ngOnInit(): void {
-  this.loading =true;
+  this.loading = true;
   this.servicio.cargarPacientes().subscribe( data => {
     //console.log(data);
     if(data.length === 0){
-      
+      this.loading = false;
+      this.senal = true;
     }else{
       this.pacientes = data;
-      this.senal = false
-      this.loading =false;
+      this.senal = false;
+      this.loading = false;
     }
   })
 }
@@ -79,24 +80,26 @@ this.twilio.sendNotification(this.to, this.turno).subscribe(resp => {
   if(resp.success == true){
     Swal.fire({
       title: 'Mensaje Enviado!!',
-      text: `Se ha enviado la notificación a ${paciente.nombres}`,
+      text: `Enviado la notificación a ${paciente.nombres}`,
       icon: 'success',
       timer: 2500,
       showCancelButton: false,
       showConfirmButton: false,
   
      })
-  }else{
-    Swal.fire({
-      title: 'error al enviar',
-      text: 'hubo un error de envío, intente mas tarde',
-      icon: 'error',
-      timer: 1800,
-      showCancelButton: false,
-      showConfirmButton: false,
-  
-     })
+
   }
+},
+error => {
+  console.error('Error al enviar notificación:', error);
+  Swal.fire({
+    title: 'Error al enviar',
+    text: 'servidor no conectado',
+    icon: 'error',
+    timer: 1800,
+    showCancelButton: false,
+    showConfirmButton: false,
+  });
 })
 }
 

@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { UsuarioServicesService } from './service/usuario.services.service';
 
 @Component({
@@ -7,6 +7,5 @@ import { UsuarioServicesService } from './service/usuario.services.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-
 
 }

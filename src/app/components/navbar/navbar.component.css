@@ -6,12 +6,48 @@
 
     }
 
+    **scroll al nombre del navbar**
+    .usuario{
 
-    .navbar-collapse{
+        width: 100px;
+        overflow: hidden;
+    }
+    .nombreUsuario{
+        font-size: 14px;
+        color: #17556c;
+
+    }
+
+    .scroll-container {
+        position: relative;
+        width: 100px; /* Ajusta esto según el tamaño de tu navbar */
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      
+      .scroll-text {
+        display: inline-block;
+        padding-left: 100%;
+        animation: scroll-text 10s linear infinite;
+      }
+      
+      @keyframes scroll-text {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+    
+    
+      .navbar-collapse{
         align-items: center;
         justify-content: start;
 
     }
+
 
      .icon{
         width: 2.5rem;
@@ -26,11 +62,17 @@
     .nav-link{
         font-size: 16px;
         font-weight: 300;
+
         padding: 1px;
-        margin: 5px;
+        margin: 7px;
         transition: all 0.3s;
 
     }
+    ul li:nth-child(1) {
+        margin-left: 30px;
+      }
+
+    
     .nav-link:hover {
         color: #17556c;
        

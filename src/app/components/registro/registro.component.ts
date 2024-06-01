@@ -47,6 +47,7 @@ registrar(form:NgForm){
   console.log(data);
   Swal.close();
         this.ruta.navigate(['/home']);
+        localStorage.setItem ('nombres', this.usuario.nombres);
         
   },(err)=>{
     Swal.fire({

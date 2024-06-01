@@ -6,15 +6,17 @@
       </button>
       <div class="collapse navbar-collapse animate__animated animate__fadeIn" id="navbar-toggler">
         
-            <a class="navbar-brand" routerLink="/home"><i class="icon fa-solid fa-x-ray mb-2" ></i></a>
+        <div class="scroll-container usuario">
+          <a class=" navbar-brand " routerLink="/home" *ngIf="isLoggedIn"><span class="nombreUsuario scroll-text">{{userName}}</span></a>
+        </div>
             
             <ul  class="navbar-nav d-flex justify-content-center align-items-center">
 
-              <li *ngIf="userService.valorBoolean" class="nav-item" routerLinkActive="active-link">
-                <a class="nav-link" aria-current="page"  routerLink="/home">Home</a>
+              <li *ngIf="isLoggedIn" class="nav-item" routerLinkActive="active-link">
+                <a class="nav-link " aria-current="page"  routerLink="/home">Home</a>
               </li>
 
-              <li *ngIf="userService.valorBoolean" class="nav-item" routerLinkActive="active-link">
+              <li *ngIf="isLoggedIn" class="nav-item" routerLinkActive="active-link">
                 <a class="nav-link" aria-current="page"  routerLink="/pacientes">Lista de Pacientes</a>
               </li>
 
