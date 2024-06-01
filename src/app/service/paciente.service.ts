@@ -36,7 +36,7 @@ export class PacienteService {
           return [];
       }
           const pacientes: PacienteModel[] = [];
-          console.log(pacienteObj);
+          //console.log(pacienteObj);
           Object.keys(pacienteObj).forEach(key => {
             const paciente: PacienteModel = pacienteObj[key];
             paciente.id = key;

@@ -63,7 +63,7 @@ export class AgendarTurnoComponent implements OnInit {
 
     agendar(){
       if(this.formTurno.invalid){
-        console.log('Agregue una fecha');
+        //console.log('Agregue una fecha');
         Swal.fire({
           title: "No has seleccionado una fecha",
           text : 'Seleccione un dia entre lunes a viernes',
@@ -85,8 +85,8 @@ export class AgendarTurnoComponent implements OnInit {
           this.paciente.id = id;
           this.paciente.turno = this.formTurno.value.fecha
           this.servicio.refreshPaciente(this.paciente).subscribe();
-          console.log(this.paciente);
-          console.log(this.formTurno.value)
+         // console.log(this.paciente);
+          //console.log(this.formTurno.value)
     });
       
       Swal.fire({

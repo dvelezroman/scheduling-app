@@ -24,10 +24,21 @@
     }
 
     .nav-link{
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 300;
+        padding: 1px;
+        margin: 5px;
+        transition: all 0.3s;
 
     }
+    .nav-link:hover {
+        color: #17556c;
+       
+      }
+      .active-link .nav-link {
+        border-bottom: 2px solid #17556c;
+        
+      }
     
 
     @media screen and (max-width: 575px){

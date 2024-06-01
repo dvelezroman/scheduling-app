@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class RegistroComponent implements OnInit {
   usuario: UsuarioModel;
   mostrar:boolean = false;
-  
+  passwordStrength: string;
 
   
   constructor(private auth : UsuarioServicesService,
@@ -59,12 +59,14 @@ registrar(form:NgForm){
   });
 
 
-
  }
 
 toggleMostrar(){
   this.mostrar = !this.mostrar;
  }
+
+
+
 
 }
 

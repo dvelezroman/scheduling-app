@@ -4,14 +4,17 @@
         "botin",
         "cedula",
         "Cesion",
+        "debil",
         "direccion",
         "Heroe",
         "nitce",
         "parametro",
         "peticion",
+        "senal",
         "Sesion",
         "Swal",
         "sweetalert",
-        "telefono"
+        "telefono",
+        "twilio"
     ]
 }

@@ -8,15 +8,15 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
-autenticado:boolean;
-valorAutenticado: boolean;
+
+valorAutenticado: boolean = false;
 
   constructor(public userService:UsuarioServicesService){
 
   }
 ngOnInit() {
-this.autenticado = this.userService.autenticado();
-this.valorAutenticado = this.autenticado;
+const autenticado = this.userService.autenticado();
+this.valorAutenticado = autenticado;
 }
   
   

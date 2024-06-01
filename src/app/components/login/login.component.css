@@ -22,11 +22,12 @@ background-color: #e1ebee;
 }
 
 .form{
-    border-radius: 6px;
+    border-radius: 15px;
     background: #f0f8ff;
     width: 100%;
     max-width: 430px;
     padding: 30px;
+    background-color: rgba(12, 53, 113, 0.083);
     
 }
 
@@ -66,8 +67,9 @@ form .field{
 
 .field input:focus{
    
-   border-color: #66769f;
+   border-color: #9ba8c9;
    box-shadow: none;
+   
 
 
 }
@@ -75,7 +77,7 @@ form .field{
 .field input{
     font-size: 13px;
     padding: 0 15px;
-    border: 2px solid #cacaca;
+    border: 2px solid #cdcfd1;
     transition: all .3s ease;
 }
 ::placeholder{

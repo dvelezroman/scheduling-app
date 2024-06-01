@@ -5,7 +5,7 @@ export class PacienteModel{
     nombres:string;
     cedula:number;
     correo:any;
-    telefono:number;
+    telefono:any;
     direccion:any;
     turno:string;
 

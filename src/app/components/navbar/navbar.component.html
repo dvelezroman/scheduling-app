@@ -10,12 +10,12 @@
             
             <ul  class="navbar-nav d-flex justify-content-center align-items-center">
 
-              <li *ngIf="userService.valorBoolean" class="nav-item" >
-                <a class="nav-link" aria-current="page" routerLinkActive="home" routerLink="/home">Inicio</a>
+              <li *ngIf="userService.valorBoolean" class="nav-item" routerLinkActive="active-link">
+                <a class="nav-link" aria-current="page"  routerLink="/home">Home</a>
               </li>
 
-              <li *ngIf="userService.valorBoolean" class="nav-item" >
-                <a class="nav-link" aria-current="page" routerLinkActive="pacientes" routerLink="/pacientes">Lista de Pacientes</a>
+              <li *ngIf="userService.valorBoolean" class="nav-item" routerLinkActive="active-link">
+                <a class="nav-link" aria-current="page"  routerLink="/pacientes">Lista de Pacientes</a>
               </li>
 
 
