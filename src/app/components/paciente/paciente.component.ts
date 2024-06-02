@@ -5,6 +5,7 @@ import { PacienteService } from '../../service/paciente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
+import { UsuarioServicesService } from '../../service/usuario.services.service';
 
 
 @Component({
@@ -20,8 +21,10 @@ cedula:number;
 correo:string; 
 telefono:number; 
 direccion:string;
+emailRegistrador:string;
 
 constructor(private servicio : PacienteService,
+            private usuarioServicio: UsuarioServicesService, 
             private parametro : ActivatedRoute,
             private ruta: Router){
               this.nombres = this.paciente.nombres;
@@ -29,6 +32,7 @@ constructor(private servicio : PacienteService,
               this.correo = this.paciente.correo;
               this.telefono = this.paciente.telefono;
               this.direccion = this.paciente.direccion;
+             
             }
 
 ngOnInit(): void {
@@ -39,13 +43,19 @@ ngOnInit(): void {
           this.paciente.id = id;
       });
     }
+    this.usuarioServicio.usuarioActual.subscribe (email =>{
+
+      this.emailRegistrador = email;
+      console.log(this.emailRegistrador);
+
+    })
 }
 
 
 guardar( form: NgForm ){
   if(form.invalid){
     Object.values(form.controls).forEach( control => control.markAllAsTouched() );
-    //console.log('formulario no enviado');
+
     Swal.fire({
       title: 'Error!!',  
       text: `no has completado el formulario`,
@@ -56,6 +66,8 @@ guardar( form: NgForm ){
     return;
   }
 
+   this.paciente.registrador = this.emailRegistrador;
+  
    if(this.paciente.id){
     
      this.servicio.refreshPaciente(this.paciente)

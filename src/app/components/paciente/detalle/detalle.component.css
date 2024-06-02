@@ -26,9 +26,13 @@
 .listParent{
     margin-bottom: 10px;
     letter-spacing: 1px;
-    font-weight: 200;
+    font-weight: 300;
     margin-left: 6px;
     
+}
+ul li:nth-child(1){
+    margin-bottom: 30px;
+
 }
 .listChild{
     font-size: 19px;

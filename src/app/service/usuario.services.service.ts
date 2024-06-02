@@ -16,8 +16,8 @@ iniciarSesion = ':signInWithPassword?key=[API_KEY]';
 userToken:string;
 valorBoolean:boolean = false;
 nombreUsuario:string;
-private emailUsuario = new BehaviorSubject<string>(this.getStoredUserName());
-private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
+ emailUsuario = new BehaviorSubject<string>(this.getStoredUserName());
+ loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
 
 constructor(private http :HttpClient) { 
