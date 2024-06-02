@@ -186,5 +186,9 @@ color: rgb(116, 108, 108);
   text-align: center;
 }
 
+.custom-tooltip{
+  font-size: 5px;
+  color: red;
+}
 
 

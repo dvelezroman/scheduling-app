@@ -74,33 +74,46 @@ sendMessage(telefono:string, turno:string, paciente:PacienteModel) {
   this.to = `+593${telefono}`;
   const turnoFormat = this.datePipe.transform(turno, 'EEEE, MMMM d, y', 'default', 'es');
   this.turno = `Esto es un recordatorio de que su cita fue agendada para el día ${turnoFormat}`;
-  
-this.twilio.sendNotification(this.to, this.turno).subscribe(resp => {
-  console.log(resp)
-  if(resp.success == true){
-    Swal.fire({
-      title: 'Mensaje Enviado!!',
-      text: `Enviado la notificación a ${paciente.nombres}`,
-      icon: 'success',
-      timer: 2500,
-      showCancelButton: false,
-      showConfirmButton: false,
-  
-     })
 
-  }
-},
-error => {
-  console.error('Error al enviar notificación:', error);
   Swal.fire({
-    title: 'Error al enviar',
-    text: 'servidor no conectado',
-    icon: 'error',
-    timer: 1800,
-    showCancelButton: false,
-    showConfirmButton: false,
-  });
-})
+    title: '¿Enviar Mensaje?',
+    text: `¿Enviar mensaje a ${paciente.nombres}?`,
+    icon: 'question',
+    showCancelButton: true,
+    showConfirmButton: true
+  
+  }).then(resp =>{
+      if(resp.value){
+        this.twilio.sendNotification(this.to, this.turno).subscribe(resp => {
+          console.log(resp)
+          if(resp.success == true){
+            Swal.fire({
+              title: 'Mensaje Enviado!!',
+              text: `Enviado la notificación a ${paciente.nombres}`,
+              icon: 'success',
+              timer: 2500,
+              showCancelButton: false,
+              showConfirmButton: false,
+          
+             })
+        
+          }
+        },
+        error => {
+          console.error('Error al enviar notificación:', error);
+          Swal.fire({
+            title: 'Error al enviar',
+            text: 'servidor no conectado',
+            icon: 'error',
+            timer: 1800,
+            showCancelButton: false,
+            showConfirmButton: false,
+          });
+        })
+      }
+  })
+  
+
 }
 
 

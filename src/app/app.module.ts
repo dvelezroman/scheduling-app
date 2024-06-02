@@ -16,7 +16,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AgendarTurnoComponent } from './components/paciente/agendar-turno/agendar-turno.component';
 import { DatePipe } from '@angular/common';
 import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-no-auth.component';
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -39,13 +40,15 @@ import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-n
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTooltipModule
 
    
   ],
   providers: [
     provideClientHydration(),
     DatePipe,
+    provideAnimationsAsync(),
 
   ],
   bootstrap: [AppComponent]

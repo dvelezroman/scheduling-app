@@ -25,8 +25,8 @@
             <div class="row">
               <div class="col">
                   <button routerLink="/pacientes/nuevo" 
-                  class=" btnA btn btn-outline-primary btn-lg">
-                  <i class="fa-solid fa-user-plus faI"></i>
+                  class=" btnA btn btn-outline-primary btn-lg" [matTooltip]="'Agregar paciente'">
+                  <i class="fa-solid fa-user-plus faI" ></i>
                   </button>
 
                   
@@ -50,7 +50,9 @@
                   <tr >
                     
                     <td class="textP" scope="row">{{i + 1}}</td>
-                    <td class="textP-1"><a class="enlaceNombre" [routerLink]="['/pacientes/paciente',paciente.id]">{{paciente.nombres}}</a></td>
+                    <td class="textP-1"><a class="enlaceNombre" [routerLink]="['/pacientes/paciente',paciente.id]"  [matTooltip]="'Agregado por: ' +(paciente.registrador)"  
+                      matTooltipPosition="after"
+                      matTooltipClass="custom-tooltip">{{paciente.nombres}}</a></td>
                     <td class="textP">{{paciente.cedula}}</td>
                     <td class="textP">{{paciente.correo}}</td>
                     <td class="textP-3"><span class="cita" *ngIf="!paciente.turno">No tine cita</span>{{paciente.turno}}</td>
