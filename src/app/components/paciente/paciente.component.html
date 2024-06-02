@@ -117,11 +117,16 @@
 
 
                 
-                <div class="group-boton">
+                <div   class="group-boton">
 
                     <button *ngIf="!paciente.id"  class="btn btn-primary m-2 boton"> Agregar</button>
+                    
+                    
                     <button  *ngIf="paciente.id" class="btn btn-primary m-2 boton"> Actualizar</button> 
-                    <button routerLink="/pacientes" class="btn btn-secondary m-2"> Cancelar</button>    
+                    <button  routerLink="/pacientes" class="btn btn-secondary m-2"> Cancelar</button>    
+
+
+
                 </div>
             </form>
         </div>

@@ -9,5 +9,6 @@ export class PacienteModel{
     direccion:any;
     turno:string;
     registrador:string;
+    usuarioUid:string;
 
 }

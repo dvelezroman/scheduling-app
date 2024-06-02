@@ -18,6 +18,7 @@ valorBoolean:boolean = false;
 nombreUsuario:string;
  emailUsuario = new BehaviorSubject<string>(this.getStoredUserName());
  loggedIn = new BehaviorSubject<boolean>(this.hasToken());
+ usuarioId = new BehaviorSubject<string>(this.getStoredUserUid());
 
 
 constructor(private http :HttpClient) { 
@@ -27,6 +28,10 @@ get usuarioActual(){
   return this.emailUsuario.asObservable();
   
 }
+get usuarioLocalId(){
+  return this.usuarioId.asObservable();
+}
+
 get isLoggedIn(){
   return this.loggedIn.asObservable();
 }
@@ -44,6 +49,7 @@ ngOnInit(): void {
 
       map( resp => {
         this.almacenarToken(resp['idToken']);
+        this.almacenarUid(resp['localId']);
         this.almacenarUserName(usuario.email);
         this.emailUsuario.next(usuario.email);
         this.loggedIn.next(true);
@@ -61,14 +67,14 @@ ngOnInit(): void {
     };
     return this.http.post(`${this.url}:signInWithPassword?key=${this.apykey}`, auth)
     .pipe(
-
+     
       map( resp => {
         this.almacenarToken(resp['idToken']);
         this.almacenarUserName(usuario.email);
-
+        this.almacenarUid(resp['localId']);
         this.emailUsuario.next(usuario.email);
         this.loggedIn.next(true);
-        console.log(resp)
+
         return resp;
       })
 
@@ -89,6 +95,9 @@ ngOnInit(): void {
 
   getStoredUserName(): string {
     return this.getItem('userName') || '';
+  }
+  getStoredUserUid(): string {
+    return this.getItem('userUid') || '';
   }
 
   
@@ -124,6 +133,15 @@ ngOnInit(): void {
     const emailStorage = localStorage.getItem('email');
     if (emailStorage) {
       this.emailUsuario.next(emailStorage);
+    }
+  }
+  almacenarUid(Uid: string) {
+    this.setItem('userUid', Uid);
+  }
+  obtenerUid() {
+    const uidStorage = localStorage.getItem('userUid');
+    if (uidStorage) {
+      this.usuarioId.next(uidStorage);
     }
   }
 

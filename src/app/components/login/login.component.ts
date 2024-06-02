@@ -4,6 +4,7 @@ import { UsuarioModel } from '../models/usuario.model';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { PacienteModel } from '../models/paciente.model';
 
 @Component({
   selector: 'app-login',
@@ -45,7 +46,9 @@ saveUser:boolean = false;
        return;
       }
       this.auth.login(this.usuario).subscribe(data =>{
-       // console.log(data);
+        console.log(data);
+
+
         Swal.close()
         Swal.fire({
           allowOutsideClick: false,
@@ -56,6 +59,7 @@ saveUser:boolean = false;
   
         });  
         this.ruta.navigateByUrl('/home');
+        
         if(this.saveUser){
           localStorage.setItem('name', this.usuario.email)
         }

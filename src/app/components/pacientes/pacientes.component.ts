@@ -27,7 +27,7 @@ constructor(private servicio : PacienteService,
  ngOnInit(): void {
   this.loading = true;
   this.servicio.cargarPacientes().subscribe( data => {
-    //console.log(data);
+    console.log(data);
     if(data.length === 0){
       this.loading = false;
       this.senal = true;

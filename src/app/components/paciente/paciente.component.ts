@@ -22,7 +22,8 @@ correo:string;
 telefono:number; 
 direccion:string;
 emailRegistrador:string;
-
+usuarioId:string;
+disabled:boolean = true;
 constructor(private servicio : PacienteService,
             private usuarioServicio: UsuarioServicesService, 
             private parametro : ActivatedRoute,
@@ -44,12 +45,21 @@ ngOnInit(): void {
       });
     }
     this.usuarioServicio.usuarioActual.subscribe (email =>{
-
       this.emailRegistrador = email;
-      console.log(this.emailRegistrador);
+    });
+    this.usuarioServicio.usuarioLocalId.subscribe (id =>{
+      this.usuarioId = id;
+    });
+    
+    if( this.paciente.usuarioUid !== this.usuarioId ){
+       this.disabled = false;
+     }else{
+        this.disabled = true;
+     }
 
-    })
 }
+
+
 
 
 guardar( form: NgForm ){
@@ -67,7 +77,8 @@ guardar( form: NgForm ){
   }
 
    this.paciente.registrador = this.emailRegistrador;
-  
+   this.paciente.usuarioUid = this.usuarioId;
+
    if(this.paciente.id){
     
      this.servicio.refreshPaciente(this.paciente)
@@ -88,7 +99,7 @@ guardar( form: NgForm ){
     
       this.servicio.crearPaciente(this.paciente)
       .subscribe( () => {
-    
+        
         Swal.fire({
         title: 'Guardado!!',  
         text: `${this.paciente.nombres} se ha agregado `,
