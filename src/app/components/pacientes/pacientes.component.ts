@@ -5,6 +5,7 @@ import  Swal from 'sweetalert2';
 import { PacienteModel } from '../models/paciente.model';
 import { PacienteService } from '../../service/paciente.service';
 import { TwilioService } from '../../service/twilio.service';
+import { UsuarioServicesService } from '../../service/usuario.services.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ to: string;
 turno: string;
 pacientes: PacienteModel[] = [];
 constructor(private servicio : PacienteService,
+            private usuarioService : UsuarioServicesService,
             private datePipe : DatePipe,
             private twilio : TwilioService
  ){}
@@ -27,7 +29,7 @@ constructor(private servicio : PacienteService,
  ngOnInit(): void {
   this.loading = true;
   this.servicio.cargarPacientes().subscribe( data => {
-    console.log(data);
+    //console.log(data);
     if(data.length === 0){
       this.loading = false;
       this.senal = true;
@@ -37,6 +39,7 @@ constructor(private servicio : PacienteService,
       this.loading = false;
     }
   })
+  //console.log(localStorage.getItem('userUid'))
 }
 
 borrar(id:number, paciente:PacienteModel){
@@ -61,7 +64,9 @@ borrar(id:number, paciente:PacienteModel){
 
 }
 cerrarSesion(){
-  localStorage.removeItem('token');
+  this.usuarioService.cerrarCesion();
+
+
   if(this.auth){
     this.auth = true;
   }else{

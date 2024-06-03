@@ -24,7 +24,7 @@ ngOnInit(): void {
       this.servicio.getPaciente(id).subscribe((data:PacienteModel) =>{
         this.paciente = data;
         this.paciente.id = id;
-        console.log(data)
+        //console.log(data)
     });
 
 

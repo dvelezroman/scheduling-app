@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { PacienteModel } from '../models/paciente.model';
 import { NgForm } from '@angular/forms';
@@ -13,125 +14,133 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
   templateUrl: './paciente.component.html',
   styleUrl: './paciente.component.css'
 })
-export class PacienteComponent implements OnInit{
-paciente:PacienteModel = new PacienteModel();
-auth:boolean = true;
-nombres:string; 
-cedula:number; 
-correo:string; 
-telefono:number; 
-direccion:string;
-emailRegistrador:string;
-usuarioId:string;
-disabled:boolean = true;
-constructor(private servicio : PacienteService,
-            private usuarioServicio: UsuarioServicesService, 
-            private parametro : ActivatedRoute,
-            private ruta: Router){
-              this.nombres = this.paciente.nombres;
-              this.cedula = this.paciente.cedula;
-              this.correo = this.paciente.correo;
-              this.telefono = this.paciente.telefono;
-              this.direccion = this.paciente.direccion;
-             
-            }
+    export class PacienteComponent implements OnInit{
+    paciente:PacienteModel = new PacienteModel();
+    auth:boolean = true;
+    nombres:string; 
+    cedula:number; 
+    correo:string; 
+    telefono:number; 
+    direccion:string;
+    emailRegistrador:string;
+    usuarioId:string;
+    localId:string;
+    editar:boolean = false;
 
-ngOnInit(): void {
-    let id = this.parametro.snapshot.paramMap.get('id');
-    if(id !== "nuevo"){
-        this.servicio.getPaciente(id).subscribe((data:PacienteModel) =>{
-          this.paciente = data;
-          this.paciente.id = id;
+    constructor(private servicio : PacienteService,
+                private usuarioServicio: UsuarioServicesService, 
+                private parametro : ActivatedRoute,
+                private ruta: Router){
+                  this.nombres = this.paciente.nombres;
+                  this.cedula = this.paciente.cedula;
+                  this.correo = this.paciente.correo;
+                  this.telefono = this.paciente.telefono;
+                  this.direccion = this.paciente.direccion;
+                
+                }
+
+    ngOnInit():void {
+      this.usuarioServicio.usuarioLocalId.subscribe (id =>{
+        this.usuarioId = id;
       });
-    }
-    this.usuarioServicio.usuarioActual.subscribe (email =>{
-      this.emailRegistrador = email;
-    });
-    this.usuarioServicio.usuarioLocalId.subscribe (id =>{
-      this.usuarioId = id;
-    });
-    
-    if( this.paciente.usuarioUid !== this.usuarioId ){
-       this.disabled = false;
-     }else{
-        this.disabled = true;
-     }
+      
+      this.usuarioServicio.usuarioActual.subscribe (email =>{
+        this.emailRegistrador = email;
+      });
 
-}
-
-
-
-
-guardar( form: NgForm ){
-  if(form.invalid){
-    Object.values(form.controls).forEach( control => control.markAllAsTouched() );
-
-    Swal.fire({
-      title: 'Error!!',  
-      text: `no has completado el formulario`,
-      icon: 'error',
-      timer: 2500,
-      showConfirmButton: false
-      })
-    return;
-  }
-
-   this.paciente.registrador = this.emailRegistrador;
-   this.paciente.usuarioUid = this.usuarioId;
-
-   if(this.paciente.id){
-    
-     this.servicio.refreshPaciente(this.paciente)
-     .subscribe( () => {
-    
-      Swal.fire({
-      title: 'Actualizado',  
-      text: `Agregado los cambios de ${this.paciente.nombres}`,
-      icon: 'success',
-      timer: 2500,
-      showConfirmButton: false
-      })
-      setTimeout(()=>{
-        this.ruta.navigate(['pacientes']);
-      },1500)
- });
-  }else{
-    
-      this.servicio.crearPaciente(this.paciente)
-      .subscribe( () => {
+        let id = this.parametro.snapshot.paramMap.get('id');
         
+        if(id !== "nuevo"){
+            this.servicio.getPaciente(id).subscribe((data:PacienteModel) =>{
+              this.paciente = data;
+              this.paciente.id = id;
+              this.localId = localStorage.getItem('userName');
+
+              this.editar = this.paciente.registrador === this.localId
+
+              //console.log(this.paciente.registrador);
+              //console.log(this.localId);
+             // console.log(this.editar);
+            });
+          }
+
+          
+
+
+          //console.log(`hola : ${this.localId}`);
+         // console.log(localStorage.getItem('userUid'));
+         // console.log(`5 ${this.usuarioId}`);
+         // console.log(this.paciente.usuarioUid);
+
+
+    }
+
+
+
+   guardar( form: NgForm ){
+      if(form.invalid){
+        Object.values(form.controls).forEach( control => control.markAllAsTouched() );
+
         Swal.fire({
-        title: 'Guardado!!',  
-        text: `${this.paciente.nombres} se ha agregado `,
-        icon: 'success',
-        timer: 1800,
-        showConfirmButton: false
-        })
-        setTimeout(()=>{
-          this.ruta.navigate(['pacientes']);
-        },1500)
-   });
+          title: 'Error!!',  
+          text: `no has completado el formulario`,
+          icon: 'error',
+          timer: 2500,
+          showConfirmButton: false
+          })
+        return;
+      }
+
+      if(this.paciente.id){
+        
+        this.servicio.refreshPaciente(this.paciente)
+        .subscribe( () => {
+        
+          Swal.fire({
+          title: 'Actualizado',  
+          text: `Agregado los cambios de ${this.paciente.nombres}`,
+          icon: 'success',
+          timer: 2500,
+          showConfirmButton: false
+          })
+          setTimeout(()=>{
+            this.ruta.navigate(['pacientes']);
+          },1500)
+        });
+      }else{
+            this.paciente.registrador = this.emailRegistrador;
+            this.paciente.usuarioUid = this.usuarioId;
+          
+          this.servicio.crearPaciente(this.paciente)
+          .subscribe( () => {
+            
+            Swal.fire({
+            title: 'Agregado',  
+            text: `${this.paciente.nombres} se ha agregado a la lista`,
+            icon: 'success',
+            timer: 1800,
+            showConfirmButton: false
+            })
+            setTimeout(()=>{
+              this.ruta.navigate(['pacientes']);
+            },1500)
+          });
+      }
+      
+
   }
-   
 
-}
-
-limpiar(form:NgForm){
-  this.paciente.id.delete
-  return form.reset();
-}
-cerrarSesion(){
-  localStorage.removeItem('token');
-  if(this.auth){
-    this.auth = true;
-  }else{
-    this.auth = false
-  }
+    limpiar(form:NgForm){
+      this.paciente.id.delete
+      return form.reset();
+    }
 
 
-}
-
-
-
-
-}
+    cerrarSesion(){
+        this.usuarioServicio.cerrarCesion();
+        localStorage.removeItem('userUid');
+        localStorage.removeItem('userName');
+        this.paciente.usuarioUid = null;
+        this.usuarioId = null
+        this.auth = false;
+    }}

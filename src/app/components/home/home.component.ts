@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PacienteModel } from '../models/paciente.model';
 import { PacienteService } from '../../service/paciente.service';
+import { UsuarioServicesService } from '../../service/usuario.services.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,9 @@ numeroPacientes:number;
 numeroTurnos:string;
 auth:boolean = true;
 @Output() valorB = new EventEmitter<boolean>();
-constructor(private servicio : PacienteService){
+constructor(private servicio : PacienteService,
+            private usuarioService : UsuarioServicesService
+){
 
 }
 ngOnInit(): void {
@@ -24,23 +27,14 @@ ngOnInit(): void {
     this.paciente = data;
     //console.log(this.paciente.length);
     this.numeroPacientes = this.paciente.length;
-
+    //console.log(localStorage['userUid']);
 
 })
 
 }
 cerrarSesion(){
-  localStorage.removeItem('token');
-  localStorage.removeItem('userName');
-  localStorage.removeItem('email');
-
-  if(this.auth){
-    this.auth = false;
-    this.valorB.emit(this.auth);
-  }else{
-    this.auth = true;
-  }
-
+  
+ return this.usuarioService.cerrarCesion()
 
 }
 }

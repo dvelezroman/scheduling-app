@@ -46,7 +46,7 @@ saveUser:boolean = false;
        return;
       }
       this.auth.login(this.usuario).subscribe(data =>{
-        console.log(data);
+    
 
 
         Swal.close()

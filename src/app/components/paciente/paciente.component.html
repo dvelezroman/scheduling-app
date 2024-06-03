@@ -29,19 +29,7 @@
         <div class="col">
             <form class="form" (submit)="guardar(f)"
             #f="ngForm">
-          <!--   <button  type="button" (click)="limpiar(f)" *ngIf="paciente.id" class="botonElim btn btn-outline-primary">Eliminar campos</button>
-               <div class="form-group pId">
-                    <label>Paciente ID</label>
-                    <input type="text" 
-                    class="form-control Id" 
-                    [(ngModel)]="paciente.quienRegistroPaciente"
-                    name="emailUsuario"
-                    disabled="disabled">
-                    <small class="form-text text-muted"></small>
-                </div>
-                <br>-->
 
-                
                 <div class="form-group">
                     <label>Nombre Completo</label>
                     <input type="text" 
@@ -120,12 +108,8 @@
                 <div   class="group-boton">
 
                     <button *ngIf="!paciente.id"  class="btn btn-primary m-2 boton"> Agregar</button>
-                    
-                    
-                    <button  *ngIf="paciente.id" class="btn btn-primary m-2 boton"> Actualizar</button> 
+                    <button  *ngIf="paciente.id" class="btn btn-primary m-2 boton" [disabled]="!editar"> Actualizar</button> 
                     <button  routerLink="/pacientes" class="btn btn-secondary m-2"> Cancelar</button>    
-
-
 
                 </div>
             </form>
