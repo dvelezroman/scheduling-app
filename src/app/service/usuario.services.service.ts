@@ -21,7 +21,18 @@ export class UsuarioServicesService implements OnInit {
     private emailUsuario = new BehaviorSubject<string>(this.getStoredUserName());
     private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
     private usuarioId = new BehaviorSubject<string>(this.getStoredUserUid());
+    private editarSubject = new BehaviorSubject<boolean>(false);
+    private registradorSubject = new BehaviorSubject<string>(null);
+    editar$ = this.editarSubject.asObservable();
+    registrador$ = this.registradorSubject.asObservable();
 
+        setRegistrador(value: string) {
+          this.registradorSubject.next(value);
+          }
+
+        setEditar(value: boolean) {
+          this.editarSubject.next(value);
+          }
 
     get usuarioActual(){
       return this.emailUsuario.asObservable();}
@@ -29,6 +40,8 @@ export class UsuarioServicesService implements OnInit {
       return this.usuarioId.asObservable();}
     get isLoggedIn(){
       return this.loggedIn.asObservable();}
+
+     
 
 
     constructor(private http :HttpClient) { }
@@ -156,7 +169,7 @@ export class UsuarioServicesService implements OnInit {
         }
       }
 
-    //metodos que configura el localstorage undefined//
+
 
             setItem(key: string, value: string) {
                 if (typeof localStorage !== 'undefined') {

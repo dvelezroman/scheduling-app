@@ -56,11 +56,11 @@
                     <td class="textP">{{paciente.cedula}}</td>
                     <td class="textP">{{paciente.correo}}</td>
                     <td class="textP-3"><span class="cita" *ngIf="!paciente.turno">No tine cita</span>{{paciente.turno}}</td>
-                    <td class="d-flex justify-content-md-center">
+                    <td  class="d-flex justify-content-md-center">
                         
-                        <button type="button" (click)="sendMessage(paciente.telefono, paciente.turno, paciente)" class="botin4"><i class="fa-brands fa-whatsapp"></i></button>
-                        <button type="button" [routerLink]="['/pacientes','pacientes','id',paciente.id]" class="btn btn-outline-success botin3 "><i class="fa-solid fa-calendar-days"></i></button>
-                        <button type="button" [routerLink]="['/pacientes',paciente.id]" class="btn btn-outline-primary botin "><i class="fa-solid fa-pen"></i></button>
+                        <button [disabled]="!usuarioPuedeEditar(paciente)" type="button" (click)="sendMessage(paciente.telefono, paciente.turno, paciente)" class="botin4"><i class="fa-brands fa-whatsapp"></i></button>
+                        <button [disabled]="!usuarioPuedeEditar(paciente)" type="button" [routerLink]="['/pacientes','pacientes','id',paciente.id]" class="btn btn-outline-success botin3 "><i class="fa-solid fa-calendar-days"></i></button>
+                        <button [disabled]="!usuarioPuedeEditar(paciente)" type="button" [routerLink]="['/pacientes',paciente.id]" class="btn btn-outline-primary botin "><i class="fa-solid fa-pen"></i></button>
                         <button type="button" (click)="borrar(i,paciente)" class="btn btn-outline-danger botin2"><i class="fa-solid fa-trash basura"></i></button>
                     </td>
                   </tr>

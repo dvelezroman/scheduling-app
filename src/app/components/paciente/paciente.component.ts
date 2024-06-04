@@ -57,7 +57,8 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
               this.localId = localStorage.getItem('userName');
 
               this.editar = this.paciente.registrador === this.localId
-
+              this.usuarioServicio.setEditar(this.editar);
+              this.usuarioServicio.setRegistrador(this.paciente.registrador);
               //console.log(this.paciente.registrador);
               //console.log(this.localId);
              // console.log(this.editar);

@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import  Swal from 'sweetalert2';
@@ -20,6 +21,11 @@ senal:boolean =true;
 to: string;
 turno: string;
 pacientes: PacienteModel[] = [];
+editar: boolean = false;
+usuarioLogin:string;
+puedeEditar:boolean;
+
+idUsuarioActual:string;
 constructor(private servicio : PacienteService,
             private usuarioService : UsuarioServicesService,
             private datePipe : DatePipe,
@@ -27,8 +33,12 @@ constructor(private servicio : PacienteService,
  ){}
 
  ngOnInit(): void {
-  this.loading = true;
-  this.servicio.cargarPacientes().subscribe( data => {
+      this.usuarioLogin = localStorage.getItem('userName');
+      this.idUsuarioActual = localStorage.getItem('userUid');
+
+      //console.log(this.idUsuarioActual)
+      this.loading = true;
+      this.servicio.cargarPacientes().subscribe( data => {
     //console.log(data);
     if(data.length === 0){
       this.loading = false;
@@ -38,8 +48,27 @@ constructor(private servicio : PacienteService,
       this.senal = false;
       this.loading = false;
     }
+  });
+
+
+  this.usuarioService.editar$.subscribe(valor =>{
+    this.editar = valor;
+
+    //console.log(this.editar)
   })
+  this.usuarioService.registrador$.subscribe(valor =>{
+    this.puedeEditar = (valor === this.usuarioLogin);
+    //console.log(valor);
+  })
+
+
+
   //console.log(localStorage.getItem('userUid'))
+}
+usuarioPuedeEditar(paciente: PacienteModel):boolean{
+  //console.log(paciente.usuarioUid)
+  return paciente.usuarioUid === this.idUsuarioActual ;
+  
 }
 
 borrar(id:number, paciente:PacienteModel){
