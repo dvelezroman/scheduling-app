@@ -31,13 +31,11 @@ this.userService.usuarioActual.subscribe(resp =>{
   this.userName = localStorage.getItem('userName');
 })
 
-
-
-
-
 }
   
-  
+  cerrarSesion(){
+    this.userService.cerrarCesion();
+  }
 }
 
 

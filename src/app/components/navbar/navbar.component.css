@@ -6,29 +6,42 @@
 
     }
 
-    **scroll al nombre del navbar**
-    .usuario{
-
-        width: 100px;
-        overflow: hidden;
+    .userLogin{
+      display: flex;
+      position: absolute;
+      left: 85px;
     }
+
+    .nav-link{
+        font-size: 15px;
+        font-weight: 300;
+
+        padding: 1px;
+        margin: 5px;
+        transition: all 0.3s;
+
+    }
+    
+
     .nombreUsuario{
         font-size: 11px;
-        color: #17556c;
+        position: absolute;
+        top:12px;
+        color: #336070;
 
     }
 
-    /*.scroll-container {
+   /* .scroll-container {
         position: relative;
         width: 100px; /* Ajusta esto según el tamaño de tu navbar */
-       /* overflow: hidden;
+      /*  overflow: hidden;
         white-space: nowrap;
-     /* }
+      }
       
       .scroll-text {
         display: inline-block;
         padding-left: 100%;
-        animation: scroll-text 100s linear infinite;
+        animation: scroll-text 7s linear;
       }
       
       @keyframes scroll-text {
@@ -37,54 +50,65 @@
         }
         100% {
           transform: translateX(-100%);
+          padding-left: 100%;
         }
       }*/
 
-    
-    
-      .navbar-collapse{
-        align-items: center;
-        justify-content: start;
-
-    }
-
-
-     .icon{
-        width: 2.5rem;
-        height: 1.5rem;
-        margin-right: 2rem;
-        font-size: 2.5rem;
-    }
     .barra{
         background-color: #77a2da;
     }
 
-    .nav-link{
-        font-size: 16px;
-        font-weight: 300;
-
-        padding: 1px;
-        margin: 7px;
-        transition: all 0.3s;
-
+    .logOut{
+      position: absolute;
+      top: 33px;
+      left: 83%;
+      list-style: none;
+      padding: 1px;
+      margin: 7px;
+      transition: all 0.3s;
     }
-
+    .logout{
+      font-size: 12px;
+      font-weight: 200;
+      text-decoration: none;
+      color: black;
+    }
     
     .nav-link:hover {
         color: #17556c;
        
       }
       .active-link .nav-link {
-        border-bottom: 2px solid #17556c;
+        border-bottom: 1px solid #2d6f87;
         
       }
     
 
-    @media screen and (max-width: 575px){
+    @media screen and (max-width: 611px){
 
-        .icon{
+        .nombreUsuario{
             display: none;
         }
+        .navbar-nav{
+          margin: 24px;
+        }
+        .nav-link{
+          font-size: 13px;
+          margin: 2px;
+
+        }
+        .userLogin{
+
+        height: 7rem;
+
+        }
+        .logOut{
+          left: 77%;
+        }
+        .logout{
+          font-size: 11px;
+        }
+
     }
         
     
