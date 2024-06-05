@@ -49,9 +49,9 @@ font-weight: 200;
 text-align: center;
 }
 
-.icono+{
-font-weight: bold;
-font-size: 25px;
+.icono{
+  font-weight: bold;
+  font-size: 25px;
 }
 .btnA{
 display: flex;
