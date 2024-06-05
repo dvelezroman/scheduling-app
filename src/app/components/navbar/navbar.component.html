@@ -2,9 +2,7 @@
 <nav *ngIf="isLoggedIn" class=" nav navbar navbar-expand-sm navbar-light barra">
     <div class="container-fluid">
 
-      <div class="scroll-container usuario">
-        <a class=" navbar-brand " routerLink="/home" *ngIf="isLoggedIn"><span class="nombreUsuario scroll-text">{{userName}}</span></a>
-      </div>
+
       
       <div class='userLogin'>
         
@@ -18,11 +16,17 @@
                   </li>
               </ul>
       </div>
-              <ul class="cerrarSesion navbar-nav d-flex">
-                <li *ngIf="isLoggedIn" class=" logOut">
-                  <a class=" logout" aria-current="page" (click)="cerrarSesion()" routerLink="/inicio">Cerrar Cesión</a>
-                </li>
-              </ul>
+      <ul class="navbar-nav2 ml-auto">
+        <li class="nav-item2" [matTooltip]="'Mi cuneta'"  matTooltipPosition="after">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon><i class="iconoUser fa-regular fa-circle-user"></i></mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="barMenu">
+            <a class="nombreUser" mat-menu-item>{{ userName }}</a>
+            <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión <i class=" iconoLogOut fa-solid fa-arrow-right-from-bracket"></i></button>
+          </mat-menu>
+        </li>
+      </ul>
     </div>
   </nav>
   

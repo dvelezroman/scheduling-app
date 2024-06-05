@@ -18,8 +18,9 @@ import { DatePipe } from '@angular/common';
 import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-no-auth.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule
 
    
   ],

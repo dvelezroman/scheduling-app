@@ -5,6 +5,8 @@ import { UsuarioModel } from '../models/usuario.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -17,7 +19,8 @@ isLoggedIn: boolean = false;
 userName: string = '';
 usuario: UsuarioModel;
 
-  constructor(public userService:UsuarioServicesService
+  constructor(public userService:UsuarioServicesService,
+              private ruta :Router
   ){
 
   }
@@ -36,8 +39,24 @@ this.userService.usuarioActual.subscribe(resp =>{
 
 }
   
-cerrarSesion(): void {
-this.userService.cerrarCesion();
+cerrarSesion() {
+  Swal.fire({
+    title: '¿Estás seguro?',
+
+    icon: 'warning',
+    showCancelButton: true,
+
+
+    confirmButtonText: 'Aceptar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.userService.cerrarCesion();
+
+        this.ruta.navigate(['/inicio']);
+
+    }
+  });
 }
 }
 
