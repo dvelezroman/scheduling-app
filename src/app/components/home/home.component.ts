@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PacienteModel } from '../models/paciente.model';
 import { PacienteService } from '../../service/paciente.service';
+import { UsuarioServicesService } from '../../service/usuario.services.service';
 
 @Component({
   selector: 'app-home',
@@ -8,22 +9,32 @@ import { PacienteService } from '../../service/paciente.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-hoy: Date = new Date();
-cita: Date = new Date();
-paciente:PacienteModel[] = [];
+
+
+pacientesFiltrados:PacienteModel[] = [];
+pacientes:PacienteModel[] = [];
+usuarioLogin:string;
 numeroPacientes:number;
-numeroTurnos:string;
-constructor(private servicio : PacienteService){
+
+auth:boolean = true;
+@Output() valorB = new EventEmitter<boolean>();
+constructor(private servicio : PacienteService,
+            private usuarioService : UsuarioServicesService
+){
 
 }
 ngOnInit(): void {
-  this.servicio.cargarPacientes().subscribe( data => {
-    //console.log(data);
-    this.paciente = data;
-    //console.log(this.paciente.length);
-    this.numeroPacientes = this.paciente.length;
+  this.usuarioLogin = localStorage.getItem('userName');
 
 
-})
+  this.servicio.cargarPacientes().subscribe( (pacientes:PacienteModel[]) => {
+    this.pacientes = pacientes;
+    this.pacientesFiltrados = pacientes;
+    this.pacientesFiltrados = this.pacientes.filter(paciente => paciente.registrador === this.usuarioLogin);
+    console.log(this.pacientesFiltrados)
+    this.numeroPacientes = this.pacientesFiltrados.length
+  });
+
 }
 }
+

@@ -3,6 +3,7 @@ import { PacienteModel } from '../../models/paciente.model';
 import { PacienteService } from '../../../service/paciente.service';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalleComponent implements OnInit {
 paciente:any = {};
-
+usaurioRegistroPaciente:string;
 constructor(private servicio : PacienteService,
             private parametro : ActivatedRoute){
 
@@ -22,7 +23,10 @@ ngOnInit(): void {
       this.servicio.getPaciente(id).subscribe((data:PacienteModel) =>{
         this.paciente = data;
         this.paciente.id = id;
+        //console.log(data)
     });
+
+
   
 }
 }

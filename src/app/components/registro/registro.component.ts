@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class RegistroComponent implements OnInit {
   usuario: UsuarioModel;
   mostrar:boolean = false;
-  
+  passwordStrength: string;
 
   
   constructor(private auth : UsuarioServicesService,
@@ -26,9 +26,9 @@ export class RegistroComponent implements OnInit {
 
 ngOnInit(): void {
     this.usuario = new UsuarioModel();
-    this.usuario.email = 'greverom_@gmail.com';
-    this.usuario.nombres = 'Gregorio Velez';
-    this.usuario.password = "123456";
+    this.usuario.email = '';
+    this.usuario.nombres = '';
+    this.usuario.password = "";
 
   }
 
@@ -47,6 +47,7 @@ registrar(form:NgForm){
   console.log(data);
   Swal.close();
         this.ruta.navigate(['/home']);
+        localStorage.setItem ('nombres', this.usuario.nombres);
         
   },(err)=>{
     Swal.fire({
@@ -59,12 +60,14 @@ registrar(form:NgForm){
   });
 
 
-
  }
 
 toggleMostrar(){
   this.mostrar = !this.mostrar;
  }
+
+
+
 
 }
 
