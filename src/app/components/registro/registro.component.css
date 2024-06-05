@@ -16,11 +16,12 @@
 }
 
 .form{
-    border-radius: 6px;
+    border-radius: 15px;
     background: #f7fbfd;
     width: 100%;
     max-width: 430px;
     padding: 30px;
+    background-color: rgba(12, 53, 113, 0.083);
 }
 
 h1{
@@ -32,6 +33,7 @@ h1{
 
 form{
     margin-top: 30px;
+
 }
 
 form .field{
@@ -39,7 +41,9 @@ form .field{
     width: 100%;
     margin-top: 20px;
     position: relative;
+    
 } 
+
 
 .field input,
 .field button{
@@ -109,5 +113,7 @@ small{
     position:absolute;
     top: 107%; 
 }
+
+
 
 

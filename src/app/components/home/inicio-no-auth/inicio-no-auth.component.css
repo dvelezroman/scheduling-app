@@ -1,0 +1,23 @@
+.container{
+
+    padding: 3rem;
+
+}
+.container2{
+    position: absolute;
+    top: 7%;
+    left: 90%;
+}
+
+.btn1{
+    margin-right: 15px;
+}
+
+h4{
+    font-size: 14px;
+    color: rgb(74, 73, 73);
+}
+h4:hover{
+    color: black;
+    cursor: pointer;
+}

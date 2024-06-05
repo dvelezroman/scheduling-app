@@ -4,6 +4,7 @@ import { UsuarioModel } from '../models/usuario.model';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { PacienteModel } from '../models/paciente.model';
 
 @Component({
   selector: 'app-login',
@@ -21,11 +22,12 @@ saveUser:boolean = false;
 }
 
   ngOnInit(): void {
-    if(localStorage.getItem('email')){
-      this.usuario.email = localStorage.getItem('email');
-        this.saveUser = true;
+    if(localStorage.getItem('name')){
+      this.usuario.email = localStorage.getItem('name');
+
+        //this.saveUser = true;
     }
-    console.log(this.saveUser);
+   // console.log(this.saveUser);
   } 
   
 
@@ -44,7 +46,9 @@ saveUser:boolean = false;
        return;
       }
       this.auth.login(this.usuario).subscribe(data =>{
-        console.log(data);
+    
+
+
         Swal.close()
         Swal.fire({
           allowOutsideClick: false,
@@ -55,9 +59,9 @@ saveUser:boolean = false;
   
         });  
         this.ruta.navigateByUrl('/home');
+        
         if(this.saveUser){
-          localStorage.setItem('email', this.usuario.email)
-          
+          localStorage.setItem('name', this.usuario.email)
         }
       },(err)=>{
         Swal.fire({
@@ -70,7 +74,7 @@ saveUser:boolean = false;
           allowOutsideClick: false,
         });
         this.ruta.navigateByUrl('/login');
-        console.log(err.error.error.message);
+       // console.log(err.error.error.message);
       });
 
   }

@@ -15,9 +15,12 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { AgendarTurnoComponent } from './components/paciente/agendar-turno/agendar-turno.component';
 import { DatePipe } from '@angular/common';
-
-
-
+import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-no-auth.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -30,20 +33,26 @@ import { DatePipe } from '@angular/common';
     LoadingComponent,
     RegistroComponent,
     LoginComponent,
-    AgendarTurnoComponent
+    AgendarTurnoComponent,
+    InicioNoAuthComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule
 
    
   ],
   providers: [
     provideClientHydration(),
     DatePipe,
+    provideAnimationsAsync(),
 
   ],
   bootstrap: [AppComponent]
