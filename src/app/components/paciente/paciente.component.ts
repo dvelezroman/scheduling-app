@@ -65,9 +65,6 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
             });
           }
 
-          
-
-
           //console.log(`hola : ${this.localId}`);
          // console.log(localStorage.getItem('userUid'));
          // console.log(`5 ${this.usuarioId}`);
@@ -75,8 +72,6 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
 
 
     }
-
-
 
    guardar( form: NgForm ){
       if(form.invalid){

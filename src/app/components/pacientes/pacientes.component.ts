@@ -15,17 +15,22 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
   styleUrl: './pacientes.component.css'
 })
 export class PacientesComponent implements OnInit {
-loading:boolean = false;
-auth:boolean = true;
-senal:boolean =true;
-to: string;
-turno: string;
-pacientes: PacienteModel[] = [];
-editar: boolean = false;
-usuarioLogin:string;
-puedeEditar:boolean;
+  
+  pacientes: PacienteModel[] = [];
+  pacientesFiltrados: PacienteModel[] = [];
 
-idUsuarioActual:string;
+  to: string;
+  turno: string;
+  usuarioLogin:string;
+  idUsuarioActual:string;
+
+  loading:boolean = false;
+  auth:boolean = true;
+  senal:boolean =true;
+  editar: boolean = false;
+  puedeEditar:boolean;
+
+
 constructor(private servicio : PacienteService,
             private usuarioService : UsuarioServicesService,
             private datePipe : DatePipe,
@@ -33,40 +38,41 @@ constructor(private servicio : PacienteService,
  ){}
 
  ngOnInit(): void {
+
       this.usuarioLogin = localStorage.getItem('userName');
       this.idUsuarioActual = localStorage.getItem('userUid');
-
-      //console.log(this.idUsuarioActual)
+      
       this.loading = true;
-      this.servicio.cargarPacientes().subscribe( data => {
-    //console.log(data);
-    if(data.length === 0){
-      this.loading = false;
-      this.senal = true;
-    }else{
-      this.pacientes = data;
-      this.senal = false;
-      this.loading = false;
-    }
-  });
 
+      this.usuarioService.editar$.subscribe(valor => this.editar = valor);
+      this.usuarioService.registrador$.subscribe(valor => this.puedeEditar = (valor === this.usuarioLogin));
 
-  this.usuarioService.editar$.subscribe(valor =>{
-    this.editar = valor;
+      this.servicio.cargarPacientes().subscribe( (pacientes:PacienteModel[]) => {
+          this.pacientes = pacientes;
+          this.pacientesFiltrados = pacientes;
+          this.pacientesFiltrados = this.pacientes.filter(paciente => paciente.registrador === this.usuarioLogin);
+      
+          this.senal = this.pacientesFiltrados.length === 0;
+          
 
-    //console.log(this.editar)
-  })
-  this.usuarioService.registrador$.subscribe(valor =>{
-    this.puedeEditar = (valor === this.usuarioLogin);
-    //console.log(valor);
-  })
+          this.loading = false;
+   
+  }); 
+  
 
-
-
-  //console.log(localStorage.getItem('userUid'))
 }
+
+mostrarPacientesUser():void{
+  const pacientesCurrentUser = this.pacientes;
+  this.pacientesFiltrados = pacientesCurrentUser.filter(paciente =>{
+    paciente.registrador === this.usuarioLogin;
+
+
+  });
+}
+
 usuarioPuedeEditar(paciente: PacienteModel):boolean{
-  //console.log(paciente.usuarioUid)
+
   return paciente.usuarioUid === this.idUsuarioActual ;
   
 }
@@ -83,27 +89,15 @@ borrar(id:number, paciente:PacienteModel){
    }).then( data =>{
     if(data.value){
 
-      this.pacientes.splice(id,1);
+      this.pacientesFiltrados.splice(id,1);
       this.servicio.deletePaciente(paciente.id).subscribe();
-      if(this.pacientes.length === 0){
+      if(this.pacientesFiltrados.length === 0){
         this.senal = true;
       }
     };
    });
-
-}
-cerrarSesion(){
-  this.usuarioService.cerrarCesion();
-
-
-  if(this.auth){
-    this.auth = true;
-  }else{
-    this.auth = false
   }
 
-
-}
 sendMessage(telefono:string, turno:string, paciente:PacienteModel) {
   this.to = `+593${telefono}`;
   const turnoFormat = this.datePipe.transform(turno, 'EEEE, MMMM d, y', 'default', 'es');
@@ -129,7 +123,7 @@ sendMessage(telefono:string, turno:string, paciente:PacienteModel) {
               showCancelButton: false,
               showConfirmButton: false,
           
-             })
+             });
         
           }
         },

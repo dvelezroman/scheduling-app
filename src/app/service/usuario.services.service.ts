@@ -26,24 +26,22 @@ export class UsuarioServicesService implements OnInit {
     editar$ = this.editarSubject.asObservable();
     registrador$ = this.registradorSubject.asObservable();
 
-        setRegistrador(value: string) {
-          this.registradorSubject.next(value);
-          }
+    setRegistrador(value: string) {
+      this.registradorSubject.next(value);
+      }
 
-        setEditar(value: boolean) {
-          this.editarSubject.next(value);
-          }
+    setEditar(value: boolean) {
+      this.editarSubject.next(value);
+      }
 
-    get usuarioActual(){
-      return this.emailUsuario.asObservable();}
-    get usuarioLocalId(){
-      return this.usuarioId.asObservable();}
-    get isLoggedIn(){
-      return this.loggedIn.asObservable();}
+      get usuarioActual(){
+        return this.emailUsuario.asObservable();}
+      get usuarioLocalId(){
+        return this.usuarioId.asObservable();}
+      get isLoggedIn(){
+        return this.loggedIn.asObservable();}
 
      
-
-
     constructor(private http :HttpClient) { }
     ngOnInit(): void {}
 
@@ -169,8 +167,6 @@ export class UsuarioServicesService implements OnInit {
         }
       }
 
-
-
             setItem(key: string, value: string) {
                 if (typeof localStorage !== 'undefined') {
                   localStorage.setItem(key, value);
@@ -189,6 +185,10 @@ export class UsuarioServicesService implements OnInit {
                   localStorage.removeItem(key);
                 }
               }
+
+
+            
+      
 
       
       

@@ -1,7 +1,9 @@
 
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
 import { UsuarioModel } from '../models/usuario.model';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +17,8 @@ isLoggedIn: boolean = false;
 userName: string = '';
 usuario: UsuarioModel;
 
-  constructor(public userService:UsuarioServicesService){
+  constructor(public userService:UsuarioServicesService
+  ){
 
   }
 ngOnInit() {
@@ -33,9 +36,9 @@ this.userService.usuarioActual.subscribe(resp =>{
 
 }
   
-  cerrarSesion(){
-    this.userService.cerrarCesion();
-  }
+cerrarSesion(): void {
+this.userService.cerrarCesion();
+}
 }
 
 

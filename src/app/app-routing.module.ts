@@ -12,10 +12,11 @@ import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-n
 
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: '', component: LoginComponent},
   { path: 'inicio', component: InicioNoAuthComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegistroComponent},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'pacientes', component: PacientesComponent, canActivate: [AuthGuard]},
   { path: 'pacientes/:id', component: PacienteComponent, canActivate: [AuthGuard]},
   { path: 'pacientes/:paciente/:id', component: DetalleComponent, canActivate: [AuthGuard]},
