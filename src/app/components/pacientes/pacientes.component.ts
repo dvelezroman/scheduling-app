@@ -16,7 +16,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrl: './pacientes.component.css'
 })
 export class PacientesComponent implements OnInit {
-  
+  paciente:PacienteModel = new PacienteModel();
   pacientes: PacienteModel[] = [];
   pacientesFiltrados: PacienteModel[] = [];
   pacientesFiltradosPorFecha:PacienteModel[] = [];
@@ -34,14 +34,12 @@ export class PacientesComponent implements OnInit {
   senal:boolean =true;
   editar: boolean = false;
   puedeEditar:boolean;
+  mostrarLista: boolean = true;
+  showDateFilter: boolean = false;
   
 
 
-      rangoFecha = new FormGroup({
-        inicio: new FormControl(),
-        fin: new FormControl()
-    });
-    showDateFilter: boolean = false;
+      
 
 constructor(private servicio : PacienteService,
             private usuarioService : UsuarioServicesService,
@@ -49,9 +47,13 @@ constructor(private servicio : PacienteService,
             private twilio : TwilioService,
             private pd : DatePipe
  ){}
-
+ rangoFecha = new FormGroup({
+  inicio: new FormControl(),
+  fin: new FormControl()
+});
  
  ngOnInit(): void {
+
 
       this.fechaMinima = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
       this.fechaMinimaString = this.pd.transform(this.fechaMinima, "yyyy-MM-dd");
@@ -70,7 +72,7 @@ constructor(private servicio : PacienteService,
           this.pacientes = pacientes;
           this.pacientesFiltrados = pacientes;
           this.pacientesFiltrados = this.pacientes.filter(paciente => paciente.registrador === this.usuarioLogin);
-      
+          this.eliminarFechasPasadas();
           this.senal = this.pacientesFiltrados.length === 0;
           
 
@@ -81,19 +83,43 @@ constructor(private servicio : PacienteService,
 
 toggleDateFilter(){
   this.showDateFilter = !this.showDateFilter;
+  
  }
 
 filtrarPorFecha(){
    const {inicio, fin} = this.rangoFecha.value;
-    if(inicio && fin){
-      const startDate = new Date(inicio);
-      const endDate = new Date(fin);
+    if(!inicio || !fin){
+      Swal.fire({
+        title: 'Error!!',  
+        text: 'no has agregado fecha',
+        icon: 'error',
+        timer: 2000,
+        showConfirmButton: false
+        });
+      }else{
+
+        const startDate = new Date(inicio);
+        const endDate = new Date(fin);
 
       this.pacientesFiltradosPorFecha = this.pacientesFiltrados.filter(paciente =>{
         const fechaTurno = new Date(paciente.turno);
         return fechaTurno >= startDate && fechaTurno <= endDate;
-      })
-    }
+      });
+      this.mostrarLista = false;
+      if(this.pacientesFiltradosPorFecha.length === 0){
+        Swal.fire({
+          title: 'Sin Resultados',
+          text: 'No hay pacientes para el rango de fechas seleccionado',
+          icon: 'info',
+          timer: 2000,
+          showConfirmButton: false
+        });
+      }
+      }
+}
+cancelarBusqueda() {
+  this.mostrarLista = true;
+  this.pacientesFiltradosPorFecha = [];
 }
 
 mostrarPacientesUser():void{
@@ -178,5 +204,17 @@ sendMessage(telefono:string, turno:string, paciente:PacienteModel) {
 
 }
 
+eliminarFechasPasadas():void{
+    const hoy = new Date().setHours(0, 0, 0, 0);;
+    this.pacientes.forEach( paciente =>{
+    if(paciente.turno){
+      const fechaTurno = new Date(paciente.turno).setHours(24, 0, 0, 0);
+      if(fechaTurno < hoy){
+        paciente.turno = null;
 
+        this.servicio.refreshPaciente(paciente).subscribe();
+      }
+    }
+}); 
+}
 }

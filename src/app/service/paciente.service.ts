@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PacienteModel } from '../components/models/paciente.model';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -50,13 +51,13 @@ export class PacienteService {
   }
   
 
- refreshPaciente(paciente:PacienteModel){
+ refreshPaciente(paciente:PacienteModel):Observable<PacienteModel>{
     
     const PacienteT = {
       ...paciente
     };
       delete PacienteT.id;
-        return this.http.put(`${this.url}/Pacientes/${paciente.id}.json`, PacienteT);
+        return this.http.put<PacienteModel>(`${this.url}/Pacientes/${paciente.id}.json`, PacienteT);
   }
 
   deletePaciente(id:string){

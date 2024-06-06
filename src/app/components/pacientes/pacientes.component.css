@@ -207,6 +207,15 @@ color: rgb(116, 108, 108);
   background-color: rgb(32, 100, 183);
 
 }
+.botonFecha2 .botonCancelar{
+  margin-top: 39px;
+  margin-left: 20px;
+  background-color: #c3706e;
+  border: 1px solid #c3706e;
+}
+.botonFecha2 .botonCancelar:hover{
+  background-color: rgb(164, 72, 69) ;
+}
 .row{
   position: relative;
 }

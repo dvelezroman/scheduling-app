@@ -51,14 +51,15 @@
                     name="cedula"
                     class="form-control"
                     #cedula="ngModel"
+                    minlength="10" 
                     maxlength="10"
-                    pattern="^\d{1,10}$"
+                    pattern="^[0-9]{10}$"
                     [class.is-invalid]="cedula.invalid && (cedula.dirty || cedula.touched)"
                     [(ngModel)]="paciente.cedula"
                     required>
                     <small *ngIf="cedula.invalid && cedula.touched"
                     class="validador form-text text-danger">campo obligatorio</small>
-                    <div *ngIf="cedula.errors" class="validador form-text text-danger">La cédula no puede tener más de 10 dígitos.</div>
+                    <div *ngIf="cedula.errors && cedula.touched" class="validador form-text text-danger">La cédula debe tener al menos 10 dígitos.</div>
                 </div>
                 
                 <div class="form-group">

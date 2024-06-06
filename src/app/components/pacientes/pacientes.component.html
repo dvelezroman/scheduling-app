@@ -28,9 +28,10 @@
                   <div class="container">
 
                     <div *ngIf="showDateFilter" class="row">
-                        <h3>Buscar por rango de fecha</h3>
+                       
+                          <h3>Buscar por rango de fecha</h3>
                     
-                          <form [formGroup]="rangoFecha" (ngSubmit)="filtrarPorFecha()" class=" d-flex formFecha date-form">
+                            <form [formGroup]="rangoFecha" (ngSubmit)="filtrarPorFecha()" class=" d-flex formFecha date-form">
                             
                               <div class="form-group formFecha1 col-2">
                                   
@@ -54,24 +55,15 @@
                                         class=" form-control">
                               </div>
 
-                                <div class="botonFecha2 form-group col-3">
-                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                <div class="botonFecha2 form-group col-6">
+                                    <button class="btn btn-primary">Buscar</button>
+                                    <button type="button" class=" botonCancelar btn btn-secondary" (click)="cancelarBusqueda()">Cancelar</button>
                                 </div>
 
-                          </form>
+                            </form>
               
               
-                            <div *ngIf="pacientesFiltradosPorFecha.length >0" class="row">
-                              <h5>
-                                Resultado:<span> {{pacientesFiltradosPorFecha.length}}</span> 
-                              </h5>
-                              
-                              <ul class="fechaLista">
-                                <li *ngFor="let paciente of pacientesFiltradosPorFecha">
-                                  {{ paciente.nombres }} - {{ paciente.turno | date:'fullDate':'default':'es' }}
-                                </li>
-                              </ul>
-                            </div>
+
                     </div>
                     
                   </div>
@@ -79,7 +71,7 @@
               </div>
           </div>
       </div>
-            <table class="large table animate__animated animate__fadeIn fast">
+            <table *ngIf="mostrarLista" class="large table animate__animated animate__fadeIn fast">
                 <thead class="table-primary th">
                   <tr>
                     <th scope="col"></th>
@@ -111,7 +103,43 @@
                   </tr>
         
                 </tbody>
-            </table> 
+          </table> 
+
+
+          <table *ngIf="!mostrarLista" class="large table animate__animated animate__fadeIn fast">
+            <thead class="table-primary th">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Nombre Completo</th>
+                <th scope="col">Cédula</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Fecha de la cita</th>
+                <th scope="col"></th>
+                
+              </tr>
+            </thead>
+            <tbody *ngFor="let paciente of pacientesFiltradosPorFecha; let i = index">
+              <tr >
+                
+                <td class="textP" scope="row">{{i + 1}}</td>
+                <td class="textP-1"><a class="enlaceNombre" [routerLink]="['/pacientes/paciente',paciente.id]"  [matTooltip]="'Agregado por: ' +(paciente.registrador)"  
+                  matTooltipPosition="after"
+                  matTooltipClass="custom-tooltip">{{paciente.nombres}}</a></td>
+                <td class="textP">{{paciente.cedula}}</td>
+                <td class="textP">{{paciente.correo}}</td>
+                <td class="textP-3"><span class="cita" *ngIf="!paciente.turno">No tine cita</span>{{paciente.turno}}</td>
+                <td  class="d-flex justify-content-md-center">
+                    
+                    <button [disabled]="!usuarioPuedeEditar(paciente)" type="button" (click)="sendMessage(paciente.telefono, paciente.turno, paciente)" class="botin4"><i class="fa-brands fa-whatsapp"></i></button>
+                    <button [disabled]="!usuarioPuedeEditar(paciente)" type="button" [routerLink]="['/pacientes','pacientes','id',paciente.id]" class="btn btn-outline-success botin3 "><i class="fa-solid fa-calendar-days"></i></button>
+                    <button [disabled]="!usuarioPuedeEditar(paciente)" type="button" [routerLink]="['/pacientes',paciente.id]" class="btn btn-outline-primary botin "><i class="fa-solid fa-pen"></i></button>
+                    <button type="button" (click)="borrar(i,paciente)" class="btn btn-outline-danger botin2"><i class="fa-solid fa-trash basura"></i></button>
+                </td>
+              </tr>
+    
+            </tbody>
+      </table> 
+
             <div *ngIf="senal" class=" alerta alert alert-warning text-center mt-4 animate__animated animate__fadeIn">
                 <h5 class="alert-heading d-flex justify-content-md-center align-items-center">no hay pacientes</h5>
                 <i class="fa fa-exclamation fa-2x"></i>
