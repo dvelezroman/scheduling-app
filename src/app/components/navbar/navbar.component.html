@@ -12,7 +12,10 @@
                   </li>
   
                   <li *ngIf="isLoggedIn" class="nav-item" routerLinkActive="active-link">
-                    <a class="nav-link" aria-current="page"  routerLink="/pacientes">Lista de Pacientes</a>
+                    <a class="nav-link" role="button" routerLink="/pacientes">
+                      Pacientes
+                    </a>
+
                   </li>
               </ul>
       </div>
@@ -30,3 +33,4 @@
     </div>
   </nav>
   
+`

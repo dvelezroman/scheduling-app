@@ -7,6 +7,7 @@ import { PacienteModel } from '../models/paciente.model';
 import { PacienteService } from '../../service/paciente.service';
 import { TwilioService } from '../../service/twilio.service';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -18,26 +19,44 @@ export class PacientesComponent implements OnInit {
   
   pacientes: PacienteModel[] = [];
   pacientesFiltrados: PacienteModel[] = [];
-
+  pacientesFiltradosPorFecha:PacienteModel[] = [];
   to: string;
   turno: string;
   usuarioLogin:string;
   idUsuarioActual:string;
+  fechaMinima:Date;
+  fechaMaxima:Date;
+  fechaMaximaString:string;
+  fechaMinimaString:string;
 
   loading:boolean = false;
   auth:boolean = true;
   senal:boolean =true;
   editar: boolean = false;
   puedeEditar:boolean;
+  
 
+
+      rangoFecha = new FormGroup({
+        inicio: new FormControl(),
+        fin: new FormControl()
+    });
+    showDateFilter: boolean = false;
 
 constructor(private servicio : PacienteService,
             private usuarioService : UsuarioServicesService,
             private datePipe : DatePipe,
-            private twilio : TwilioService
+            private twilio : TwilioService,
+            private pd : DatePipe
  ){}
 
+ 
  ngOnInit(): void {
+
+      this.fechaMinima = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
+      this.fechaMinimaString = this.pd.transform(this.fechaMinima, "yyyy-MM-dd");
+      this.fechaMaxima = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+35);
+      this.fechaMaximaString = this.pd.transform(this.fechaMaxima,"yyyy-MM-dd");
 
       this.usuarioLogin = localStorage.getItem('userName');
       this.idUsuarioActual = localStorage.getItem('userUid');
@@ -58,8 +77,23 @@ constructor(private servicio : PacienteService,
           this.loading = false;
    
   }); 
-  
+}
 
+toggleDateFilter(){
+  this.showDateFilter = !this.showDateFilter;
+ }
+
+filtrarPorFecha(){
+   const {inicio, fin} = this.rangoFecha.value;
+    if(inicio && fin){
+      const startDate = new Date(inicio);
+      const endDate = new Date(fin);
+
+      this.pacientesFiltradosPorFecha = this.pacientesFiltrados.filter(paciente =>{
+        const fechaTurno = new Date(paciente.turno);
+        return fechaTurno >= startDate && fechaTurno <= endDate;
+      })
+    }
 }
 
 mostrarPacientesUser():void{

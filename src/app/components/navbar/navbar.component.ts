@@ -18,6 +18,7 @@ valorAutenticado: boolean = false;
 isLoggedIn: boolean = false;
 userName: string = '';
 usuario: UsuarioModel;
+showDateFilter: boolean = false;
 
   constructor(public userService:UsuarioServicesService,
               private ruta :Router
@@ -58,6 +59,10 @@ cerrarSesion() {
     }
   });
 }
+
+toggleDateFilter(){
+  this.showDateFilter = !this.showDateFilter;
+ }
 }
 
 
