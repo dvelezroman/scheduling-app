@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     AgendarTurnoComponent,
     InicioNoAuthComponent,
+    SearchComponent,
     
   ],
   imports: [

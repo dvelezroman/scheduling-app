@@ -1,16 +1,22 @@
-.container{
 
-    padding: 3rem;
+.contenedorLogin{
+
+    padding: 1rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    justify-content: end;
+    align-items: center;
+
 
 }
-.container2{
-    position: absolute;
-    top: 7%;
-    left: 90%;
-}
+
 
 .btn1{
-    margin-right: 15px;
+    margin-left: 15px;
+
+}
+.btn2{
+    border: none;
 }
 
 h4{
@@ -21,3 +27,119 @@ h4:hover{
     color: black;
     cursor: pointer;
 }
+
+  .inicio{
+    display: flex;
+    justify-content: center;
+  }
+  
+
+
+    h3{
+      font-size: 15px;
+  
+    }
+    .notice{
+      text-decoration: none;
+      cursor: pointer;
+      transition: all .3s;
+    }
+   .col{
+    transition: all .2s;
+    text-align: center;
+   }
+  
+  section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  section i{
+    font-size: 40px;
+  }
+  h1{
+    font-size: 4.5rem;
+    font-weight: 500;
+    font-family: 'Rubik Dirt';
+    }
+  /*Hero*/
+  
+  .hero{
+    background-color: #d9d9d9;
+    min-height: 450px;
+    text-align: center;
+  
+  }
+  .hero-principal{
+    padding: 3rem;
+  
+  }
+  .hero-principal h2{
+    font-size: 1rem;
+    color: #6c6a6a;
+  
+  }
+  .sobre-app{
+    height: 300px;
+    padding: 200px;
+
+  }
+  .sobre-app .contenedor{
+    max-width: 600px;
+    text-align: center;
+
+
+  }
+  .seccion-titulo{
+    font-size: 2rem;
+    padding: 15px 0px;
+    font-weight: 600;
+    color: #232836;
+    text-align: center;
+  }
+  .seccion-texto{
+    font-size: 1rem;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    font-weight: 400;
+    color: #ededed;
+    text-align: center;
+  }
+
+  .seccion{
+    color: white;
+    background-color: #5084a5bf;
+  }
+  .seccion-clara{
+    color: rgb(239, 238, 238);
+    background-color: white;
+  }
+
+
+  .experiencia{
+    padding: 40px 40px 20px 40px;
+    background-color: #d9d9d9;
+  }
+  .experiencia .row div{
+    height: 250px;
+  }
+  .experiencia i{
+    color: black;
+    font-size: 2.5rem;
+    border-radius: 50%;
+  }
+  .experiencia-titulo{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: black;
+  }
+  .experiencia p{
+    color: black;
+  }
+  
+  @media screen and (min-width: 700px){
+  
+  }

@@ -11,16 +11,21 @@
                     <a class="nav-link " aria-current="page"  routerLink="/home">Home</a>
                   </li>
   
-                  <li *ngIf="isLoggedIn" class="nav-item" routerLinkActive="active-link">
+                  <li *ngIf="isLoggedIn" class="nav-item menu-container" routerLinkActive="active-link">
                     <a class="nav-link" role="button" routerLink="/pacientes">
                       Pacientes
                     </a>
 
                   </li>
+
+                  
               </ul>
+              
       </div>
       <ul class="navbar-nav2 ml-auto">
-        <li class="nav-item2" [matTooltip]="'Mi cuneta'"  matTooltipPosition="after">
+       
+       
+        <li class="nav-item2" [matTooltip]="'Mi cuenta'"  matTooltipPosition="after">
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon><i class="iconoUser fa-regular fa-circle-user"></i></mat-icon>
           </button>

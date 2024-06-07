@@ -63,4 +63,11 @@ export class PacienteService {
   deletePaciente(id:string){
     return this.http.delete(`${this.url}/Pacientes/${id}.json`);
   }
+
+  buscarPacientes(nombre: string): Observable<PacienteModel[]> {
+    return this.cargarPacientes()
+    .pipe(
+      map(pacientes => pacientes.filter(paciente => paciente.nombres.toLowerCase().includes(nombre.toLowerCase())))
+    );
+  }
 }

@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalleComponent implements OnInit {
 paciente:any = {};
+pacientes:any[]= [];
 usaurioRegistroPaciente:string;
 constructor(private servicio : PacienteService,
             private parametro : ActivatedRoute){
@@ -19,12 +20,14 @@ constructor(private servicio : PacienteService,
 
 ngOnInit(): void {
   let id = this.parametro.snapshot.paramMap.get('id');
+      if(id){
 
-      this.servicio.getPaciente(id).subscribe((data:PacienteModel) =>{
-        this.paciente = data;
-        this.paciente.id = id;
-        //console.log(data)
-    });
+        this.servicio.getPaciente(id).subscribe((data:PacienteModel) =>{
+          this.paciente = data;
+          this.paciente.id = id;
+          //console.log(data)
+      });
+      }
 
 
   

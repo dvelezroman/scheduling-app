@@ -7,7 +7,7 @@ import { PacienteModel } from '../models/paciente.model';
 import { PacienteService } from '../../service/paciente.service';
 import { TwilioService } from '../../service/twilio.service';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -20,6 +20,7 @@ export class PacientesComponent implements OnInit {
   pacientes: PacienteModel[] = [];
   pacientesFiltrados: PacienteModel[] = [];
   pacientesFiltradosPorFecha:PacienteModel[] = [];
+  rangoFecha:FormGroup;
   to: string;
   turno: string;
   usuarioLogin:string;
@@ -36,21 +37,21 @@ export class PacientesComponent implements OnInit {
   puedeEditar:boolean;
   mostrarLista: boolean = true;
   showDateFilter: boolean = false;
-  
-
-
-      
+  mostrarBotonX:boolean = false;   
 
 constructor(private servicio : PacienteService,
             private usuarioService : UsuarioServicesService,
             private datePipe : DatePipe,
             private twilio : TwilioService,
-            private pd : DatePipe
- ){}
- rangoFecha = new FormGroup({
-  inicio: new FormControl(),
-  fin: new FormControl()
-});
+            private pd : DatePipe,
+            private fb : FormBuilder
+ ){
+    this.rangoFecha = this.fb.group({
+        inicio: new FormControl(null, Validators.required),
+        fin: new FormControl(null, Validators.required)
+ });
+ 
+};
  
  ngOnInit(): void {
 
@@ -100,10 +101,11 @@ filtrarPorFecha(){
 
         const startDate = new Date(inicio);
         const endDate = new Date(fin);
-
+        this.mostrarBotonX = true
       this.pacientesFiltradosPorFecha = this.pacientesFiltrados.filter(paciente =>{
         const fechaTurno = new Date(paciente.turno);
         return fechaTurno >= startDate && fechaTurno <= endDate;
+
       });
       this.mostrarLista = false;
       if(this.pacientesFiltradosPorFecha.length === 0){
@@ -114,13 +116,16 @@ filtrarPorFecha(){
           timer: 2000,
           showConfirmButton: false
         });
+          
       }
       }
 }
 cancelarBusqueda() {
   this.mostrarLista = true;
+  this.rangoFecha.reset();
   this.pacientesFiltradosPorFecha = [];
 }
+
 
 mostrarPacientesUser():void{
   const pacientesCurrentUser = this.pacientes;

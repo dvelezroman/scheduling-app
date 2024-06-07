@@ -1,17 +1,26 @@
 
-  .cont{
-    transition: all .4s;
-  }
-  .cont:hover{
-    transform: scale(1.1);
-  }
+.rubik-dirt-regular {
+  font-family: "Rubik Dirt", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inicio{
+  display: flex;
+  justify-content: center;
+}
+
+
+
   .container{
     width: 80vh;
     background-color: #eeebe8;
     margin-top: 3rem;
-    padding: 4rem;
+    margin: 15px;
+    padding: 3rem;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     border-radius: 15px;
+    flex-wrap: wrap;
   }
   h3{
     font-size: 15px;
@@ -45,4 +54,40 @@
   color: rgb(71, 70, 70);
   
   
+}
+
+section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+section i{
+  font-size: 46px;
+}
+h1{
+  font-size: 3.5rem;
+  font-weight: 500;
+  font-family: 'Rubik Dirt';
+  }
+/*Hero*/
+
+.hero{
+  background-color: #f5f6f7;
+  min-height: 450px;
+  text-align: center;
+
+}
+.hero-principal{
+  padding: 3rem;
+
+}
+.hero-principal h2{
+  font-size: 1rem;
+  color: #6c6a6a;
+
+}
+
+@media screen and (min-width: 700px){
+
 }

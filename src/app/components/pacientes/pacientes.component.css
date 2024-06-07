@@ -43,6 +43,7 @@ color: grey;
 .table{
 margin: 2rem auto;
 
+
 }
 table tr th{
 background-color: rgb(179, 201, 240);
@@ -193,6 +194,9 @@ color: rgb(116, 108, 108);
 }
 
 /* filtrar por fecha */
+.contenedorFiltro{
+   width: 100vh
+}
 .botonFecha{
   text-align: end;
 }
@@ -208,47 +212,60 @@ color: rgb(116, 108, 108);
 
 }
 .botonFecha2 .botonCancelar{
+  font-size: 12px;
   margin-top: 39px;
   margin-left: 20px;
   background-color: #c3706e;
-  border: 1px solid #c3706e;
+  background: none;
+  border: none;
+  transition: all .3s;
 }
 .botonFecha2 .botonCancelar:hover{
-  background-color: rgb(164, 72, 69) ;
+  background-color: transparent;
+  transform: scale(1.1);
+}
+.botonFecha2 .botonCancelar i{
+ font-size: 25px;
+ color: rgb(53, 51, 51);
+ 
+}
+.botonFecha2 .botonCancelar i :hover{
+  transform: scale(1.1);
 }
 .row{
   position: relative;
+  text-align: start;
 }
-h3{
-  font-size: 16px;
-}
+
 .formFecha{
-  margin-top: 25px;
-  margin: 10px;
+
+  margin: 5px;
   flex-direction: row;
+
+
 }
 .formFecha1,
 .formFecha2{
-  margin-top: 25px;
+  margin-top: 15px;
   margin: 10px;
 }
 .formFecha1{
-  margin-right: 18px;
+  margin-right: 25px;
 }
 .formFecha label{
   font-size: 12px;
-  color: blue;
-  margin-left: 15px;
+  color: rgb(113, 113, 121);
+  margin-left: 18px;
 }
 .formFecha input{
-  min-width: 130px;
+  min-width: 200px;
   font-size: 13px;
   border: 1px solid #c0bcbc;
 }
 .formFecha button{
   font-size: 13px;
   margin-left: 50px;
-  margin-top: 40px;
+  margin-top: 38px;
   background-color: rgb(65, 112, 205);
 }
 .formFecha button:hover{
@@ -256,14 +273,10 @@ h3{
 
 }
 h5{
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   margin-top: 5px;
 }
-.fechaLista{
-  margin-top: 10px;
-  margin-left: 25px;
-  flex-direction: row;
-}
+
 
 

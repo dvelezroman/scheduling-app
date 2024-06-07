@@ -1,0 +1,18 @@
+
+
+
+      <form class="d-flex" [formGroup]="searchForm" (ngSubmit)="buscar()">
+        <input class="form-control me-2" type="search" placeholder="Nombre" aria-label="Search" formControlName="searchTerm">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+
+
+  <ul *ngIf="resultados.length > 0">
+    <li *ngFor="let paciente of resultados" (click)="verDetalle(paciente.id)">
+      {{ paciente.nombres }}
+    </li>
+  </ul>
+  <!--<form class="d-flex">
+    <input class="form-control me-2" type="search" placeholder="Buscar"  #buscarTexto >
+    <button class="btn btn-outline-primary"  type="button">Buscar</button>
+  </form>-->

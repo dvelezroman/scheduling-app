@@ -12,7 +12,7 @@ import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-n
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent},
+  { path: '', component: InicioNoAuthComponent},
   { path: 'inicio', component: InicioNoAuthComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegistroComponent},
@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'pacientes/:id', component: PacienteComponent, canActivate: [AuthGuard]},
   { path: 'pacientes/:paciente/:id', component: DetalleComponent, canActivate: [AuthGuard]},
   { path: 'pacientes/:paciente/:id/:pacienteId', component: AgendarTurnoComponent, canActivate: [AuthGuard]},
-  { path: '**', pathMatch: 'full', redirectTo: 'login'}
+  { path: '**', pathMatch: 'full', redirectTo: 'inicio'}
 ];
 
 @NgModule({
