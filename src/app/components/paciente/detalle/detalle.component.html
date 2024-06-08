@@ -1,8 +1,3 @@
-<div class="row">
-    <div class="col">
-        <i routerLink="/pacientes" class=" atras fa-solid fa-circle-left"></i>
-    </div>
-</div>
 
 
 <div class="container animate__animated animate__fadeIn" >
@@ -23,74 +18,81 @@
                 <li><h3 class="listChild">Teléfono: <small class="listParent">{{paciente.telefono}}</small> </h3></li>
                 <li><h3 class="listChild">Domicilio: <small class="listParent">{{paciente.direccion}}</small> </h3></li>
                 <div *ngIf="paciente.turno"><li><h3 class="listChild" >Fecha de la cita: <small class="listParent">{{paciente.turno | date:'fullDate':'default':'es'}}</small> </h3></li></div>
+                <li><h3 class="listChild-diag">Diagnósticos realizados: <small class="listParent"></small> </h3></li>
+
+                <div class="row mt-3">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <select class="form-select" [(ngModel)]="diagnosticoSeleccionadoIndex" (change)="mostrarDiagnosticoCompleto()" [ngClass]="{'default-option': diagnosticoSeleccionadoIndex === -1}">
+                            <option [ngValue]="-1">Selecciona un diagnóstico</option>
+                            <option *ngFor="let diagnostico of paciente.diagnostico; let i = index" [ngValue]="i">
+                                {{ diagnostico.fecha | date:'fullDate':'default':'es' }}
+                                
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                  
             </ul>
         </div>
     </div>
 
+    <div class="container contenedor-tarjeta">
+        <div *ngIf="diagnosticoSeleccionado" class="card mt-3">
+            <div class="card-body">
+              <h5 class="card-title">Diagnóstico completo</h5>
+              <p class="card-text">{{ diagnosticoSeleccionado.texto }}</p>
+            </div>
+        </div>
+    </div>
     
         <div class="container">
             <div class="contenedor-diagnostico">
                 <div class="diagnostico d-flex ">
                     
-                    <button class="boton-agregar-diagnostico btn btn-outline-primary col-3 col-md-3 col-lg-3" 
-                    (click)="agregarDiagnostico()" [disabled]="diagnosticoEnProceso"><i class="bi bi-clipboard-plus"></i></button>
+                    <button class="boton-agregar-diagnostico btn btn-outline-primary col-1.5 col-md-1.5 col-lg-1.5" 
+                            data-bs-title="Tooltip on top"  
+                            (click)="agregarDiagnostico()" 
+                            [disabled]="diagnosticoEnProceso" 
+                            [matTooltip]="'Agregar diagnóstico'" 
+                            matTooltipPosition="above">
+                        <i class="bi bi-clipboard-plus"></i></button>
                     
-                    <h2 class="diagnostico-titulo col-9 col-md-9 col-lg-9">Diagnósticos </h2>
+                    <h2 class="diagnostico-titulo col-10.5 col-md-10.5 col-lg-10.5">Diagnóstico</h2>
                 
                 </div>
     
             </div>
         </div>
         
+        
 
-        <div *ngIf="diagnosticoEnProceso">
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Ingresar diagnóstico..." [(ngModel)]="nuevoDiagnostico.texto" id="campo de texto" style="min-height: 250px"></textarea>
-                <label for="campo de texto">Comentarios..</label>
-              </div>
-            <button class="btn btn-outline-primary" (click)="guardarDiagnostico()">Guardar Diagnóstico</button>
-        </div>
+            <div *ngIf="diagnosticoEnProceso" class="container m-3">
+                
+                <div class="contenedor-textarea">
+                        <div class="textarea col d-flex justify-content-center">
+                            <textarea class="form-control" rows="9" placeholder="Ingresar diagnóstico..." [(ngModel)]="nuevoDiagnostico.texto"></textarea>
+                        </div>
+                        
+                </div>
+                <div class="boton-textarea d-flex justify-content-center col">
+                    <button class="boton-guardar col-1.5 guardar-diagnostico btn btn-primary mt-2" (click)="guardarDiagnostico()">Guardar</button>
+                    <button class="boton-cancelar col-1.5 cancelar-diagnostico btn btn-secondary mt-2" (click)="cancelarDiagnostico()">Cancelar</button>
+                </div>
+    
+            </div>
+        
 
         
-        <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-12 col-lg-12" *ngFor="let diagnostico of paciente.diagnostico; let i = index">
-                <div class="accordion" [id]="'accordionExample' + i">
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" [id]="'headingOne' + i">
-                      <button class="accordion-button" type="button" 
-                              [attr.data-bs-toggle]="'collapse'" 
-                              [attr.data-bs-target]="'#collapseOne' + i" 
-                              aria-expanded="false" 
-                              [attr.aria-controls]="'collapseOne' + i"
-                              (click)="toggleAccordion(i)">
-                        <strong class="diagnostico-fecha"> Diagnóstico realizado: </strong>  
-                        {{ diagnostico.fecha | date:'fullDate':'default':'es' }}
-                      </button>
-                    </h2>
-                    <div [id]="'collapseOne' + i" class="accordion-collapse collapse" 
-                         [class.show]="i === 0" 
-                         aria-labelledby="'headingOne' + i" 
-                         [attr.data-bs-parent]="'#accordionExample' + i">
-                      <div class="accordion-body">
-                        {{ diagnostico.texto }}
-                      </div>
-                      <div class="acordeon-texto">
-                        <button class="btn btn-danger" (click)="eliminar(i)">
-                          <i class="bi bi-trash3-fill"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        
         
 
 </div>
 
         <div class="boton">
-            <button class="btn btn-secondary" routerLink="/pacientes">Regresar</button>
+            <button class="btn btn-secondary m-3" routerLink="/pacientes">Regresar</button>
         </div>
+
+
+        
     
