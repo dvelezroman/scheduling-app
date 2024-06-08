@@ -78,3 +78,45 @@ ul li:nth-child(1){
     text-align: center;
     margin-top: 35px;
   }
+  .diagnostico{
+        margin-top: 15px;
+        justify-content: center;
+
+  }
+.diagnostico-titulo{
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 10px;
+    letter-spacing: 1px;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-start;
+}
+.diagnostico-fecha{
+    padding-left: 15px;
+    margin-right: 7px
+}
+  .contenedor-diagnostico button{
+    background-color: white;
+    border: none;
+    
+    color: rgb(55, 89, 164);
+
+  }
+  .container .fila{
+
+  }
+
+  .contenedor-diagnostico button i{
+    font-size: 35px;
+    
+  }
+  .conenedorAcordeon{
+    display: flex;
+  }
+  .accordion-body {
+    min-height: 200px; /* Establece una altura mínima */
+    max-height: 400px; /* Establece una altura máxima */
+    overflow-y: auto;  /* Permite desplazamiento vertical si el contenido es mayor que la altura máxima */
+    white-space: pre-wrap; /* Permite que el texto largo pase a la siguiente línea */
+  }

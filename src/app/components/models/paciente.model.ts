@@ -10,5 +10,10 @@ export class PacienteModel{
     turno:string;
     registrador:string;
     usuarioUid:string;
+    diagnostico:Diagnostico[];
+}
 
+export class Diagnostico{
+    fecha: Date;
+    texto: string;
 }

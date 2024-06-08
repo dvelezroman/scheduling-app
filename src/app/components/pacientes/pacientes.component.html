@@ -1,23 +1,23 @@
 
 
 
-<div class="container mb-3 animate__animated animate__fadeInRightBig">
+<div class="container animate__animated animate__fadeIn">
  
   
   
-  <div class="container2 animate__animated animate__fadeInRightBig">
+  <div class="container2 animate__animated animate__fadeIn">
     <div class="row">
       <div class="col">
-        <h1>Pacientes</h1>
-        <hr>
-        <div class="row">
+        <h1></h1>
+
+        <div class="row contenedor-boton-plus">
           <div class="col">
             <button routerLink="/pacientes/nuevo" 
-            class=" btnA btn btn-outline-primary btn-lg" [matTooltip]="'Agregar paciente'">
+            class=" btnA btn btn-outline-primary" [matTooltip]="'Agregar paciente'">
             <i class="fa-solid fa-user-plus faI" ></i>
             </button>
                   <div class=" botonFecha col">
-                    <button class=" botonMostrar btn btn-primary" (click)="showDateFilter =!showDateFilter" [matTooltip]="'Buscar por fecha'">
+                    <button class=" botonMostrar btn btn-primary" (click)="showDateFilter =!showDateFilter" [matTooltip]="'Buscar fechas de turno'">
                       <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                   </div>
@@ -67,15 +67,15 @@
               </div>
           </div>
       </div>
-            <table *ngIf="mostrarLista" class=" tabla large table animate__animated animate__fadeIn fast">
+            <table *ngIf="mostrarLista" class="rounded-table tabla large table animate__animated animate__fadeIn fast">
                 <thead class="table-primary th">
                   <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Nombre Completo</th>
-                    <th scope="col">Cédula</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Fecha de la cita</th>
-                    <th scope="col"></th>
+                    <th scope="col" class="th"></th>
+                    <th scope="col" class="th">Nombre Completo</th>
+                    <th scope="col" class="th">Cédula</th>
+                    <th scope="col" class="th">Correo</th>
+                    <th scope="col" class="th">Fecha de la cita</th>
+                    <th scope="col" class="th"></th>
                     
                   </tr>
                 </thead>

@@ -1,6 +1,7 @@
 .navbar-nav{
+  width: 300px;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   list-style: none;
   padding: 1px;
@@ -12,13 +13,30 @@
 
 
     .nav-link{
-        font-size: 15px;
+        font-size: 18px;
+        color: rgb(207, 202, 202);
         font-weight: 300;
-
+        text-align: end;
         padding: 1px;
         margin: 5px;
         transition: all 0.3s;
 
+    }
+    .nav-link:hover {
+      color: #ffffff;
+     
+    }
+    .active-link .nav-link {
+      border-bottom: 2px solid #ffffffe3;
+      
+    }
+    .nav-item{
+      margin-right: 10px;
+      margin-left: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 1px;
+      transition: all 0.3s;
     }
     
 
@@ -54,49 +72,27 @@
       }*/
 
     .barra{
-        background-color: #77a2da;
+        background-color: #244065;
+      margin-bottom: -2rem;
     }
 
     /* stilos del menu de usuario*/
 .iconoUser{
-  font-size: 22px;
-  color: #17556c;
+  font-size: 28px;
+  color: #d2d7d9;
   position: absolute;
-  top: 14px;
+  top: 9px;
   left: 13px;
 }
 
 .nombreUser{
 
- color: grey;
+ color: rgb(118, 117, 117);
  font-size: 12px;
 }
-.iconoLogOut{
-  font-size: 15px;
-  color: #494a4a;
-  position: absolute;
-  top: 15px;
-  right: 55px;
-}
+
 
 /* stilos del menu de usuario*/
-.mat-form-field {
-  width: 100%;
-  margin-top: 15px;
-  border-radius: 8px;
-}
-
-.mat-datepicker-toggle,
-.mat-date-range-picker {
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  border-radius: 8px;
-}
 
 
 .navbar-nav2{
@@ -117,40 +113,12 @@ button {
 /* stilos del menu de usuario*/
 
     
-    .nav-link:hover {
-        color: #17556c;
-       
-      }
-      .active-link .nav-link {
-        border-bottom: 1px solid #2d6f87;
-        
-      }
+   
     
 
     @media screen and (max-width: 611px){
 
-        .nombreUsuario{
-            display: none;
-        }
-        .navbar-nav{
-          margin: 24px;
-        }
-        .nav-link{
-          font-size: 13px;
-          margin: 2px;
 
-        }
-        .userLogin{
-
-        height: 7rem;
-
-        }
-        .logOut{
-          left: 77%;
-        }
-        .logout{
-          font-size: 11px;
-        }
 
 
     }

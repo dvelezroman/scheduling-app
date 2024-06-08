@@ -24,9 +24,73 @@
                 <li><h3 class="listChild">Domicilio: <small class="listParent">{{paciente.direccion}}</small> </h3></li>
                 <div *ngIf="paciente.turno"><li><h3 class="listChild" >Fecha de la cita: <small class="listParent">{{paciente.turno | date:'fullDate':'default':'es'}}</small> </h3></li></div>
             </ul>
-            <div class="boton">
-                <button class="btn btn-secondary" routerLink="/pacientes">Regresar</button>
-            </div>
         </div>
     </div>
+
+    
+        <div class="container">
+            <div class="contenedor-diagnostico">
+                <div class="diagnostico d-flex ">
+                    
+                    <button class="boton-agregar-diagnostico btn btn-outline-primary col-3 col-md-3 col-lg-3" 
+                    (click)="agregarDiagnostico()" [disabled]="diagnosticoEnProceso"><i class="bi bi-clipboard-plus"></i></button>
+                    
+                    <h2 class="diagnostico-titulo col-9 col-md-9 col-lg-9">Diagnósticos </h2>
+                
+                </div>
+    
+            </div>
+        </div>
+        
+
+        <div *ngIf="diagnosticoEnProceso">
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Ingresar diagnóstico..." [(ngModel)]="nuevoDiagnostico.texto" id="campo de texto" style="min-height: 250px"></textarea>
+                <label for="campo de texto">Comentarios..</label>
+              </div>
+            <button class="btn btn-outline-primary" (click)="guardarDiagnostico()">Guardar Diagnóstico</button>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-12" *ngFor="let diagnostico of paciente.diagnostico; let i = index">
+                <div class="accordion" [id]="'accordionExample' + i">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" [id]="'headingOne' + i">
+                      <button class="accordion-button" type="button" 
+                              [attr.data-bs-toggle]="'collapse'" 
+                              [attr.data-bs-target]="'#collapseOne' + i" 
+                              aria-expanded="false" 
+                              [attr.aria-controls]="'collapseOne' + i"
+                              (click)="toggleAccordion(i)">
+                        <strong class="diagnostico-fecha"> Diagnóstico realizado: </strong>  
+                        {{ diagnostico.fecha | date:'fullDate':'default':'es' }}
+                      </button>
+                    </h2>
+                    <div [id]="'collapseOne' + i" class="accordion-collapse collapse" 
+                         [class.show]="i === 0" 
+                         aria-labelledby="'headingOne' + i" 
+                         [attr.data-bs-parent]="'#accordionExample' + i">
+                      <div class="accordion-body">
+                        {{ diagnostico.texto }}
+                      </div>
+                      <div class="acordeon-texto">
+                        <button class="btn btn-danger" (click)="eliminar(i)">
+                          <i class="bi bi-trash3-fill"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+
 </div>
+
+        <div class="boton">
+            <button class="btn btn-secondary" routerLink="/pacientes">Regresar</button>
+        </div>
+    

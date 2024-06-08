@@ -1,60 +1,6 @@
 
-.rubik-dirt-regular {
-  font-family: "Rubik Dirt", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
 
-.inicio{
-  display: flex;
-  justify-content: center;
-}
-
-
-
-  .container{
-    width: 80vh;
-    background-color: #eeebe8;
-    margin-top: 3rem;
-    margin: 15px;
-    padding: 3rem;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    border-radius: 15px;
-    flex-wrap: wrap;
-  }
-  h3{
-    font-size: 15px;
-
-  }
-  .notice{
-    text-decoration: none;
-    cursor: pointer;
-    transition: all .3s;
-  }
- .col{
-  transition: all .2s;
-  text-align: center;
- }
- .log-out{
-  display: felx;
-  font-size: 13px;
-  position: absolute;
-  top: 45px;
-  left: 83%;
-  cursor: pointer;
-  transition: all 250ms;
-  color: rgb(0, 0, 0);
-  font-weight: 300;
-  z-index: 1;
-  transition: all .5s;
-  z-index: 1;
-
-}
-.log-out:hover{
-  color: rgb(71, 70, 70);
-  
-  
-}
+/*Hero*/
 
 section{
   display: flex;
@@ -62,18 +8,16 @@ section{
   align-items: center;
   justify-content: center;
 }
-section i{
-  font-size: 46px;
-}
+
 h1{
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   font-weight: 500;
   font-family: 'Rubik Dirt';
+  color: #1e3162;
   }
-/*Hero*/
 
 .hero{
-  background-color: #f5f6f7;
+  background-color: #d9d9d9;
   min-height: 450px;
   text-align: center;
 
@@ -84,8 +28,72 @@ h1{
 }
 .hero-principal h2{
   font-size: 1rem;
-  color: #6c6a6a;
+  color: #4e5a73;
 
+}
+
+.seccion-titulo{
+  font-size: 2rem;
+  padding: 10px 0px;
+  font-weight: 600;
+  color: #232836;
+  text-align: center;
+}
+.seccion-texto{
+  font-size: 1rem;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  font-weight: 400;
+  color: #ededed;
+  text-align: center;
+}
+
+.seccion{
+  color: white;
+  background-color: #5084a5bf;
+}
+
+.seccion-clara{
+  color: rgb(239, 238, 238);
+  background-color: white;
+}
+
+
+.experiencia{
+  padding: 40px 40px 20px 40px;
+  background-color: #d9d9d9;
+  align-items: center;
+}
+.experiencia .row{
+  transition: all .3s ease;
+}
+.experiencia .row .columna{
+  height: 300px;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+
+}
+.experiencia .row .columna:hover{
+
+  transform: scale(1.1);
+
+}
+
+.experiencia i{
+  color: rgb(22, 28, 71);
+  font-size: 2.5rem;
+  border-radius: 50%;
+}
+.experiencia-titulo{
+  font-size: 25px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: rgb(30, 39, 89);
+}
+.experiencia p{
+  padding: 5px;
+  color: rgb(23, 37, 86);
 }
 
 @media screen and (min-width: 700px){
