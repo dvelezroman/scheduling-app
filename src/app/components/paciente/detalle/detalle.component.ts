@@ -73,7 +73,7 @@ guardarDiagnostico(): void {
   
       text: 'no hay información que se pueda guardar',
       icon: 'info',
-      timer: 2000,
+      timer: 1800,
       showConfirmButton: false
       });
     
@@ -87,9 +87,7 @@ guardarDiagnostico(): void {
 }
 
 actualizarPaciente(): void {
-  this.servicio.refreshPaciente(this.paciente).subscribe(paciente => {
-
-  });
+  this.servicio.refreshPaciente(this.paciente).subscribe();
 }
 eliminar(index:number){
 this.paciente.diagnostico.splice(index,1);

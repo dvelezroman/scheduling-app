@@ -85,28 +85,8 @@ border: none;
   text-align: left;
 
 }
-.log-out{
 
-    font-size: 13px;
-    position: absolute;
-    top: -80px;
-    left: 95%;
-    cursor: pointer;
-    transition: all 250ms;
-    color: rgb(0, 0, 0);
-    font-weight: 300;
-    z-index: 1;
-    transition: all .5s;
-    z-index: 1;
-
-  }
-  .log-out:hover{
-    color: rgb(71, 70, 70);
-  }
-  .boton{
-    text-align: center;
-    margin-top: 35px;
-  }
+  
 
   /* diagnostico */
 
@@ -138,14 +118,22 @@ border: none;
 
 /* icono de agregar cuadro de texto para diagnostico */
 .contenedor-diagnostico button i{
-  font-size: 34px;
+  font-size: 30px;
   
+}
+.boton-agregar-diagnostico{
+
+  display: flex;
+  justify-content: center;
+
 }
 
   /*contenedor area de texto*/
 
   .contenedor-textarea{
+    padding:10px;
     flex-direction: column;
+    margin-left: 21px;
   }
 
   textarea{
@@ -165,7 +153,18 @@ border: none;
     justify-content: center;
     gap: 15px;
   }
-  .boton-textarea .boton-guardar{
-    margin-right: 10px ;
 
+  .boton-textarea{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 20px;
   }
+
+  .boton-regresar{
+    text-align: center;
+    margin-left: 19px;
+    margin-top: 35px;
+  }
+

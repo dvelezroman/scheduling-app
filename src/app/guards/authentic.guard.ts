@@ -8,7 +8,7 @@ export const AuthGuard = () => {
     if(localStorage.getItem('token')){
       return true;
     }else{
-      ruta.navigate(['/login']);
+      ruta.navigate(['/inicio']);
       return false;
     }
 

@@ -49,8 +49,22 @@ color: grey;
 
 .table{
 margin: 2rem auto;
+table-layout:fixed;
+overflow: hidden;
+width: 100%;
 }
-
+table.rounded-table .index-columna {
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+}
+table.rounded-table .icon-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Permite que los iconos se envuelvan a la siguiente línea */
+  gap: 5px; /* Espacio entre los iconos */
+}
 
 table.rounded-table th{
   background-color: rgb(65, 85, 147);
@@ -60,10 +74,12 @@ table.rounded-table td {
   padding: 10px;
   border-bottom: 1px solid #ccc;
   text-align: center;
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
 }
 table.rounded-table th:first-child,
 table.rounded-table td:first-child {
-  border-left: 0;
+  border-left: 0px;
 }
 
 table.rounded-table th:last-child,
@@ -219,26 +235,7 @@ color: rgb(116, 108, 108);
   border: none;
   box-shadow: none;
 }
-.log-out{
 
-  font-size: 13px;
-  position: absolute;
-  top: 45px;
-  left: 83%;
-  cursor: pointer;
-  transition: all 250ms;
-  color: rgb(0, 0, 0);
-  font-weight: 300;
-  z-index: 1;
-  transition: all .5s;
-  z-index: 1;
-
-}
-.log-out:hover{
-  color: rgb(71, 70, 70);
-  
-  
-}
 .loading{
   text-align: center;
 }
@@ -250,7 +247,10 @@ color: rgb(116, 108, 108);
 
 /* filtrar por fecha */
 .contenedorFiltro{
-   width: 100vh
+   width: 100vh;
+   padding: 25px;
+   display: flex;
+   justify-content: center;
 }
 .botonFecha{
   text-align: end;
@@ -333,5 +333,49 @@ h5{
   margin-top: 5px;
 }
 
+
+@media screen and (max-width: 600px) {
+  table.rounded-table th,
+  table.rounded-table td {
+    font-size: 12px; 
+    padding: 2px; 
+  }
+
+  table tr th {
+    height: auto; 
+  }
+  table.rounded-table .icon-cell {
+    flex-direction: column;
+  }
+}
+
+/*media query del filtro de busqueda fecha*/
+
+@media screen and (max-width: 768px) {
+  .contenedorFiltro {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .formFecha {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .formFecha1, .formFecha2, .botonFecha2 {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .botonFecha2 .botonCancelar {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .formFecha button {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}
 
 

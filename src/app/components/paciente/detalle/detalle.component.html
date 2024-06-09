@@ -40,7 +40,7 @@
     <div class="container contenedor-tarjeta">
         <div *ngIf="diagnosticoSeleccionado" class="card mt-3">
             <div class="card-body">
-              <h5 class="card-title">Diagnóstico completo</h5>
+              <h5 class="card-title">Diagnóstico</h5>
               <p class="card-text">{{ diagnosticoSeleccionado.texto }}</p>
             </div>
         </div>
@@ -81,15 +81,10 @@
                 </div>
     
             </div>
-        
-
-        
-        
-        
 
 </div>
 
-        <div class="boton">
+        <div class="boton-regresar">
             <button class="btn btn-secondary m-3" routerLink="/pacientes">Regresar</button>
         </div>
 

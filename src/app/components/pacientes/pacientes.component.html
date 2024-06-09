@@ -57,9 +57,6 @@
                                 </div>
 
                             </form>
-              
-              
-
                     </div>
                     
                   </div>
@@ -67,10 +64,10 @@
               </div>
           </div>
       </div>
-            <table *ngIf="mostrarLista" class="rounded-table tabla large table animate__animated animate__fadeIn fast">
+            <table *ngIf="mostrarLista" class="tabla-pacientes rounded-table tabla large table animate__animated animate__fadeIn fast">
                 <thead class="table-primary th">
                   <tr>
-                    <th scope="col" class="th"></th>
+                    <th scope="col" class="index-columna"></th>
                     <th scope="col" class="th">Nombre Completo</th>
                     <th scope="col" class="th">Cédula</th>
                     <th scope="col" class="th">Correo</th>
@@ -82,14 +79,14 @@
                 <tbody *ngFor="let paciente of pacientesFiltrados; let i = index">
                   <tr >
                     
-                    <td class="textP" scope="row">{{i + 1}}</td>
+                    <td class="index-columna" scope="row">{{i + 1}}</td>
                     <td class="textP-1"><a class="enlaceNombre" [routerLink]="['/pacientes/paciente',paciente.id]"  
                       matTooltipPosition="after"
                       matTooltipClass="custom-tooltip">{{paciente.nombres}}</a></td>
                     <td class="textP">{{paciente.cedula}}</td>
                     <td class="textP">{{paciente.correo}}</td>
                     <td class="textP-3"><span class="cita" *ngIf="!paciente.turno">No tine cita</span>{{paciente.turno}}</td>
-                    <td  class="d-flex justify-content-md-center">
+                    <td  class="icon-cell d-flex justify-content-md-center">
                         
                         <button [disabled]="!usuarioPuedeEditar(paciente)" type="button" (click)="sendMessage(paciente.telefono, paciente.turno, paciente)" class="botin4"><i class="fa-brands fa-whatsapp"></i></button>
                         <button [disabled]="!usuarioPuedeEditar(paciente)" type="button" [routerLink]="['/pacientes','pacientes','id',paciente.id]" class="btn btn-outline-success botin3 "><i class="fa-solid fa-calendar-days"></i></button>
