@@ -89,11 +89,25 @@ guardarDiagnostico(): void {
 actualizarPaciente(): void {
   this.servicio.refreshPaciente(this.paciente).subscribe();
 }
-eliminar(index:number){
-this.paciente.diagnostico.splice(index,1);
-this.servicio.deletePaciente(this.paciente).subscribe();
-this.servicio.refreshPaciente(this.paciente).subscribe();
 
+eliminarDiagnostico(){
+  Swal.fire({
+    title: '¿Eliminar?',
+    icon: 'question',
+    showCancelButton: true,
+    showConfirmButton: true,
+
+   }).then( data =>{
+    if(data.value){
+    this.paciente.diagnostico.splice(this.diagnosticoSeleccionadoIndex,1);
+    this.servicio.deletePaciente(this.paciente).subscribe();
+    this.servicio.refreshPaciente(this.paciente).subscribe();
+    this.diagnosticoSeleccionado = null;
+    this.diagnosticoSeleccionadoIndex = -1;
+
+    };
+   });
+  
 
 }
 mostrarDiagnosticoCompleto(): void {

@@ -20,15 +20,17 @@
                 <div *ngIf="paciente.turno"><li><h3 class="listChild" >Fecha de la cita: <small class="listParent">{{paciente.turno | date:'fullDate':'default':'es'}}</small> </h3></li></div>
                 <li><h3 class="listChild-diag">Diagnósticos realizados: <small class="listParent"></small> </h3></li>
 
+<!--selector de lista de diagnosticos-->
+
                 <div class="row mt-3">
                     <div class="col-12 col-md-12 col-lg-12">
                         <select class="form-select" [(ngModel)]="diagnosticoSeleccionadoIndex" (change)="mostrarDiagnosticoCompleto()" [ngClass]="{'default-option': diagnosticoSeleccionadoIndex === -1}">
                             <option [ngValue]="-1">Selecciona un diagnóstico</option>
                             <option *ngFor="let diagnostico of paciente.diagnostico; let i = index" [ngValue]="i">
                                 {{ diagnostico.fecha | date:'fullDate':'default':'es' }}
-                                
                             </option>
                         </select>
+                        <button *ngIf="diagnosticoSeleccionado" class="boton-eliminarDiagnostico" (click)="eliminarDiagnostico()"><i class="bi bi-trash"></i><span class="eliminar-texto">eliminar diagnóstico</span></button>
                     </div>
                 </div>
 
@@ -36,6 +38,8 @@
             </ul>
         </div>
     </div>
+
+<!--contenedor tarjeta diagnostico-->
 
     <div class="container contenedor-tarjeta">
         <div *ngIf="diagnosticoSeleccionado" class="card mt-3">
