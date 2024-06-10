@@ -12,7 +12,7 @@ import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-n
 
 
 const routes: Routes = [
-  { path: '', component: InicioNoAuthComponent},
+  { path: '', pathMatch: 'full', redirectTo: 'inicio'},
   { path: 'inicio', component: InicioNoAuthComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegistroComponent},

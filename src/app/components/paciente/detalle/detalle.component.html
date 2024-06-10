@@ -6,6 +6,7 @@
 
 </div>
 
+    <!--datos del paciente-->
 
 <div class="container-sm animate__animated animate__fadeIn">
     <div class="row">
@@ -20,7 +21,7 @@
                 <div *ngIf="paciente.turno"><li><h3 class="listChild" >Fecha de la cita: <small class="listParent">{{paciente.turno | date:'fullDate':'default':'es'}}</small> </h3></li></div>
                 <li><h3 class="listChild-diag">Diagnósticos realizados: <small class="listParent"></small> </h3></li>
 
-<!--selector de lista de diagnosticos-->
+        <!--selector de lista de diagnósticos-->
 
                 <div class="row mt-3">
                     <div class="col-12 col-md-12 col-lg-12">
@@ -69,7 +70,7 @@
             </div>
         </div>
         
-        
+        <!--cuadro de texto para añadir un diagnostico-->
 
             <div *ngIf="diagnosticoEnProceso" class="container m-3">
                 

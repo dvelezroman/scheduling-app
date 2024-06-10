@@ -12,9 +12,9 @@ export class AppComponent implements OnInit{
 
     ngOnInit(): void {}
 
-    //@HostListener('window:beforeunload', ['$event'])
-    //unloadHandler(event: Event) {
-    //  this.servicio.cerrarCesion();
-    //}
+    @HostListener('window:beforeunload', ['$event'])
+    unloadHandler(event: Event) {
+      this.servicio.cerrarCesion();
+    }
 
   }
