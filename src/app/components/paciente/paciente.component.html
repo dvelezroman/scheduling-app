@@ -56,10 +56,11 @@
                     pattern="^[0-9]{10}$"
                     [class.is-invalid]="cedula.invalid && (cedula.dirty || cedula.touched)"
                     [(ngModel)]="paciente.cedula"
+
                     required>
-                    <small *ngIf="cedula.invalid && cedula.touched"
-                    class="validador form-text text-danger">campo obligatorio</small>
-                    <div *ngIf="cedula.errors && cedula.touched" class="validador form-text text-danger">La cédula debe tener al menos 10 dígitos.</div>
+                    <small *ngIf="cedula.invalid && cedula.touched" class="validador form-text text-danger">campo obligatorio</small>
+                    <small *ngIf="cedula.errors && cedula.touched" class="validador form-text text-danger">La cédula debe tener al menos 10 dígitos.</small>
+
                 </div>
                 
                 <div class="form-group">

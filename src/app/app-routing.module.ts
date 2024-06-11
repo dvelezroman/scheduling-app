@@ -9,19 +9,21 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { AgendarTurnoComponent } from './components/paciente/agendar-turno/agendar-turno.component';
 import { AuthGuard } from './guards/authentic.guard';
 import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-no-auth.component';
+import { RecuperaPasswordComponent } from './components/recupera-password/recupera-password.component';
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'inicio'},
   { path: 'inicio', component: InicioNoAuthComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'recuperaPassword', component: RecuperaPasswordComponent},
   { path: 'registro', component: RegistroComponent},
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'pacientes', component: PacientesComponent, canActivate: [AuthGuard]},
   { path: 'pacientes/:id', component: PacienteComponent, canActivate: [AuthGuard]},
   { path: 'pacientes/:paciente/:id', component: DetalleComponent, canActivate: [AuthGuard]},
   { path: 'pacientes/:paciente/:id/:pacienteId', component: AgendarTurnoComponent, canActivate: [AuthGuard]},
-  { path: '**', pathMatch: 'full', redirectTo: 'inicio'}
+  { path: '', pathMatch: 'full', redirectTo: 'inicio'},
+  { path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({

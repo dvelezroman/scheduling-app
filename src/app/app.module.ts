@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -24,8 +24,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './components/search/search.component';
 import { ScrollRevealDirective } from './directiva/scroll-reveal.directive';
+import { RecuperaPasswordComponent } from './components/recupera-password/recupera-password.component';
 
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { ScrollRevealDirective } from './directiva/scroll-reveal.directive';
     InicioNoAuthComponent,
     SearchComponent,
     ScrollRevealDirective,
+    RecuperaPasswordComponent,
+    
 
     
   ],
@@ -57,12 +61,16 @@ import { ScrollRevealDirective } from './directiva/scroll-reveal.directive';
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
 
   ],
   providers: [
     provideClientHydration(),
     DatePipe,
     provideAnimationsAsync(),
+
+
 
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 
 
-/*Hero*/
+/*sección logo*/
 
 section{
   display: flex;
@@ -60,41 +60,50 @@ h1{
 }
 
 
-.experiencia{
+.experiencia {
   padding: 40px 40px 20px 40px;
   background-color: #d9d9d9;
+  display: flex;
   align-items: center;
 }
-.experiencia .row{
-  transition: all .3s ease;
+
+.experiencia .row {
+  width: 100%;
 }
-.experiencia .row .columna{
+
+.columna {
+  transition: transform 0.3s ease; 
   height: 300px;
-  transition: all .3s ease-in-out;
   cursor: pointer;
-
-}
-.experiencia .row .columna:hover{
-
-  transform: scale(1.1);
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.experiencia i{
+.columna:hover {
+  transform: scale(1.1); 
+}
+
+.experiencia i {
   color: rgb(22, 28, 71);
   font-size: 2.5rem;
   border-radius: 50%;
 }
-.experiencia-titulo{
+
+.experiencia-titulo {
   font-size: 25px;
   font-weight: bold;
   margin: 10px 0;
   color: rgb(30, 39, 89);
 }
-.experiencia p{
+
+.experiencia p {
   padding: 5px;
   color: rgb(23, 37, 86);
+  text-align: center; 
 }
+
 
 @media screen and (min-width: 700px){
 

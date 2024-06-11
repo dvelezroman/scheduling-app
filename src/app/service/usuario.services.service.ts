@@ -10,14 +10,15 @@ import { BehaviorSubject, map } from 'rxjs';
 })
 
 export class UsuarioServicesService implements OnInit {
-
-    apykey = 'AIzaSyD865HzIS-rxI3S6_K_mUAxMi-ipxDs7z0';
+    apykey2 = 'AIzaSyABv3KzkWITNxeRKkyba_oqDfHGRYexHo0';
+   // apykey = 'AIzaSyD865HzIS-rxI3S6_K_mUAxMi-ipxDs7z0';
     url = 'https://identitytoolkit.googleapis.com/v1/accounts';
     crearUsuario = ':signUp?key=';
     iniciarSesion = ':signInWithPassword?key=[API_KEY]';
     userToken:string;
     valorBoolean:boolean = false;
-    nombreUsuario:string;
+
+    private nombreUsuario = new BehaviorSubject<string>(this.getStoredName());
     private emailUsuario = new BehaviorSubject<string>(this.getStoredUserName());
     private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
     private usuarioId = new BehaviorSubject<string>(this.getStoredUserUid());
@@ -36,6 +37,8 @@ export class UsuarioServicesService implements OnInit {
 
       get usuarioActual(){
         return this.emailUsuario.asObservable();}
+        get nombreActual(){
+          return this.nombreUsuario.asObservable();}
       get usuarioLocalId(){
         return this.usuarioId.asObservable();}
       get isLoggedIn(){
@@ -50,13 +53,14 @@ export class UsuarioServicesService implements OnInit {
           ...usuario,
           returnSecureToken: true
         }
-        return this.http.post(`${this.url}:signUp?key=${this.apykey}`, auth)
+        return this.http.post(`${this.url}:signUp?key=${this.apykey2}`, auth)
         .pipe(
 
           map( resp => {
             this.almacenarToken(resp['idToken']);
             this.almacenarUid(resp['localId']);
             this.almacenarUserName(usuario.email);
+            this.almacenarName(usuario.nombres);
             this.emailUsuario.next(usuario.email);
             this.usuarioId.next(resp['localId']);
             this.loggedIn.next(true);
@@ -72,7 +76,7 @@ export class UsuarioServicesService implements OnInit {
           ...usuario,
           returnSecureToken: true
         };
-        return this.http.post(`${this.url}:signInWithPassword?key=${this.apykey}`, auth)
+        return this.http.post(`${this.url}:signInWithPassword?key=${this.apykey2}`, auth)
         .pipe(
         
           map( resp => {
@@ -100,10 +104,26 @@ export class UsuarioServicesService implements OnInit {
       
       }
 
+      recuperarContrasena(email: string) {
+        const requestPayload = {
+          requestType: "PASSWORD_RESET",
+          email: email
+        };
+        return this.http.post(`${this.url}:sendOobCode?key=${this.apykey2}`, requestPayload)
+          .pipe(
+            map(resp => {
+              return resp;
+            })
+          );
+      }
+
         hasToken(): boolean {
           return !!this.getItem('token');}
         getStoredUserName(): string {
           return this.getItem('userName') || '';}
+
+          getStoredName(): string {
+            return this.getItem('nombres') || '';}
         getStoredUserUid(): string {
           return this.getItem('userUid') || '';}
 
@@ -122,6 +142,16 @@ export class UsuarioServicesService implements OnInit {
         return this.userToken;
       }
 
+      almacenarName(nombre: string) {
+        this.setItem('nombres', nombre);
+      }
+
+      obtenerName() {
+        const nameStorage = localStorage.getItem('nombres');
+        if (nameStorage) {
+          this.emailUsuario.next(nameStorage);
+        }
+      }
       almacenarUserName(email: string) {
         this.setItem('userName', email);
       }

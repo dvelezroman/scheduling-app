@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
 valorAutenticado: boolean = false;
 isLoggedIn: boolean = false;
 userName: string = '';
+userNombre: string = '';
 usuario: UsuarioModel;
 showDateFilter: boolean = false;
 
@@ -35,7 +36,13 @@ this.userService.isLoggedIn.subscribe(resp =>{
 
 this.userService.usuarioActual.subscribe(resp =>{
   this.userName = resp;
+
   this.userName = localStorage.getItem('userName');
+
+})
+this.userService.nombreActual.subscribe(resp =>{
+  this.userNombre = resp;
+  this.userNombre = localStorage.getItem('nombres');
 })
 
 }

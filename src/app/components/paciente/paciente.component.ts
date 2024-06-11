@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { PacienteModel } from '../models/paciente.model';
-import { NgForm } from '@angular/forms';
+import { NgForm} from '@angular/forms';
 import { PacienteService } from '../../service/paciente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -27,7 +27,7 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
     localId:string;
     editar:boolean = false;
 
-    constructor(private servicio : PacienteService,
+    constructor(public servicio : PacienteService,
                 private usuarioServicio: UsuarioServicesService, 
                 private parametro : ActivatedRoute,
                 private ruta: Router){
@@ -59,72 +59,69 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
               this.editar = this.paciente.registrador === this.localId
               this.usuarioServicio.setEditar(this.editar);
               this.usuarioServicio.setRegistrador(this.paciente.registrador);
-              //console.log(this.paciente.registrador);
-              //console.log(this.localId);
-             // console.log(this.editar);
+
             });
           }
 
-          //console.log(`hola : ${this.localId}`);
-         // console.log(localStorage.getItem('userUid'));
-         // console.log(`5 ${this.usuarioId}`);
-         // console.log(this.paciente.usuarioUid);
-
-
     }
 
-   guardar( form: NgForm ){
-      if(form.invalid){
-        Object.values(form.controls).forEach( control => control.markAllAsTouched() );
-
+    guardar(form: NgForm) {
+      
+      if (form.invalid) {
+        Object.values(form.controls).forEach(control => control.markAllAsTouched());
         Swal.fire({
-          title: 'Error!!',  
-          text: `no has completado el formulario`,
+          title: 'Error!!',
+          text: `No has completado el formulario`,
           icon: 'error',
           timer: 2500,
           showConfirmButton: false
-          })
+        });
         return;
       }
+  
+      this.servicio.verificarCedulaUnica(this.paciente.cedula).subscribe((pacientes: any[]) => {
+        if (pacientes && pacientes.length > 0) {
 
-      if(this.paciente.id){
-        
-        this.servicio.refreshPaciente(this.paciente)
-        .subscribe( () => {
-        
           Swal.fire({
-          title: 'Actualizado',  
-          text: `Agregado los cambios de ${this.paciente.nombres}`,
-          icon: 'success',
-          timer: 2500,
-          showConfirmButton: false
-          })
-          setTimeout(()=>{
-            this.ruta.navigate(['pacientes']);
-          },1500)
-        });
-      }else{
+            icon: 'error',
+            title: 'Error',
+            text: 'Paciente con esta cédula ya existe.'
+          });
+        } else {
+
+          if (this.paciente.id) {
+            this.servicio.refreshPaciente(this.paciente).subscribe(() => {
+              Swal.fire({
+                title: 'Actualizado',
+                text: `Agregado los cambios de ${this.paciente.nombres}`,
+                icon: 'success',
+                timer: 2500,
+                showConfirmButton: false
+              });
+              setTimeout(() => {
+                this.ruta.navigate(['pacientes']);
+              }, 1500);
+            });
+          } else {
             this.paciente.registrador = this.emailRegistrador;
             this.paciente.usuarioUid = this.usuarioId;
-          
-          this.servicio.crearPaciente(this.paciente)
-          .subscribe( () => {
-            
-            Swal.fire({
-            title: 'Agregado',  
-            text: `${this.paciente.nombres} se ha agregado a la lista`,
-            icon: 'success',
-            timer: 1800,
-            showConfirmButton: false
-            })
-            setTimeout(()=>{
-              this.ruta.navigate(['pacientes']);
-            },1500)
-          });
-      }
-      
-
-  }
+            this.servicio.crearPaciente(this.paciente).subscribe(() => {
+              Swal.fire({
+                title: 'Agregado',
+                text: `${this.paciente.nombres} se ha agregado a la lista`,
+                icon: 'success',
+                timer: 1800,
+                showConfirmButton: false
+              });
+              setTimeout(() => {
+                this.ruta.navigate(['pacientes']);
+              }, 1500);
+            });
+          }
+        }
+      });
+    }
+  
 
     limpiar(form:NgForm){
       this.paciente.id.delete
@@ -139,4 +136,12 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
         this.paciente.usuarioUid = null;
         this.usuarioId = null
         this.auth = false;
-    }}
+    }
+
+    pacienteRepetido(){
+
+    }
+
+
+      
+  }

@@ -54,7 +54,17 @@ constructor(private servicio : PacienteService,
 };
  
  ngOnInit(): void {
+      //iniciar fecha desde por default
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months start at 0
+      const dd = String(today.getDate()).padStart(2, '0');
+      const todayString = `${yyyy}-${mm}-${dd}`;
 
+      this.rangoFecha = this.fb.group({
+        inicio: [todayString],
+        fin: ['']
+      })
 
       this.fechaMinima = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
       this.fechaMinimaString = this.pd.transform(this.fechaMinima, "yyyy-MM-dd");
@@ -102,7 +112,7 @@ filtrarPorFecha(){
         const startDate = new Date(inicio);
         const endDate = new Date(fin);
         this.mostrarBotonX = true
-      this.pacientesFiltradosPorFecha = this.pacientesFiltrados.filter(paciente =>{
+        this.pacientesFiltradosPorFecha = this.pacientesFiltrados.filter(paciente =>{
         const fechaTurno = new Date(paciente.turno);
         return fechaTurno >= startDate && fechaTurno <= endDate;
 
@@ -122,7 +132,7 @@ filtrarPorFecha(){
 }
 cancelarBusqueda() {
   this.mostrarLista = true;
-  this.rangoFecha.reset();
+  this.rangoFecha.get('fin').reset();
   this.pacientesFiltradosPorFecha = [];
 }
 

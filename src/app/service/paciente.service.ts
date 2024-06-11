@@ -1,19 +1,27 @@
+
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PacienteModel } from '../components/models/paciente.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PacienteService {
-  url = 'https://proyecto-crudapp-default-rtdb.firebaseio.com';
-  constructor(private http : HttpClient) { }
-
+  url = 'https://pacientes-app1-default-rtdb.firebaseio.com';
+  firebaseUrl = 'https://pacientes-app1-default-rtdb.firebaseio.com'
+  tokenGoyo = 'XvpYiDOFfrTy4fpTQ6oy9AeqDad2';
+  constructor(private http : HttpClient,
+              private db : AngularFireDatabase
+  ) { }
+  
 
  crearPaciente(paciente:PacienteModel){
-    return this.http.post(`${this.url}/Pacientes.json`, paciente)
+    return this.http.post(`${this.url}/pacientes.json`, paciente)
      .pipe(
       map((data:any) => {
         paciente.id = data.name
@@ -26,7 +34,7 @@ export class PacienteService {
 
   cargarPacientes(){
     
-    return this.http.get(`${this.url}/Pacientes.json`)
+    return this.http.get(`${this.url}/pacientes.json`)
     .pipe(
       map( this.crearArreglo)
     )
@@ -47,7 +55,7 @@ export class PacienteService {
   }
 
  getPaciente(id:string){
-    return this.http.get(`${this.url}/Pacientes/${id}.json`)
+    return this.http.get(`${this.url}/pacientes/${id}.json`)
   }
   
 
@@ -57,11 +65,11 @@ export class PacienteService {
       ...paciente
     };
       delete PacienteT.id;
-        return this.http.put<PacienteModel>(`${this.url}/Pacientes/${paciente.id}.json`, PacienteT);
+        return this.http.put<PacienteModel>(`${this.url}/pacientes/${paciente.id}.json`, PacienteT);
   }
 
   deletePaciente(id:string){
-    return this.http.delete(`${this.url}/Pacientes/${id}.json`);
+    return this.http.delete(`${this.url}/pacientes/${id}.json`);
   }
 
   buscarPacientes(nombre: string): Observable<PacienteModel[]> {
@@ -69,5 +77,9 @@ export class PacienteService {
     .pipe(
       map(pacientes => pacientes.filter(paciente => paciente.nombres.toLowerCase().includes(nombre.toLowerCase())))
     );
+  }
+
+  verificarCedulaUnica(cedula: number): Observable<any[]> {
+    return this.db.list('pacientes', ref => ref.orderByChild('cedula').equalTo(cedula)).valueChanges();
   }
 }

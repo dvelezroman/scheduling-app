@@ -47,8 +47,6 @@ saveUser:boolean = false;
       }
       this.auth.login(this.usuario).subscribe(data =>{
     
-
-
         Swal.close()
         Swal.fire({
           allowOutsideClick: false,
@@ -58,7 +56,7 @@ saveUser:boolean = false;
           showConfirmButton: false
   
         });  
-        this.ruta.navigateByUrl('/home');
+        this.ruta.navigate(['/home'], { replaceUrl:true});
         
         if(this.saveUser){
           localStorage.setItem('name', this.usuario.email)
@@ -83,6 +81,7 @@ saveUser:boolean = false;
     this.mostrar = !this.mostrar;
 
   }
+
 
   }
 
