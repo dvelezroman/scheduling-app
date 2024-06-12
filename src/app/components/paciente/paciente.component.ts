@@ -1,11 +1,10 @@
-
 import { Component, OnInit } from '@angular/core';
-import { PacienteModel } from '../models/paciente.model';
 import { NgForm} from '@angular/forms';
-import { PacienteService } from '../../service/paciente.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import Swal from 'sweetalert2';
+
+import { PacienteModel } from '../models/paciente.model';
+import { PacienteService } from '../../service/paciente.service';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
 
 
@@ -30,14 +29,13 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
     constructor(public servicio : PacienteService,
                 private usuarioServicio: UsuarioServicesService, 
                 private parametro : ActivatedRoute,
-                private ruta: Router){
+                private ruta: Router)
+                {  
                   this.nombres = this.paciente.nombres;
                   this.cedula = this.paciente.cedula;
                   this.correo = this.paciente.correo;
                   this.telefono = this.paciente.telefono;
-                  this.direccion = this.paciente.direccion;
-                
-                }
+                  this.direccion = this.paciente.direccion;}
 
     ngOnInit():void {
 
@@ -91,7 +89,6 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
           return;
         }
     
-        
         this.servicio.refreshPaciente(this.paciente).subscribe(() => {
           Swal.fire({
             title: 'Actualizado',
@@ -115,7 +112,6 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
           return;
         }
     
-        // Crear el nuevo paciente
         this.paciente.registrador = this.emailRegistrador;
         this.paciente.usuarioUid = this.usuarioId;
         this.servicio.crearPaciente(this.paciente).subscribe(() => {
@@ -133,25 +129,10 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
       }
     }    
   
-
     limpiar(form:NgForm){
       this.paciente.id.delete
       return form.reset();
     }
 
-
-    cerrarSesion(){
-        this.usuarioServicio.cerrarCesion();
-        localStorage.removeItem('userUid');
-        localStorage.removeItem('userName');
-        this.paciente.usuarioUid = null;
-        this.usuarioId = null
-        this.auth = false;
-    }
-
-    verificarCedulaUnicaLocal(cedula: number): boolean {
-      const pacientesFiltrados = this.servicio.getPacientesFiltrados();
-      return pacientesFiltrados.some(paciente => paciente.cedula === cedula);
-    }
     
   }
