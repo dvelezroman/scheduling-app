@@ -31,7 +31,7 @@ ngOnInit(): void {
     this.pacientes = pacientes;
     this.pacientesFiltrados = pacientes;
     this.pacientesFiltrados = this.pacientes.filter(paciente => paciente.registrador === this.usuarioLogin);
-    console.log(this.pacientesFiltrados)
+    //console.log(this.pacientesFiltrados)
     this.numeroPacientes = this.pacientesFiltrados.length
   });
 

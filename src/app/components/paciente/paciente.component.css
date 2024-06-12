@@ -91,3 +91,22 @@ boton2:focus{
     font-size: 12px;
     margin-left: 10px;
   }
+  .cedula{
+    position: relative;
+  }
+  .icono-cedula{
+    font-size: 14px;
+    position: absolute;
+    top: 30px;
+    left: -25px;
+  }
+
+  .correo{
+    position: relative;
+  }
+  .icono-correo{
+    font-size: 14px;
+    position: absolute;
+    top: 30px;
+    left: -25px;
+  }

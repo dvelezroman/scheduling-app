@@ -28,6 +28,8 @@ import { RecuperaPasswordComponent } from './components/recupera-password/recupe
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { CedulaEcuatorianaValidatorDirective } from './components/paciente/cedula-ecuador-validador';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     SearchComponent,
     ScrollRevealDirective,
     RecuperaPasswordComponent,
-    
+    CedulaEcuatorianaValidatorDirective,
+
 
     
   ],

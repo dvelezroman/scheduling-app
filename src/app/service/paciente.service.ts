@@ -86,7 +86,11 @@ export class PacienteService {
     );
   }
 
-  verificarCedulaUnica(cedula: number, registrador: string): boolean {
-    return this.pacientesFiltrados.some(paciente => paciente.cedula === cedula && paciente.registrador === registrador);
+  verificarCedulaUnica(cedula: number, registrador: string, pacienteId?: string): boolean {
+    return this.pacientesFiltrados.some(paciente => 
+      paciente.cedula === cedula && paciente.registrador === registrador && paciente.id !== pacienteId
+    );
   }
+
+  
 }

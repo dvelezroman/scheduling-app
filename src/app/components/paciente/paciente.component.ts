@@ -40,6 +40,7 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
                 }
 
     ngOnInit():void {
+
       this.usuarioServicio.usuarioLocalId.subscribe (id =>{
         this.usuarioId = id;
       });
@@ -66,6 +67,7 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
     }
 
     guardar(form: NgForm) {
+      
       if (form.invalid) {
         Object.values(form.controls).forEach(control => control.markAllAsTouched());
         Swal.fire({
@@ -77,30 +79,43 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
         });
         return;
       }
-  
-      if (this.servicio.verificarCedulaUnica(this.paciente.cedula, this.emailRegistrador)) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Paciente con esta cédula ya existe.'
-        });
-        return;
-      }
-  
-      if (this.paciente.id) {
+    
+      if (this.paciente.id) { 
+
+        if (this.servicio.verificarCedulaUnica(this.paciente.cedula, this.emailRegistrador, this.paciente.id)) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'La cédula ya existe.'
+          });
+          return;
+        }
+    
+        
         this.servicio.refreshPaciente(this.paciente).subscribe(() => {
           Swal.fire({
             title: 'Actualizado',
             text: `Agregado los cambios de ${this.paciente.nombres}`,
             icon: 'success',
-            timer: 2500,
+            timer: 2000,
             showConfirmButton: false
           });
           setTimeout(() => {
             this.ruta.navigate(['pacientes']);
           }, 1500);
         });
-      } else {
+      } else { 
+
+        if (this.servicio.verificarCedulaUnica(this.paciente.cedula, this.emailRegistrador)) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'La cédula ya existe.'
+          });
+          return;
+        }
+    
+        // Crear el nuevo paciente
         this.paciente.registrador = this.emailRegistrador;
         this.paciente.usuarioUid = this.usuarioId;
         this.servicio.crearPaciente(this.paciente).subscribe(() => {
@@ -116,7 +131,7 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
           }, 1500);
         });
       }
-    }
+    }    
   
 
     limpiar(form:NgForm){

@@ -56,6 +56,36 @@ ngOnInit(): void {
       }
 
 }
+cancelarCita(paciente:PacienteModel) {
+
+  Swal.fire({
+
+    text: "¿Cancelar la cita?",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Sí',
+    cancelButtonText: 'No'
+
+  }).then((result) => {
+    
+    if (result.isConfirmed) {
+      paciente.turno = null;
+      this.servicio.refreshPaciente(paciente).subscribe();
+       
+      Swal.fire({
+       title: 'Cancelado!',
+       text: 'Tu cita ha sido cancelada.',
+       icon: 'success',
+       timer: 1500,
+       showConfirmButton: false
+     });
+    } else {
+      return;
+
+    }
+
+  });
+}
 
 agregarDiagnostico(): void {
   this.diagnosticoEnProceso = true;

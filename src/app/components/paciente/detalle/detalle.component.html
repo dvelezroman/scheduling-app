@@ -18,7 +18,8 @@
                 <li><h3 class="listChild">Correo: <small class="listParent">{{paciente.correo}}</small> </h3></li>
                 <li><h3 class="listChild">Teléfono: <small class="listParent">{{paciente.telefono}}</small> </h3></li>
                 <li><h3 class="listChild">Domicilio: <small class="listParent">{{paciente.direccion}}</small> </h3></li>
-                <div *ngIf="paciente.turno"><li><h3 class="listChild" >Fecha de la cita: <small class="listParent">{{paciente.turno | date:'fullDate':'default':'es'}}</small> </h3></li></div>
+                <div *ngIf="paciente.turno"><li><h3 class="listChild" >Fecha de la cita: <small class="listParent"><a [matTooltip]="'Cancelar la cita?'" 
+                    matTooltipPosition="above" class="turno-texto" (click)="cancelarCita(paciente)" >{{paciente.turno | date:'fullDate':'default':'es'}}</a></small> </h3></li></div>
                 <li><h3 class="listChild-diag">Diagnósticos realizados: <small class="listParent"></small> </h3></li>
 
         <!--selector de lista de diagnósticos-->
