@@ -13,12 +13,18 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 })
 export class PacienteService {
   url = 'https://pacientes-app1-default-rtdb.firebaseio.com';
-  firebaseUrl = 'https://pacientes-app1-default-rtdb.firebaseio.com'
+  firebaseUrl = 'https://pacientes-app1-default-rtdb.firebaseio.com';
   tokenGoyo = 'XvpYiDOFfrTy4fpTQ6oy9AeqDad2';
+
+  private pacientesFiltrados: PacienteModel[] = [];
+  
   constructor(private http : HttpClient,
               private db : AngularFireDatabase
   ) { }
   
+  getPacientesFiltrados(): PacienteModel[] {
+    return this.pacientesFiltrados;
+  }
 
  crearPaciente(paciente:PacienteModel){
     return this.http.post(`${this.url}/pacientes.json`, paciente)
@@ -30,22 +36,23 @@ export class PacienteService {
       );
     }
 
-  
 
-  cargarPacientes(){
-    
-    return this.http.get(`${this.url}/pacientes.json`)
-    .pipe(
-      map( this.crearArreglo)
-    )
-  };
+  cargarPacientes(): Observable<PacienteModel[]> {
+    return this.http.get(`${this.url}/pacientes.json`).pipe(
+      map(this.crearArreglo),
+      map((pacientes: PacienteModel[]) => {
+        this.pacientesFiltrados = pacientes.filter(paciente => paciente.registrador === localStorage.getItem('userName'));
+        return this.pacientesFiltrados;
+      })
+    );
+  }
     
  private crearArreglo (pacienteObj:Object){
       if(pacienteObj === null){
           return [];
       }
           const pacientes: PacienteModel[] = [];
-          //console.log(pacienteObj);
+
           Object.keys(pacienteObj).forEach(key => {
             const paciente: PacienteModel = pacienteObj[key];
             paciente.id = key;
@@ -79,7 +86,7 @@ export class PacienteService {
     );
   }
 
-  verificarCedulaUnica(cedula: number): Observable<any[]> {
-    return this.db.list('pacientes', ref => ref.orderByChild('cedula').equalTo(cedula)).valueChanges();
+  verificarCedulaUnica(cedula: number, registrador: string): boolean {
+    return this.pacientesFiltrados.some(paciente => paciente.cedula === cedula && paciente.registrador === registrador);
   }
 }

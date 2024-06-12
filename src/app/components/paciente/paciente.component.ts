@@ -66,7 +66,6 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
     }
 
     guardar(form: NgForm) {
-      
       if (form.invalid) {
         Object.values(form.controls).forEach(control => control.markAllAsTouched());
         Swal.fire({
@@ -79,47 +78,44 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
         return;
       }
   
-      this.servicio.verificarCedulaUnica(this.paciente.cedula).subscribe((pacientes: any[]) => {
-        if (pacientes && pacientes.length > 0) {
-
+      if (this.servicio.verificarCedulaUnica(this.paciente.cedula, this.emailRegistrador)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Paciente con esta cédula ya existe.'
+        });
+        return;
+      }
+  
+      if (this.paciente.id) {
+        this.servicio.refreshPaciente(this.paciente).subscribe(() => {
           Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Paciente con esta cédula ya existe.'
+            title: 'Actualizado',
+            text: `Agregado los cambios de ${this.paciente.nombres}`,
+            icon: 'success',
+            timer: 2500,
+            showConfirmButton: false
           });
-        } else {
-
-          if (this.paciente.id) {
-            this.servicio.refreshPaciente(this.paciente).subscribe(() => {
-              Swal.fire({
-                title: 'Actualizado',
-                text: `Agregado los cambios de ${this.paciente.nombres}`,
-                icon: 'success',
-                timer: 2500,
-                showConfirmButton: false
-              });
-              setTimeout(() => {
-                this.ruta.navigate(['pacientes']);
-              }, 1500);
-            });
-          } else {
-            this.paciente.registrador = this.emailRegistrador;
-            this.paciente.usuarioUid = this.usuarioId;
-            this.servicio.crearPaciente(this.paciente).subscribe(() => {
-              Swal.fire({
-                title: 'Agregado',
-                text: `${this.paciente.nombres} se ha agregado a la lista`,
-                icon: 'success',
-                timer: 1800,
-                showConfirmButton: false
-              });
-              setTimeout(() => {
-                this.ruta.navigate(['pacientes']);
-              }, 1500);
-            });
-          }
-        }
-      });
+          setTimeout(() => {
+            this.ruta.navigate(['pacientes']);
+          }, 1500);
+        });
+      } else {
+        this.paciente.registrador = this.emailRegistrador;
+        this.paciente.usuarioUid = this.usuarioId;
+        this.servicio.crearPaciente(this.paciente).subscribe(() => {
+          Swal.fire({
+            title: 'Agregado',
+            text: `${this.paciente.nombres} se ha agregado a la lista`,
+            icon: 'success',
+            timer: 1800,
+            showConfirmButton: false
+          });
+          setTimeout(() => {
+            this.ruta.navigate(['pacientes']);
+          }, 1500);
+        });
+      }
     }
   
 
@@ -138,10 +134,9 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
         this.auth = false;
     }
 
-    pacienteRepetido(){
-
+    verificarCedulaUnicaLocal(cedula: number): boolean {
+      const pacientesFiltrados = this.servicio.getPacientesFiltrados();
+      return pacientesFiltrados.some(paciente => paciente.cedula === cedula);
     }
-
-
-      
+    
   }
