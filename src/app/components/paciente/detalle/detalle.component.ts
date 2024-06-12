@@ -108,11 +108,19 @@ guardarDiagnostico(): void {
       });
     
   }else{
+    
     this.paciente.diagnostico.unshift({ ...this.nuevoDiagnostico });
     this.nuevoDiagnostico = { fecha: new Date(), texto: '' };
     this.diagnosticoEnProceso = false;
     this.actualizarPaciente();
     this.diagnosticoSeleccionadoIndex = -1;
+    Swal.fire({
+      title: 'Agregado',
+      text: 'Diagnóstico agregado al paciente',
+      icon: 'success',
+      timer: 1500,
+      showConfirmButton: false
+      });
   }
 }
 
@@ -134,7 +142,13 @@ eliminarDiagnostico(){
     this.servicio.refreshPaciente(this.paciente).subscribe();
     this.diagnosticoSeleccionado = null;
     this.diagnosticoSeleccionadoIndex = -1;
-
+    Swal.fire({
+      title: 'Eliminado',
+      text: 'Diagnóstico eliminado',
+      icon: 'success',
+      timer: 1500,
+      showConfirmButton: false
+      });
     };
    });
   

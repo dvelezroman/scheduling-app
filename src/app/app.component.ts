@@ -28,9 +28,9 @@ export class AppComponent implements OnInit{
 
       return !!localStorage.getItem('token'); 
     }
-    @HostListener('window:beforeunload', ['$event'])
-    unloadHandler(event: Event) {
-      this.servicio.cerrarCesion();
-   }
+    //@HostListener('window:beforeunload', ['$event'])
+    //unloadHandler(event: Event) {
+     // this.servicio.cerrarCesion();
+    }
    
-  }
+  
