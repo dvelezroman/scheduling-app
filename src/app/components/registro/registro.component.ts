@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
+import Swal from 'sweetalert2';
 
 import { UsuarioModel } from '../models/usuario.model';
-import { NgForm } from '@angular/forms';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
-import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
-//import { ValidadoresService } from '../../service/validadores.service';
-
-//import { AuthService } from '../../service/autenticacion';
 
 @Component({
   selector: 'app-registro',
@@ -17,12 +14,14 @@ import { Router } from '@angular/router';
 })
 export class RegistroComponent implements OnInit {
   usuario: UsuarioModel;
-  mostrar:boolean = false;
   passwordStrength: string;
+  rol:string;
 
+  mostrar:boolean = false;
   
-  constructor(private auth : UsuarioServicesService,
-              private ruta : Router){}
+  constructor(  private auth : UsuarioServicesService,
+                private ruta : Router,
+                private route: ActivatedRoute ){}
 
 ngOnInit(): void {
     this.usuario = new UsuarioModel();
@@ -30,10 +29,15 @@ ngOnInit(): void {
     this.usuario.nombres = '';
     this.usuario.password = "";
 
-  }
+    this.route.queryParams.subscribe(params => {
+      this.usuario.rol = params['rol'] || 'paciente';
+    });
+    console.log(this.usuario)
+}
 
 registrar(form:NgForm){
   if(form.invalid){
+    
     Object.values(form.controls).forEach( control => control.markAllAsTouched() );
       Swal.fire({
         allowOutsideClick: false,
@@ -44,19 +48,25 @@ registrar(form:NgForm){
       return; 
   }
   this.auth.registrar(this.usuario).subscribe( data =>{
-  console.log(data);
-  Swal.close();
-        this.ruta.navigate(['/home']);
-        localStorage.setItem ('nombres', this.usuario.nombres);
-        
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Registro Exitoso',
+        text: `Bienvenido ${ this.usuario.nombres}`,
+        timer: 1800
+      });
+            this.ruta.navigate(['/home']);
+            localStorage.setItem ('nombres', this.usuario.nombres);
+            console.log(this.usuario)
   },(err)=>{
+    const errorMessage = err?.error?.error?.message || 'Error desconocido';
     Swal.fire({
                   
       icon: 'error',
       title: 'Error al autenticar',
-      text: err.error.error.message
+      text: errorMessage
     })
-    console.log(err.error.error.message);
+
   });
 
 
@@ -65,6 +75,7 @@ registrar(form:NgForm){
 toggleMostrar(){
   this.mostrar = !this.mostrar;
  }
+ 
 
 
 

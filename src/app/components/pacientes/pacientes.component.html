@@ -71,7 +71,7 @@
       </div>
 
       <!--tabla de pacientes-->
-            <table *ngIf="mostrarLista" class="tabla-pacientes rounded-table tabla large table animate__animated animate__fadeIn fast">
+            <table *ngIf="mostrarLista" class=" tabla-pacientes rounded-table tabla large table animate__animated animate__fadeIn fast">
                 <thead class="table-primary th">
                   <tr>
                     <th scope="col" class="index-columna"></th>
@@ -147,21 +147,21 @@
     
             </tbody>
       </table> 
+      
+      <div class="container contenedor-loading d-flex justify-content-sm-center">
+          <div class="row">
 
-            <div *ngIf="senal" class=" alerta alert alert-warning text-center mt-4 animate__animated animate__fadeIn">
-                <h5 class="alert-heading d-flex justify-content-md-center align-items-center">no hay pacientes</h5>
-                <i class="fa fa-exclamation fa-2x"></i>
-            </div>  
-            <div *ngIf="loading" class="loading row animated fadeIn">
-              <div class="col">
-                  <i class="fa-solid fa-spin fa-spinner fa-2x"></i>
-              </div>
-            </div>
-          
-             
+              <div *ngIf="senal" class="col-12 alerta alert alert-warning text-center mt-4 animate__animated animate__fadeIn">
+                  <h5 class="alert-heading d-flex justify-content-md-center align-items-center">no hay pacientes</h5>
+                  <i class="fa fa-exclamation fa-2x"></i>
+                  <i *ngIf="loading" class="fa-solid fa-spin fa-spinner fa-2x"></i>
+              </div>  
+          </div>  
+      </div>
+              
 
-        </div>
     </div>
+  </div>
     
     
 </div>

@@ -11,6 +11,38 @@
 
 
 }
+/*dropdown menu registrarse*/
+
+
+.dropdown-menu {
+  padding: 0px;
+  background-color: rgba(245, 247, 250, 0.4); 
+  border-radius: 10px; 
+  backdrop-filter: blur(13px); 
+
+}
+.rotate {
+  transform: rotate(180deg);
+}
+
+
+.animate__fadeInDown {
+  animation-duration: 200ms;
+}
+
+.dropdown-menu a.dropdown-item {
+
+  text-align: left;
+  color: rgb(34, 34, 34); 
+  display: block; 
+  transition:all 400ms; 
+}
+
+.dropdown-menu a.dropdown-item:hover {
+  background-color:transparent;
+  text-decoration: underline;
+  margin-left: 5px;
+}
 
 .btn1{
     margin-left: 15px;

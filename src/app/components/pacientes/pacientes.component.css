@@ -7,6 +7,10 @@
 
   
 }
+.contenedor-loading{
+background-color: transparent;
+  margin-top: -2rem;
+}
 
 .large{
 box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -301,6 +305,7 @@ color: rgb(116, 108, 108);
 }
 .botonFecha{
   text-align: end;
+  margin-right: 25px;
 }
 .botonMostrar{
   font-size: 13px;
@@ -399,6 +404,48 @@ h5{
 /*media query del filtro de busqueda fecha*/
 
 @media screen and (max-width: 768px) {
+  .contenedorFiltro {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .formFecha {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .formFecha1, .formFecha2, .botonFecha2 {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .botonFecha2 .botonCancelar {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .formFecha button {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 768px){
+  .contenedor-loading{
+    display: flex;
+    justify-content: center;
+  }
+  table.rounded-table th,
+  table.rounded-table td {
+    font-size: 9px; 
+    padding: 1px; 
+  }
+
+  table tr th {
+    height: 20px; 
+  }
+  table.rounded-table .icon-cell {
+    flex-direction: column;
+  }
   .contenedorFiltro {
     width: 100%;
     padding: 10px;

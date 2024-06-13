@@ -23,6 +23,11 @@
     padding: 30px;
     background-color: rgba(12, 53, 113, 0.083);
 }
+.form p{
+    color:#424f5f;
+    text-align: center;
+    font-size: 18px;
+}
 
 h1{
     font-size: 28px;
@@ -43,6 +48,14 @@ form .field{
     position: relative;
     
 } 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
 
 
 .field input,
@@ -56,12 +69,16 @@ form .field{
 }
 
 .field input{
-    font-size: 13px;
+    font-size: 15px;
     padding: 0 15px;
     border: 1px solid #cacaca;
 }
 ::placeholder{
     opacity: .5;
+}
+.input-number {
+    -moz-appearance: textfield; 
+    appearance: textfield; 
 }
 
 .eye-icon{

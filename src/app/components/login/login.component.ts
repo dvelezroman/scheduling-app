@@ -51,7 +51,7 @@ saveUser:boolean = false;
         Swal.fire({
           allowOutsideClick: false,
           icon: 'success',
-          title: 'Exito',
+          title: 'Ingreso exitoso',
           timer: 1500,
           showConfirmButton: false
   

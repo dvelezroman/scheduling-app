@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Inject, Injectable, OnInit } from '@angular/core';
 import { UsuarioModel } from '../components/models/usuario.model';
-import { BehaviorSubject, map } from 'rxjs';
-
+import { BehaviorSubject, Observable, catchError, from, map, switchMap, throwError } from 'rxjs';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 
 @Injectable({
@@ -10,6 +10,7 @@ import { BehaviorSubject, map } from 'rxjs';
 })
 
 export class UsuarioServicesService implements OnInit {
+  
     apykey2 = 'AIzaSyABv3KzkWITNxeRKkyba_oqDfHGRYexHo0';
    // apykey = 'AIzaSyD865HzIS-rxI3S6_K_mUAxMi-ipxDs7z0';
     url = 'https://identitytoolkit.googleapis.com/v1/accounts';
@@ -26,6 +27,9 @@ export class UsuarioServicesService implements OnInit {
     private registradorSubject = new BehaviorSubject<string>(null);
     editar$ = this.editarSubject.asObservable();
     registrador$ = this.registradorSubject.asObservable();
+
+    private usuarioActual2 = new BehaviorSubject<UsuarioModel>(null);
+
 
     setRegistrador(value: string) {
       this.registradorSubject.next(value);
@@ -45,10 +49,37 @@ export class UsuarioServicesService implements OnInit {
         return this.loggedIn.asObservable();}
 
      
-    constructor(private http :HttpClient) { }
+    constructor(private http :HttpClient,
+                private db : AngularFireDatabase
+    ) {
+      this.cargarUsuarioActual2();  }
+
+      //este es la nueva funcion para tener el usuario actual //
+
+    get usuarioActual$2() {
+      return this.usuarioActual2.asObservable(); // Convertir a observable
+    }
+  
+    getUsuarioActual2(): Observable<UsuarioModel> {
+      return this.usuarioActual2.asObservable(); // Asegurar que el tipo es correcto
+    }
+    private cargarUsuarioActual2() {
+      const uid = this.getStoredUserUid();
+      if (uid) {
+        this.db.object<UsuarioModel>(`/usuarios/${uid}`).valueChanges().subscribe(user => {
+          this.usuarioActual2.next(user);
+        });
+      }
+    }
+
+//este es la nueva funcion para tener el usuario actual hasta aqui //
+
     ngOnInit(): void {}
 
-    registrar(usuario:UsuarioModel){
+
+
+//funcion para registrar normal usuario//
+    registrar2(usuario:UsuarioModel){
         const auth = {
           ...usuario,
           returnSecureToken: true
@@ -65,11 +96,66 @@ export class UsuarioServicesService implements OnInit {
             this.usuarioId.next(resp['localId']);
             this.loggedIn.next(true);
             return resp;
+            
           })
 
         )
       };
 
+
+      //funcion para registrar dependiendo si es medico o un paciente//
+     registrar(usuario: UsuarioModel): Observable<any> {
+        
+        const authData = {
+          email: usuario.email,
+          password: usuario.password,
+          returnSecureToken: true
+        };
+    
+        return this.http.post(`${this.url}:signUp?key=${this.apykey2}`, authData).pipe(
+          switchMap(resp => {
+            this.almacenarToken(resp['idToken']);
+            this.almacenarUid(resp['localId']);
+            this.almacenarUserName(usuario.email);
+            this.almacenarName(usuario.nombres);
+            this.emailUsuario.next(usuario.email);
+            this.usuarioId.next(resp['localId']);
+            this.loggedIn.next(true);
+    
+            const uid = resp['localId'];
+            return from(
+              this.db.object(`/usuarios/${uid}`).set({
+                nombres: usuario.nombres,
+                email: usuario.email,
+                rol: usuario.rol,
+                especialidad: usuario.especialidad || null, 
+                edad: usuario.edad || null                
+              })
+            ).pipe(
+              catchError(err => {
+                console.error('Error saving user details:', err);
+                return throwError(err);
+              })
+            );
+          }),
+          catchError(err => {
+            console.error('Error during registration:', err);
+            return throwError(err);
+          })
+        );
+      }
+      getUsuario(): UsuarioModel {
+        return {
+          email: this.getStoredUserName(),
+          nombres: this.getStoredName(),
+          id: this.getStoredUserUid(),
+          password: '', 
+          rol: '', 
+          especialidad: null, 
+          edad: null 
+        } as UsuarioModel;
+      }
+    
       
     login(usuario:UsuarioModel){
         const auth={
