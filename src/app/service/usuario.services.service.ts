@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, OnInit } from '@angular/core';
 import { UsuarioModel } from '../components/models/usuario.model';
-import { BehaviorSubject, Observable, catchError, from, map, switchMap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, from, map, of, switchMap, tap, throwError } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Injectable({
@@ -25,16 +26,16 @@ export class UsuarioServicesService implements OnInit {
     private usuarioId = new BehaviorSubject<string>(this.getStoredUserUid());
     private editarSubject = new BehaviorSubject<boolean>(false);
     private registradorSubject = new BehaviorSubject<string>(null);
+    private usuarioActual2 = new BehaviorSubject<UsuarioModel>(null);
+
     editar$ = this.editarSubject.asObservable();
     registrador$ = this.registradorSubject.asObservable();
-
-    private usuarioActual2 = new BehaviorSubject<UsuarioModel>(null);
+    usuarioActual$2: Observable<UsuarioModel> = this.usuarioActual2.asObservable();
 
 
     setRegistrador(value: string) {
       this.registradorSubject.next(value);
       }
-
     setEditar(value: boolean) {
       this.editarSubject.next(value);
       }
@@ -50,28 +51,26 @@ export class UsuarioServicesService implements OnInit {
 
      
     constructor(private http :HttpClient,
-                private db : AngularFireDatabase
+                private db : AngularFireDatabase,
+                private afAuth : AngularFireAuth
     ) {
-      this.cargarUsuarioActual2();  }
-
-      //este es la nueva funcion para tener el usuario actual //
-
-    get usuarioActual$2() {
-      return this.usuarioActual2.asObservable(); // Convertir a observable
+      this.cargarUsuarioActual2();  
     }
-  
-    getUsuarioActual2(): Observable<UsuarioModel> {
-      return this.usuarioActual2.asObservable(); // Asegurar que el tipo es correcto
-    }
-    private cargarUsuarioActual2() {
-      const uid = this.getStoredUserUid();
-      if (uid) {
-        this.db.object<UsuarioModel>(`/usuarios/${uid}`).valueChanges().subscribe(user => {
-          this.usuarioActual2.next(user);
-        });
+
+      //este es la nueva función para tener el usuario actual por medio del uid que se almacena en local storage //
+
+      getUsuarioActual2(): Observable<UsuarioModel> {
+        return this.usuarioActual2.asObservable(); 
       }
-    }
-
+      private cargarUsuarioActual2() {
+        const uid = this.getStoredUserUid();
+        if (uid) {
+          this.db.object<UsuarioModel>(`/usuarios/${uid}`).valueChanges().subscribe(usuario => {
+            this.usuarioActual2.next(usuario);
+          });
+        }
+      }
+  
 //este es la nueva funcion para tener el usuario actual hasta aqui //
 
     ngOnInit(): void {}
@@ -123,13 +122,16 @@ export class UsuarioServicesService implements OnInit {
             this.loggedIn.next(true);
     
             const uid = resp['localId'];
+            usuario.id = uid;
             return from(
               this.db.object(`/usuarios/${uid}`).set({
+                id: uid,
                 nombres: usuario.nombres,
                 email: usuario.email,
                 rol: usuario.rol,
                 especialidad: usuario.especialidad || null, 
-                edad: usuario.edad || null                
+                edad: usuario.edad || null,
+                telefono: usuario.telefono || null                
               })
             ).pipe(
               catchError(err => {
@@ -157,7 +159,7 @@ export class UsuarioServicesService implements OnInit {
       }
     
       
-    login(usuario:UsuarioModel){
+    login(usuario:UsuarioModel): Observable<any> {
         const auth={
           ...usuario,
           returnSecureToken: true
@@ -169,6 +171,7 @@ export class UsuarioServicesService implements OnInit {
             this.almacenarToken(resp['idToken']);
             this.almacenarUserName(usuario.email);
             this.almacenarUid(resp['localId']);
+            this.cargarUsuarioActual2();
             this.emailUsuario.next(usuario.email);
             this.usuarioId.next(resp['localId']);
             this.loggedIn.next(true);
@@ -187,6 +190,9 @@ export class UsuarioServicesService implements OnInit {
         this.emailUsuario.next(null);
         this.loggedIn.next(false);
         this.usuarioId.next('');
+        this.afAuth.signOut().then(() => {
+          this.usuarioActual2.next(null);
+        });
       
       }
 
@@ -302,12 +308,48 @@ export class UsuarioServicesService implements OnInit {
                 }
               }
 
+// datos configuracion del usuario //
+      
+//metodos para obtener y actualizar datos del usuario actual//
 
-            
+getUsuarioActual(): Observable<UsuarioModel> {
+  const uid = this.getStoredUserUid();
+  return this.db.object<UsuarioModel>(`/usuarios/${uid}`).valueChanges().pipe(
+    map((usuario: UsuarioModel) => {
+      //console.log(usuario)
+      return usuario;
+    }),
+    catchError(err => {
+      console.error('Error fetching user data:', err);
+      return of(null);
+    })
+  );
+}
+
+
+actualizarUsuario(usuario: UsuarioModel): Observable<any> {
+  const uid = usuario.id; 
+
+  return from(this.db.object(`/usuarios/${uid}`).update({
+    nombres: usuario.nombres,
+    telefono: usuario.telefono,
+    especialidad: usuario.especialidad,
+    
+  })).pipe(
+    tap(() => {
+      console.log('datos actualizados');
+    }),
+    catchError(err => {
+      console.error(err);
+      return throwError(err);
+    })
+  );
+}
+
+}
+
+      
       
 
-      
-      
-
- }
+ 
 

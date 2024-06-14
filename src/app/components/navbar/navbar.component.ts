@@ -18,7 +18,7 @@ valorAutenticado: boolean = false;
 isLoggedIn: boolean = false;
 userName: string = '';
 userNombre: string = '';
-usuario: UsuarioModel;
+nombresUsuario:string;
 showDateFilter: boolean = false;
 
   constructor(public userService:UsuarioServicesService,
@@ -27,6 +27,21 @@ showDateFilter: boolean = false;
 
   }
 ngOnInit() {
+
+  this.userService.getUsuarioActual2().subscribe(usuario => {
+    if (usuario) {
+      this.nombresUsuario = usuario.nombres;
+      console.log(this.nombresUsuario)
+      this.isLoggedIn = true;
+    } else {
+      this.nombresUsuario = '';
+      this.isLoggedIn = false;
+    }
+  }, error => {
+    console.error('Error al obtener el usuario:', error);
+  });
+
+  
 const autenticado = this.userService.autenticado();
 this.valorAutenticado = autenticado;
 

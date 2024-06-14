@@ -32,7 +32,7 @@ ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.usuario.rol = params['rol'] || 'paciente';
     });
-    console.log(this.usuario)
+    //console.log(this.usuario)
 }
 
 registrar(form:NgForm){

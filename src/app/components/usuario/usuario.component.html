@@ -1,0 +1,54 @@
+
+<div class="container contenedor mt-5">
+    
+    <div class="row">
+      <h2>Datos del Usuario</h2>
+      
+        <div *ngIf="usuario" class="col-12">
+        
+            <form [formGroup]="usuarioForm" (ngSubmit)="enviar()">
+            
+                <div class="mb-3">
+                    <label for="nombres" class="form-label">Nombres</label>
+                    <input type="text" 
+                            class="form-control" 
+                            id="nombres" 
+                            formControlName="nombres" 
+                            placeholder="Escriba sus nombres">
+                    <div *ngIf="usuarioForm.get('nombres').invalid && usuarioForm.get('nombres').touched" class="text-danger">
+                    Nombre es requerido.
+                    </div>
+
+                </div>
+                <div class="mb-3" *ngIf="usuario.rol === 'medico'">
+                    <label for="especialidad" class="form-label">Especialidad</label>
+                    <input type="text" 
+                            class="form-control" 
+                            id="especialidad" 
+                            formControlName="especialidad" 
+                            placeholder="Especialidad">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-check-label" for="telefono">Teléfono</label>
+                    <input type="text" 
+                            class="form-control" 
+                            id="telefono" 
+                            formControlName="telefono" 
+                            placeholder="Celular">
+                    <div *ngIf="usuarioForm.get('telefono').invalid && usuarioForm.get('telefono').touched" class="text-danger">
+                    campo requerido.
+                    </div>
+
+                </div>
+                <div class="button d-flex">
+                    <button type="submit" class="boton-actualizar btn btn-outline-primary" [disabled]="usuarioForm.invalid">Actualizar</button>
+                    <button type="button" (click)="cancelar()" class="boton-cancelar btn btn-outline-secondary">Cancelar</button>
+                </div>
+
+            </form>
+            
+        </div>
+
+    </div>
+</div>

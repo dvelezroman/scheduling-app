@@ -31,8 +31,9 @@
             <mat-icon><i class="iconoUser fa-regular fa-circle-user"></i></mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="barMenu">
-            <a class="nombreUser" mat-menu-item>{{ userName }}</a>
-            <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión <i class=" iconoLogOut fa-solid fa-arrow-right-from-bracket"></i></button>
+            <a class="nombreUser" mat-menu-item>{{ nombresUsuario }}</a>
+            <button mat-menu-item routerLink="configuracion-usuario"><i class="bi bi-person-vcard-fill"></i> Datos del Usuario </button>
+            <button mat-menu-item (click)="cerrarSesion()"><i class="icono-configurar bi bi-door-open"></i> Salir de la Sesión </button>
           </mat-menu>
         </li>
       </ul>

@@ -29,7 +29,8 @@ import { RecuperaPasswordComponent } from './components/recupera-password/recupe
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { CedulaEcuatorianaValidatorDirective } from './components/paciente/cedula-ecuador-validador';
-import { RegistroPacienteComponent } from './components/registro-paciente/registro-paciente.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+
 
 
 
@@ -51,7 +52,8 @@ import { RegistroPacienteComponent } from './components/registro-paciente/regist
     ScrollRevealDirective,
     RecuperaPasswordComponent,
     CedulaEcuatorianaValidatorDirective,
-    RegistroPacienteComponent,
+    UsuarioComponent,
+
 
 
 

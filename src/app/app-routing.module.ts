@@ -10,6 +10,7 @@ import { AgendarTurnoComponent } from './components/paciente/agendar-turno/agend
 import { AuthGuard } from './guards/authentic.guard';
 import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-no-auth.component';
 import { RecuperaPasswordComponent } from './components/recupera-password/recupera-password.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 import { GuardUsuario } from './guards/usuario.guard';
 
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'recuperaPassword', component: RecuperaPasswordComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'configuracion-usuario', component: UsuarioComponent,canActivate: [AuthGuard] },
   { path: 'pacientes', component: PacientesComponent, canActivate: [AuthGuard, GuardUsuario] },
   { path: 'pacientes/:id', component: PacienteComponent, canActivate: [AuthGuard, GuardUsuario] },
   { path: 'pacientes/:paciente/:id', component: DetalleComponent, canActivate: [AuthGuard, GuardUsuario] },

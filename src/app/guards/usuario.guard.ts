@@ -14,10 +14,11 @@ export class GuardUsuario implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> {
+    
     return this.authService.getUsuarioActual2().pipe(
       take(1),
-      map(usuario => {
-        if ( usuario && usuario.rol === 'médico') {
+        map(usuario => {
+        if ( usuario && usuario.rol === 'medico') {
           return true;
         } else {
          
