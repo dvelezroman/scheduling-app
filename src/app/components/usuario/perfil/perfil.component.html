@@ -1,0 +1,23 @@
+<section class="hero align-items-stretch ">
+    <div class="container d-flex justify-content-center">
+
+        <div class="col-12 col-lg-8">
+
+            <div class="hero-principal d-flex">
+                <div class=" dato-rol col-4">
+                    <i class=" icon-edit bi bi-x-circle-fill" routerLink="/home" [matTooltip]="'Salir'" matTooltipPosition="above"></i>
+                    <div><i class="usuario-perfil fa-solid fa-user"></i><i routerLink="/configuracion-usuario" class="icon-edit-2 bi bi-pencil" [matTooltip]="'Editar'" matTooltipPosition="above"></i></div>
+                </div>
+                
+                <div class="datos-nombres col-6">
+                    <h2>{{usuario?.nombres | titlecase}}</h2>
+                    <p *ngIf="usuario?.rol === 'medico'"><strong>Especialidad:</strong> {{ usuario?.especialidad }}</p>
+                    <p *ngIf="usuario?.rol === 'paciente'"><strong>Edad:</strong> {{ usuario?.edad }} años</p>
+                    <p *ngIf="usuario?.telefono"><strong>Teléfono: </strong>{{ usuario?.telefono}}</p>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,89 @@
+
+.container{
+margin-top: 3rem;
+}
+
+.hero {
+    background-color: rgb(210, 212, 213);
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container {
+    margin-top: 8rem;
+    text-align: center;
+    
+  }
+
+  
+  .hero-principal {
+    justify-content:space-around ;
+    background: rgba(255, 255, 255, 0.385);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .usuario-perfil {
+    font-size: 5rem;
+    margin-top: 4rem;
+    color: grey;
+    
+
+  }
+  .icon-edit {
+    color: grey;
+    position: absolute;
+    top: -13%;
+    right:-2%;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 300ms;
+  }
+  .icon-edit-2{
+    position: absolute;
+    top: 90%;
+    right:98%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 300ms;
+  }
+  .icon-edit:hover{
+
+    color: rgb(27, 26, 26);
+    cursor: pointer;
+    font-weight: 300;
+
+  }
+  .icon-edit-2:hover{
+      transform: scale(1.2);
+      color: rgb(27, 26, 26);
+      cursor: pointer;
+      font-weight: 300;
+    }
+  .icon-edit:hover
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+
+  }
+  
+  p strong {
+    font-weight: bold;
+
+  }
+
+  .datos-nombres{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin-top: 1.5rem;
+  }

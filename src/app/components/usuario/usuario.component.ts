@@ -56,7 +56,7 @@ constructor(private usuarioServicios : UsuarioServicesService,
               showConfirmButton: false
               
             }).then(()=>{
-              this.ruta.navigate(['/home']);
+              this.ruta.navigate(['/datos-usuario']);
 
             });
           }, error => {
@@ -70,7 +70,7 @@ constructor(private usuarioServicios : UsuarioServicesService,
         }
       }
       cancelar() {
-        this.ruta.navigate(['/home']);
+        this.ruta.navigate(['/datos-usuario']);
       }
   }
 

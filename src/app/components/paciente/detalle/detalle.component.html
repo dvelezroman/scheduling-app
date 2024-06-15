@@ -13,11 +13,11 @@
         <div class="col">
             <ul class="lista">
 
-                <li><h3 class="listChild">Nombres: <small class="listParent">{{paciente.nombres}}</small> </h3></li>
+                <li><h3 class="listChild">Nombres: <small class="listParent">{{paciente.nombres | titlecase}}</small> </h3></li>
                 <li><h3 class="listChild">Cédula: <small class="listParent">{{paciente.cedula}}</small> </h3></li>
                 <li><h3 class="listChild">Correo: <small class="listParent">{{paciente.correo}}</small> </h3></li>
                 <li><h3 class="listChild">Teléfono: <small class="listParent">{{paciente.telefono}}</small> </h3></li>
-                <li><h3 class="listChild">Domicilio: <small class="listParent">{{paciente.direccion}}</small> </h3></li>
+                <li><h3 class="listChild">Domicilio: <small class="listParent">{{paciente.direccion | titlecase}}</small> </h3></li>
                 <div *ngIf="paciente.turno"><li><h3 class="listChild" >Fecha de la cita: <small class="listParent"><a [matTooltip]="'Cancelar la cita?'" 
                     matTooltipPosition="above" class="turno-texto" (click)="cancelarCita(paciente)" >{{paciente.turno | date:'fullDate':'default':'es'}}</a></small> </h3></li></div>
                 <li><h3 class="listChild-diag">Diagnósticos realizados: <small class="listParent"></small> </h3></li>

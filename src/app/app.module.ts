@@ -30,6 +30,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { CedulaEcuatorianaValidatorDirective } from './components/paciente/cedula-ecuador-validador';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { PerfilComponent } from './components/usuario/perfil/perfil.component';
+import { RoleTransformPipe } from './pipes/role-transform.pipe';
 
 
 
@@ -53,6 +55,8 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
     RecuperaPasswordComponent,
     CedulaEcuatorianaValidatorDirective,
     UsuarioComponent,
+    PerfilComponent,
+    RoleTransformPipe,
 
 
 

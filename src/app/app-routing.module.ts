@@ -12,6 +12,7 @@ import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-n
 import { RecuperaPasswordComponent } from './components/recupera-password/recupera-password.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { GuardUsuario } from './guards/usuario.guard';
+import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'recuperaPassword', component: RecuperaPasswordComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'datos-usuario', component: PerfilComponent, canActivate: [AuthGuard] },
   { path: 'configuracion-usuario', component: UsuarioComponent,canActivate: [AuthGuard] },
   { path: 'pacientes', component: PacientesComponent, canActivate: [AuthGuard, GuardUsuario] },
   { path: 'pacientes/:id', component: PacienteComponent, canActivate: [AuthGuard, GuardUsuario] },

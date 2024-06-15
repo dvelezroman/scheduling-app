@@ -14,7 +14,7 @@
                     <a class="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="true">
                       Pacientes
                     </a>
-                    <ul class="dropdown-menu m-2 animate__animated animate__fadeInDown" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu m-2 animate__animated animate__fadeIn" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" routerLink="/pacientes">Mostrar todos</a></li>
                       <li><a class="dropdown-item" routerLink="/pacientes/nuevo">Agregar paciente</a></li>
                       <li><a class="dropdown-item" routerLink="/agendar-turno">Agendar turno</a></li>
@@ -26,13 +26,13 @@
       </div>
 
       <ul class="navbar-nav2 ml-auto"> 
-        <li class="nav-item2" [matTooltip]="'Mi cuenta'"  matTooltipPosition="after">
+        <li class="nav-item2" [matTooltip]="'Mi Cuenta'"  matTooltipPosition="after">
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon><i class="iconoUser fa-regular fa-circle-user"></i></mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="barMenu">
-            <a class="nombreUser" mat-menu-item>{{ nombresUsuario }}</a>
-            <button mat-menu-item routerLink="configuracion-usuario"><i class="bi bi-person-vcard-fill"></i> Datos del Usuario </button>
+            <a class="nombreUser" mat-menu-item>{{ nombresUsuario | titlecase }}</a>
+            <button mat-menu-item routerLink="datos-usuario"><i class="bi bi-person-vcard-fill"></i> Datos del Usuario </button>
             <button mat-menu-item (click)="cerrarSesion()"><i class="icono-configurar bi bi-door-open"></i> Salir de la Sesión </button>
           </mat-menu>
         </li>

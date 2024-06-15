@@ -92,8 +92,8 @@
       border: 1px solid #212529;
     }
 
-    .animate__animated.animate__fadeInDown {
-      animation-duration: 300ms;
+    .animate__animated.animate__fadeIn {
+      animation-duration: 200ms;
     }
 
 .dropdown-menu .dropdown-item {
@@ -184,7 +184,7 @@
 .mat-menu-item:hover, .mat-menu-item:focus {
   text-decoration: underline;
 }
-/* stilos del menu de usuario*/    
+/* estilos del menu de usuario*/    
 
     @media screen and (max-width: 611px){
 
@@ -217,6 +217,69 @@
         margin: 5px;
       }
     }
+
+
+@media (max-width: 575px) {
+  .navbar-nav .dropdown-menu {
+    position: relative;
+    float: none;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .navbar-nav .dropdown-menu.show {
+    display: block;
+    position: fixed;
+    top: 56px; 
+    left: 130px;
+    right: 0;
+    background-color: #ffffffb4;
+    z-index: 1000;
+    max-width: 30%;
+    padding: 5px;
+    
+
+  }
+
+
+  .navbar-nav .dropdown-item {
+    font-size: 12px; 
+    padding: 5px 7px;
+  }
+
+  .navbar-nav .dropdown-item a {
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-toggler-icon {
+    background-color: #007bff;
+  }
+}
+
+/* Estilos generales */
+.barMenu {
+  min-width: 200px;
+}
+
+.iconoUser {
+  margin-right: 10px;
+}
+
+button.mat-menu-item {
+  display: flex;
+  align-items: center;
+}
+
+button.mat-menu-item i {
+  margin-left: 10px;
+}
+
     
         
     
