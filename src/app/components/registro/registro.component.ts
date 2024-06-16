@@ -53,7 +53,7 @@ registrar(form:NgForm){
         icon: 'success',
         title: 'Registro Exitoso',
         text: `Bienvenido ${ this.usuario.nombres}`,
-        timer: 1800
+        timer: 1500
       });
             this.ruta.navigate(['/home']);
             localStorage.setItem ('nombres', this.usuario.nombres);

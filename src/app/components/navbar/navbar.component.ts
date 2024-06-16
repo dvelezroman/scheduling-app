@@ -19,6 +19,7 @@ isLoggedIn: boolean = false;
 userName: string = '';
 userNombre: string = '';
 nombresUsuario:string;
+userRol: string = '';
 showDateFilter: boolean = false;
 
   constructor(public userService:UsuarioServicesService,
@@ -26,15 +27,18 @@ showDateFilter: boolean = false;
   ){
 
   }
+
+  
 ngOnInit() {
 
-  this.userService.getUsuarioActual2().subscribe(usuario => {
+  this.userService.getUsuarioActual2().subscribe((usuario: UsuarioModel | null) => {
     if (usuario) {
       this.nombresUsuario = usuario.nombres;
-      console.log(this.nombresUsuario)
       this.isLoggedIn = true;
+      this.userRol = usuario.rol;
     } else {
       this.nombresUsuario = '';
+      this.userRol = '';
       this.isLoggedIn = false;
     }
   }, error => {

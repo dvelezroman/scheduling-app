@@ -15,7 +15,9 @@ import { GuardUsuario } from './guards/usuario.guard';
 import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 
 
+
 const routes: Routes = [
+  
   { path: 'inicio', component: InicioNoAuthComponent },
   { path: 'login', component: LoginComponent },
   { path: 'recuperaPassword', component: RecuperaPasswordComponent },
@@ -27,6 +29,7 @@ const routes: Routes = [
   { path: 'pacientes/:id', component: PacienteComponent, canActivate: [AuthGuard, GuardUsuario] },
   { path: 'pacientes/:paciente/:id', component: DetalleComponent, canActivate: [AuthGuard, GuardUsuario] },
   { path: 'pacientes/:paciente/:id/:pacienteId', component: AgendarTurnoComponent, canActivate: [AuthGuard, GuardUsuario] },
+  
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   { path: '**', redirectTo: 'home' }
 ];

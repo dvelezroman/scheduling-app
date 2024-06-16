@@ -53,7 +53,7 @@ export class AgendarTurnoComponent implements OnInit {
         //console.log(data.id)
     });
 
-    this.fechaMinima = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()-1);
+    this.fechaMinima = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
     this.fechaMinimaString = this.pd.transform(this.fechaMinima, "yyyy-MM-dd");
     this.fechaMaxima = new Date(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate());
     this.fechaMaximaString = this.pd.transform(this.fechaMaxima,"yyyy-MM-dd");

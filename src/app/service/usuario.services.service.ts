@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, OnInit } from '@angular/core';
 import { UsuarioModel } from '../components/models/usuario.model';
-import { BehaviorSubject, Observable, catchError, from, map, of, switchMap, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, from, map, of, switchMap, take, tap, throwError } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -70,6 +70,8 @@ export class UsuarioServicesService implements OnInit {
           });
         }
       }
+
+      
   
 //este es la nueva funcion para tener el usuario actual hasta aqui //
 
@@ -179,6 +181,38 @@ export class UsuarioServicesService implements OnInit {
           })
 
         )
+      }
+
+      //login nuevo para cuando ingresen dependiendo del rol//
+
+
+      login2(usuario: UsuarioModel): Observable<UsuarioModel> {
+        const auth = {
+          ...usuario,
+          returnSecureToken: true
+        };
+        
+        return this.http.post(`${this.url}:signInWithPassword?key=${this.apykey2}`, auth).pipe(
+          switchMap((resp: any) => {
+            this.almacenarToken(resp['idToken']);
+            this.almacenarUserName(usuario.email);
+            this.almacenarUid(resp['localId']);
+            this.emailUsuario.next(usuario.email);
+            this.usuarioId.next(resp['localId']);
+            this.loggedIn.next(true);
+            
+            return this.db.object<UsuarioModel>(`/usuarios/${resp['localId']}`).valueChanges().pipe(
+              take(1),
+              map(user => {
+                this.usuarioActual2.next(user);
+                return user;
+              })
+            );
+          }),catchError(err => {
+            console.error('Error during login:', err);
+            return throwError(err);
+          })
+        );
       }
 
     cerrarCesion(){

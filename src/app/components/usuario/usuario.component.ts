@@ -27,7 +27,7 @@ constructor(private usuarioServicios : UsuarioServicesService,
         this.usuarioServicios.getUsuarioActual().subscribe(usuario => {
           if (usuario) {
             this.usuario = usuario;
-            console.log(this.usuario)
+           // console.log(this.usuario)
             this.usuarioForm.patchValue({
               nombres: usuario.nombres,
               especialidad: usuario.especialidad,

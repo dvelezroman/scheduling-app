@@ -37,17 +37,25 @@ export class PacienteService {
     }
 
 
-  cargarPacientes(): Observable<PacienteModel[]> {
-    return this.http.get(`${this.url}/pacientes.json`).pipe(
-      map(this.crearArreglo),
-      map((pacientes: PacienteModel[]) => {
-        this.pacientesFiltrados = pacientes.filter(paciente => paciente.registrador === localStorage.getItem('userName'));
-        return this.pacientesFiltrados;
-      })
-    );
-  }
+    cargarPacientes(): Observable<PacienteModel[]> {
+      return this.http.get(`${this.url}/pacientes.json`).pipe(
+        map(this.crearArreglo),
+        map((pacientes: PacienteModel[]) => {
+          const usuarioLogin = localStorage.getItem('userName');
+          this.pacientesFiltrados = pacientes.filter(paciente => paciente.registrador === usuarioLogin);
+          //console.log('Pacientes filtrados:', this.pacientesFiltrados);
+          return this.pacientesFiltrados;
+        })
+      );
+    }
+
+    cargarPacientesFiltrados(usuarioLogin: string): Observable<PacienteModel[]> {
+      return this.cargarPacientes().pipe(
+        map(pacientes => pacientes.filter(paciente => paciente.registrador === usuarioLogin))
+      );
+    }
     
- private crearArreglo (pacienteObj:Object){
+ private crearArreglo (pacienteObj:Object): PacienteModel[]{
       if(pacienteObj === null){
           return [];
       }
@@ -75,8 +83,12 @@ export class PacienteService {
         return this.http.put<PacienteModel>(`${this.url}/pacientes/${paciente.id}.json`, PacienteT);
   }
 
-  deletePaciente(id:string){
-    return this.http.delete(`${this.url}/pacientes/${id}.json`);
+  deletePaciente(id: string): Observable<any> {
+    return this.http.delete(`${this.url}/pacientes/${id}.json`).pipe(
+      map(() => {
+        this.pacientesFiltrados = this.pacientesFiltrados.filter(paciente => paciente.id !== id);
+      })
+    );
   }
 
   buscarPacientes(nombre: string): Observable<PacienteModel[]> {

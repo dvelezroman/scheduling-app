@@ -38,28 +38,44 @@
                 </div>
                
                 <div class="cedula form-group">
+                       
                     <label>Cédula</label>
-                    <input type="number" 
-                    placeholder="Cédula"
-                    name="cedula"
-                    class="form-control"
-                    #cedula="ngModel"
-                    minlength="10" 
-                    maxlength="10"
-                    pattern="^[0-9]{10}$"
-                    [class.is-invalid]="cedula.invalid && (cedula.dirty || cedula.touched)"
-                    [(ngModel)]="paciente.cedula"
-                    required
-                    cedulaEcuatoriana>
-                    <div *ngIf="cedula.valid && (cedula.dirty || cedula.touched)" class="validador form-text text-success">
-                        <i class="icono-cedula bi bi-check-circle-fill"></i>
-                    </div>
-                    <div *ngIf="cedula.invalid && cedula.errors?.['cedulaEcuatoriana']" class="validador form-text text-danger">cédula ingresada no es válida</div>
-                    <small *ngIf="cedula.invalid && cedula.touched" class="validador form-text text-danger">campo obligatorio</small>
-                    <small *ngIf="cedula.errors && cedula.touched" class="validador form-text text-danger">La cédula debe tener al menos 10 dígitos.</small>
+                        
+                        <div class="input-group">
+                            <input type="number" 
+                                placeholder="Cédula"
+                                name="cedula"
+                                class="form-control"
+                                #cedula="ngModel"
+                                minlength="10" 
+                                maxlength="10"
+                                pattern="^[0-9]{10}$"
+                                [class.is-invalid]="cedula.invalid && (cedula.dirty || cedula.touched) || cedulaExiste"
+                                [(ngModel)]="paciente.cedula"
+                                (ngModelChange)="validarCedula($event)"
+                                required
+                                cedulaEcuatoriana>
+                                
+                                <div class="input-group-append">
+                                    <span class="input-group-text" *ngIf="cedulaExiste">
+                                      <i class="bi bi-exclamation-circle-fill text-danger"></i>
+                                    </span>
 
-                </div>
+                                  </div>
+                                </div>
+                                <small *ngIf="cedula.invalid && cedula.touched" class="validador form-text text-danger">Campo obligatorio</small>
+
+                                <div *ngIf="cedula.invalid && cedula.errors?.['cedulaEcuatoriana']" class="validador form-text text-danger">Cédula ingresada no es válida</div>
+                                <div *ngIf="cedulaExiste" class="invalid-feedback">
+                                  La cédula ya existe.
+                                </div>
+                                <div *ngIf="cedula.valid && (cedula.dirty || cedula.touched) && !cedulaExiste" class="validador form-text text-success">
+                                  <i class="icono-cedula bi bi-check-circle-fill"></i>
+                                </div>
+
                 
+                </div>
+
                 <div class="correo form-group">
                     <label>Correo</label>
                     <input type="email" 

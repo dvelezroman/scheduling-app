@@ -11,7 +11,7 @@
                 
                 <div class="datos-nombres col-6">
                     <h2>{{usuario?.nombres | titlecase}}</h2>
-                    <p *ngIf="usuario?.rol === 'medico'"><strong>Especialidad:</strong> {{ usuario?.especialidad }}</p>
+                    <p *ngIf="usuario?.rol === 'medico'"><strong>Especialidad:</strong> {{ usuario?.especialidad | titlecase }}</p>
                     <p *ngIf="usuario?.rol === 'paciente'"><strong>Edad:</strong> {{ usuario?.edad }} años</p>
                     <p *ngIf="usuario?.telefono"><strong>Teléfono: </strong>{{ usuario?.telefono}}</p>
                 </div>

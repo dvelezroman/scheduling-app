@@ -37,14 +37,16 @@ export class PacientesComponent implements OnInit {
   puedeEditar:boolean;
   mostrarLista: boolean = true;
   showDateFilter: boolean = false;
-  mostrarBotonX:boolean = false;   
+  mostrarBotonX:boolean = false;  
+  
 
 constructor(private servicio : PacienteService,
             private usuarioService : UsuarioServicesService,
             private datePipe : DatePipe,
             private twilio : TwilioService,
             private pd : DatePipe,
-            private fb : FormBuilder
+            private fb : FormBuilder,
+            private pacienteService: PacienteService
  ){
     this.rangoFecha = this.fb.group({
         inicio: new FormControl(null, Validators.required),
@@ -52,8 +54,11 @@ constructor(private servicio : PacienteService,
  });
  
 };
+
+
  
  ngOnInit(): void {
+
       //iniciar fecha desde por default
       const today = new Date();
       const yyyy = today.getFullYear();
@@ -78,7 +83,9 @@ constructor(private servicio : PacienteService,
 
       this.usuarioService.editar$.subscribe(valor => this.editar = valor);
       this.usuarioService.registrador$.subscribe(valor => this.puedeEditar = (valor === this.usuarioLogin));
-
+      
+      this.cargarPacientes();
+      
       this.servicio.cargarPacientes().subscribe( (pacientes:PacienteModel[]) => {
           this.pacientes = pacientes;
           this.pacientesFiltrados = pacientes;
@@ -91,6 +98,20 @@ constructor(private servicio : PacienteService,
    
   }); 
 }
+//esta funcion carga los pacientes luego los filtra por cada usuario//
+//la coloque aqui para poder incorporarla en la funcion de eliminar pacientes 
+//porque tenia el problema de que tenia que actualizar cada vez que borraba un paciente //
+
+cargarPacientes(): void {
+  this.servicio.cargarPacientes().subscribe((pacientes: PacienteModel[]) => {
+    this.pacientes = pacientes;
+    this.pacientesFiltrados = pacientes.filter(paciente => paciente.registrador === this.usuarioLogin);
+    this.eliminarFechasPasadas();
+    this.senal = this.pacientesFiltrados.length === 0;
+    this.loading = false;
+  });
+}
+
 
 toggleDateFilter(){
   this.showDateFilter = !this.showDateFilter;
@@ -165,58 +186,74 @@ borrar(id:number, paciente:PacienteModel){
     if(data.value){
 
       this.pacientesFiltrados.splice(id,1);
-      this.servicio.deletePaciente(paciente.id).subscribe();
-      if(this.pacientesFiltrados.length === 0){
-        this.senal = true;
-      }
-    };
-   });
-  }
+      this.servicio.deletePaciente(paciente.id).subscribe(() => {
+        this.cargarPacientes();
+        Swal.fire({
+          title: 'Eliminado',
+          text: `${paciente.nombres} ha sido eliminado`,
+          icon: 'success',
+          timer: 1600,
+          showConfirmButton: false
+        });
+      });
+    }
+  });
+}
 
-sendMessage(telefono:string, turno:string, paciente:PacienteModel) {
-  this.to = `+593${telefono}`;
-  const turnoFormat = this.datePipe.transform(turno, 'EEEE, MMMM d, y', 'default', 'es');
-  this.turno = `Esto es un recordatorio de que su cita fue agendada para el día ${turnoFormat}`;
-
-  Swal.fire({
-    title: '¿Enviar Mensaje?',
-    text: `¿Enviar mensaje a ${paciente.nombres}?`,
-    icon: 'question',
-    showCancelButton: true,
-    showConfirmButton: true
-  
-  }).then(resp =>{
-      if(resp.value){
-        this.twilio.sendNotification(this.to, this.turno).subscribe(resp => {
-          console.log(resp)
-          if(resp.success == true){
-            Swal.fire({
-              title: 'Mensaje Enviado!!',
-              text: `Enviado la notificación a ${paciente.nombres}`,
-              icon: 'success',
-              timer: 2500,
-              showCancelButton: false,
-              showConfirmButton: false,
-          
-             });
-        
-          }
-        },
-        error => {
-          console.error('Error al enviar notificación:', error);
-          Swal.fire({
-            title: 'Error al enviar',
-            text: 'servidor no conectado',
-            icon: 'error',
-            timer: 1800,
-            showCancelButton: false,
-            showConfirmButton: false,
-          });
-        })
-      }
-  })
-  
-
+  sendMessage(telefono: string, turno: string, paciente: PacienteModel) {
+    this.to = `+593${telefono}`;
+    let defaultMessage = `Hola ${paciente.nombres}, `;
+    
+    if (turno) {
+        const turnoFormat = this.datePipe.transform(turno, 'EEEE, MMMM d, y', 'default', 'es');
+        defaultMessage += `se le recuerda que su turno está pronosticado para el día ${turnoFormat}.`;
+    } else {
+        defaultMessage += 'aún no tiene un turno asignado.';
+    }
+    
+    Swal.fire({
+        title: 'Enviar Mensaje',
+        text: `¿Enviar mensaje a ${paciente.nombres}?`,
+        input: 'textarea',
+        inputLabel: 'Escriba su mensaje',
+        inputValue: defaultMessage,
+        showCancelButton: true,
+        confirmButtonText: 'Enviar',
+        cancelButtonText: 'Cancelar',
+        preConfirm: (message) => {
+            if (!message) {
+                Swal.showValidationMessage('El mensaje no puede estar vacío');
+            }
+            return message;
+        }
+    }).then(result => {
+        if (result.isConfirmed && result.value) {
+            const mensaje = result.value;
+            this.twilio.sendNotification(this.to, mensaje).subscribe(resp => {
+                if (resp.success === true) {
+                    Swal.fire({
+                        title: 'Mensaje Enviado!!',
+                        text: `Enviado la notificación a ${paciente.nombres}`,
+                        icon: 'success',
+                        timer: 2500,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                    });
+                }
+            },
+            error => {
+                console.error('Error al enviar notificación:', error);
+                Swal.fire({
+                    title: 'Error al enviar',
+                    text: 'Servidor no conectado',
+                    icon: 'error',
+                    timer: 1800,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                });
+            });
+        }
+    });
 }
 
 eliminarFechasPasadas():void{

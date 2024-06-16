@@ -25,6 +25,7 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
     usuarioId:string;
     localId:string;
     editar:boolean = false;
+    cedulaExiste: boolean = false;
 
     constructor(public servicio : PacienteService,
                 private usuarioServicio: UsuarioServicesService, 
@@ -63,7 +64,9 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
           }
 
     }
-
+    validarCedula(cedula: number) {
+      this.cedulaExiste = this.servicio.verificarCedulaUnica(cedula, this.emailRegistrador);
+    }
     guardar(form: NgForm) {
       
       if (form.invalid) {
@@ -81,6 +84,7 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
       if (this.paciente.id) { 
 
         if (this.servicio.verificarCedulaUnica(this.paciente.cedula, this.emailRegistrador, this.paciente.id)) {
+          this.cedulaExiste = true;
           Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -104,6 +108,7 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
       } else { 
 
         if (this.servicio.verificarCedulaUnica(this.paciente.cedula, this.emailRegistrador)) {
+          this.cedulaExiste = true;
           Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -130,7 +135,8 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
     }    
   
     limpiar(form:NgForm){
-      this.paciente.id.delete
+      this.paciente.id.delete();
+      this.cedulaExiste = false;
       return form.reset();
     }
 
