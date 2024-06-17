@@ -14,14 +14,17 @@
         <div class="row contenedor-boton-plus">
           <div class="col">
             <button routerLink="/pacientes/nuevo" 
-            class=" btnA btn btn-outline-primary" [matTooltip]="'Agregar paciente'">
+            class=" btnA btn btn-outline-primary" [matTooltip]="'Agregar paciente'"
+               matTooltipPosition="above">
             <i class="fa-solid fa-user-plus faI" ></i>
             </button>
 
             <!--boton añadir fecha búsqueda-->
 
                   <div class=" botonFecha col">
-                    <button class=" botonMostrar btn btn-primary" (click)="showDateFilter =!showDateFilter" [matTooltip]="'Buscar fechas de turno'">
+                    <button class=" botonMostrar btn btn-primary" (click)="showDateFilter =!showDateFilter" 
+                      [matTooltip]="'Buscar fechas de turno'"
+                       matTooltipPosition="above">
                       <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                   </div>

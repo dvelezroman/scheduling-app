@@ -4,7 +4,7 @@ import { UsuarioModel } from '../models/usuario.model';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { PacienteModel } from '../models/paciente.model';
+
 
 @Component({
   selector: 'app-login',
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 mostrar:boolean = false;
 usuario:UsuarioModel = new UsuarioModel();
 saveUser:boolean = false;
+isDropdownOpen: boolean = false;
 
   constructor(private auth : UsuarioServicesService,
               private ruta : Router){
@@ -25,7 +26,7 @@ saveUser:boolean = false;
     if(localStorage.getItem('name')){
       this.usuario.email = localStorage.getItem('name');
 
-        //this.saveUser = true;
+
     }
    // console.log(this.saveUser);
   } 
@@ -80,6 +81,9 @@ saveUser:boolean = false;
 
     this.mostrar = !this.mostrar;
 
+  }
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
 

@@ -1,15 +1,16 @@
 
 ::placeholder{
-    opacity: .6;
+    opacity: .5;
 }
 .container{
     position: relative;
     margin-left: 5rem;
+    margin-top: 5rem;
+}
 .form{
     margin-left:2.5rem;
 }
 
-}
 .tP{
     text-align: center;
     margin-bottom: 2rem;

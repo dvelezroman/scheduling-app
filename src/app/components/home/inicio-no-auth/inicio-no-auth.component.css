@@ -1,39 +1,68 @@
 
 /* Login de pagina */
-
+.container{
+  background-color: #d9d9d9;
+}
 .contenedorLogin{
-
-    padding: 1rem;
     margin-right: 2rem;
-    margin-bottom: 1rem;
+    padding-top: 25px;
     justify-content: end;
     align-items: center;
+    background-color: #d9d9d9;
+
+}
+
+/*enlace medicos dropdown*/
+.contenedorLogin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-medicos {
+  margin-left: 50px; 
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.dropdown-menu {
+  animation-duration: 0.5s;
+  margin-top: 5rem;
+}
 
 
+.dropdown-toggle::after {
+  margin-left: 0.255em;
+  
+}
+
+.btn-group .btn {
+  margin-right: 10px;
+}
+
+.btn3.dropdown-toggle[aria-expanded="true"],
+.btn3.dropdown-toggle:hover,
+.btn3.dropdown-toggle:focus {
+  background-color: transparent !important; 
+
+  color: #698dd1;
 }
 /*dropdown menu registrarse*/
 
 
 .dropdown-menu {
-  padding: 0px;
-  background-color: rgba(245, 247, 250, 0.4); 
+  margin-top: 3rem;
+  padding: 1rem;
+
+  background-color: rgba(245, 247, 250, 0.7); 
   border-radius: 10px; 
   backdrop-filter: blur(13px); 
 
 }
-.rotate {
-  transform: rotate(180deg);
-}
-
-
-.animate__fadeInDown {
-  animation-duration: 200ms;
-}
 
 .dropdown-menu a.dropdown-item {
-
+  font-size: 15px;
   text-align: left;
-  color: rgb(34, 34, 34); 
+  color: rgb(57, 85, 122); 
   display: block; 
   transition:all 400ms; 
 }
@@ -41,15 +70,49 @@
 .dropdown-menu a.dropdown-item:hover {
   background-color:transparent;
   text-decoration: underline;
-  margin-left: 5px;
+  margin-left: 3px;
 }
-
 .btn1{
-    margin-left: 15px;
+  background-color: white;
+  transition: all 400ms ease-in-out;
+}
+.btn1:hover{
+  background: rgb(77, 106, 195);
+  color: rgb(219, 225, 234);
+}
+
+.btn2,
+.btn3{
+    border: none;
 
 }
-.btn2{
-    border: none;
+.btn2:hover{
+  background-color: transparent;
+  color: rgb(57, 85, 122);
+}
+
+.custom-dropdown-menu {
+  margin-top: 0px;
+}
+
+.btn2.dropdown-toggle::after {
+  margin-left: 0.255em;
+}
+
+.btn2.dropdown-toggle[aria-expanded="true"],
+.btn2.dropdown-toggle:hover,
+.btn2.dropdown-toggle:focus {
+  background-color: transparent !important; 
+  border-color: #28a745; 
+  color: #28a745;
+}
+
+.btn2.dropdown-toggle:hover {
+  background-color: #e9ecef; 
+
+}
+.btn-iniciar-sesion {
+  margin-right: 35px; 
 }
   
 /*Hero*/
@@ -82,7 +145,7 @@
     font-size: 1rem;
     color: #4e5a73;
   
-  }
+  }q
   .sobre-app{
     height: 300px;
     padding: 200px;
@@ -156,6 +219,54 @@
   .experiencia p{
     padding: 5px;
     color: rgb(23, 37, 86);
+  }
+
+
+  /*wave*/
+  .wave-separator {
+    position: relative;
+    width: 100%;
+    height: 100px; /* Ajusta la altura según sea necesario */
+    overflow: hidden;
+}
+
+.wave-separator svg {
+    position: absolute;
+    top: -70px; /* Ajusta la posición vertical según sea necesario */
+    width: 100%;
+    height: auto;
+}
+
+
+
+  /*sobre app*/
+  .sobre-app{
+    background-color: #d9d9d9;
+    min-height: 450px;
+    text-align: center;
+    padding: 3rem;
+    margin-bottom: 50px;
+  
+  }
+  .sobre-app .contenedor{
+    max-width: 600px;
+    text-align: center;
+    margin-top: 50px; 
+
+
+  }
+  .sobre-app .seccion-titulo{
+    font-size: 2rem;
+    margin-top: 30px; 
+    padding: 15px 0px;
+    font-weight: 600;
+    color: #232836;
+    text-align: center;
+  }
+
+  .sobre-app .seccion-texto {
+      margin-top: 20px; 
+      color: #1e3162;
   }
   /* funcion scroll animation */
 
