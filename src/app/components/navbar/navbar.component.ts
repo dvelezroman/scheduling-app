@@ -4,6 +4,7 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
 import { UsuarioModel } from '../models/usuario.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { isLocalStorageAvailable } from '../../localStorageUtils';
 
 
 
@@ -54,27 +55,24 @@ this.userService.isLoggedIn.subscribe(resp =>{
   this.isLoggedIn = resp;
 });
 
-this.userService.usuarioActual.subscribe(resp =>{
-  this.userName = resp;
-
-  this.userName = localStorage.getItem('userName');
-
-})
-this.userService.nombreActual.subscribe(resp =>{
-  this.userNombre = resp;
-  this.userNombre = localStorage.getItem('nombres');
-})
+if (isLocalStorageAvailable()) {
+  this.userService.usuarioActual.subscribe(resp => {
+    this.userName = resp;
+    this.userName = localStorage.getItem('userName');
+  });
+  this.userService.nombreActual.subscribe(resp => {
+    this.userNombre = resp;
+    this.userNombre = localStorage.getItem('nombres');
+  });
+}
 
 }
   
 cerrarSesion() {
   Swal.fire({
     title: '¿Estás seguro?',
-
     icon: 'warning',
     showCancelButton: true,
-
-
     confirmButtonText: 'Aceptar',
     cancelButtonText: 'Cancelar'
   }).then((result) => {

@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { UsuarioModel } from '../components/models/usuario.model';
-import { BehaviorSubject, Observable, catchError, from, map, of, switchMap, take, tap, throwError } from 'rxjs';
+
+import { BehaviorSubject, Observable, catchError, 
+         from, map, of, switchMap, take, tap, throwError } from 'rxjs';
+
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { PacienteModel } from '../components/models/paciente.model';
 import { PacienteService } from './paciente.service';
 
 
@@ -15,7 +17,6 @@ import { PacienteService } from './paciente.service';
 export class UsuarioServicesService implements OnInit {
   
     apykey2 = 'AIzaSyABv3KzkWITNxeRKkyba_oqDfHGRYexHo0';
-   // apykey = 'AIzaSyD865HzIS-rxI3S6_K_mUAxMi-ipxDs7z0';
     url = 'https://identitytoolkit.googleapis.com/v1/accounts';
     crearUsuario = ':signUp?key=';
     iniciarSesion = ':signInWithPassword?key=[API_KEY]';
@@ -55,30 +56,27 @@ export class UsuarioServicesService implements OnInit {
     constructor(private http :HttpClient,
                 private db : AngularFireDatabase,
                 private afAuth : AngularFireAuth,
-                private pacienteService: PacienteService
-    ) {
-      this.cargarUsuarioActual2();  
-    }
-
-
-      getUsuarioActual2(): Observable<UsuarioModel> {
-        return this.usuarioActual2.asObservable(); 
-      }
-      private cargarUsuarioActual2() {
-        const uid = this.getStoredUserUid();
-        if (uid) {
-          this.db.object<UsuarioModel>(`/usuarios/${uid}`).valueChanges().subscribe(usuario => {
-            this.usuarioActual2.next(usuario);
-          });
-        }
-      }
+                private pacienteService: PacienteService) {
+                
+                            this.cargarUsuarioActual2();  }
 
 
     ngOnInit(): void {}
 
+    getUsuarioActual2(): Observable<UsuarioModel> {
+      return this.usuarioActual2.asObservable(); 
+    }
+    private cargarUsuarioActual2() {
+      const uid = this.getStoredUserUid();
+      if (uid) {
+        this.db.object<UsuarioModel>(`/usuarios/${uid}`).valueChanges().subscribe(usuario => {
+          this.usuarioActual2.next(usuario);
+        });
+      }
+    }
 
-
-//funcion para registrar normal usuario//
+///////////////////////////////////////////////////////////////////////
+     //METODO PARA CREAR UN USUARIO NORMAL EN EL AUTHENTICATION DE FIREBASE//
     registrar2(usuario:UsuarioModel){
         const auth = {
           ...usuario,
@@ -103,7 +101,8 @@ export class UsuarioServicesService implements OnInit {
       };
 
 
-      //funcion para registrar dependiendo si es medico o un paciente//
+   ///////////////////////////////////////////////////////////////////////
+  //METODO PARA CREAR UN USUARIO EN EL REALTIME DATABASE CON EL MISMO UID QUE SE AUTENTICA//
      registrar(usuario: UsuarioModel): Observable<any> {
         
         const authData = {
@@ -125,8 +124,6 @@ export class UsuarioServicesService implements OnInit {
     
             const uid = resp['localId'];
             usuario.id = uid;
-
-
 
             return from(
               this.db.object(`/usuarios/${uid}`).set({
@@ -153,10 +150,45 @@ export class UsuarioServicesService implements OnInit {
         );
       }
 
+///////////////////////////////////////////////////////////////////////
+ //METODO PARA REGISTRAR USUARIO SIN QUE INICIE SESION AUTOMATICAMENTE //
+ registrar1(usuario: UsuarioModel): Observable<any> {
+  const authData = {
+    email: usuario.email,
+    password: usuario.password,
+    returnSecureToken: true
+  };
 
-      
-
-
+  return this.http.post(`${this.url}:signUp?key=${this.apykey2}`, authData).pipe(
+    switchMap(resp => {
+      const uid = resp['localId'];
+      usuario.id = uid;
+      return from(
+        this.db.object(`/usuarios/${uid}`).set({
+          id: uid,
+          nombres: usuario.nombres,
+          email: usuario.email,
+          rol: usuario.rol,
+          especialidad: usuario.especialidad || null,
+          edad: usuario.edad || null,
+          telefono: usuario.telefono || null,
+          pacienteId: usuario.pacienteId || null
+        })
+      ).pipe(
+        catchError(err => {
+          console.error('Error saving user details:', err);
+          return throwError(err);
+        })
+      );
+    }),
+    catchError(err => {
+      console.error('Error during registration:', err);
+      return throwError(err);
+    })
+  );
+}
+///////////////////////////////////////////////////////////////////////
+     //METODO PARA OBTENER LA INFORMACION COMPLETA DEL USUARIO //
       getUsuario(): UsuarioModel {
         return {
           email: this.getStoredUserName(),
@@ -169,7 +201,8 @@ export class UsuarioServicesService implements OnInit {
         } as UsuarioModel;
       }
     
-      
+///////////////////////////////////////////////////////////////////////
+                  //LOGIN ANTERIOR //
     login(usuario:UsuarioModel): Observable<any> {
         const auth={
           ...usuario,
@@ -191,10 +224,8 @@ export class UsuarioServicesService implements OnInit {
 
         )
       }
-
-      //login nuevo para cuando ingresen dependiendo del rol//
-
-
+/////////////////////////////////////////////////////////////////////
+        //LOGIN ACTUAL RECONOCE EL ROL DEL USUARIO QUE INGRESA//
       login2(usuario: UsuarioModel): Observable<UsuarioModel> {
         const auth = {
           ...usuario,
@@ -225,6 +256,9 @@ export class UsuarioServicesService implements OnInit {
         );
       }
 
+/////////////////////////////////////////////////////////////////////
+              //METODO CERRAR SESION//
+
     cerrarCesion(){
         
         this.removeItem('token');
@@ -240,6 +274,9 @@ export class UsuarioServicesService implements OnInit {
       
       }
 
+ /////////////////////////////////////////////////////////////////////
+              //METODO PARA CAMBIAR LA CLAVE DE USUARIO//
+
       recuperarContrasena(email: string) {
         const requestPayload = {
           requestType: "PASSWORD_RESET",
@@ -253,12 +290,16 @@ export class UsuarioServicesService implements OnInit {
           );
       }
 
+
+/////////////////////////////////////////////////////////////////////
+          //MTODOS PARA OBTENER VALORES DEL LOCAL STORAGE//
+
         hasToken(): boolean {
           return !!this.getItem('token');}
         getStoredUserName(): string {
           return this.getItem('userName') || '';}
 
-          getStoredName(): string {
+        getStoredName(): string {
             return this.getItem('nombres') || '';}
         getStoredUserUid(): string {
           return this.getItem('userUid') || '';}

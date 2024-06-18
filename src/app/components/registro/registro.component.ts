@@ -47,13 +47,14 @@ registrar(form:NgForm){
       })
       return; 
   }
-  this.auth.registrar(this.usuario).subscribe( data =>{
+  this.auth.registrar1(this.usuario).subscribe( data =>{
 
       Swal.fire({
         icon: 'success',
         title: 'Registro Exitoso',
-        text: `Bienvenido ${ this.usuario.nombres}`,
-        timer: 1500
+        text: `Se ha agregado a ${ this.usuario.nombres} a la base de datos`,
+        timer: 1500,
+        showConfirmButton: false
       }).then(() => {
         form.reset();
         //this.ruta.navigate(['/home']);
@@ -86,22 +87,4 @@ toggleMostrar(){
 }
 
 
-//
-edad
-: 
-34
-email
-: 
-"greverom_@hotmail.com"
-id
-: 
-"Hky08Qt3wfcF4TT0LAyWc4sFnmI2"
-nombres
-: 
-"gregorio"
-password
-: 
-"123456"
-rol
-: 
-"paciente"//
+

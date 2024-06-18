@@ -8,7 +8,7 @@ import { PacientesComponent } from './components/pacientes/pacientes.component';
 import { PacienteComponent } from './components/paciente/paciente.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { DetalleComponent } from './components/paciente/detalle/detalle.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { RegistroComponent } from './components/registro/registro.component';
@@ -33,6 +33,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { RoleTransformPipe } from './pipes/role-transform.pipe';
 import { environment } from '../../environments/environment';
+import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 
 
 
@@ -59,9 +60,9 @@ import { environment } from '../../environments/environment';
     UsuarioComponent,
     PerfilComponent,
     RoleTransformPipe,
+    NotAuthorizedComponent,
 
-
-    
+   
   ],
   imports: [
     BrowserModule,
@@ -78,16 +79,12 @@ import { environment } from '../../environments/environment';
     AngularFireDatabaseModule,
 
 
-
-
-
-
   ],
   providers: [
     provideClientHydration(),
     DatePipe,
     provideAnimationsAsync(),
-
+    provideHttpClient(withFetch())
 
 
   ],

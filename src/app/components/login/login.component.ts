@@ -4,6 +4,7 @@ import { UsuarioModel } from '../models/usuario.model';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { isLocalStorageAvailable } from '../../localStorageUtils';
 
 
 @Component({
@@ -22,14 +23,14 @@ isDropdownOpen: boolean = false;
 
 }
 
-  ngOnInit(): void {
-    if(localStorage.getItem('name')){
-      this.usuario.email = localStorage.getItem('name');
-
-
+ ngOnInit(): void {
+    if (isLocalStorageAvailable()) {
+      const storedName = localStorage.getItem('name');
+      if (storedName) {
+        this.usuario.email = storedName;
+      }
     }
-   // console.log(this.saveUser);
-  } 
+  }
   
 
   ingresar(form:NgForm){

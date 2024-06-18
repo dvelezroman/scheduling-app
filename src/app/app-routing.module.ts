@@ -13,6 +13,8 @@ import { RecuperaPasswordComponent } from './components/recupera-password/recupe
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { GuardUsuario } from './guards/usuario.guard';
 import { PerfilComponent } from './components/usuario/perfil/perfil.component';
+import { GuardRegistro } from './guards/registro.guard';
+import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 
 
 
@@ -21,7 +23,7 @@ const routes: Routes = [
   { path: 'inicio', component: InicioNoAuthComponent },
   { path: 'login', component: LoginComponent },
   { path: 'recuperaPassword', component: RecuperaPasswordComponent },
-  { path: 'registro', component: RegistroComponent },
+  { path: 'registro', component: RegistroComponent, canActivate: [GuardRegistro] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'datos-usuario', component: PerfilComponent, canActivate: [AuthGuard] },
   { path: 'configuracion-usuario', component: UsuarioComponent,canActivate: [AuthGuard] },
@@ -29,7 +31,7 @@ const routes: Routes = [
   { path: 'pacientes/:id', component: PacienteComponent, canActivate: [AuthGuard, GuardUsuario] },
   { path: 'pacientes/:paciente/:id', component: DetalleComponent, canActivate: [AuthGuard, GuardUsuario] },
   { path: 'pacientes/:paciente/:id/:pacienteId', component: AgendarTurnoComponent, canActivate: [AuthGuard, GuardUsuario] },
-  
+  { path: 'notAuthorized', component: NotAuthorizedComponent },
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   { path: '**', redirectTo: 'home' }
 ];

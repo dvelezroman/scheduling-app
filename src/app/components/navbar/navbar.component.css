@@ -128,6 +128,29 @@
   font-weight: bold;
 }
 
+
+/* estilos del menu REGISTRAR*/
+
+.btn-registrarse {
+  color: #b2b1b1; 
+  border-color: #edefee; 
+  transition: all 300ms ease-in-out;
+}
+
+
+.btn-registrarse:hover,
+.btn-registrarse:focus {
+  background-color: transparent; 
+  color: #e8e9ea; 
+  border-color: #e2e3e4; 
+}
+
+
+#dropdownMenuButton1[aria-expanded="true"] {
+  background-color: transparent; 
+  color: #cfd2d5; 
+  border-color: #d7d9db; 
+}
     
 /* stilos del menu de usuario*/
 

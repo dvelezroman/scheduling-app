@@ -38,6 +38,7 @@ export class PacientesComponent implements OnInit {
   mostrarLista: boolean = true;
   showDateFilter: boolean = false;
   mostrarBotonX:boolean = false;  
+  hayPacientes: boolean = false;
   
 
 constructor(private servicio : PacienteService,
@@ -92,6 +93,7 @@ constructor(private servicio : PacienteService,
           this.pacientesFiltrados = this.pacientes.filter(paciente => paciente.registrador === this.usuarioLogin);
           this.eliminarFechasPasadas();
           this.senal = this.pacientesFiltrados.length === 0;
+          this.hayPacientes = this.pacientesFiltrados.length > 0;
           
 
           this.loading = false;
