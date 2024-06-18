@@ -4,6 +4,8 @@ import { UsuarioModel } from '../components/models/usuario.model';
 import { BehaviorSubject, Observable, catchError, from, map, of, switchMap, take, tap, throwError } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { PacienteModel } from '../components/models/paciente.model';
+import { PacienteService } from './paciente.service';
 
 
 @Injectable({
@@ -52,12 +54,12 @@ export class UsuarioServicesService implements OnInit {
      
     constructor(private http :HttpClient,
                 private db : AngularFireDatabase,
-                private afAuth : AngularFireAuth
+                private afAuth : AngularFireAuth,
+                private pacienteService: PacienteService
     ) {
       this.cargarUsuarioActual2();  
     }
 
-      //este es la nueva función para tener el usuario actual por medio del uid que se almacena en local storage //
 
       getUsuarioActual2(): Observable<UsuarioModel> {
         return this.usuarioActual2.asObservable(); 
@@ -71,9 +73,6 @@ export class UsuarioServicesService implements OnInit {
         }
       }
 
-      
-  
-//este es la nueva funcion para tener el usuario actual hasta aqui //
 
     ngOnInit(): void {}
 
@@ -119,12 +118,16 @@ export class UsuarioServicesService implements OnInit {
             this.almacenarUid(resp['localId']);
             this.almacenarUserName(usuario.email);
             this.almacenarName(usuario.nombres);
+            this.cargarUsuarioActual2();
             this.emailUsuario.next(usuario.email);
             this.usuarioId.next(resp['localId']);
             this.loggedIn.next(true);
     
             const uid = resp['localId'];
             usuario.id = uid;
+
+
+
             return from(
               this.db.object(`/usuarios/${uid}`).set({
                 id: uid,
@@ -133,7 +136,8 @@ export class UsuarioServicesService implements OnInit {
                 rol: usuario.rol,
                 especialidad: usuario.especialidad || null, 
                 edad: usuario.edad || null,
-                telefono: usuario.telefono || null                
+                telefono: usuario.telefono || null,
+                pacienteId: usuario.pacienteId || null                
               })
             ).pipe(
               catchError(err => {
@@ -148,6 +152,11 @@ export class UsuarioServicesService implements OnInit {
           })
         );
       }
+
+
+      
+
+
       getUsuario(): UsuarioModel {
         return {
           email: this.getStoredUserName(),
@@ -197,6 +206,7 @@ export class UsuarioServicesService implements OnInit {
             this.almacenarToken(resp['idToken']);
             this.almacenarUserName(usuario.email);
             this.almacenarUid(resp['localId']);
+            this.cargarUsuarioActual2();
             this.emailUsuario.next(usuario.email);
             this.usuarioId.next(resp['localId']);
             this.loggedIn.next(true);

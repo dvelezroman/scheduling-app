@@ -17,6 +17,8 @@
           </ul>
         </li>
 
+        
+
         <li *ngIf="userRol === 'paciente'" class="nav-item dropdown" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link dropdown-toggle" role="button" id="menuDropdown"  data-bs-toggle="dropdown" aria-expanded="true">
             Menú
@@ -30,7 +32,19 @@
     </div>
 
     <ul class="navbar-nav2 ml-auto">
-      <li class="nav-item2" [matTooltip]="'Mi Cuenta'" matTooltipPosition="after">
+
+      <li *ngIf="userRol === 'medico'" class="nav-item">
+        <div class="btn-group dropdown">
+          <button class="btn2 btn btn-outline-success dropdown-toggle btn-registrarse" (click)="toggleDropdown()" data-bs-toggle="dropdown" id="dropdownMenuButton1" aria-expanded="false">
+            Registrar
+          </button>
+          <div class="dropdown-menu mt-2 custom-dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <a class="dropdown-item" [routerLink]="['/registro']" [queryParams]="{ rol: 'medico' }">Médico</a>
+            <a class="dropdown-item" [routerLink]="['/registro']" [queryParams]="{ rol: 'paciente' }">Paciente</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item2" [matTooltip]="'Mi Cuenta'" matTooltipPosition="above">
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon><i class="iconoUser fa-regular fa-circle-user"></i></mat-icon>
         </button>

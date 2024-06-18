@@ -54,10 +54,13 @@ registrar(form:NgForm){
         title: 'Registro Exitoso',
         text: `Bienvenido ${ this.usuario.nombres}`,
         timer: 1500
+      }).then(() => {
+        form.reset();
+        //this.ruta.navigate(['/home']);
+       // localStorage.setItem ('nombres', this.usuario.nombres);
+      //  console.log(this.usuario)
       });
-            this.ruta.navigate(['/home']);
-            localStorage.setItem ('nombres', this.usuario.nombres);
-            console.log(this.usuario)
+          
   },(err)=>{
     const errorMessage = err?.error?.error?.message || 'Error desconocido';
     Swal.fire({
@@ -83,4 +86,22 @@ toggleMostrar(){
 }
 
 
-
+//
+edad
+: 
+34
+email
+: 
+"greverom_@hotmail.com"
+id
+: 
+"Hky08Qt3wfcF4TT0LAyWc4sFnmI2"
+nombres
+: 
+"gregorio"
+password
+: 
+"123456"
+rol
+: 
+"paciente"//

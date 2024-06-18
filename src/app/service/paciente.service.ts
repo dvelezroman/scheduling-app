@@ -27,10 +27,12 @@ export class PacienteService {
   }
 
  crearPaciente(paciente:PacienteModel){
+
     return this.http.post(`${this.url}/pacientes.json`, paciente)
      .pipe(
       map((data:any) => {
         paciente.id = data.name
+        console.log(paciente)
         return paciente;
         })
       );
@@ -43,7 +45,7 @@ export class PacienteService {
         map((pacientes: PacienteModel[]) => {
           const usuarioLogin = localStorage.getItem('userName');
           this.pacientesFiltrados = pacientes.filter(paciente => paciente.registrador === usuarioLogin);
-          //console.log('Pacientes filtrados:', this.pacientesFiltrados);
+
           return this.pacientesFiltrados;
         })
       );
@@ -71,6 +73,10 @@ export class PacienteService {
 
  getPaciente(id:string){
     return this.http.get(`${this.url}/pacientes/${id}.json`)
+  }
+
+  getMedicoId(): string {
+    return localStorage.getItem('userUid'); 
   }
   
 
@@ -104,5 +110,6 @@ export class PacienteService {
     );
   }
 
-  
+
+
 }

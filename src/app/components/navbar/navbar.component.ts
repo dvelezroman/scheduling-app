@@ -21,6 +21,7 @@ userNombre: string = '';
 nombresUsuario:string;
 userRol: string = '';
 showDateFilter: boolean = false;
+isDropdownOpen: boolean = false;
 
   constructor(public userService:UsuarioServicesService,
               private ruta :Router
@@ -89,7 +90,12 @@ cerrarSesion() {
 toggleDateFilter(){
   this.showDateFilter = !this.showDateFilter;
  }
-
+ registrar(rol: string) {
+  this.ruta.navigate(['/registro'], { queryParams: { rol } });
+}
+toggleDropdown() {
+  this.isDropdownOpen = !this.isDropdownOpen;
+}
 
 }
 

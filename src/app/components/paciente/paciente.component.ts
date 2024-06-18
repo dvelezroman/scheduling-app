@@ -36,7 +36,8 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
                   this.cedula = this.paciente.cedula;
                   this.correo = this.paciente.correo;
                   this.telefono = this.paciente.telefono;
-                  this.direccion = this.paciente.direccion;}
+                  this.direccion = this.paciente.direccion;
+                }
 
     ngOnInit():void {
 

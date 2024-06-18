@@ -48,12 +48,10 @@ Thumbs.db
 *-debug.log
 .runtimeconfig.json
 
-# Environment variables
-.env
 
 # Angular environment files
-environments
-environment.ts
+environments/*
+
 
 # Firebase Json
 firebase.json

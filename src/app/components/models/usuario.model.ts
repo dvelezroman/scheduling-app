@@ -8,7 +8,7 @@ export class UsuarioModel{
     especialidad?:string;
     edad?:number;
     telefono?: string;
-    
+    pacienteId?:string;
 
 
 }

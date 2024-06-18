@@ -28,10 +28,10 @@ constructor(private usuarioServicios : UsuarioServicesService,
           if (usuario) {
             this.usuario = usuario;
            // console.log(this.usuario)
-            this.usuarioForm.patchValue({
-              nombres: usuario.nombres,
-              especialidad: usuario.especialidad,
-              telefono: usuario.telefono
+           this.usuarioForm.patchValue({
+            nombres: usuario.nombres || '',
+            especialidad: usuario.especialidad || '',
+            telefono: usuario.telefono || ''
             });
           }
         }, error => {
@@ -43,7 +43,9 @@ constructor(private usuarioServicios : UsuarioServicesService,
         if (this.usuarioForm.valid) {
           const updatedUsuario = {
             ...this.usuario,
-            ...this.usuarioForm.value
+            ...this.usuarioForm.value,
+            especialidad: this.usuarioForm.value.especialidad || null,
+            telefono: this.usuarioForm.value.telefono || null
           };
     
           this.usuarioServicios.actualizarUsuario(updatedUsuario).subscribe(() => {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { environment } from '../environments/environment';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -14,7 +14,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { AgendarTurnoComponent } from './components/paciente/agendar-turno/agendar-turno.component';
-import { DatePipe, registerLocaleData } from '@angular/common';
+import { DatePipe} from '@angular/common';
 import { InicioNoAuthComponent } from './components/home/inicio-no-auth/inicio-no-auth.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -32,6 +32,7 @@ import { CedulaEcuatorianaValidatorDirective } from './components/paciente/cedul
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { RoleTransformPipe } from './pipes/role-transform.pipe';
+import { environment } from '../../environments/environment';
 
 
 

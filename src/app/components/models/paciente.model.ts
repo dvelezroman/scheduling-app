@@ -11,6 +11,7 @@ export class PacienteModel{
     registrador:string;
     usuarioUid:string;
     diagnostico:Diagnostico[];
+
 }
 
 export class Diagnostico{

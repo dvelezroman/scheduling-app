@@ -46,7 +46,7 @@ isDropdownOpen: boolean = false;
       });  
        return;
       }
-      this.auth.login(this.usuario).subscribe(data =>{
+      this.auth.login2(this.usuario).subscribe(data =>{
     
         Swal.close()
         Swal.fire({
