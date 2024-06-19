@@ -34,6 +34,7 @@ import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { RoleTransformPipe } from './pipes/role-transform.pipe';
 import { environment } from '../../environments/environment';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
+import { MedicosDatosComponent } from './components/usuario/medicos-datos/medicos-datos.component';
 
 
 
@@ -61,6 +62,7 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
     PerfilComponent,
     RoleTransformPipe,
     NotAuthorizedComponent,
+    MedicosDatosComponent,
 
    
   ],

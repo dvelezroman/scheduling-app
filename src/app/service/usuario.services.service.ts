@@ -200,6 +200,19 @@ export class UsuarioServicesService implements OnInit {
           edad: null 
         } as UsuarioModel;
       }
+
+
+ ///////////////////////////////////////////////////////////////////////
+     //METODO PARA OBTENER A TODOS LOS MEDICOS REGISTRADOS //
+
+     obtenerMedicos(): Observable<UsuarioModel[]> {
+      return this.db.list<UsuarioModel>('/usuarios', ref => ref.orderByChild('rol').equalTo('medico')).valueChanges().pipe(
+        catchError(err => {
+          console.error('Error al obtener médicos:', err);
+          return throwError(err);
+        })
+      );
+    }
     
 ///////////////////////////////////////////////////////////////////////
                   //LOGIN ANTERIOR //

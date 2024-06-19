@@ -95,7 +95,11 @@
                       matTooltipClass="custom-tooltip">{{paciente.nombres}}</a></td>
                     <td class="textP">{{paciente.cedula}}</td>
                     <td class="textP">{{paciente.correo}}</td>
-                    <td class="textP-3"><span class="cita" *ngIf="!paciente.turno">No tine cita</span>{{paciente.turno}}</td>
+                    <td class="textP-3"><span class="cita" *ngIf="!paciente.turno">No tine cita</span> <ng-container *ngIf="paciente.turno">
+                      {{ paciente.turno | date:'short' }}
+                    </ng-container></td>
+
+                    
                     <td  class="icon-cell d-flex justify-content-md-center">
                         
                         <button type="button"[matTooltip]="'Enviar fecha de la cita'" 

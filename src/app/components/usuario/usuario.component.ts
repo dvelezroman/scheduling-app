@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 export class UsuarioComponent implements OnInit {
   usuario: UsuarioModel;
   usuarioForm: FormGroup;
+
+
 constructor(private usuarioServicios : UsuarioServicesService,
             private fb : FormBuilder,
             private ruta : Router){}
@@ -37,6 +39,7 @@ constructor(private usuarioServicios : UsuarioServicesService,
         }, error => {
           console.error('Error al obtener usuario:', error);
         });
+
 
       }
       enviar() {

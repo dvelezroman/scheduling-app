@@ -17,6 +17,8 @@ registerLocaleData(localeEs);
 })
 export class AgendarTurnoComponent implements OnInit {
 
+
+
   paciente:PacienteModel = new PacienteModel();
   formTurno:FormGroup;
   fechaMinima:Date;
@@ -39,7 +41,7 @@ export class AgendarTurnoComponent implements OnInit {
     this.formTurno = this.fb.group({
 
       fecha: ['', Validators.required],
-
+      hora: ['', Validators.required]
     })
   }
 
@@ -51,14 +53,37 @@ export class AgendarTurnoComponent implements OnInit {
         this.paciente = data;
         this.paciente.id = id;
         //console.log(data.id)
+        if (this.paciente.turno) {
+          const [fecha, hora] = this.paciente.turno.split('T');
+          this.formTurno.patchValue({
+            fecha: fecha,
+            hora: hora.substring(0, 5) // HH:MM
+          });
+        }
     });
 
     this.fechaMinima = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
     this.fechaMinimaString = this.pd.transform(this.fechaMinima, "yyyy-MM-dd");
     this.fechaMaxima = new Date(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate());
     this.fechaMaximaString = this.pd.transform(this.fechaMaxima,"yyyy-MM-dd");
+  
+    this.horasDisponibles();
   }
+  horasDisponibles(): string[] {
+    const horas = [];
+    let horaActual = new Date();
+    horaActual.setHours(9, 0, 0); // Comienza a las 9:00 AM
 
+    const horaFin = new Date();
+    horaFin.setHours(18, 0, 0); // Termina a las 6:00 PM
+
+    while (horaActual <= horaFin) {
+      const horasString = horaActual.toTimeString().substring(0, 5); // Formato HH:MM
+      horas.push(horasString);
+      horaActual.setMinutes(horaActual.getMinutes() + 30); // Incrementa 30 minutos
+    }
+    return horas;
+  }
 
 
     agendar(){
@@ -83,7 +108,7 @@ export class AgendarTurnoComponent implements OnInit {
         this.servicio.getPaciente(id).subscribe((data:PacienteModel) =>{
           this.paciente = data;
           this.paciente.id = id;
-          this.paciente.turno = this.formTurno.value.fecha
+          this.paciente.turno = `${this.formTurno.value.fecha}T${this.formTurno.value.hora}:00`;
           this.servicio.refreshPaciente(this.paciente).subscribe();
          // console.log(this.paciente);
           //console.log(this.formTurno.value)
@@ -91,7 +116,7 @@ export class AgendarTurnoComponent implements OnInit {
       
       Swal.fire({
         title: "Fecha agregada",
-        text: `Su cita para la fecha ${this.formTurno.value.fecha} ha sido agendada!!`,
+        text: `Su cita para la fecha ${this.formTurno.value.fecha} a las ${this.formTurno.value.hora} ha sido agendada!!`,
         icon: "success",
         timer: 2000,
         showConfirmButton: false

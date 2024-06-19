@@ -15,6 +15,7 @@ import { GuardUsuario } from './guards/usuario.guard';
 import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { GuardRegistro } from './guards/registro.guard';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
+import { MedicosDatosComponent } from './components/usuario/medicos-datos/medicos-datos.component';
 
 
 
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'pacientes/:paciente/:id', component: DetalleComponent, canActivate: [AuthGuard, GuardUsuario] },
   { path: 'pacientes/:paciente/:id/:pacienteId', component: AgendarTurnoComponent, canActivate: [AuthGuard, GuardUsuario] },
   { path: 'notAuthorized', component: NotAuthorizedComponent },
+  { path: 'medicos-datos', component: MedicosDatosComponent },
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   { path: '**', redirectTo: 'home' }
 ];

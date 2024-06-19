@@ -101,8 +101,6 @@ constructor(private servicio : PacienteService,
   }); 
 }
 //esta funcion carga los pacientes luego los filtra por cada usuario//
-//la coloque aqui para poder incorporarla en la funcion de eliminar pacientes 
-//porque tenia el problema de que tenia que actualizar cada vez que borraba un paciente //
 
 cargarPacientes(): void {
   this.servicio.cargarPacientes().subscribe((pacientes: PacienteModel[]) => {
@@ -207,8 +205,14 @@ borrar(id:number, paciente:PacienteModel){
     let defaultMessage = `Hola ${paciente.nombres}, `;
     
     if (turno) {
-        const turnoFormat = this.datePipe.transform(turno, 'EEEE, MMMM d, y', 'default', 'es');
-        defaultMessage += `se le recuerda que su turno está pronosticado para el día ${turnoFormat}.`;
+        const turnoDate = new Date(turno);
+        const turnoFormat = this.datePipe.transform(turno, 'EEEE, d', 'default', 'es');
+        const mesAnoFormat = this.datePipe.transform(turnoDate, 'MMMM', 'default', 'es');
+        const anoFormat = this.datePipe.transform(turnoDate, 'y', 'default', 'es');
+        const horaFormat = this.datePipe.transform(turno, 'shortTime', 'default', 'es');
+        const horas = turnoDate.getHours();
+        const periodo = horas < 12 ? 'de la mañana' : 'de la tarde';
+          defaultMessage += `se le recuerda que su turno está pronosticado para el día ${turnoFormat} de ${mesAnoFormat} del ${anoFormat} a las ${horaFormat} ${periodo}.`;
     } else {
         defaultMessage += 'aún no tiene un turno asignado.';
     }

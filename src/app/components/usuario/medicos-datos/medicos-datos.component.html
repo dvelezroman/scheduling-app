@@ -1,0 +1,87 @@
+
+<section class="body">
+  
+  <h1 class="titulo-especialidad">Especialidades</h1>
+  <hr>
+
+
+  <p class="boton-todos">
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+      Todos {{ cantidadMedicos}}
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample1">
+    <div class="card card-body tarjetas">
+      <div class="container mt-5">
+        <div class="row">
+          <div *ngFor="let medico of medicos" class="tarjetas col-12 col-md-6 col-lg-4">
+            <div class="card tarjeta">
+              <div class="card-body cuerpo">
+                <h5 class="card-title titulo">{{ medico.nombres }}</h5>
+                <p class="card-text texto">
+                  <strong>Especialidad:</strong> {{ medico.especialidad }}<br>
+                  <strong>Email:</strong> {{ medico.email }}<br>
+                  <strong>Telefono:</strong> {{ medico.telefono }}
+                </p>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <p class="boton-especialidad">
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+      Médicos Generales
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample2">
+    <div class="card card-body tarjetas">
+      <div class="container mt-5">
+        <div class="row">
+          <div *ngFor="let medico of medicos" class="tarjetas col-12 col-md-6 col-lg-4">
+            <div class="card tarjeta">
+              <div class="card-body cuerpo">
+                <h5 class="card-title titulo">{{ medico.nombres }}</h5>
+                <p class="card-text texto">
+                  <strong>Especialidad:</strong> {{ medico.especialidad }}<br>
+                  <strong>Email:</strong> {{ medico.email }}<br>
+                  <strong>Telefono:</strong> {{ medico.telefono }}
+                </p>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-3 boton-atras">
+    <button class="btn btn-secondary" (click)="volverInicio()">Volver</button>
+  </div>
+<!--  <div class="container mt-5">
+    <h1 class="titulo">Lista de Médicos</h1>
+  
+      <div class="row">
+          <div *ngFor="let medico of medicos" class="tarjetas col-12 col-md-6 col-lg-4">
+            <div class="card tarjeta">
+              <div class="card-body cuerpo">
+                <h5 class="card-title titulo-tarjeta">{{ medico.nombres }}</h5>
+                <p class="card-text texto">
+                  <strong>Especialidad:</strong> {{ medico.especialidad }}<br>
+                 <strong>Email:</strong> {{ medico.email }}<br>
+                 <strong>Telefono:</strong> {{ medico.telefono }}
+                </p>
+              </div>
+            </div>
+          </div>
+         
+      </div>
+  </div>
+</section>
+
+-->

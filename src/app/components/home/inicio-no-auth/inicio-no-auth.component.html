@@ -8,11 +8,12 @@
                 Médicos
             </button>
             <div class="dropdown-menu mt-2 custom-dropdown-menu" aria-labelledby="medicosDropdownButton">
-                <a class="dropdown-item" [routerLink]="['/lista-medicos']">Lista de Médicos</a>
+                <a class="dropdown-item" [routerLink]="['/medicos-datos']">Lista de Médicos</a>
                 <a class="dropdown-item" [routerLink]="['/medicos-especialidad']">Médicos por Especialidad</a>
             </div>
         </div>
     </div>
+    <router-outlet/>
 
     <div class="d-flex align-items-center">
 
