@@ -116,21 +116,19 @@ export class PacienteService {
     return localStorage.getItem('userName'); 
   }
 
-  getHorasOcupadas2(fecha: string): Observable<string[]> {
-    const usuarioActual = this.getUsuarioActual();
-    return this.db.list<PacienteModel>('/pacientes', ref => 
-      ref.orderByChild('turno')
-         .startAt(fecha)
-         .endAt(fecha + "\uf8ff")
-    ).valueChanges().pipe(
-      map(pacientes => pacientes
-        .filter(paciente => paciente.registrador === usuarioActual) 
-        .map(paciente => {
-          const turnoDate = new Date(paciente.turno);
-          turnoDate.setHours(turnoDate.getHours() - 5); 
-          return turnoDate.toISOString().split('T')[1].substring(0, 5); 
-      }))
-    );
+  getHorasOcupadas(fecha: string, registrador: string): Observable<string[]> {
+    return this.db.list<PacienteModel>('/pacientes', ref => ref.orderByChild('turno').startAt(fecha).endAt(fecha + "\uf8ff"))
+      .valueChanges()
+      .pipe(
+        map(pacientes => pacientes
+          .filter(paciente => paciente.registrador === registrador)
+          .map(paciente => {
+            const turnoDate = new Date(paciente.turno);
+            turnoDate.setHours(turnoDate.getHours() - 5); 
+            return turnoDate.toISOString().split('T')[1].substring(0, 5);
+          })
+        )
+      );
   }
 }
 

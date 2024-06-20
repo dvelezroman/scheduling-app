@@ -62,28 +62,32 @@ export class AgendarTurnoComponent implements OnInit {
 
         if (data.turno) {
           const turnoDate = new Date(data.turno);
-          turnoDate.setHours(turnoDate.getHours() - 5); 
+          turnoDate.setHours(turnoDate.getHours() - 5);
           this.formTurno.patchValue({
             fecha: turnoDate.toISOString().split('T')[0],
             hora: turnoDate.toTimeString().substring(0, 5)
           });
         }
-    });
-
- 
-      //METODO PARA LAS FECHAS RESERVADAS//
-      this.formTurno.get('fecha').valueChanges.subscribe(fecha => {
-        if (fecha) {
-          this.servicio.getHorasOcupadas2(fecha).subscribe(horasOcupadas => {
-            this.horasOcupadas = horasOcupadas;
-            this.actualizarHorasDisponibles();
-          });
-        }
+        this.obtenerHorasOcupadas(this.formTurno.get('fecha').value);
       });
-      this.actualizarHorasDisponibles();
+  
+      this.formTurno.get('fecha').valueChanges.subscribe(fecha => {
+        this.obtenerHorasOcupadas(fecha);
+      });
 
-    //this.horasDisponibles();
+      //METODO PARA LAS FECHAS RESERVADAS//
 
+      this.formTurno.get('fecha').valueChanges.subscribe(fecha => {
+        this.servicio.getHorasOcupadas(fecha, this.paciente.registrador).subscribe(horasOcupadas => {
+          this.horasOcupadas = horasOcupadas;
+          this.actualizarHorasDisponibles();
+          
+          if (this.horasDisponibles.length > 0 && !this.horasOcupadas.includes(this.formTurno.get('hora').value)) {
+            this.formTurno.patchValue({ hora: this.horasDisponibles[0] });
+          }
+        });
+      });
+     
   }
 
 //////////////////////////////////////////////////////////////////
@@ -103,8 +107,8 @@ export class AgendarTurnoComponent implements OnInit {
 
     obtenerHorasOcupadas(fecha: string) {
       if (!fecha) return;
-      this.servicio.getHorasOcupadas2(fecha).subscribe(horasOcupadas => {
-
+      this.servicio.getHorasOcupadas(fecha, this.paciente.registrador)
+      .subscribe(horasOcupadas => {
         this.horasOcupadas = horasOcupadas;
         this.actualizarHorasDisponibles();
       });
@@ -113,9 +117,7 @@ export class AgendarTurnoComponent implements OnInit {
     actualizarHorasDisponibles(): void {
       this.horasDisponibles = this.generarHorasDisponibles()
       .filter(hora => !this.horasOcupadas.includes(hora));
-
     }
-         
 ////////////////////////////////////////////////////////////////////////////
 
     agendar(){
