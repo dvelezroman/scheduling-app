@@ -39,7 +39,7 @@
 
                     <select formControlName="hora" class="form-control mt-2 custom-select">
                         <option value="">Seleccione una hora</option>
-                        <option *ngFor="let hora of horasDisponibles()" [value]="hora">{{ hora }}</option>
+                        <option *ngFor="let hora of horasDisponibles" [value]="hora">{{ hora }}</option>
                     </select>
                 
 

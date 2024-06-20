@@ -19,12 +19,9 @@ export class PacienteService {
   private pacientesFiltrados: PacienteModel[] = [];
   
   constructor(private http : HttpClient,
-              private db : AngularFireDatabase
-  ) { }
+              private db : AngularFireDatabase) { }
   
-  getPacientesFiltrados(): PacienteModel[] {
-    return this.pacientesFiltrados;
-  }
+ 
 
  crearPaciente(paciente:PacienteModel){
 
@@ -39,8 +36,8 @@ export class PacienteService {
     }
 
 
-    cargarPacientes(): Observable<PacienteModel[]> {
-      return this.http.get(`${this.url}/pacientes.json`).pipe(
+  cargarPacientes(): Observable<PacienteModel[]> {
+    return this.http.get(`${this.url}/pacientes.json`).pipe(
         map(this.crearArreglo),
         map((pacientes: PacienteModel[]) => {
           const usuarioLogin = localStorage.getItem('userName');
@@ -48,12 +45,6 @@ export class PacienteService {
 
           return this.pacientesFiltrados;
         })
-      );
-    }
-
-    cargarPacientesFiltrados(usuarioLogin: string): Observable<PacienteModel[]> {
-      return this.cargarPacientes().pipe(
-        map(pacientes => pacientes.filter(paciente => paciente.registrador === usuarioLogin))
       );
     }
     
@@ -71,11 +62,21 @@ export class PacienteService {
       return pacientes;
   }
 
+ cargarPacientesFiltrados(usuarioLogin: string): Observable<PacienteModel[]> {
+    return this.cargarPacientes().pipe(
+      map(pacientes => pacientes.filter(paciente => paciente.registrador === usuarioLogin))
+    );
+  }
+ getPacientesFiltrados(): PacienteModel[] {
+    return this.pacientesFiltrados;
+  }
+
  getPaciente(id:string){
     return this.http.get(`${this.url}/pacientes/${id}.json`)
   }
 
-  getMedicoId(): string {
+
+ getMedicoId(): string {
     return localStorage.getItem('userUid'); 
   }
   
@@ -111,5 +112,28 @@ export class PacienteService {
   }
 
 
+  getUsuarioActual(): string {
+    return localStorage.getItem('userName'); 
+  }
 
+  getHorasOcupadas2(fecha: string): Observable<string[]> {
+    const usuarioActual = this.getUsuarioActual();
+    return this.db.list<PacienteModel>('/pacientes', ref => 
+      ref.orderByChild('turno')
+         .startAt(fecha)
+         .endAt(fecha + "\uf8ff")
+    ).valueChanges().pipe(
+      map(pacientes => pacientes
+        .filter(paciente => paciente.registrador === usuarioActual) 
+        .map(paciente => {
+          const turnoDate = new Date(paciente.turno);
+          turnoDate.setHours(turnoDate.getHours() - 5); 
+          return turnoDate.toISOString().split('T')[1].substring(0, 5); 
+      }))
+    );
+  }
 }
+
+
+
+

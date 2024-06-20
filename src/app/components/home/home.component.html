@@ -1,20 +1,21 @@
 
+ <!-- MOSTRAR EL NUMERO DE PACIENTES DEL DIA -->
+
 <div *ngIf="mostrarMensajeTurno" class="anuncio-paciente alert alert-info">
   Tienes {{ pacientesConTurnoHoy }} paciente(s) con turno hoy.
 </div>
+
+<!-- LOGO -->
+
 <section class="hero align-items-stretch ">
   <div class="hero-principal d-flex flex-column justify-content-start align-item-center">
       <h1 class="poppins-medium rubik-dirt-regular animate__animated animate__fadeIn">Medic-App</h1>
       <h2 class="animate__animated animate__fadeIn">Tu salud al instante, tu diagnóstico en un click</h2>
-
-      <!-- Mostrar el número de pacientes con turno hoy -->
-      
-
   </div>
-
 </section>
 
-<!--sección de las funciones de MEDICO O ADMINISTRADOR-->
+
+<!--SECCION DE LAS FUNCIONES MEDICO O ADMINISTRADOR-->
 
 <section  *ngIf="userRol === 'medico' || userRol === 'administrador'"  class="experiencia seccion-clara">
   <div class="container text-center">
@@ -39,9 +40,9 @@
 </section>
 
 
-<!--sección de las funciones de PACIENTE-->
+<!--SECCION DE LAS FUNCIONES PACIENTE-->
 
-<section *ngIf="userRol === 'paciente' || userRol ==='administrador'" class="experiencia seccion-clara">
+<section *ngIf="userRol === 'paciente' || userRol === 'administrador'" class="experiencia seccion-clara">
   <div class="container.paciente text-center">
       <div  class="row">
           

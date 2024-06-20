@@ -25,7 +25,8 @@ export class AgendarTurnoComponent implements OnInit {
   fechaMaxima:Date;
   fechaMaximaString:string;
   fechaMinimaString:string;
-
+  horasOcupadas: string[] = [];
+  horasDisponibles: string[] = [];
   auth:boolean = true;
 
   
@@ -46,45 +47,76 @@ export class AgendarTurnoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.fechaMinima = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
+    this.fechaMinimaString = this.pd.transform(this.fechaMinima, "yyyy-MM-dd");
+    this.fechaMaxima = new Date(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate());
+    this.fechaMaximaString = this.pd.transform(this.fechaMaxima,"yyyy-MM-dd");
+
     let id = this.parametro.snapshot.paramMap.get('pacienteId');
 
       this.servicio.getPaciente(id).subscribe((data:PacienteModel) =>{
         
         this.paciente = data;
         this.paciente.id = id;
-        //console.log(data.id)
-        if (this.paciente.turno) {
-          const [fecha, hora] = this.paciente.turno.split('T');
+
+        if (data.turno) {
+          const turnoDate = new Date(data.turno);
+          turnoDate.setHours(turnoDate.getHours() - 5); 
           this.formTurno.patchValue({
-            fecha: fecha,
-            hora: hora.substring(0, 5) // HH:MM
+            fecha: turnoDate.toISOString().split('T')[0],
+            hora: turnoDate.toTimeString().substring(0, 5)
           });
         }
     });
 
-    this.fechaMinima = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
-    this.fechaMinimaString = this.pd.transform(this.fechaMinima, "yyyy-MM-dd");
-    this.fechaMaxima = new Date(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate());
-    this.fechaMaximaString = this.pd.transform(this.fechaMaxima,"yyyy-MM-dd");
-  
-    this.horasDisponibles();
+ 
+      //METODO PARA LAS FECHAS RESERVADAS//
+      this.formTurno.get('fecha').valueChanges.subscribe(fecha => {
+        if (fecha) {
+          this.servicio.getHorasOcupadas2(fecha).subscribe(horasOcupadas => {
+            this.horasOcupadas = horasOcupadas;
+            this.actualizarHorasDisponibles();
+          });
+        }
+      });
+      this.actualizarHorasDisponibles();
+
+    //this.horasDisponibles();
+
   }
-  horasDisponibles(): string[] {
-    const horas = [];
-    let horaActual = new Date();
-    horaActual.setHours(9, 0, 0); // Comienza a las 9:00 AM
 
-    const horaFin = new Date();
-    horaFin.setHours(18, 0, 0); // Termina a las 6:00 PM
+//////////////////////////////////////////////////////////////////
 
-    while (horaActual <= horaFin) {
-      const horasString = horaActual.toTimeString().substring(0, 5); // Formato HH:MM
-      horas.push(horasString);
-      horaActual.setMinutes(horaActual.getMinutes() + 30); // Incrementa 30 minutos
+    //  METODO PARA NO MOSTRAR LAS HORAS RESERVADAS //
+
+    generarHorasDisponibles(): string[] {
+      const horas = [];
+      for (let h = 9; h <= 18; h++) {
+        for (let m = 0; m < 60; m += 30) {
+          const hora = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+          horas.push(hora);
+        }
+      }
+      return horas;
     }
-    return horas;
-  }
 
+    obtenerHorasOcupadas(fecha: string) {
+      if (!fecha) return;
+      this.servicio.getHorasOcupadas2(fecha).subscribe(horasOcupadas => {
+
+        this.horasOcupadas = horasOcupadas;
+        this.actualizarHorasDisponibles();
+      });
+    }
+  
+    actualizarHorasDisponibles(): void {
+      this.horasDisponibles = this.generarHorasDisponibles()
+      .filter(hora => !this.horasOcupadas.includes(hora));
+
+    }
+         
+////////////////////////////////////////////////////////////////////////////
 
     agendar(){
       if(this.formTurno.invalid){
