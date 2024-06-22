@@ -11,7 +11,9 @@ import { UsuarioServicesService } from '../../../service/usuario.services.servic
 export class MisDiagnosticosComponent implements OnInit {
   diagnosticos: Diagnostico[] = [];
   cedulaPaciente: number;
+  totalDiagnosticos:number;
   diagnosticoSeleccionado: Diagnostico | null = null;
+  mensajeDiagnosticos:string = '';
   
   constructor(private pacienteService: PacienteService,
               private usuarioService: UsuarioServicesService
@@ -22,8 +24,8 @@ export class MisDiagnosticosComponent implements OnInit {
     const uid = localStorage.getItem('userUid');
     if (uid) {
       this.usuarioService.getUsuarioCedula(uid).subscribe(cedula => {
-        this.cedulaPaciente = Number(cedula);  // Asegúrate de convertir a número
-        console.log('Cédula del paciente:', this.cedulaPaciente);
+        this.cedulaPaciente = Number(cedula); 
+
         if (this.cedulaPaciente) {
           this.obtenerDiagnosticos();
         }
@@ -36,7 +38,9 @@ export class MisDiagnosticosComponent implements OnInit {
   obtenerDiagnosticos(): void {
     this.pacienteService.getDiagnosticosByCedula(this.cedulaPaciente).subscribe(diagnosticos => {
       this.diagnosticos = diagnosticos;
-      console.log('Diagnósticos obtenidos:', this.diagnosticos);
+      this.totalDiagnosticos = diagnosticos.length;
+      this.mensajeDiagnosticos = this.totalDiagnosticos === 1 ? 'Tienes 1 Diagnóstico' : `Tienes ${this.totalDiagnosticos} Diagnósticos`;
+
     }, error => {
       console.error('Error al obtener los diagnósticos:', error);
     });

@@ -16,18 +16,18 @@ export class HomeComponent implements OnInit {
 pacientesFiltrados:PacienteModel[] = [];
 pacientes:PacienteModel[] = [];
 usuarioLogin:string;
-pacientesConTurnoHoy: number = 0;
-mostrarMensajeTurno: boolean = false;
 userRol: string = '';
+cedulaPaciente: number;
+pacientesConTurnoHoy: number = 0;
+totalDiagnosticos: number = 0;
+mostrarMensajeTurno: boolean = false;
 
 
 auth:boolean = true;
 
-//@Output() valorB = new EventEmitter<boolean>();
 
 constructor(private servicio : PacienteService,
             private ngZone: NgZone,
-            private renderer: Renderer2,
             private userService : UsuarioServicesService
 ){
 
@@ -49,9 +49,14 @@ ngOnInit(): void {
   this.userService.getUsuarioActual2().subscribe((usuario: UsuarioModel | null) => {
     if (usuario) {
       this.userRol = usuario.rol;
+      this.cedulaPaciente = usuario.cedula;
+
     }
   });
-
+  //this.servicio.totalDiagnosticos$.subscribe(total => {
+    //this.totalDiagnosticos = total;
+    //console.log(this.totalDiagnosticos)
+  //});
 }
 contarPacientesConTurnoHoy() {
   const today = new Date();
@@ -80,4 +85,6 @@ contarPacientesConTurnoHoy() {
     });
   }
 }
+
+
 }

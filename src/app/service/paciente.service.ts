@@ -3,7 +3,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 import { Diagnostico, PacienteModel } from '../components/models/paciente.model';
@@ -15,6 +15,9 @@ export class PacienteService {
   url = 'https://pacientes-app1-default-rtdb.firebaseio.com';
   firebaseUrl = 'https://pacientes-app1-default-rtdb.firebaseio.com';
   tokenGoyo = 'XvpYiDOFfrTy4fpTQ6oy9AeqDad2';
+
+  private totalDiagnosticosSubject = new BehaviorSubject<number>(0);
+  totalDiagnosticos$ = this.totalDiagnosticosSubject.asObservable();
 
   private pacientesFiltrados: PacienteModel[] = [];
   
@@ -209,11 +212,13 @@ export class PacienteService {
               diagnosticos = diagnosticos.concat(paciente.diagnostico.filter(d => d.cedulaPaciente === cedulaPaciente));
             }
           });
-          console.log('Diagnósticos filtrados por cédula:', diagnosticos);
+
+          this.totalDiagnosticosSubject.next(diagnosticos.length);
           return diagnosticos;
         })
       );
     }
+
   }
     
 

@@ -1,64 +1,98 @@
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .titulo {
-    margin-bottom: 30px;
-  }
-  
-  .select-diagnosticos {
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  .diagnostico-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    padding: 20px;
-  }
-  
-  .nombre-paciente {
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .diagnostico-textarea {
-    width: 100%;
-    height: auto;
-    min-height: 100px;
-    resize: none;
-  }
-  
-  .cerrar-btn {
-    width: 150px;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  .mb-4 {
-    margin-bottom: 1.5rem;
-  }
-  
-  .mt-2 {
-    margin-top: 0.5rem;
-  }
-  
-  .mt-5 {
-    margin-top: 3rem;
-  }
-  
-  .d-flex {
-    display: flex;
-  }
-  
-  .justify-content-center {
-    justify-content: center;
-  }
-  
-  .align-items-center {
-    align-items: center;
-  }
+
+  margin-top: 80px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+
+}
+
+.titulo {
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.select-diagnosticos {
+  width: 100%;
+  max-width: 550px;
+  border: 1px solid grey;
+  padding: 8px;
+  background-color: rgb(46, 112, 179);
+  color: white;
+
+}
+
+.diagnostico-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nombre-paciente {
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.diagnostico-textarea {
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  resize: none;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #c4c4c4;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow: auto; 
+}
+
+.btn {
+  width: 120px;
+  margin-top: 1rem;
+  padding: 8px;
+
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.mt-5 {
+  margin-top: 3rem;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+
+

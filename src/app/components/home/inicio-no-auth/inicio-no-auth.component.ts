@@ -12,16 +12,15 @@ export class InicioNoAuthComponent implements OnInit {
  auth:boolean = false;
  isDropdownOpen: boolean = false;
  
- private servicio = Inject(UsuarioServicesService)
  private router = Inject(Router)
   ngOnInit() {
     if (isLocalStorageAvailable()) {
-      console.log(this.servicio.autenticado());
+
       if (localStorage.getItem('token')) {
         this.auth = true;
       } else {
         this.auth = false;
-        console.log(this.auth);
+
       }
     } 
   }
