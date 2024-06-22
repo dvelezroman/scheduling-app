@@ -13,7 +13,9 @@
                     <h2>{{usuario?.nombres | titlecase}}</h2>
                     <p *ngIf="usuario?.rol === 'medico' || usuario?.rol === 'administrador'"><strong>Especialidad:</strong> {{ usuario?.especialidad | titlecase }}</p>
                     <p *ngIf="usuario?.rol === 'paciente' || usuario?.rol === 'medico' || 'administrador'"><strong>Edad:</strong> {{ usuario?.edad }} años</p>
+                    <p *ngIf="usuario?.cedula"><strong>Cédula: </strong>{{ usuario?.cedula}}</p>
                     <p *ngIf="usuario?.telefono"><strong>Teléfono: </strong>{{ usuario?.telefono}}</p>
+
                 </div>
             
             </div>

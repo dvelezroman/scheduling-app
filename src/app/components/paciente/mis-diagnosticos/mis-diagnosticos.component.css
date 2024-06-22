@@ -1,0 +1,64 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .titulo {
+    margin-bottom: 30px;
+  }
+  
+  .select-diagnosticos {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .diagnostico-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  .nombre-paciente {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .diagnostico-textarea {
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+    resize: none;
+  }
+  
+  .cerrar-btn {
+    width: 150px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  
+  .mt-5 {
+    margin-top: 3rem;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+  .justify-content-center {
+    justify-content: center;
+  }
+  
+  .align-items-center {
+    align-items: center;
+  }

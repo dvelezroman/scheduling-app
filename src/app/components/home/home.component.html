@@ -1,7 +1,7 @@
 
  <!-- MOSTRAR EL NUMERO DE PACIENTES DEL DIA -->
 
-<div *ngIf="mostrarMensajeTurno" class="anuncio-paciente alert alert-info">
+<div *ngIf="mostrarMensajeTurno" class="anuncio-paciente alert alert-info" routerLink="/pacientes-dia">
   Tienes {{ pacientesConTurnoHoy }} paciente(s) con turno hoy.
 </div>
 
@@ -25,14 +25,14 @@
               <p class="experiencia-titulo">Agregar Pacientes</p>
               <p>Conectando tu salud con el futuro, hoy.</p>
           </div>
-          <div class="columna col-12 col-md-4" routerLink="/pacientes">
+          <div class="columna col-12 col-md-4" routerLink="/pacientes-dia">
               <i class="bi bi-calendar-check"></i>
-              <p class="experiencia-titulo">Turnos para Hoy</p>
+              <p class="experiencia-titulo" >Turnos para Hoy</p>
               <p>Eficiencia y cuidado en cada paso hacia tu bienestar.</p>
           </div>
-          <div class="columna col-12 col-md-4" routerLink="/pacientes">
-              <i class="bi bi-clipboard2-check-fill"></i>
-              <p class="experiencia-titulo">Agregar Diagnóstico</p>
+          <div class="columna col-12 col-md-4" routerLink="/pacientes-diagnosticos">
+              <i class="bi bi-clipboard2-check-fill" ></i>
+              <p class="experiencia-titulo">Diagnósticos Realizados</p>
               <p>Precisión y claridad en cada análisis para tu salud.</p>
           </div>
       </div>
@@ -51,7 +51,7 @@
               <p class="experiencia-titulo">Solicitar Turno o Cambio de Turno</p>
 
           </div>
-          <div class="columna col-12 col-md-6">
+          <div class="columna col-12 col-md-6" routerLink="/mis-diagnosticos" >
               <i class="bi bi-clipboard2-check-fill"></i>
               <p class="experiencia-titulo">Diagnósticos del Paciente</p>
 

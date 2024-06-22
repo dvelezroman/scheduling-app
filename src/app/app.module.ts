@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +35,12 @@ import { RoleTransformPipe } from './pipes/role-transform.pipe';
 import { environment } from '../../environments/environment';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 import { MedicosDatosComponent } from './components/usuario/medicos-datos/medicos-datos.component';
+import { PacientesTurnoDiaComponent } from './components/pacientes/pacientes-turno-dia/pacientes-turno-dia.component';
+import { PacientesDiagnosticosComponent } from './components/pacientes/pacientes-diagnosticos/pacientes-diagnosticos.component';
+import { FechaDiagnosticoPipe } from './pipes/fecha-diagnostico.pipe';
+import { FechaTurnoTablaPipe } from './pipes/fecha-turno-tabla.pipe';
+import { MisDiagnosticosComponent } from './components/paciente/mis-diagnosticos/mis-diagnosticos.component';
+
 
 
 
@@ -63,6 +69,12 @@ import { MedicosDatosComponent } from './components/usuario/medicos-datos/medico
     RoleTransformPipe,
     NotAuthorizedComponent,
     MedicosDatosComponent,
+    PacientesTurnoDiaComponent,
+    PacientesDiagnosticosComponent,
+    FechaDiagnosticoPipe,
+    FechaTurnoTablaPipe,
+    MisDiagnosticosComponent,
+
 
    
   ],
@@ -83,8 +95,9 @@ import { MedicosDatosComponent } from './components/usuario/medicos-datos/medico
 
   ],
   providers: [
-    provideClientHydration(),
+    { provide: LOCALE_ID, useValue: 'es' },
     DatePipe,
+    provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch())
 

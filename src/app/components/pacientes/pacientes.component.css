@@ -58,30 +58,40 @@ table-layout:fixed;
 overflow: hidden;
 width: 100%;
 }
+.tabla-pacientes{
+  border-collapse: collapse;
+}
 table.rounded-table .index-columna {
   width: 40px;
-  text-align: center;
+  text-align: left;
   line-height: 40px;
 }
 table.rounded-table .icon-cell {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items:normal;
   flex-wrap: wrap; 
   gap: 5px; 
 }
 
 table.rounded-table th{
   background-color: rgb(65, 85, 147);
+
 }
-table.rounded-table th,
+table.rounded-table th{
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
+}
 table.rounded-table td {
-  padding: 10px;
+  padding: 5px;
   border-bottom: 1px solid #ccc;
   text-align: center;
   word-wrap: break-word; 
   overflow-wrap: break-word; 
 }
+
 table.rounded-table th:first-child,
 table.rounded-table td:first-child {
   border-left: 0px;
@@ -120,21 +130,45 @@ table tr th{
 background-color: rgb(74, 99, 144);
 
 font-weight: 400;
-text-align: center;
+text-align: left;
 height: 4rem;
 color: white;
 
 
 }
-table tr .th{
-
-line-height: 45px;
+.tabla-pacientes .index-columna,
+.tabla-pacientes .cedula-columna,
+.tabla-pacientes .turno-columna {
+  white-space: nowrap;
+}
+.tabla-pacientes {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.icono{
+.tabla-pacientes th,
+.tabla-pacientes td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-pacientes th {
   font-weight: bold;
-  font-size: 40px;
 }
+
+.tabla-pacientes .index-columna,
+.tabla-pacientes .cedula-columna,
+.tabla-pacientes .turno-columna {
+  white-space: nowrap;
+}
+
+.tabla-pacientes .cedula-columna,
+.tabla-pacientes .turno-columna {
+  width: auto;
+}
+
+
 
 /*tabla resultado de la búsqueda por fecha cita*/
 
@@ -148,7 +182,7 @@ line-height: 45px;
 .large.table th, .large.table td {
   padding: 10px;
 
-  text-align: center;
+  text-align: left;
   overflow-wrap: break-word; 
   word-wrap: break-word; 
   hyphens: auto;
@@ -174,8 +208,15 @@ line-height: 45px;
       flex-wrap: wrap;
       justify-content: center;
   }
-  .large.table .botin, .large.table .botin2, .large.table .botin3, .large.table .botin4 {
-      margin: 5px;
+
+  .large.table .botin, 
+  .large.table .botin2, 
+  .large.table .botin3, 
+  .large.table .botin4 {
+      margin-left: 20px;
+      padding: 0px;
+      display: flex;
+
   }
 }
 

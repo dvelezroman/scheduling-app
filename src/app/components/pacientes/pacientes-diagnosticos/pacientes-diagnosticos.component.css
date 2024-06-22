@@ -1,0 +1,108 @@
+/* General */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  /* Contenedor principal */
+  .container {
+    
+    margin-top: 6rem;
+
+    
+  }
+  .cuadro{
+    margin-top: 3rem;
+  }
+  
+  /* Títulos */
+  .container .titulo {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    color: #d45e5e;
+
+  }
+  
+  .nombre-paciente {
+    font-size: 1.8rem;
+    color: #223d58;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    margin-top: 20px;
+  }
+  
+  .cedula-paciente{
+    margin-right: 20px;
+    font-size: 1.3rem;
+  }
+  /* Sección del paciente */
+  .paciente-section {
+    background-color: #e0dddd;
+    border: 1px solid #b4b4b4;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Select de diagnósticos */
+  .textareaContenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    
+
+  }
+  .select-diagnosticos {
+    width: 100%;
+    max-width: 520px;
+    border: 1px solid grey;
+    background-color: #6f8dac;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px;
+
+  }
+  .container textarea {
+    width: 100%;
+  min-width: 300px;
+  max-width: 100%;
+  height: 200px;
+  padding: 10px;
+  font-size: 17px;
+  margin-top: 10px;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  resize: none;
+  margin: 0 auto;
+  }
+  
+   button .cerrar-btn {
+    margin-top: 30px;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .paciente-card {
+    background-color: #ffffff;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+  }
+  /* Responsividad */
+  @media (max-width: 576px) {
+    .titulo {
+      font-size: 1.5em;
+    }
+  
+    .nombre-paciente {
+      font-size: 1.2em;
+    }
+  }

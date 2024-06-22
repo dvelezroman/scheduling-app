@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
-import { PacienteModel } from '../components/models/paciente.model';
+import { Diagnostico, PacienteModel } from '../components/models/paciente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +19,12 @@ export class PacienteService {
   private pacientesFiltrados: PacienteModel[] = [];
   
   constructor(private http : HttpClient,
-              private db : AngularFireDatabase) { }
+              private db : AngularFireDatabase,
+                ) { }
   
  
+/////////////////////////////////////////////////////////////////////////////
+        //METODO PARA CREAR PACIENTES//
 
  crearPaciente(paciente:PacienteModel){
 
@@ -35,6 +38,8 @@ export class PacienteService {
       );
     }
 
+/////////////////////////////////////////////////////////////////////////////
+             //METODO PARA CARGAR PACIENTES//
 
   cargarPacientes(): Observable<PacienteModel[]> {
     return this.http.get(`${this.url}/pacientes.json`).pipe(
@@ -47,7 +52,23 @@ export class PacienteService {
         })
       );
     }
-    
+ ////////////////////////////////////////////////////////////////////////////////////
+        //METODO PARA CARGAR PACIENTE QUE TENGAN DIAGNOSTICOS REALIZADOS//
+
+    cargarPacientesConDiagnosticos(): Observable<PacienteModel[]> {
+      return this.http.get<{ [key: string]: PacienteModel }>(`${this.url}/pacientes.json`).pipe(
+        map(this.crearArreglo),
+        map((pacientes: PacienteModel[]) => {
+          const usuarioLogin = localStorage.getItem('userName');
+          return pacientes.filter(paciente => 
+            paciente.registrador === usuarioLogin && paciente.diagnostico && paciente.diagnostico.length > 0
+          );
+        })
+      );
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+              //METODO PARA CONVERTIR EN ARREGLO LOS DATOS CARGADOS POR FIREBASE//
+
  private crearArreglo (pacienteObj:Object): PacienteModel[]{
       if(pacienteObj === null){
           return [];
@@ -61,27 +82,33 @@ export class PacienteService {
           });
       return pacientes;
   }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+            //METODO PARA CARGAR LOS PACIENTES DE CADA USUARIO MEDICO//
 
- cargarPacientesFiltrados(usuarioLogin: string): Observable<PacienteModel[]> {
-    return this.cargarPacientes().pipe(
-      map(pacientes => pacientes.filter(paciente => paciente.registrador === usuarioLogin))
-    );
-  }
- getPacientesFiltrados(): PacienteModel[] {
-    return this.pacientesFiltrados;
-  }
-
- getPaciente(id:string){
-    return this.http.get(`${this.url}/pacientes/${id}.json`)
-  }
+    cargarPacientesFiltrados(usuarioLogin: string): Observable<PacienteModel[]> {
+        return this.cargarPacientes().pipe(
+          map(pacientes => pacientes.filter(paciente => paciente.registrador === usuarioLogin))
+        );
+      }
 
 
- getMedicoId(): string {
-    return localStorage.getItem('userUid'); 
-  }
+      
+      getPaciente(id:string){
+        return this.http.get(`${this.url}/pacientes/${id}.json`)
+      }
+      getPacientesFiltrados(): PacienteModel[] {
+         return this.pacientesFiltrados;
+       }
+
+
+      getMedicoId(): string {
+        return localStorage.getItem('userUid'); 
+      }
   
+//////////////////////////////////////////////////////////////////////////////
+          //METODO PARA ACTUALIZAR LA LISTA DE PACIENTES EN FIREBASE//
 
- refreshPaciente(paciente:PacienteModel):Observable<PacienteModel>{
+  refreshPaciente(paciente:PacienteModel):Observable<PacienteModel>{
     
     const PacienteT = {
       ...paciente
@@ -90,13 +117,20 @@ export class PacienteService {
         return this.http.put<PacienteModel>(`${this.url}/pacientes/${paciente.id}.json`, PacienteT);
   }
 
+  //////////////////////////////////////////////////////////////////////////////
+          //METODO PARA BORRAR UN PACIENTE EN FIREBASE//
+
   deletePaciente(id: string): Observable<any> {
+    console.log(`Deleting paciente with id: ${id}`); 
     return this.http.delete(`${this.url}/pacientes/${id}.json`).pipe(
       map(() => {
         this.pacientesFiltrados = this.pacientesFiltrados.filter(paciente => paciente.id !== id);
       })
     );
   }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+          //METODO PARA BUSCAR UN PACIENTE DE LA LISTA DE UN USUARIO EN FIREBASE//
 
   buscarPacientes(nombre: string): Observable<PacienteModel[]> {
     return this.cargarPacientes()
@@ -105,6 +139,8 @@ export class PacienteService {
     );
   }
 
+  ////////////////////////////////////////////////////////////////////////////////////////
+                  //METODO PARA VALIDAR CEDULA SI EXISTE O NO//
   verificarCedulaUnica(cedula: number, registrador: string, pacienteId?: string): boolean {
     return this.pacientesFiltrados.some(paciente => 
       paciente.cedula === cedula && paciente.registrador === registrador && paciente.id !== pacienteId
@@ -112,12 +148,11 @@ export class PacienteService {
   }
 
 
-  getUsuarioActual(): string {
-    return localStorage.getItem('userName'); 
-  }
+ 
 
   getHorasOcupadas(fecha: string, registrador: string): Observable<string[]> {
-    return this.db.list<PacienteModel>('/pacientes', ref => ref.orderByChild('turno').startAt(fecha).endAt(fecha + "\uf8ff"))
+    return this.db.list<PacienteModel>('/pacientes', ref => 
+      ref.orderByChild('turno').startAt(fecha).endAt(fecha + "\uf8ff"))
       .valueChanges()
       .pipe(
         map(pacientes => pacientes
@@ -130,7 +165,58 @@ export class PacienteService {
         )
       );
   }
-}
+
+  getPacientesConTurnosDelDia(registrador: string): Observable<PacienteModel[]> {
+    const hoy = new Date().toISOString().split('T')[0];
+    return this.db.list<PacienteModel>('/pacientes', ref => ref.orderByChild('turno').startAt(hoy).endAt(hoy + "\uf8ff"))
+      .valueChanges()
+      .pipe(
+        map(pacientes => pacientes.filter(paciente => paciente.turno && paciente.turno.startsWith(hoy) && paciente.registrador === registrador))
+      );
+  }
+
+  getStoredUserUid(): string {
+    return localStorage.getItem('userUid') || '';
+  }
+
+  getDiagnosticos(): Observable<PacienteModel[]> {
+    const userId = this.getStoredUserUid();
+    return this.db.list<PacienteModel>('/pacientes', ref => ref.orderByChild('usuarioUid').equalTo(userId))
+      .valueChanges()
+      .pipe(
+        map(pacientes => pacientes.map(paciente => {
+          if (paciente.diagnostico) {
+            paciente.diagnostico.forEach(diag => {
+              const turnoDate = new Date(diag.fecha); 
+              turnoDate.setMinutes(turnoDate.getMinutes());
+              diag.fecha = turnoDate;
+            });
+          } else {
+            paciente.diagnostico = []; 
+          }
+          return paciente;
+        }))
+      );
+
+    }
+
+    getDiagnosticosByCedula(cedulaPaciente: number): Observable<Diagnostico[]> {
+      return this.db.list<PacienteModel>('/pacientes').valueChanges().pipe(
+        map((pacientes: PacienteModel[]) => {
+          let diagnosticos: Diagnostico[] = [];
+          pacientes.forEach(paciente => {
+            if (paciente.diagnostico) {
+              diagnosticos = diagnosticos.concat(paciente.diagnostico.filter(d => d.cedulaPaciente === cedulaPaciente));
+            }
+          });
+          console.log('Diagnósticos filtrados por cédula:', diagnosticos);
+          return diagnosticos;
+        })
+      );
+    }
+  }
+    
+
 
 
 

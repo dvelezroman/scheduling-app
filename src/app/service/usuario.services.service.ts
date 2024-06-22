@@ -172,7 +172,8 @@ export class UsuarioServicesService implements OnInit {
           especialidad: usuario.especialidad || null,
           edad: usuario.edad || null,
           telefono: usuario.telefono || null,
-          pacienteId: usuario.pacienteId || null
+          pacienteId: usuario.pacienteId || null,
+          cedula: usuario.cedula || null
         })
       ).pipe(
         catchError(err => {
@@ -273,9 +274,9 @@ export class UsuarioServicesService implements OnInit {
               //METODO CERRAR SESION//
 
     cerrarCesion(){
-        
         this.removeItem('token');
         this.removeItem('userName');
+        localStorage.removeItem('cedulaPaciente');
         localStorage.removeItem('userUid')
         localStorage.removeItem('email');
         this.emailUsuario.next(null);
@@ -374,6 +375,10 @@ export class UsuarioServicesService implements OnInit {
           this.usuarioId.next(uidStorage);
         }
       }
+      almacenarCedula(user: UsuarioModel): void {
+        localStorage.setItem('cedulaPaciente', user.cedula.toString());
+
+      }
 
       autenticado():boolean{
         if(this.getItem('token')){
@@ -408,17 +413,17 @@ export class UsuarioServicesService implements OnInit {
 
 // datos configuracion del usuario //
       
-//metodos para obtener y actualizar datos del usuario actual//
+//METODO PARA OBTENER LOS DATOS DEL USUARIO ACTUAL CON EL UID DE FIREBASE//
 
 getUsuarioActual(): Observable<UsuarioModel> {
   const uid = this.getStoredUserUid();
   return this.db.object<UsuarioModel>(`/usuarios/${uid}`).valueChanges().pipe(
     map((usuario: UsuarioModel) => {
-      //console.log(usuario)
+
       return usuario;
     }),
     catchError(err => {
-      console.error('Error fetching user data:', err);
+      console.error('Error al obtener el usuario Actual:', err);
       return of(null);
     })
   );
@@ -432,6 +437,7 @@ actualizarUsuario(usuario: UsuarioModel): Observable<any> {
     nombres: usuario.nombres,
     telefono: usuario.telefono,
     especialidad: usuario.especialidad,
+    cedula: usuario.cedula
     
   })).pipe(
     tap(() => {
@@ -444,6 +450,11 @@ actualizarUsuario(usuario: UsuarioModel): Observable<any> {
   );
 }
 
+getUsuarioCedula(uid: string) {
+  return this.db.object(`/usuarios/${uid}`).valueChanges().pipe(
+    map((usuario: UsuarioModel) => usuario.cedula)
+  );
+}
 }
 
       

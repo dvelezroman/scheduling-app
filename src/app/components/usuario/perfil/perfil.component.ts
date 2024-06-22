@@ -15,6 +15,7 @@ constructor(private usuarioService : UsuarioServicesService){}
 ngOnInit(): void {
   this.usuarioService.getUsuarioActual().subscribe(usuario => {
     this.usuario = usuario;
+    console.log(usuario)
   });
 }
 

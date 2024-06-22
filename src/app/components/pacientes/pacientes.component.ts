@@ -47,7 +47,7 @@ constructor(private servicio : PacienteService,
             private twilio : TwilioService,
             private pd : DatePipe,
             private fb : FormBuilder,
-            private pacienteService: PacienteService
+
  ){
     this.rangoFecha = this.fb.group({
         inicio: new FormControl(null, Validators.required),
@@ -167,13 +167,12 @@ mostrarPacientesUser():void{
   });
 }
 
-usuarioPuedeEditar(paciente: PacienteModel):boolean{
-
+  usuarioPuedeEditar(paciente: PacienteModel):boolean{
   return paciente.usuarioUid === this.idUsuarioActual ;
   
 }
 
-borrar(id:number, paciente:PacienteModel){
+  borrar(id:number, paciente:PacienteModel){
 
    Swal.fire({
     title: 'Estas Seguro?',
@@ -184,7 +183,7 @@ borrar(id:number, paciente:PacienteModel){
 
    }).then( data =>{
     if(data.value){
-
+      console.log('ID del paciente a eliminar:', paciente.id);
       this.pacientesFiltrados.splice(id,1);
       this.servicio.deletePaciente(paciente.id).subscribe(() => {
         this.cargarPacientes();

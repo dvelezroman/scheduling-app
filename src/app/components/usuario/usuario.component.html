@@ -18,8 +18,20 @@
                     <div *ngIf="usuarioForm.get('nombres').invalid && usuarioForm.get('nombres').touched" class="text-danger">
                     Nombre es requerido.
                     </div>
+                    
+                    <div class="mb-3">
+                        <label for="cedula" class="form-label">Cédula</label>
+                        <input type="text" 
+                        class="form-control" 
+                        id="cedula" 
+                        formControlName="cedula" 
+                        placeholder="Ingrese su cédula">
+                        <div *ngIf="usuarioForm.get('cedula').invalid && usuarioForm.get('cedula').touched" class="text-danger">
+                          Cédula es requerida.
+                        </div>
+                      </div>
+                    </div>
 
-                </div>
                 <div class="mb-3" *ngIf="usuario.rol === 'medico'">
                     <label for="especialidad" class="form-label">Especialidad</label>
                     <input type="text" 

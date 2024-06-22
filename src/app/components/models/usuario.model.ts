@@ -1,6 +1,7 @@
 
 export class UsuarioModel{
     id:string;
+    cedula:number;
     nombres:string;
     email:string;
     password?:string;

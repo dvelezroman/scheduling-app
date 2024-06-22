@@ -74,15 +74,15 @@
       </div>
 
       <!--tabla de pacientes-->
-            <table *ngIf="hayPacientes" class=" tabla-pacientes rounded-table tabla large table animate__animated animate__fadeIn fast">
+            <table *ngIf="mostrarLista && hayPacientes" class=" tabla-pacientes rounded-table tabla large table animate__animated animate__fadeIn fast">
                 <thead class="table-primary th">
                   <tr>
                     <th scope="col" class="index-columna"></th>
                     <th scope="col" class="th">Nombre Completo</th>
-                    <th scope="col" class="th">Cédula</th>
-                    <th scope="col" class="th">Correo</th>
-                    <th scope="col" class="th">Fecha de la cita</th>
-                    <th scope="col" class="th"></th>
+                    <th scope="col" class="th cedula-columna">Cédula</th>
+                    <th scope="col" class="th correo-columna">Correo</th>
+                    <th scope="col" class="th turno-columna">Fecha de la cita</th>
+                    <th scope="col" class="th opciones-columna"></th>
                     
                   </tr>
                 </thead>
@@ -93,14 +93,17 @@
                     <td class="textP-1"><a class="enlaceNombre" [routerLink]="['/pacientes/paciente',paciente.id]"  
                       matTooltipPosition="after"
                       matTooltipClass="custom-tooltip">{{paciente.nombres}}</a></td>
-                    <td class="textP">{{paciente.cedula}}</td>
-                    <td class="textP">{{paciente.correo}}</td>
-                    <td class="textP-3"><span class="cita" *ngIf="!paciente.turno">No tine cita</span> <ng-container *ngIf="paciente.turno">
-                      {{ paciente.turno | date:'short' }}
-                    </ng-container></td>
+                    <td class="textP cedula-columna">{{paciente.cedula}}</td>
+                    <td class="textP correo-columna">{{paciente.correo}}</td>
+                    <td class="textP-3 turno-columna"><span class="cita" *ngIf="!paciente.turno">No tine cita</span> 
+                        <ng-container *ngIf="paciente.turno">
+                          <span [matTooltip]="paciente.turno | customDate: 'full'" matTooltipPosition="above">
+                            {{ paciente.turno | customDate: 'short' }}
+                          </span>
+                        </ng-container></td>
 
                     
-                    <td  class="icon-cell d-flex justify-content-md-center">
+                    <td  class="icon-cell d-flex justify-content-md-center opciones-columna">
                         
                         <button type="button"[matTooltip]="'Enviar fecha de la cita'" 
                         matTooltipPosition="above" (click)="sendMessage(paciente.telefono, paciente.turno, paciente)" class="botin4"><i class="fa-brands fa-whatsapp"></i></button>

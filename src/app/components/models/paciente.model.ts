@@ -17,4 +17,6 @@ export class PacienteModel{
 export class Diagnostico{
     fecha: Date;
     texto: string;
+    cedulaPaciente?: number;
+    realizadoPor?: string;
 }

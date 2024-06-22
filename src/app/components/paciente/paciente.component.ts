@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-
+import { Location } from '@angular/common';
 import { PacienteModel } from '../models/paciente.model';
 import { PacienteService } from '../../service/paciente.service';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
@@ -30,7 +30,8 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
     constructor(public servicio : PacienteService,
                 private usuarioServicio: UsuarioServicesService, 
                 private parametro : ActivatedRoute,
-                private ruta: Router)
+                private ruta: Router,
+                private location: Location)
                 {  
                   this.nombres = this.paciente.nombres;
                   this.cedula = this.paciente.cedula;
@@ -141,5 +142,7 @@ import { UsuarioServicesService } from '../../service/usuario.services.service';
       return form.reset();
     }
 
-    
+    atras() {
+      this.location.back();
+    }
   }

@@ -23,6 +23,7 @@ constructor(private usuarioServicios : UsuarioServicesService,
     this.usuarioForm = this.fb.group({
       nombres: ['', Validators.required],
       especialidad: [''],
+      cedula: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
     });
 
@@ -33,7 +34,8 @@ constructor(private usuarioServicios : UsuarioServicesService,
            this.usuarioForm.patchValue({
             nombres: usuario.nombres || '',
             especialidad: usuario.especialidad || '',
-            telefono: usuario.telefono || ''
+            telefono: usuario.telefono || '',
+            cedula: usuario.cedula || ""
             });
           }
         }, error => {
@@ -48,7 +50,8 @@ constructor(private usuarioServicios : UsuarioServicesService,
             ...this.usuario,
             ...this.usuarioForm.value,
             especialidad: this.usuarioForm.value.especialidad || null,
-            telefono: this.usuarioForm.value.telefono || null
+            telefono: this.usuarioForm.value.telefono || null,
+            cedula: this.usuarioForm.value.cedula || null
           };
     
           this.usuarioServicios.actualizarUsuario(updatedUsuario).subscribe(() => {
