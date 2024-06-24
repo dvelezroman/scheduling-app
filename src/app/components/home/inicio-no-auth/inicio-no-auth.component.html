@@ -1,54 +1,133 @@
 <div class="contenedorLogin container-fluid d-flex justify-content-between">
     <div class="d-flex align-items-center">
-
-        <!-- boton médicos dropdown -->
-
-        <div class="btn-group dropdown">
-            <button class="btn3 btn btn-outline-primary dropdown-toggle btn-medicos" (click)="toggleDropdown()" data-bs-toggle="dropdown" id="medicosDropdownButton" aria-expanded="false">
-                Médicos
-            </button>
-            <div class="dropdown-menu mt-2 custom-dropdown-menu" aria-labelledby="medicosDropdownButton">
-                <a class="dropdown-item" [routerLink]="['/medicos-datos']">Lista de Médicos</a>
-                <a class="dropdown-item" [routerLink]="['/medicos-especialidad']">Médicos por Especialidad</a>
-            </div>
-        </div>
-    </div>
+      <img src="assets/medi-app.png" alt="Logo Icono" class="logo-pagina">
+    </div>  
     <router-outlet/>
 
     <div class="d-flex align-items-center">
-
-        <!-- boton registrarse dropdown -->
-
-
-        <!-- boton iniciar sesion -->
             <button [routerLink]="['/login']" class="btn1 btn btn-outline-primary btn-iniciar-sesion">Iniciar Sesión</button>
     </div>
 </div>
 
 
+
+
+
 <section class="hero align-items-stretch ">
+    
     <div class="hero-principal d-flex flex-column justify-content-start align-item-center">
-        <h1 class="poppins-medium rubik-dirt-regular animate__animated animate__fadeIn">Medic-App</h1>
-        <h2 class="animate__animated animate__fadeIn">Tu cita y diagnóstico en un toque</h2>
+
+            <h1>Bienvenido a Nuestra Plataforma de Gestión Médica</h1>
+            <p>Nuestro servicio facilita el registro de pacientes, la programación de citas y la generación de diagnósticos en línea. Mejora la eficiencia y organización para médicos y pacientes.</p>
 
     </div>
-  </section>
-  
+    
+</section>
 
 
-  <!-- Wave SVG -->
 
+<div class=" experiencia seccion-clara">
+  <div class="contenedor-text">
+     <h1>Principales Características</h1>
+      <div class="text-center">
+            <div class="row" >
+                <div class="columna col-12 col-lg-6">
+                  <h3 class="experiencia-titulo" >Registro de Pacientes</h3>
+                  <p>Registro centralizado y accesible de información de pacientes.</p>
+                  <i class="anadir bi bi-person-add" ></i>
+                </div>
 
-  <section class="sobre-app seccion">
-    <div class="contenedor hidden" appScrollReveal>
-        <h2 class="seccion-titulo hidden" appScrollReveal>¿Qué es Medic-App?</h2>
-        <p class="seccion-texto hidden" appScrollReveal>
-            Medic-App es una solución tecnológica diseñada para revolucionar la experiencia de atención médica con un enfoque en la eficiencia y accesibilidad, 
-            esta aplicación permite a los pacientes agendar citas médicas con facilidad y recibir diagnóstico rápidos. la integración de funciones intuitivas y
-             una interfaz amigable hace que Medic-App sea una herramienta indispensable para que la gestión de la salud personal.
-          </p>
+              <div class="columna col-12  col-lg-6">
+                <h3 class="experiencia-titulo" >Gestión de Citas</h3>
+                <p>Programación y gestión eficiente de citas médicas.</p>
+                <i class="bi bi-calendar-check" ></i>
+              </div>
+
+                <div  class="columna col-12 col-lg-6">
+                  <h3 class="experiencia-titulo" >Diagnóstico en Línea</h3>
+                  <p>Recepción de diagnósticos de manera rápida y segura.</p>
+                  <i class="bi bi-clipboard-check" ></i>
+                </div>
+
+                <div class="columna col-12 col-lg-6">
+                  <h3 class="experiencia-titulo" >Seguridad y Privacidad</h3>
+                  <p>Protección robusta de toda la información médica y personal.</p>
+                  <i class="bi bi-shield-check" ></i>
+                </div>
+            </div>
+      </div>
     </div>
-  </section>
+</div>
+    
+
+
+    <div class="beneficios seccion-oscura">
+      <div class="contenedor-text">
+        <h1 >Beneficios</h1>
+        <div class="text-center">
+              <div class="row">
+                  <div class="columna col-12 col-md-12 col-lg-12">
+
+                      <h3>Para Médicos</h3>
+                      <ul>
+                          <li>Registro y seguimiento de pacientes eficiente.</li>
+                          <li>Gestión fácil de citas.</li>
+                          <li>Acceso rápido a historiales médicos.</li>
+                      </ul>
+                  </div>
+      
+                  <div class="columna col-12">
+                      <h3>Para Pacientes</h3>
+                      <ul>
+                          <li>Obtención rápida de citas.</li>
+                          <li>Diagnósticos en línea.</li>
+                          <li>Seguimiento organizado de tratamientos.</li>
+                      </ul>
+                  </div>
+      
+              </div>
+        </div>
+      </div>
+        
+    </div>
+
+    
+ <!-- FOOTER-->
+
+ <footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <h5>Medic-app</h5>
+        <p>Una plataforma integral para la gestión médica, facilitando el registro de pacientes, la programación de citas y la generación de diagnósticos en línea.</p>
+      </div>
+      <div class="col-12 col-md-4">
+        <h5>Enlaces</h5>
+        <ul class="list-unstyled">
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Características</a></li>
+          <li><a href="#">Beneficios</a></li>
+          <li><a href="#">Sobre la App</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-4">
+        <h5>Contacto</h5>
+        <ul class="list-unstyled">
+          <li>Email: www.medic-app.com</li>
+          <li>Teléfono: +593 999001087</li>
+          <li>Dirección: Calle, Portoviejo, Ecuador</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>&copy; 2024 Medic-app. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
 
 
 

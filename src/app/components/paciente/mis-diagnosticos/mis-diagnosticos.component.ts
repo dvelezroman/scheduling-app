@@ -42,7 +42,7 @@ export class MisDiagnosticosComponent implements OnInit {
       this.mensajeDiagnosticos = this.totalDiagnosticos === 1 ? 'Tienes 1 Diagnóstico' : `Tienes ${this.totalDiagnosticos} Diagnósticos`;
 
     }, error => {
-      console.error('Error al obtener los diagnósticos:', error);
+      console.error('error al obtener los diagnósticos:', error);
     });
   }
 

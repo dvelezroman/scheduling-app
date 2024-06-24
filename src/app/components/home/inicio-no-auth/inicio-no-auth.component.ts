@@ -15,15 +15,15 @@ export class InicioNoAuthComponent implements OnInit {
  private router = Inject(Router)
   ngOnInit() {
     if (isLocalStorageAvailable()) {
-
       if (localStorage.getItem('token')) {
         this.auth = true;
       } else {
         this.auth = false;
-
       }
     } 
   }
+
+
   registrar(rol: string) {
     this.router.navigate(['/registro'], { queryParams: { rol } });
   }

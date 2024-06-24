@@ -10,6 +10,7 @@ color: white;
 border: none;
 cursor: pointer;
 }
+
 section{
   display: flex;
   flex-direction: column;
@@ -22,7 +23,7 @@ h1{
   font-weight: 500;
   font-family: 'Rubik Dirt';
   color: #1e3162;
-  }
+}
 
 .hero{
   background-color: #d9d9d9;
@@ -30,10 +31,12 @@ h1{
   text-align: center;
 
 }
+
 .hero-principal{
   padding: 3rem;
 
 }
+
 .hero-principal h2{
   font-size: 1rem;
   color: #4e5a73;
@@ -47,6 +50,7 @@ h1{
   color: #232836;
   text-align: center;
 }
+
 .seccion-texto{
   font-size: 1rem;
   padding-top: 15px;
@@ -67,25 +71,24 @@ h1{
   background-color: white;
 }
 
-
 .experiencia{
   padding: 40px 40px 20px 40px;
   background-color: #d9d9d9;
   align-items: center;
 }
+
 .experiencia .row{
   transition: all .3s ease;
 }
+
 .experiencia .row .columna{
   height: 300px;
   transition: all .3s ease-in-out;
   cursor: pointer;
-
 }
+
 .experiencia .row .columna:hover{
-
   transform: scale(1.1);
-
 }
 
 .experiencia i{
@@ -102,8 +105,4 @@ h1{
 .experiencia p{
   padding: 5px;
   color: rgb(23, 37, 86);
-
-@media screen and (min-width: 700px){
-
-}
 }
