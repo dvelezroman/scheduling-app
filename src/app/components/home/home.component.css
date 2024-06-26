@@ -24,9 +24,14 @@ h1{
   font-family: 'Rubik Dirt';
   color: #1e3162;
 }
+.hero .hero-principal .grafico{
+ width: 350px;
+ margin-top: 35px;
+
+}
 
 .hero{
-  background-color: #d9d9d9;
+  background-color: #ffffff;
   min-height: 450px;
   text-align: center;
 
@@ -57,7 +62,7 @@ h1{
   padding-bottom: 15px;
 
   font-weight: 400;
-  color: #ededed;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -73,22 +78,28 @@ h1{
 
 .experiencia{
   padding: 40px 40px 20px 40px;
-  background-color: #d9d9d9;
+  background-color: #ffffff;
   align-items: center;
 }
 
 .experiencia .row{
   transition: all .3s ease;
+  margin-bottom: 100px;
 }
 
 .experiencia .row .columna{
-  height: 300px;
+  
+  height: auto;
   transition: all .3s ease-in-out;
   cursor: pointer;
+
 }
 
 .experiencia .row .columna:hover{
-  transform: scale(1.1);
+  box-shadow: 1px 1px 30px rgba(138, 138, 138, 0.764) inset;
+  box-shadow: 1px 1px 30px rgba(143, 143, 143, 0.611);
+  box-shadow: -1px -1px -20px rgba(117, 117, 117, 0.611) ;
+  filter: blur(0px);
 }
 
 .experiencia i{

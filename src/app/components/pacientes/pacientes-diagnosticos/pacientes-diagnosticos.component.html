@@ -1,25 +1,29 @@
 <div class="container">
-  <h1 class="titulo text-center">Diagnósticos por Paciente</h1>
-  <div class="row">
-    <div *ngFor="let paciente of pacientes; let i = index" class="col-lg-12 col-md-12 col-sm-12 paciente-section mb-4 d-flex align-items-start">
-      <div class="paciente-card w-100">
-        <h3 class="nombre-paciente text-left">
-          {{ paciente.nombres }} <span class="cedula-paciente"><br>CC {{ paciente.cedula }}</span>
-        </h3>
-        <div class="d-flex justify-content-start align-items-center">
-          <select class="form-control select-diagnosticos " (change)="mostrarDiagnostico($event, paciente.cedula)">
-            <option selected>Seleccionar diagnóstico</option>
-            <option *ngFor="let diagnostico of paciente.diagnostico" [value]="diagnostico.fecha">
-              {{ diagnostico.fecha | fechaDiagnostico }}
-            </option>
-          </select>
+    <h1 class="titulo text-center">Diagnósticos por Paciente</h1>
+    <div class="row">
+        <div *ngFor="let paciente of pacientes" class="paciente-section col-lg-12 col-md-12 col-sm-12  mb-4 d-flex align-items-start">
+            
+            <div class="paciente-card w-100">
+                <h3 class="nombre-paciente text-left">
+                  {{ paciente.nombres }} <span class="cedula-paciente"><br>CC {{ paciente.cedula }}</span>
+                </h3>
+                
+                <div class="contenedor-select d-flex justify-content-start align-items-center">
+                  <select class="form-control select-diagnosticos" (change)="mostrarDiagnostico($event, paciente.cedula)">
+                    <option selected>Seleccionar diagnóstico</option>
+                    <option *ngFor="let diagnostico of paciente.diagnostico" [value]="diagnostico.fecha">
+                      {{ diagnostico.fecha | fechaDiagnostico }}
+                    </option>
+                  </select>
+                </div>
+                
+                <div *ngIf="diagnosticoSeleccionado[paciente.cedula]" class="text-button d-flex justify-content-center mt-2 flex-column align-items-center">
+                  <textarea class="form-control diagnostico-textarea" [(ngModel)]="diagnosticoSeleccionado[paciente.cedula]" (input)="ajustarAltura($event)" readonly>
+                  </textarea>
+                  <button class="btn btn-danger mt-2 cerrar-btn" (click)="cerrarDiagnostico(paciente.cedula)">Cerrar</button>
+                </div>
+            
+            </div>
         </div>
-        <div *ngIf="diagnosticoSeleccionado[paciente.cedula]" class="d-flex justify-content-center mt-2 flex-column align-items-center">
-          <textarea class="form-control diagnostico-textarea" [(ngModel)]="diagnosticoSeleccionado[paciente.cedula]" (input)="ajustarAltura($event)" readonly>
-          </textarea>
-          <button class="btn btn-danger mt-2 cerrar-btn" (click)="cerrarDiagnostico(paciente.cedula)">Cerrar</button>
-        </div>
-      </div>
     </div>
-  </div>
 </div>

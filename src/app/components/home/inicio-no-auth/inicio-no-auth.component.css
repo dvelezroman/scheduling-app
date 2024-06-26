@@ -13,13 +13,14 @@
 }
 
 /* Logo pagina */
+
 .logo-pagina{
   width: 280px;
   margin-left: 80px;
-
 }
 
 /*boton login*/
+
 .btn-iniciar-sesion {
   background: linear-gradient(90deg, rgb(223, 223, 226) 5%, rgb(207, 220, 223) 100%);
   color: #2d2c2c;
@@ -43,7 +44,8 @@
 .btn1 {
   margin: 10px 45px;
 }
-/*Hero*/
+
+/*heroe*/
 
   section{
     display: flex;
@@ -51,44 +53,47 @@
     align-items: center;
     justify-content: center;
     padding: 50px 50px 20px 40px;
-    background-color: #ffffff;
-   /* border: 1px solid grey;*/
   }
 
-  section h1{
+  
+  
+  .hero{
+    min-height: 450px;
+    text-align: center;
+    background-color: #fffefe;
+    position: relative;
+  }
+
+  .hero-principal{
+    width: 100%;
+    height: 650px;
+    padding: 3rem;
+    margin-left: 20px;
+    text-align: left;
+    border-radius: 0px 45px;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+   .hero-principal h1{
+    
     margin-left: 29px;
     padding: 30px 0px;
-    font-size: 5.5rem;
+    font-size: 6.5rem;
     font-weight: 500;
-    margin-right: 10%;
+    margin-right: 16%;
     font-family: 'Rubik Dirt';
     color: #2b395c;
-    background: linear-gradient(90deg, rgb(63, 63, 123) 5%, rgb(40, 46, 47) 100%);
+    background: linear-gradient(90deg, rgb(63, 63, 123) 5%, rgb(66, 205, 230) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-stroke: .2px rgb(89, 94, 165);
   }
   
-  .hero{
-
-    min-height: 450px;
-    text-align: center;
-    background-color: #ffffff;
-
-  
-  }
-  .hero-principal{
-    height: 650px;
-    padding: 3rem;
-    margin-right: -20px;
-    text-align: left;
-    border-radius: 0px 45px;
-    border: 1px solid grey;
-  }
 
   .hero-principal p {
-    margin-right: 48%;
+    margin-right: 50%;
     text-align: left;
     margin-left: 35px;
     font-size: 1.3rem;
@@ -97,6 +102,21 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  .hero-principal .grafico1{
+
+    position: absolute;
+    top: 31%;
+    left:70%;
+    z-index: -1;
+    right: 5%;
+    background-image: transparent;
+  }
+  .grafico1 img{
+    width: 380px;
+    border-radius: 50%;
+
   }
   
   .sobre-app{
@@ -204,10 +224,18 @@
     border-radius: 15px;
     margin-right: -10px;
     margin-left: -10px;
-    border: 1px solid grey;
+
     border-radius: 45px 0px;
 
+
     /*background: linear-gradient(0deg, rgb(156, 204, 223) 18%, rgb(180, 218, 231) 79%);*/
+  }
+  .contenedor-text img{
+    
+    width: 270px;
+    display: none;
+    align-items: flex-start;
+    margin-left: 50px;
   }
 
   .experiencia h1{
@@ -215,22 +243,21 @@
     font-size: 4rem;
     font-weight: 200;
     font-family: 'Rubik Dirt';
-    background-color: #1f2021;
+    background-color: #414548;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     flex-wrap: wrap;
-
   }
  
 
   .experiencia .text-center{
     display: flex;
     justify-content: center;
-    padding: 20px;
-    margin: 45px;
+    margin: 30px;
     margin-bottom: 40px;
     border-radius: 15px;
+    background-color: rgba(93, 93, 93, 0.26);
 
   }
 
@@ -243,32 +270,30 @@
     transition: all .3s ease;
     border-radius: 15px;
 
-
   }
 
   .experiencia .row .columna{
     height: 220px;
-    transition: all .4s ease;
     cursor: pointer;
     padding-top: 49px;
 
   }
-
-  .experiencia .row .columna:hover{
+ 
+  
+  .experiencia .row .columna .sub-columna:hover{
     transform: scale(1.1);
   }
-
+ 
   .experiencia-titulo{
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: bold;
     margin: 10px 0;
-
   }
 
   .columna i{
-    color: #232324;
+    color: #d8dadc;
     background-clip: text;
-    font-size: 3rem;
+    font-size: 2.6rem;
     border-radius: 50%;
   }
 
@@ -280,10 +305,10 @@
 
   .experiencia p{
     
-    color: rgb(63, 63, 63);
+    color: #3b3c3c;
   }
   .columna h3{
-    color: #2c2c2c;
+    color: #d8dadc;
   }
   .columna p {
     display: none;
@@ -294,10 +319,10 @@
   }
 
   .columna:hover p {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     display: block;
     opacity: 1;
-    color: #2f3031;
+
   }
 
   .columna:hover i {
@@ -307,7 +332,7 @@
   .columna:hover h3 {
     display: block;
     opacity: 1;
-    color: #2a2b2b;
+    color: #d8dadc;
   }
 
   .columna:hover {
@@ -327,7 +352,6 @@
 .beneficios .contenedor-text{
   padding: 5px;
   margin-right: -18px;
-  border: 1px solid grey;
   border-radius:0px 45px;
 }
 .beneficios h1{
@@ -346,6 +370,7 @@
   border-radius: 15px;
   display: flex;
   justify-content: center;
+  background-color: rgba(93, 93, 93, 0.26);
 
 
 }
@@ -367,11 +392,13 @@
   border-radius: 15px;
   padding-left: 6px;
   border: 1px solid grey;
+background-color: white;
 }
 .beneficios .row .columna h3{
   font-size: 2rem; 
   margin-bottom: 23px;
   font-weight: 500;
+  color: black;
 }
 
 .beneficios .row .columna ul{
@@ -393,53 +420,232 @@
 /*FOOTER*//*FOOTER*//*FOOTER*//*FOOTER*//*FOOTER*/
 
 .footer {
-  background-color: #1766b6;
-  color: #ffffff;
-  padding: 40px 0;
+  margin-top: 100px;
+  background: rgb(0, 0, 0);
+color: white;
+  padding-top: 40px
+}
+.footer .row {
+ padding: 25px;
+ display: flex;
+ justify-content: center;
+
+
+}
+.footer .row2{
+ padding: 25px;
+ display: flex;
+ justify-content: center;
+
+}
+.footer .row .grupo1{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+
+}
+.footer .row .grupo2{
+  display: flex;
+  flex-direction: column;
+  align-items:center ;
 }
 
-.footer h5 {
-  font-size: 1.5rem;
+.footer .grupo1 h5 {
+  font-size: 1.6rem;
   margin-bottom: 20px;
+  text-align: left;
+  
 }
-
-.footer p {
-  margin-bottom: 20px;
+.footer .grupo2 li{
+  margin: 5px;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .footer a {
-  color: #ffffff;
+  color: rgb(170, 170, 170);
   text-decoration: none;
+
+  transition: all .2s ease-in;
 }
 
 .footer a:hover {
-  text-decoration: underline;
+  text-shadow: 1px 1px 3px grey;
+ 
 }
 
 .footer .list-unstyled {
-  padding-left: 0;
+  width: 300px;
+  text-align: center;
   list-style: none;
+  
+ 
+}
+.footer .list-unstyled1{
+
+  width: 350px;
+  text-align: center;
+  list-style: none;
+ 
+}
+.row .grupo2 .h5{
+  margin-bottom: 35px;
 }
 
 .footer .list-unstyled li {
   margin-bottom: 10px;
+  font-size: 1.1rem;
+  transition: all .2s ease-in;
+  
 }
+
+.footer .list-unstyled li:hover{
+  transform: scale(1.1);
+  text-shadow: 1px 1px 4px rgb(196, 196, 196);
+
+}
+.footer .list-unstyled li a:hover{
+
+  text-shadow: 1px 1px 4px rgb(196, 196, 196);
+  color: white;
+
+}
+
 
 
 
   /*MEDIAS QUERY*//*MEDIAS QUERY*//*MEDIAS QUERY*//*MEDIAS QUERY*/
 
+  @media (min-width: 1299px){
 
-  @media (max-width: 11700px){
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 50px 20px 40px;
+      background-color: #ffffff;
+    }
+    .hero {
+      height: auto;
+    }
+    .hero-principal h1 {
+      font-size: 5.9rem;
+    }
     .hero-principal p {
-      margin-right: 20%;
+      margin-right: 30%;
       text-align: left;
       margin-left: 34px;
       font-size: 1.5rem;
     }
-  }
 
-  @media (max-width: 1110px) {
+    .columna {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 50px;
+      transition: all .4s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+    .experiencia .row .columna .sub-columna1 {
+      height: 130px;
+      width: 330px;
+      padding-top: 20px;
+      transition: margin-right 1.5s;
+      background-color: #1766b6;
+      border-radius: 15px;
+      z-index: 2;
+    }
+    .experiencia .row .columna .sub-columna2 {
+      height: 130px;
+      width: 330px;
+      padding-top: 20px;
+      transition: margin-left 1.5s;
+      background-color: #269dc2;
+      border-radius: 15px;
+      z-index: 2;
+    }
+    .experiencia .contenedor-text img {
+      width: 270px;
+      display: none; 
+      align-items: flex-start;
+      margin-left: 50px;
+      opacity: 0; 
+      transition: opacity .4s; 
+    }
+    .columna:hover .contenedor-text img {
+      display: block; 
+      opacity: 1; 
+    }
+    .experiencia .row .columna:hover .sub-columna1 {
+      margin-right: 53%;
+      transition: margin-right .4s;
+    }
+    .experiencia .row .columna:hover .sub-columna2 {
+      margin-left: 50%;
+      transition: margin-left .4s;
+    }
+    .columna .parrafo-right .parrafo {
+      display: none;
+      position: absolute;
+      font-size: 1.7rem;
+      top: 36%;
+      left: 47%;
+      padding: 5px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 2s, visibility 1.7s;
+    }
+    .columna .parrafo-left .parrafo {
+      display: none;
+      position: absolute;
+      font-size: 1.7rem;
+      top: 36%;
+      right: 50%;
+      padding: 5px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 2s, visibility 1.7s;
+    }
+    .experiencia .columna h3 {
+      color: white;
+    }
+    .experiencia .columna i {
+      color: white;
+    }
+    .expericendia:hover h3 {
+      color: white;
+    }
+    .columna:hover i {
+      display: block;
+      color: white;
+    }
+    .columna:hover {
+      cursor: pointer;
+    }
+    .columna:hover .parrafo-right .parrafo {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1.5s;
+    }
+    .columna:hover .parrafo-left .parrafo {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1.5s;
+    }
+}
+
+
+  @media (max-width: 1400px) {
 
     .columna {
       flex: 1 1 100%;
@@ -447,12 +653,33 @@
 
     section h1{
       margin-left: 0px;
-      font-size: 5.2rem;
+      font-size: 6.5rem;
       margin-right: 15%;
+      background-color: green;
+    }
+    .hero-principal{
+      height: 550px;
+      padding: 3rem;
+      text-align: left;
+      border-radius: 0px 45px;
     }
     .hero-principal p {
-      margin-right: 20%;
+      margin-right: 25%;
       font-size: 1.3rem;
+    }
+    .hero-principal h1 {
+      font-size: 4rem;
+    }
+    .hero-principal .grafico1{
+      display: none;
+      position: absolute;
+      top: 40%;
+      left:70%;
+      z-index: -1;
+      right: 5%;
+    }
+    .grafico1 .grafico{
+      width: 300px;
     }
 
     .experiencia .text-center{
@@ -463,20 +690,25 @@
     .experiencia h3 {
       font-size: 1.6rem; 
       margin-bottom: 23px;
+      color: #4b4747;
     }
     .experiencia i {
       font-size: 2.6rem; 
       margin-bottom: 23px;
+      color: #4b4747;
     }
     .experiencia .row .columna{
       height: 200px;
       transition: all .3s ease-in-out;
       cursor: pointer;
     }
+    .columna:hover h3{
+      color: #4b4747;
+    }
     .columna:hover p {
       display: block;
       opacity: 1;
-      color: #2d2d2e;
+      color: #4b4747;
       font-size: 1.1rem;
     }
   }
@@ -489,24 +721,26 @@
 
     section h1{
       margin-left: 0px;
-      font-size: 4.5rem;
-      margin-right: 20%;
+      font-size: 4.9rem;
+      margin-right: 21%;
     }
+    .hero-principal .grafico1{
+
+     display: none;
+    }
+
     
     .hero-principal{
-      height: 650px;
+      height: 550px;
       padding: 3rem;
-      margin-right: -20px;
       text-align: left;
-      background: rgb(34,154,195);
-      background: linear-gradient(0deg, rgba(114, 191, 217, 0.737) 18%, rgb(80, 138, 252) 79%);
       border-radius: 0px 45px;
     }
     .hero-principal p {
-      margin-right: 20%;
+      margin-right: 17%;
       text-align: left;
-      margin-left: 4px;
-      font-size: 1.2rem;
+      margin-left: 34px;
+      font-size: 1.1rem;
     }
 
     .experiencia .text-center{
@@ -530,7 +764,7 @@
     .columna:hover p {
       display: block;
       opacity: 1;
-      color: #373738;
+      color: #fcfcfc;
       font-size: 1rem;
     }
     .beneficio .row{
@@ -564,38 +798,34 @@
     
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 999px) {
     .columna {
       flex: 1 1 80%;
     }
 
     section h1{
       margin-left: 0px;
-      font-size: 4.2rem;
+      font-size: 4.5rem;
       margin-right: 15%;
     }
     .hero-principal{
-      height: 650px;
+      height: 590px;
       padding: 2rem;
-      margin-right: -20px;
       text-align: left;
-      background: rgb(34,154,195);
-      background: linear-gradient(0deg, rgba(114, 191, 217, 0.737) 18%, rgb(80, 138, 252) 79%);
+
       border-radius: 0px 45px;
     }
     .hero-principal p {
+      margin-top: -14px;
       margin-right: 20%;
       text-align: left;
-      margin-left: 4px;
-      font-size: 1.1rem;
+      margin-left: 34px;
+      font-size: 1.0rem;
+    }
+    .contenedor-text{
+      margin-top: 0px;
     }
 
-    .expeciencia {
-
-    }
-    .experiencia .h1{
-      font-size: 3.5rem;
-    }
     .experiencia .text-center{
       margin-left: 0%;
     }
@@ -620,8 +850,8 @@
     .columna:hover p {
       display: block;
       opacity: 1;
-      color: #2e2e2f;
-      font-size: 13px;
+      color: #454343;
+      font-size: 15px;
     }
     .beneficios .row .columna{
       margin-bottom: 25px;
@@ -659,20 +889,21 @@
     .columna {
       flex: 1 1 100%;
     }
-    section h1{
+
+    .hero-principal h1{
       margin-left: 0px;
-      font-size: 4.2rem;
+      font-size: 3.2rem;
       margin-right: 0%;
     }
     .hero-principal p {
       margin-right: 20%;
       text-align: left;
-      margin-left: 4px;
-      font-size: 1rem;
+      margin-left: 6%;
+      font-size: .9rem;
     }
     .experiencia .text-center{
 
-      margin: 14px 50px 15px 15px;
+      margin: 0px 50px 15px 15px;
     }
 
     .experiencia h1{
@@ -681,8 +912,8 @@
     .experiencia h3 {
       font-size: 1.3rem; 
     }
-    .experiencia i {
-      font-size: 2.5rem; 
+    .experiencia .row .columna i {
+      font-size: 2rem; 
     }
     .experiencia .row .columna{
       height: 150px;
@@ -696,9 +927,10 @@
     .columna:hover p {
       display: block;
       opacity: 1;
-      color: #2e2e2f;
+      color: #4b4747;
       font-size: 14px;
     }
+
     .beneficios h1{
       font-size: 3.2rem;
     }
@@ -713,7 +945,7 @@
     }
     .beneficios .row .columna{
       margin-bottom: 25px;
-      background-color: #cfb8f0c4;
+      background-color: #f7f7f7;
       padding-left: 6px;
 
     }
@@ -722,6 +954,7 @@
       font-size: 1.8rem; 
       margin-bottom: 23px;
       font-weight: 500;
+      color: black;
     }
     
     .beneficios .row .columna ul{
@@ -746,6 +979,136 @@
       margin-bottom: 20px;
     }
     
+    
+  }
+  @media (max-width: 767px){
+
+
+    .logo-pagina{
+      width: 110px;
+      margin-left: 40px;
+    
+    }
+    .btn1{
+      font-size: .9rem;
+      margin-right: 40px;
+      margin-top: 15px;
+      padding:5px 15px;
+    }
+    .columna {
+      flex: 1 1 100%;
+    }
+    .hero-principal h1{
+      margin-left: 0px;
+      font-size: 2.2rem;
+      margin-right: 0%;
+    }
+    .hero{
+      height: 400px;
+      padding: 2rem;
+      text-align: left;
+      border-radius: 0px 45px;
+
+    }
+    .hero-principal{
+      border: none;
+      margin-left: 0px;
+
+    }
+    .hero-principal p {
+      margin-right: 20%;
+      text-align: left;
+      margin-left: 0%;
+      font-size: .4rem;
+    }
+    .hero-principal .grafico1{
+      display: block;
+      position: absolute;
+      top: 60%;
+      left:33%;
+      z-index: -1;
+      right: 5%;
+    }
+    .grafico1 .grafico{
+      width: 190px;
+    }
+    .experiencia .text-center{
+
+      margin: -40px 50px 15px 15px;
+    }
+
+    .seccion-clara h1{
+      font-size: 1.7rem;
+    }
+    .text-center .columna h3 {
+      font-size: 1.3rem; 
+    }
+    .text-center .columna i {
+      font-size: 2.5rem; 
+    }
+    .text-center .columna{
+      height: 150px;
+      transition: all .3s ease-in-out;
+      cursor: pointer;
+    }
+    .experiencia .text-center{
+      margin-left: 0%;
+      margin-right: 5px;
+    }
+    .columna:hover p {
+      display: block;
+      opacity: 1;
+      color: #4b4747;
+      font-size: 14px;
+    }
+
+    .beneficios h1{
+      font-size: 2.1rem;
+    }
+
+    .beneficios .row{
+      padding: 2px 2px 2px 2px;
+      height: auto;
+      width: 100%;
+      border-radius: 10px;
+
+    
+    }
+    .beneficios .row .columna{
+      margin-bottom: 25px;
+      background-color: #ffffffc4;
+      padding-left: 6px;
+
+    }
+
+    .beneficios .row .columna h3{
+      font-size: 1.5rem; 
+      margin-bottom: 23px;
+      font-weight: 500;
+      color: black;
+    }
+    
+    .beneficios .row .columna ul{
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      cursor: default;
+    
+    }
+    .beneficios .row .columna ul li{
+      margin: 5px;
+      font-size: .8rem;
+      text-align: center;
+      margin-right: 20px;
+    }
+    
+    .footer {
+      text-align: center;
+    }
+  
+    .footer .col-12 {
+      margin-bottom: 20px;
+    }
     
   }
 
