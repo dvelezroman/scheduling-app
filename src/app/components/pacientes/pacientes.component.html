@@ -99,7 +99,7 @@
                       
                       <td class="td textP cedula-columna">{{paciente.cedula}}</td>
                       <td class="td textP correo-columna">{{paciente.correo}}</td>
-                      <td class="td textP-3 turno-columna"><span class="cita" *ngIf="!paciente.turno">No tine cita</span> 
+                      <td class="td textP-3 turno-columna"><span class="cita" *ngIf="!paciente.turno">No tiene cita</span> 
                           <ng-container *ngIf="paciente.turno">
                             <span [matTooltip]="paciente.turno | customDate: 'full'" matTooltipPosition="above">
                               {{ paciente.turno | customDate: 'short' }}

@@ -134,7 +134,10 @@ export class UsuarioServicesService implements OnInit {
                 especialidad: usuario.especialidad || null, 
                 edad: usuario.edad || null,
                 telefono: usuario.telefono || null,
-                pacienteId: usuario.pacienteId || null                
+                pacienteId: usuario.pacienteId || null,
+                informacionProfesional: usuario.informacionProfesional || null,
+                direccionConsultorio: usuario.direccionConsultorio || null
+
               })
             ).pipe(
               catchError(err => {
@@ -173,7 +176,10 @@ export class UsuarioServicesService implements OnInit {
           edad: usuario.edad || null,
           telefono: usuario.telefono || null,
           pacienteId: usuario.pacienteId || null,
-          cedula: usuario.cedula || null
+          cedula: usuario.cedula || null,
+          informacionProfesional: usuario.informacionProfesional || null,
+          direccionConsultorio: usuario.direccionConsultorio || null
+
         })
       ).pipe(
         catchError(err => {
@@ -198,7 +204,9 @@ export class UsuarioServicesService implements OnInit {
           password: '', 
           rol: '', 
           especialidad: null, 
-          edad: null 
+          edad: null,
+          direccionConsultorio: null,
+          informacionProfesional: null 
         } as UsuarioModel;
       }
 
@@ -283,7 +291,7 @@ export class UsuarioServicesService implements OnInit {
         this.loggedIn.next(false);
         this.usuarioId.next('');
         this.afAuth.signOut().then(() => {
-          this.usuarioActual2.next(null);
+        this.usuarioActual2.next(null);
         });
       
       }
@@ -437,11 +445,14 @@ actualizarUsuario(usuario: UsuarioModel): Observable<any> {
     nombres: usuario.nombres,
     telefono: usuario.telefono,
     especialidad: usuario.especialidad,
-    cedula: usuario.cedula
+    cedula: usuario.cedula,
+    direccionConsultorio: usuario.direccionConsultorio,
+    informacionProfesional: usuario.informacionProfesional,
+    
     
   })).pipe(
     tap(() => {
-      console.log('datos actualizados');
+      //console.log('datos actualizados');
     }),
     catchError(err => {
       console.error(err);

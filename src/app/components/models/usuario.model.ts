@@ -10,6 +10,7 @@ export class UsuarioModel{
     edad?:number;
     telefono?: string;
     pacienteId?:string;
-
+    informacionProfesional?: string;
+    direccionConsultorio?: string; 
 
 }

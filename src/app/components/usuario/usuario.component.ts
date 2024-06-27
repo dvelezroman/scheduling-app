@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 export class UsuarioComponent implements OnInit {
   usuario: UsuarioModel;
   usuarioForm: FormGroup;
+  profesionInput: string = '';
 
 
 constructor(private usuarioServicios : UsuarioServicesService,
@@ -24,7 +25,9 @@ constructor(private usuarioServicios : UsuarioServicesService,
       nombres: ['', Validators.required],
       especialidad: [''],
       cedula: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
+      telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      direccionConsultorio: [''],
+      informacionProfesional: ['']
     });
 
         this.usuarioServicios.getUsuarioActual().subscribe(usuario => {
@@ -34,8 +37,10 @@ constructor(private usuarioServicios : UsuarioServicesService,
            this.usuarioForm.patchValue({
             nombres: usuario.nombres || '',
             especialidad: usuario.especialidad || '',
+            cedula: usuario.cedula || '',
             telefono: usuario.telefono || '',
-            cedula: usuario.cedula || ""
+            informacionProfesional: Array.isArray(usuario.informacionProfesional) ? usuario.informacionProfesional : [],
+            direccionConsultorio: usuario.direccionConsultorio || ''
             });
           }
         }, error => {
@@ -44,6 +49,20 @@ constructor(private usuarioServicios : UsuarioServicesService,
 
 
       }
+      agregarProfesion(): void {
+        if (this.profesionInput.trim()) {
+          const profesiones = this.usuarioForm.value.informacionProfesional;
+          profesiones.push(this.profesionInput.trim());
+          this.usuarioForm.patchValue({ informacionProfesional: profesiones });
+          this.profesionInput = '';
+        }
+      }
+    
+      eliminarProfesion(index: number): void {
+        const profesiones = this.usuarioForm.value.informacionProfesional;
+        profesiones.splice(index, 1);
+        this.usuarioForm.patchValue({ informacionProfesional: profesiones });
+      }
       enviar() {
         if (this.usuarioForm.valid) {
           const updatedUsuario = {
@@ -51,7 +70,9 @@ constructor(private usuarioServicios : UsuarioServicesService,
             ...this.usuarioForm.value,
             especialidad: this.usuarioForm.value.especialidad || null,
             telefono: this.usuarioForm.value.telefono || null,
-            cedula: this.usuarioForm.value.cedula || null
+            cedula: this.usuarioForm.value.cedula || null,
+            informacionProfesional: this.usuarioForm.value.informacionProfesional || [],
+            direccionConsultorio: this.usuarioForm.value.direccionConsultorio || null
           };
     
           this.usuarioServicios.actualizarUsuario(updatedUsuario).subscribe(() => {

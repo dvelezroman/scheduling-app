@@ -37,7 +37,7 @@
 }
 
 .cita{
-  color: rgb(234, 234, 234);
+  color: rgb(224, 85, 85);
 }
 
 h1{
@@ -81,6 +81,7 @@ table.rounded-table .icon-cell {
 
 table.rounded-table th{
   text-align: center;
+  line-height: 50px;
   word-wrap: break-word; 
   overflow-wrap: break-word;
 }

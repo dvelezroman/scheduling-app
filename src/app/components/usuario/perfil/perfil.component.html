@@ -1,24 +1,35 @@
 <section class="hero align-items-stretch ">
     <div class="container d-flex justify-content-center">
 
-        <div class="col-12 col-lg-8">
+        <div class="contenedor col-12">
 
             <div class="hero-principal d-flex">
-                <div class=" dato-rol col-4">
-                    <i class=" icon-edit bi bi-x-circle-fill" routerLink="/home" [matTooltip]="'Salir'" matTooltipPosition="above"></i>
-                    <div><i class="usuario-perfil fa-solid fa-user"></i><i routerLink="/configuracion-usuario" class="icon-edit-2 bi bi-pencil" [matTooltip]="'Editar'" matTooltipPosition="above"></i></div>
+                <div class=" dato-rol">
+                    <div><i class="usuario-perfil fa-solid fa-user"></i></div> 
                 </div>
                 
-                <div class="datos-nombres col-6">
+                <div class="datos-nombres col-9">
                     <h2>{{usuario?.nombres | titlecase}}</h2>
-                    <p *ngIf="usuario?.rol === 'medico' || usuario?.rol === 'administrador'"><strong>Especialidad:</strong> {{ usuario?.especialidad | titlecase }}</p>
-                    <p *ngIf="usuario?.rol === 'paciente' || usuario?.rol === 'medico' || 'administrador'"><strong>Edad:</strong> {{ usuario?.edad }} años</p>
-                    <p *ngIf="usuario?.cedula"><strong>Cédula: </strong>{{ usuario?.cedula}}</p>
-                    <p *ngIf="usuario?.telefono"><strong>Teléfono: </strong>{{ usuario?.telefono}}</p>
-
+                    <p class="especialidad" *ngIf="usuario?.rol === 'medico' || usuario?.rol === 'administrador'">{{ usuario?.especialidad | titlecase }}</p>
+                    <p *ngIf="usuario?.cedula"><i class="cedula bi bi-person-vcard-fill"></i>{{ usuario?.cedula}}</p>
+                    <p *ngIf="usuario?.telefono"><i class="telefono bi bi-whatsapp"></i>{{ usuario?.telefono}}</p>
+                    <p *ngIf="usuario?.rol === 'paciente'"><strong>Edad:</strong> {{ usuario?.edad }} años</p>
+                    <p *ngIf="usuario?.rol === 'medico' || usuario?.rol === 'administrador' || usuario?.rol === 'paciente'"><i class="direccion bi bi-geo-alt-fill"></i> {{ usuario?.direccionConsultorio | titlecase }}</p>
+                    
                 </div>
             
             </div>
+            <div class="boton-editar col-1">
+                <button class="btn btn-secondary" routerLink="/configuracion-usuario">Editar Perfil</button>
+            </div>
+            <div class="editar-perfil datos-profesional col-12">
+                <h3>Histórico Profesional</h3>
+                <ul class="list-group" *ngIf="usuario?.informacionProfesional?.length > 0">
+                  <li class="list-group-item" *ngFor="let profesion of usuario?.informacionProfesional">{{ profesion | titlecase}}</li>
+                </ul>
+                <p class="informacion-profesional" *ngIf="usuario?.informacionProfesional?.length === 0">No hay información profesional disponible.</p>
+              </div>
+
         </div>
     </div>
 </section>

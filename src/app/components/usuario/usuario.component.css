@@ -1,33 +1,123 @@
-.container{
+.container {
+    margin-top: 100px;
     border: 1px solid grey;
-    padding: 25px 50px;
+    padding: 55px 50px;
     border-radius: 9px;
+    background-color: #e5e0e0; /* Añadir un color de fondo si es necesario */
 }
 
-.container h2{
+.container h2 {
     text-align: center;
     margin-bottom: 40px;
+    color: #333; 
+    font-size: 2.5rem;
 }
-.container input{
+
+.container .form-control {
     margin-top: 5px;
+    margin-bottom: 22px;
     border: 1px solid rgb(179, 179, 179);
+    padding: 10px; 
 }
-.container .button{
+
+.container .form-label {
+    margin-bottom: 2px;
+    color: #555;
+    font-size: 1.3rem;
+}
+
+.container .mb-3 {
+    margin-bottom: 1.5rem; 
+}
+
+  .boton-anadir{
+    background-color: rgb(20, 104, 149);
+    color: white;
+    font-size: 17px;
+    height: 45px;
+    margin-top: -17px;
+  }
+
+.container .button {
     display: flex;
     justify-content: center;
     margin-top: 25px;
 }
-.container .button .boton-cancelar{
 
-margin-left: 10px;
+.container .button .boton-cancelar {
+    margin-left: 10px;
+}
 
+.container .button .boton-actualizar {
+    margin-right: 10px;
 }
-.container .button .boton-actualizar{
- margin-right: 10px;
+
+::placeholder {
+    opacity: 0.5;
+    color: #999; 
 }
-::placeholder{
-    opacity: .5;
-}
-.text-danger{
+
+.text-danger {
     font-size: 12px;
 }
+.input-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .boton-anadir {
+    margin-left: 10px;
+  }
+  
+  .list-group {
+    margin-top: 15px;
+  }
+  
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .container {
+    border: 1px solid grey;
+    padding: 25px 50px;
+    border-radius: 9px;
+  }
+  
+  .container h2 {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .container input,
+  .container textarea {
+    margin-top: 5px;
+    border: 1px solid rgb(179, 179, 179);
+  }
+  
+  .container .button {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+  }
+  
+  .container .button .boton-cancelar {
+    margin-left: 10px;
+  }
+  
+  .container .button .boton-actualizar {
+    margin-right: 10px;
+  }
+  
+  ::placeholder {
+    opacity: .5;
+  }
+  
+  .text-danger {
+    font-size: 12px;
+  }
+  
+  textarea.form-control {
+    resize: none; /* Evita que el usuario pueda cambextarea */
+  }
