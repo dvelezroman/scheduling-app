@@ -108,6 +108,11 @@ margin-top: 3rem;
     margin-left: 40px;
     color: rgb(67, 69, 70);
   }
+  .datos-nombres .edad{
+    font-size: 1.1rem;
+    margin-left: 39px;
+    color: rgb(67, 69, 70);
+  }
 
   .datos-nombres .cedula{
     color: rgb(60, 159, 198);

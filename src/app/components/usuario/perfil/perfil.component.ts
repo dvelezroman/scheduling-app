@@ -9,6 +9,7 @@ import { UsuarioServicesService } from '../../../service/usuario.services.servic
 })
 export class PerfilComponent implements OnInit {
 usuario:UsuarioModel;
+userRol:string = '';
 
 constructor(private usuarioService : UsuarioServicesService){}
 
@@ -17,6 +18,7 @@ ngOnInit(): void {
     this.usuario = usuario;
     //console.log(usuario)
   });
+
 }
 
 }

@@ -15,9 +15,11 @@ export class UsuarioComponent implements OnInit {
   usuario: UsuarioModel;
   usuarioForm: FormGroup;
   profesionInput: string = '';
+  userRol:string = '';
 
 
 constructor(private usuarioServicios : UsuarioServicesService,
+            private userService : UsuarioServicesService,
             private fb : FormBuilder,
             private ruta : Router){}
   ngOnInit(): void {
@@ -25,6 +27,7 @@ constructor(private usuarioServicios : UsuarioServicesService,
     this.usuarioForm = this.fb.group({
       nombres: ['', Validators.required],
       especialidad: [''],
+      edad: [''],
       cedula: ['', [Validators.required, Validators.pattern(/^\d{10}$/), cedulaEcuatorianaValidator()]],
       telefono: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       direccionConsultorio: [''],
@@ -37,6 +40,7 @@ constructor(private usuarioServicios : UsuarioServicesService,
            // console.log(this.usuario)
            this.usuarioForm.patchValue({
             nombres: usuario.nombres || '',
+            edad: usuario.edad || '',
             especialidad: usuario.especialidad || '',
             cedula: usuario.cedula || '',
             telefono: usuario.telefono || '',
@@ -46,6 +50,12 @@ constructor(private usuarioServicios : UsuarioServicesService,
           }
         }, error => {
           console.error('Error al obtener usuario:', error);
+        });
+        
+        this.userService.getUsuarioActual2().subscribe((usuario: UsuarioModel | null) => {
+          if (usuario) {
+            this.userRol = usuario.rol;
+          }
         });
 
 
@@ -72,6 +82,7 @@ constructor(private usuarioServicios : UsuarioServicesService,
             especialidad: this.usuarioForm.value.especialidad || null,
             telefono: this.usuarioForm.value.telefono || null,
             cedula: this.usuarioForm.value.cedula || null,
+            edad: this.usuarioForm.value.edad || null,
             informacionProfesional: this.usuarioForm.value.informacionProfesional || [],
             direccionConsultorio: this.usuarioForm.value.direccionConsultorio || null
           };

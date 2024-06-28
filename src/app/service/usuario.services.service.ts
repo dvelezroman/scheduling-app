@@ -446,6 +446,7 @@ actualizarUsuario(usuario: UsuarioModel): Observable<any> {
     telefono: usuario.telefono,
     especialidad: usuario.especialidad,
     cedula: usuario.cedula,
+    edad: usuario.edad,
     direccionConsultorio: usuario.direccionConsultorio,
     informacionProfesional: usuario.informacionProfesional,
     

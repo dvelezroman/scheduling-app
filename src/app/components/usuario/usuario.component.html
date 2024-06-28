@@ -8,17 +8,17 @@
         
             <form [formGroup]="usuarioForm" (ngSubmit)="enviar()">
             
-                <div class="mb-3">
-                    <label for="nombres" class="form-label">Nombres</label>
-                    <input type="text" 
-                            class="form-control" 
-                            id="nombres" 
-                            formControlName="nombres" 
-                            placeholder="Escriba sus nombres">
-                    <div *ngIf="usuarioForm.get('nombres').invalid && usuarioForm.get('nombres').touched" class="text-danger">
-                    Nombre es requerido.
+                    <div class="mb-3">
+                        <label for="nombres" class="form-label">Nombres</label>
+                        <input type="text" 
+                                class="form-control" 
+                                id="nombres" 
+                                formControlName="nombres" 
+                                placeholder="Escriba sus nombres">
+                        <div *ngIf="usuarioForm.get('nombres').invalid && usuarioForm.get('nombres').touched" class="text-danger">
+                            Nombre es requerido.
+                        </div>
                     </div>
-                    
                     <div class="mb-3">
                         <label for="cedula" class="form-label">Cédula</label>
                         <input type="number" 
@@ -32,64 +32,72 @@
                             <div *ngIf="usuarioForm.get('cedula').errors?.['pattern']">Debe tener exactamente 10 dígitos.</div>
                             <div *ngIf="usuarioForm.get('cedula').errors?.['cedulaEcuatoriana']">Cédula no válida.</div>
                         </div>
+                    </div>
+                    
+                    <div class="mb-3" *ngIf="usuario.rol === 'paciente'">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="number" 
+                              class="form-control" 
+                              id="edad" 
+                              formControlName="edad" 
+                              placeholder="Ingrese su edad">
+                    </div>
+
+                    <div class="mb-3" *ngIf="usuario.rol === 'medico'">
+                        <label for="especialidad" class="form-label">Especialidad</label>
+                        <input type="text" 
+                                class="form-control" 
+                                id="especialidad" 
+                                formControlName="especialidad" 
+                                placeholder="Especialidad">
+                    </div>
+
+
+                    <div *ngIf="usuario.rol === 'medico'" class="mb-3">
+                      <label for="direccionConsultorio" 
+                              class="form-label">Dirección del Consultorio
+                      </label>
+                            <input type="text" 
+                            class="form-control" 
+                            id="direccionConsultorio" 
+                            formControlName="direccionConsultorio" 
+                            placeholder="Escriba la dirección de su consultorio">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" 
+                                for="telefono">Teléfono
+                        </label>
+                        <input type="number" 
+                                class="form-control" 
+                                id="telefono" 
+                                formControlName="telefono" 
+                                placeholder="Celular">
+                        <div *ngIf="usuarioForm.get('telefono').invalid && usuarioForm.get('telefono').touched" class="text-danger">
+                        campo requerido.
+                        </div>
+                    </div>
+
+                    <div *ngIf="userRol === 'medico'" class="mb-3">
+                      <label for="informacionProfesional" 
+                            class="form-label">Títulos
+                      </label>
+                      <div class="input-group mb-3">
+                        <input type="text" 
+                              class="form-control" 
+                              placeholder="Añadir profesión"
+                              [(ngModel)]="profesionInput" 
+                              [ngModelOptions]="{standalone: true}">
+                              <button class="btn btn-outline-secondary boton-anadir" type="button" (click)="agregarProfesion()">Añadir</button>
                       </div>
+                      <ul class="list-group">
+                        <li *ngFor="let profesion of usuarioForm.get('informacionProfesional').value; let i = index"
+                            class="list-group-item d-flex justify-content-between align-items-center profesion-item">
+                          {{ profesion }}
+                          <button type="button" class="btn1 btn btn-danger btn-sm" (click)="eliminarProfesion(i)"><i class="bi bi-x-circle-fill"></i></button>
+                        </li>
+                      </ul>
                     </div>
-
-                <div class="mb-3" *ngIf="usuario.rol === 'medico'">
-                    <label for="especialidad" class="form-label">Especialidad</label>
-                    <input type="text" 
-                            class="form-control" 
-                            id="especialidad" 
-                            formControlName="especialidad" 
-                            placeholder="Especialidad">
-                </div>
-
-
-                  <div class="mb-3">
-                    <label for="direccionConsultorio" 
-                            class="form-label">Dirección del Consultorio
-                    </label>
-                           <input type="text" 
-                           class="form-control" 
-                           id="direccionConsultorio" 
-                           formControlName="direccionConsultorio" 
-                           placeholder="Escriba la dirección de su consultorio">
-                  </div>
-
-                <div class="mb-3">
-                    <label class="form-label" 
-                            for="telefono">Teléfono
-                    </label>
-                    <input type="number" 
-                            class="form-control" 
-                            id="telefono" 
-                            formControlName="telefono" 
-                            placeholder="Celular">
-                    <div *ngIf="usuarioForm.get('telefono').invalid && usuarioForm.get('telefono').touched" class="text-danger">
-                    campo requerido.
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                  <label for="informacionProfesional" 
-                         class="form-label">Títulos
-                  </label>
-                  <div class="input-group mb-3">
-                    <input type="text" 
-                           class="form-control" 
-                           placeholder="Añadir profesión"
-                           [(ngModel)]="profesionInput" 
-                           [ngModelOptions]="{standalone: true}">
-                           <button class="btn btn-outline-secondary boton-anadir" type="button" (click)="agregarProfesion()">Añadir</button>
-                  </div>
-                  <ul class="list-group">
-                    <li *ngFor="let profesion of usuarioForm.get('informacionProfesional').value; let i = index"
-                        class="list-group-item d-flex justify-content-between align-items-center profesion-item">
-                      {{ profesion }}
-                      <button type="button" class="btn1 btn btn-danger btn-sm" (click)="eliminarProfesion(i)"><i class="bi bi-x-circle-fill"></i></button>
-                    </li>
-                  </ul>
-                </div>
 
                 <div class="button d-flex">
                     <button type="submit" class="boton-actualizar btn btn-outline-primary" [disabled]="usuarioForm.invalid">Actualizar</button>
