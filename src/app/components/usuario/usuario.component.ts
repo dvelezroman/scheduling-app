@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
 import { UsuarioModel } from '../models/usuario.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { cedulaEcuatorianaValidator } from '../paciente/cedula-ecuador-validador';
 
 @Component({
   selector: 'app-usuario',
@@ -24,8 +25,8 @@ constructor(private usuarioServicios : UsuarioServicesService,
     this.usuarioForm = this.fb.group({
       nombres: ['', Validators.required],
       especialidad: [''],
-      cedula: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      cedula: ['', [Validators.required, Validators.pattern(/^\d{10}$/), cedulaEcuatorianaValidator()]],
+      telefono: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       direccionConsultorio: [''],
       informacionProfesional: ['']
     });
@@ -101,5 +102,37 @@ constructor(private usuarioServicios : UsuarioServicesService,
       cancelar() {
         this.ruta.navigate(['/datos-usuario']);
       }
+
+
+      cedulaEcuatorianaValidator(): ValidatorFn {
+        return (control: AbstractControl): { [key: string]: any } | null => {
+          const cedula = control.value?.toString();
+          if (!cedula) return null; 
+    
+          const coeficientes = [2, 1, 2, 1, 2, 1, 2, 1, 2];
+          const provincia = parseInt(cedula.substring(0, 2), 10);
+    
+          if (cedula.length !== 10 || provincia < 0 || provincia > 24) {
+            return { 'cedulaEcuatoriana': true };
+          }
+    
+          let suma = 0;
+          for (let i = 0; i < coeficientes.length; i++) {
+            let resultado = parseInt(cedula.charAt(i), 10) * coeficientes[i];
+            if (resultado >= 10) {
+              resultado -= 9;
+            }
+            suma += resultado;
+          }
+          const digitoVerificador = (10 - (suma % 10)) % 10;
+    
+          if (parseInt(cedula.charAt(9), 10) !== digitoVerificador) {
+            return { 'cedulaEcuatoriana': true };
+          }
+    
+          return null;
+        };
+      }
+      
   }
 

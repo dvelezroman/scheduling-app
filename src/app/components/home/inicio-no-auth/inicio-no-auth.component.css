@@ -9,7 +9,6 @@
     justify-content: end;
     align-items: center;
     background-color: #ffffff;
-
 }
 
 /* Logo pagina */
@@ -55,13 +54,39 @@
     padding: 50px 50px 20px 40px;
   }
 
-  
-  
   .hero{
     min-height: 450px;
     text-align: center;
     background-color: #fffefe;
     position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    background-image: url('/assets/fondo-portada2.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: 1;
+  }
+  
+  .hero-principal {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding: 20px;
+  }
+  
+  .hero h1,
+  .hero p {
+    text-align: left;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0,);
   }
 
   .hero-principal{
@@ -76,7 +101,6 @@
   }
 
    .hero-principal h1{
-    
     margin-left: 29px;
     padding: 30px 0px;
     font-size: 6.5rem;
@@ -105,7 +129,6 @@
   }
 
   .hero-principal .grafico1{
-
     position: absolute;
     top: 31%;
     left:70%;
@@ -113,24 +136,22 @@
     right: 5%;
     background-image: transparent;
   }
+
   .grafico1 img{
     width: 380px;
     border-radius: 50%;
-
   }
   
   .sobre-app{
     height: 300px;
     padding: 200px;
-
   }
+
   .sobre-app .contenedor{
     max-width: 600px;
     text-align: center;
-
-
-
   }
+
   .seccion-titulo{
     font-size: 2rem;
     padding: 15px 0px;
@@ -138,11 +159,11 @@
     color: #c9cbd0;
     text-align: center;
   }
+
   .seccion-texto{
     font-size: 1rem;
     padding-top: 15px;
     padding-bottom: 15px;
-
     font-weight: 400;
     color: #ededed;
     text-align: center;
@@ -154,7 +175,6 @@
   }
   
   .seccion-clara{
-
     background-color: rgb(255, 255, 255);
   }
 
@@ -167,15 +187,14 @@
     text-align: center;
     padding: 3rem;
     margin-bottom: 50px;
-  
   }
+
   .sobre-app .contenedor{
     max-width: 600px;
     text-align: center;
     margin-top: 50px; 
-
-
   }
+
   .sobre-app .seccion-titulo{
     font-size: 2rem;
     margin-top: 30px; 
@@ -215,7 +234,6 @@
     background-color: #ffffff;
     text-align: center;
     flex-wrap: wrap;
-
   }
 
   .experiencia .contenedor-text{
@@ -224,14 +242,10 @@
     border-radius: 15px;
     margin-right: -10px;
     margin-left: -10px;
-
     border-radius: 45px 0px;
-
-
-    /*background: linear-gradient(0deg, rgb(156, 204, 223) 18%, rgb(180, 218, 231) 79%);*/
   }
+
   .contenedor-text img{
-    
     width: 270px;
     display: none;
     align-items: flex-start;
@@ -254,62 +268,51 @@
   .experiencia .text-center{
     display: flex;
     justify-content: center;
-    margin: 30px;
-    margin-bottom: 40px;
+    padding: 80px 0px 80px 0px;
+    margin-top: 30px;
+    margin-bottom: 50px;
     border-radius: 15px;
-    background-color: rgba(93, 93, 93, 0.26);
-
+    background-color: rgba(165, 165, 165, 0.349);
   }
 
   .experiencia .row{
+    display: flex;
+    justify-content: space-around;
     margin-top: 50px;
     margin-bottom: 55px;
-    width: 100%;
+    width: 90%;
     min-height: 400px auto;
-    padding-top: 10px;
+    padding-top: 0px;
     transition: all .3s ease;
     border-radius: 15px;
-
   }
-
+  
   .experiencia .row .columna{
     height: 220px;
+    width: 40%;
     cursor: pointer;
     padding-top: 49px;
-
-  }
- 
-  
-  .experiencia .row .columna .sub-columna:hover{
-    transform: scale(1.1);
-  }
- 
-  .experiencia-titulo{
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin: 10px 0;
   }
 
   .columna i{
-    color: #d8dadc;
-    background-clip: text;
-    font-size: 2.6rem;
-    border-radius: 50%;
+    color: #000000;
+    font-size: 2.2rem;
   }
 
   .columna {
-    padding: 20px;
+    padding: 10px ;
     border-radius: 8px;
     transition: background-color 0.3s;
   }
 
   .experiencia p{
-    
-    color: #3b3c3c;
+    color: #000000;
   }
+
   .columna h3{
-    color: #d8dadc;
+    color: #272727;
   }
+
   .columna p {
     display: none;
     padding: 5px;
@@ -322,7 +325,6 @@
     font-size: 1.3rem;
     display: block;
     opacity: 1;
-
   }
 
   .columna:hover i {
@@ -338,6 +340,7 @@
   .columna:hover {
     cursor: pointer;
   }
+  
 
 /*SECCION BENEFICIOS*//*SECCION BENEFICIOS*//*SECCION BENEFICIOS*//*SECCION BENEFICIOS*/
 
@@ -349,8 +352,9 @@
   background-color: #ffffff;
   align-items: center;
 }
+
 .beneficios .contenedor-text{
-  padding: 5px;
+  padding: 50px 0px 5px 0px;
   margin-right: -18px;
   border-radius:0px 45px;
 }
@@ -370,32 +374,36 @@
   border-radius: 15px;
   display: flex;
   justify-content: center;
-  background-color: rgba(93, 93, 93, 0.26);
-
-
+  
 }
 
 .beneficios .row{
-  padding: 25px 25px 25px 25px;
-  height: auto;
-  width: 55%;
-  border-radius: 10px;
-
-}
-.beneficios .row .columna{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 380px;
-  margin-bottom: 25px;
+  align-items: center;
+  padding: 25px 25px 25px 25px;
+  height: auto;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.beneficios .row .columna{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+  
+  margin: 45px 0px 45px 0px;
   cursor: default;
   border-radius: 15px;
   padding-left: 6px;
-  border: 1px solid grey;
-background-color: white;
+  background-color: white;
 }
+
 .beneficios .row .columna h3{
-  font-size: 2rem; 
+  font-size: 1.6rem; 
   margin-bottom: 23px;
   font-weight: 500;
   color: black;
@@ -406,12 +414,11 @@ background-color: white;
   flex-direction: column;
   list-style: none;
   cursor: default;
- 
-
 }
+
 .beneficios .row .columna ul li{
   margin: 5px;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-align: center;
   margin-right: 20px;
 }
@@ -425,19 +432,19 @@ background-color: white;
 color: white;
   padding-top: 40px
 }
+
 .footer .row {
  padding: 25px;
  display: flex;
  justify-content: center;
-
-
 }
+
 .footer .row2{
  padding: 25px;
  display: flex;
  justify-content: center;
-
 }
+
 .footer .row .grupo1{
 
   display: flex;
@@ -445,8 +452,8 @@ color: white;
   align-items: center;
   justify-content: center;
   text-align: left;
-
 }
+
 .footer .row .grupo2{
   display: flex;
   flex-direction: column;
@@ -459,6 +466,7 @@ color: white;
   text-align: left;
   
 }
+
 .footer .grupo2 li{
   margin: 5px;
   font-size: 1.1rem;
@@ -485,6 +493,7 @@ color: white;
   
  
 }
+
 .footer .list-unstyled1{
 
   width: 350px;
@@ -492,6 +501,7 @@ color: white;
   list-style: none;
  
 }
+
 .row .grupo2 .h5{
   margin-bottom: 35px;
 }
@@ -515,10 +525,226 @@ color: white;
 
 }
 
+.benefits {
+  display: flex;
+  justify-content: space-around;
+  background: #eef;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.benefit {
+  text-align: center;
+  width: 30%;
+}
+
+.benefit i {
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+
+/* Llamadas a la Acción (CTA) Claras */
+.cta {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cta-button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  background: #0056b3;
+}
 
 
 
-  /*MEDIAS QUERY*//*MEDIAS QUERY*//*MEDIAS QUERY*//*MEDIAS QUERY*/
+/*MEDIAS QUERY*//*MEDIAS QUERY*//*MEDIAS QUERY*//*MEDIAS QUERY*/
+
+@media (max-width: 999px) {
+  .columna {
+    flex: 1 1 80%;
+  }
+
+  section h1{
+    margin-left: 0px;
+    font-size: 4.5rem;
+    margin-right: 15%;
+  }
+  .hero-principal{
+    height: 590px;
+    padding: 2rem;
+    text-align: left;
+
+    border-radius: 0px 45px;
+  }
+  .hero-principal p {
+    margin-top: -14px;
+    margin-right: 20%;
+    text-align: left;
+    margin-left: 34px;
+    font-size: 1.0rem;
+  }
+  .contenedor-text{
+    margin-top: 0px;
+  }
+
+  .experiencia .text-center{
+    margin-left: 0%;
+  }
+
+  
+  .experiencia h3 {
+    font-size: 1.5rem; 
+    margin-bottom: 23px;
+  }
+
+  .experiencia i {
+    font-size: 2.6rem; 
+    margin-bottom: 23px;
+  }
+  
+  .experiencia .row .columna{
+    height: 200px;
+
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .columna:hover p {
+    display: block;
+    opacity: 1;
+    color: #454343;
+    font-size: 15px;
+  }
+
+  .beneficios .row{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    border-radius: 10px;
+  }
+  .beneficios .row .columna{
+    margin-bottom: 25px;
+    width: 50%;
+    padding-left: 6px;
+
+  }
+  .beneficios .row .columna h3{
+    font-size: 1.8rem; 
+    margin-bottom: 23px;
+    font-weight: 500;
+  }
+  
+  .beneficios .row .columna ul{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    cursor: default;
+  
+  }
+  .beneficios .row .columna ul li{
+    margin: 5px;
+    font-size: 1rem;
+    text-align: center;
+    margin-right: 20px;
+  }
+}
+
+
+@media (max-width: 1000px) {
+
+  .columna {
+    flex: 1 1 100%;
+  }
+
+  section h1{
+    margin-left: 0px;
+    font-size: 4.9rem;
+    margin-right: 21%;
+  }
+  .hero-principal .grafico1{
+
+   display: none;
+  }
+
+  
+  .hero-principal{
+    height: 550px;
+    padding: 3rem;
+    text-align: left;
+    border-radius: 0px 45px;
+  }
+  .hero-principal p {
+    margin-right: 17%;
+    text-align: left;
+    margin-left: 34px;
+    font-size: 1.1rem;
+  }
+
+  .experiencia .text-center{
+    margin-left: 0%;
+    margin-right: -15px;
+
+  }
+  .experiencia h3 {
+    font-size: 1.2rem; 
+    margin-bottom: 23px;
+  }
+  .experiencia i {
+    font-size: 2.3rem; 
+    margin-bottom: 23px;
+  }
+  .experiencia .row .columna{
+    height: 200px;
+    width: 50%;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .columna:hover p {
+    display: block;
+    opacity: 1;
+    color: #fcfcfc;
+    font-size: 1rem;
+  }
+
+.beneficios .row{
+  padding: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+  
+  .beneficios .row .columna ul{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    cursor: default;
+  
+  }
+  .beneficios .row .columna ul li{
+
+    font-size: 1.1rem;
+    text-align: center;
+    margin-right: 20px;
+  }
+  
+}
+
 
   @media (min-width: 1299px){
 
@@ -530,12 +756,15 @@ color: white;
       padding: 50px 50px 20px 40px;
       background-color: #ffffff;
     }
+
     .hero {
       height: auto;
     }
+
     .hero-principal h1 {
       font-size: 5.9rem;
     }
+
     .hero-principal p {
       margin-right: 30%;
       text-align: left;
@@ -543,105 +772,218 @@ color: white;
       font-size: 1.5rem;
     }
 
-    .columna {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-bottom: 50px;
-      transition: all .4s ease-in-out;
+    .experiencia .text-center{
+      margin-left: 0%;
+      margin-right: -8px;
+
+    }
+
+    /*PRIMERA IMAGEN DE LA SECCION EXPERIENCIA*/
+
+    .columna-imagen1 {
       position: relative;
+      padding: 20px;
+      border-radius: 20px;
       overflow: hidden;
+      color: white;
+      margin:20px;
     }
-    .experiencia .row .columna .sub-columna1 {
-      height: 130px;
-      width: 330px;
-      padding-top: 20px;
-      transition: margin-right 1.5s;
-      background-color: #1766b6;
-      border-radius: 15px;
+
+    
+    .columna-imagen1::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/assets/medico-recetando.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      z-index: 1;
+      transition: opacity 0.4s ease-in;
+    }
+    
+    .columna-imagen1:hover::before {
+      opacity: 0.2; 
+    }
+    
+    .columna-imagen1 .sub-columna,
+    .columna-imagen1 .parrafo {
+      position: relative;
       z-index: 2;
-    }
-    .experiencia .row .columna .sub-columna2 {
-      height: 130px;
-      width: 330px;
-      padding-top: 20px;
-      transition: margin-left 1.5s;
-      background-color: #269dc2;
-      border-radius: 15px;
-      z-index: 2;
-    }
-    .experiencia .contenedor-text img {
-      width: 270px;
-      display: none; 
-      align-items: flex-start;
-      margin-left: 50px;
+      color: white;
       opacity: 0; 
-      transition: opacity .4s; 
+      transition: opacity 0.4s ease-in; 
     }
-    .columna:hover .contenedor-text img {
-      display: block; 
-      opacity: 1; 
+    
+    .columna-imagen1:hover .sub-columna,
+    .columna-imagen1:hover .parrafo {
+      opacity: 1;
     }
-    .experiencia .row .columna:hover .sub-columna1 {
-      margin-right: 53%;
-      transition: margin-right .4s;
+    /*SEGUNDA IMAGEN DE LA SECCION EXPERIENCIA*/
+   
+    .columna-imagen2 {
+      position: relative;
+      padding: 20px;
+      border-radius: 20px;
+      overflow: hidden;
+      color: white;
+      margin:20px;
     }
-    .experiencia .row .columna:hover .sub-columna2 {
-      margin-left: 50%;
-      transition: margin-left .4s;
-    }
-    .columna .parrafo-right .parrafo {
-      display: none;
+    
+    .columna-imagen2::before {
+      content: '';
       position: absolute;
-      font-size: 1.7rem;
-      top: 36%;
-      left: 47%;
-      padding: 5px;
-      text-align: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 2s, visibility 1.7s;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/assets/agendar-citas.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      z-index: 1;
+      transition: opacity 0.4s ease-in;
     }
-    .columna .parrafo-left .parrafo {
-      display: none;
+    
+    .columna-imagen2:hover::before {
+      opacity: 0.2;
+    }
+    
+    .columna-imagen2 .sub-columna,
+    .columna-imagen2 .parrafo {
+      position: relative;
+      z-index: 2; 
+      color: white; 
+      opacity: 0;
+      transition: opacity 0.4s ease-in;
+    }
+
+    .columna-imagen2:hover .sub-columna,
+    .columna-imagen2:hover .parrafo {
+      opacity: 1;
+    }
+
+
+    /*TERCERA IMAGEN DE LA SECCION EXPERIENCIA*/
+
+    .columna-imagen3 {
+      position: relative;
+      padding: 20px;
+      border-radius: 20px;
+      overflow: hidden;
+      color: white;
+      margin:20px;
+    }
+    
+    .columna-imagen3::before {
+      content: '';
       position: absolute;
-      font-size: 1.7rem;
-      top: 36%;
-      right: 50%;
-      padding: 5px;
-      text-align: center;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/assets/diagnostico-digital.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      z-index: 1;
+      transition: opacity 0.4s ease-in;
+    }
+    
+    .columna-imagen3:hover::before {
+      opacity: 0.2;
+    }
+    
+    .columna-imagen3 .sub-columna,
+    .columna-imagen3 .parrafo {
+      position: relative;
+      z-index: 2; 
+      color: white; 
       opacity: 0;
-      visibility: hidden;
-      transition: opacity 2s, visibility 1.7s;
+      transition: opacity 0.4s ease-in;
     }
-    .experiencia .columna h3 {
+
+    .columna-imagen3:hover .sub-columna,
+    .columna-imagen3:hover .parrafo {
+      opacity: 1;
+    }
+
+    /*CUARTA IMAGEN DE LA SECCION EXPERIENCIA*/
+
+
+    .columna-imagen4 {
+      position: relative;
+      padding: 20px;
+      border-radius: 20px;
+      overflow: hidden;
       color: white;
+      margin:20px;
     }
-    .experiencia .columna i {
-      color: white;
+    
+    .columna-imagen4::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/assets/seguridad-datos.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      z-index: 1;
+      transition: opacity 0.4s ease-in;
     }
-    .expericendia:hover h3 {
-      color: white;
+    
+    .columna-imagen4:hover::before {
+      opacity: 0.2;
     }
-    .columna:hover i {
-      display: block;
-      color: white;
+    
+    .columna-imagen4 .sub-columna,
+    .columna-imagen4 .parrafo {
+      position: relative;
+      z-index: 2; 
+      color: white; 
+      opacity: 0;
+      transition: opacity 0.4s ease-in;
     }
-    .columna:hover {
+
+    .columna-imagen4:hover .sub-columna,
+    .columna-imagen4:hover .parrafo {
+      opacity: 1;
+    }
+
+
+     .experiencia .row .columna{
+      height: 200px;
+      transition: all .3s ease-in-out;
       cursor: pointer;
     }
-    .columna:hover .parrafo-right .parrafo {
+   
+    .columna:hover h3{
+      color: #000000;
+    }
+
+    .columna:hover p {
       display: block;
       opacity: 1;
-      visibility: visible;
-      transition: opacity 1.5s;
+      color: #000000;
+      font-size: 1.1rem;
+      z-index: 1;
     }
-    .columna:hover .parrafo-left .parrafo {
-      display: block;
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 1.5s;
+
+    .columna:hover .columna-imagen1{
+      display: none;
     }
+    
+
 }
 
 
@@ -657,6 +999,7 @@ color: white;
       margin-right: 15%;
       background-color: green;
     }
+
     .hero-principal{
       height: 550px;
       padding: 3rem;
@@ -713,172 +1056,8 @@ color: white;
     }
   }
 
-  @media (max-width: 1000px) {
-
-    .columna {
-      flex: 1 1 100%;
-    }
-
-    section h1{
-      margin-left: 0px;
-      font-size: 4.9rem;
-      margin-right: 21%;
-    }
-    .hero-principal .grafico1{
-
-     display: none;
-    }
-
-    
-    .hero-principal{
-      height: 550px;
-      padding: 3rem;
-      text-align: left;
-      border-radius: 0px 45px;
-    }
-    .hero-principal p {
-      margin-right: 17%;
-      text-align: left;
-      margin-left: 34px;
-      font-size: 1.1rem;
-    }
-
-    .experiencia .text-center{
-      margin-left: 0%;
-      margin-right: -15px;
-
-    }
-    .experiencia h3 {
-      font-size: 1.5rem; 
-      margin-bottom: 23px;
-    }
-    .experiencia i {
-      font-size: 2.7rem; 
-      margin-bottom: 23px;
-    }
-    .experiencia .row .columna{
-      height: 200px;
-      transition: all .3s ease-in-out;
-      cursor: pointer;
-    }
-    .columna:hover p {
-      display: block;
-      opacity: 1;
-      color: #fcfcfc;
-      font-size: 1rem;
-    }
-    .beneficio .row{
-      width: 70%;
-    }
-    .beneficios .row .columna{
-      margin-bottom: 25px;
-      background-color: #69bee083;
-      padding-left: 6px;
-
-    }
-    .beneficios .row .columna h3{
-      font-size: 1.9rem; 
-      margin-bottom: 23px;
-      font-weight: 500;
-    }
-    
-    .beneficios .row .columna ul{
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-      cursor: default;
-    
-    }
-    .beneficios .row .columna ul li{
-      margin: 5px;
-      font-size: 1.2rem;
-      text-align: center;
-      margin-right: 20px;
-    }
-    
-  }
-
-  @media (max-width: 999px) {
-    .columna {
-      flex: 1 1 80%;
-    }
-
-    section h1{
-      margin-left: 0px;
-      font-size: 4.5rem;
-      margin-right: 15%;
-    }
-    .hero-principal{
-      height: 590px;
-      padding: 2rem;
-      text-align: left;
-
-      border-radius: 0px 45px;
-    }
-    .hero-principal p {
-      margin-top: -14px;
-      margin-right: 20%;
-      text-align: left;
-      margin-left: 34px;
-      font-size: 1.0rem;
-    }
-    .contenedor-text{
-      margin-top: 0px;
-    }
-
-    .experiencia .text-center{
-      margin-left: 0%;
-    }
-
-    
-    .experiencia h3 {
-      font-size: 1.5rem; 
-      margin-bottom: 23px;
-    }
-
-    .experiencia i {
-      font-size: 2.6rem; 
-      margin-bottom: 23px;
-    }
-    
-    .experiencia .row .columna{
-      height: 200px;
-      transition: all .3s ease-in-out;
-      cursor: pointer;
-    }
-
-    .columna:hover p {
-      display: block;
-      opacity: 1;
-      color: #454343;
-      font-size: 15px;
-    }
-    .beneficios .row .columna{
-      margin-bottom: 25px;
-      background-color: #3c52f53f;
-      padding-left: 6px;
-
-    }
-    .beneficios .row .columna h3{
-      font-size: 1.8rem; 
-      margin-bottom: 23px;
-      font-weight: 500;
-    }
-    
-    .beneficios .row .columna ul{
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-      cursor: default;
-    
-    }
-    .beneficios .row .columna ul li{
-      margin: 5px;
-      font-size: 1rem;
-      text-align: center;
-      margin-right: 20px;
-    }
-  }
+  
+  
 
   @media (max-width: 768px) {
     .btn1{
@@ -917,6 +1096,7 @@ color: white;
     }
     .experiencia .row .columna{
       height: 150px;
+      width: 50%;
       transition: all .3s ease-in-out;
       cursor: pointer;
     }

@@ -1,7 +1,7 @@
 <div class="contenedorLogin container-fluid d-flex justify-content-between">
-    <div class="d-flex align-items-center">
+    <!--<div class="d-flex align-items-center">
       <img src="assets/medi-app.png" alt="Logo Icono" class="logo-pagina">
-    </div>  
+    </div> --> 
     <router-outlet/>
 
     <div class="d-flex align-items-center">
@@ -36,43 +36,44 @@
         
             <div class="row" >
 
-                <div class="columna col-12">
-                  <div class="sub-columna1">
+                <div class="columna columna-imagen1 columna-imagen-mover col-6">
+                  <div id="text-content" class="sub-columna">
                     <h3 class="experiencia-titulo" >Registro de Pacientes</h3>
-                    <i class="anadir bi bi-person-add" ></i>
+                    <i class="anadir bi bi-person-add"></i>
                   </div>
-                  <div class="parrafo-right">
-                    <p class="parrafo">Registro centralizado y accesible de información de pacientes.</p>
+                  <div class="parrafo">
+                    <p>Registro centralizado y accesible de información de pacientes.</p>
                   </div>
                 </div>
+               
 
-                <div class="columna col-12">
-                  <div class="sub-columna2">
+                <div class="columna columna-imagen2 columna-imagen-mover col-6">
+                  <div id="text-content" class="sub-columna">
                     <h3 class="experiencia-titulo" >Gestión de Citas</h3>
                     <i class="bi bi-calendar-check" ></i>
                   </div>
-                  <div class="parrafo-left">
-                    <p class="parrafo">Programación y gestión eficiente de citas médicas.</p>
+                  <div class="parrafo">
+                    <p>Programación y gestión eficiente de citas médicas.</p>
                   </div>
                 </div>
 
-                <div class="columna col-12">
-                  <div class="sub-columna1">
+                <div class="columna columna-imagen3 columna col-6">
+                  <div id="text-content" class="sub-columna">
                     <h3 class="experiencia-titulo" >Diagnóstico en Línea</h3>
                     <i class="bi bi-clipboard-check" ></i>
                   </div>
-                  <div class="parrafo-right">
-                    <p class="parrafo">Recepción de diagnósticos de manera rápida y segura.</p>
+                  <div class="parrafo">
+                    <p>Recepción de diagnósticos de manera rápida y segura.</p>
                   </div>
                 </div>
 
-                <div class="columna col-12">
-                  <div class="sub-columna2">
+                <div class="columna columna-imagen4 col-6">
+                  <div id="text-content" class="sub-columna">
                     <h3 class="experiencia-titulo" >Seguridad y Privacidad</h3>
                     <i class="bi bi-shield-check" ></i>
                   </div>
-                  <div class="parrafo-left">
-                    <p class="parrafo">Protección robusta de toda la información médica y personal.</p>
+                  <div class="parrafo">
+                    <p>Protección robusta de toda la información médica y personal.</p>
                   </div>
                 </div>
 
@@ -87,8 +88,8 @@
       <div class="contenedor-text">
         <div class="text-center">
               <div class="row">
-                  <div class="columna col-12 col-md-12 col-lg-12">
 
+                  <div class="columna col-12 col-md-12">
                       <h3>Para Médicos</h3>
                       <ul>
                           <li>Registro y seguimiento de pacientes eficiente.</li>
@@ -97,7 +98,7 @@
                       </ul>
                   </div>
       
-                  <div class="columna col-12">
+                  <div class="columna col-12 col-md-12">
                       <h3>Para Pacientes</h3>
                       <ul>
                           <li>Obtención rápida de citas.</li>
@@ -111,6 +112,17 @@
       </div>
         
     </div>
+
+
+
+
+    <section class="cta">
+      <button class="cta-button">Regístrate Ahora</button>
+    </section>
+
+  
+    <!-- Integración con Redes Sociales -->
+   
 
     
  <!-- FOOTER-->
@@ -147,6 +159,8 @@
       </div>
     </div>
   </div>
+
+
 </footer>
 
 

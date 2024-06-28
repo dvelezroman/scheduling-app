@@ -16,7 +16,7 @@
 
 <!--SECCION DE LAS FUNCIONES MEDICO O ADMINISTRADOR-->
 
-<section  *ngIf="userRol === 'medico' || userRol === 'administrador'"  class="experiencia seccion-clara">
+<section  *ngIf="userRol === 'medico'"  class="experiencia seccion-clara">
   <div class="container text-center">
       <div  class="row">
           <div  class="columna col-12 col-md-4" routerLink="/pacientes/nuevo">
@@ -41,7 +41,7 @@
 
 <!--SECCION DE LAS FUNCIONES PACIENTE-->
 
-<section *ngIf="userRol === 'paciente' || userRol === 'administrador'" class="experiencia seccion-clara">
+<section *ngIf="userRol === 'paciente'" class="experiencia seccion-clara">
   <div class="container.paciente text-center">
       <div  class="row">
           

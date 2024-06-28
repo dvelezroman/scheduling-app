@@ -21,13 +21,16 @@
                     
                     <div class="mb-3">
                         <label for="cedula" class="form-label">Cédula</label>
-                        <input type="text" 
+                        <input type="number" 
                         class="form-control" 
                         id="cedula" 
                         formControlName="cedula" 
                         placeholder="Ingrese su cédula">
-                        <div *ngIf="usuarioForm.get('cedula').invalid && usuarioForm.get('cedula').touched" class="text-danger">
+                        <div *ngIf="usuarioForm.get('cedula').invalid && usuarioForm.get('cedula').touched" class="validador text-danger">
                           Cédula es requerida.
+                            <div *ngIf="usuarioForm.get('cedula').errors?.['required']">Cédula es requerida.</div>
+                            <div *ngIf="usuarioForm.get('cedula').errors?.['pattern']">Debe tener exactamente 10 dígitos.</div>
+                            <div *ngIf="usuarioForm.get('cedula').errors?.['cedulaEcuatoriana']">Cédula no válida.</div>
                         </div>
                       </div>
                     </div>
@@ -57,7 +60,7 @@
                     <label class="form-label" 
                             for="telefono">Teléfono
                     </label>
-                    <input type="text" 
+                    <input type="number" 
                             class="form-control" 
                             id="telefono" 
                             formControlName="telefono" 
@@ -81,9 +84,9 @@
                   </div>
                   <ul class="list-group">
                     <li *ngFor="let profesion of usuarioForm.get('informacionProfesional').value; let i = index"
-                        class="list-group-item d-flex justify-content-between align-items-center">
+                        class="list-group-item d-flex justify-content-between align-items-center profesion-item">
                       {{ profesion }}
-                      <button type="button" class="btn btn-danger btn-sm" (click)="eliminarProfesion(i)">Eliminar</button>
+                      <button type="button" class="btn1 btn btn-danger btn-sm" (click)="eliminarProfesion(i)"><i class="bi bi-x-circle-fill"></i></button>
                     </li>
                   </ul>
                 </div>
