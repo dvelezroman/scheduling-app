@@ -14,18 +14,21 @@
                                 class="form-control" 
                                 id="nombres" 
                                 formControlName="nombres" 
-                                placeholder="Escriba sus nombres">
+                                placeholder="Escriba sus nombres"
+                                (input)="onInput('nombres')">
                         <div *ngIf="usuarioForm.get('nombres').invalid && usuarioForm.get('nombres').touched" class="text-danger">
                             Nombre es requerido.
                         </div>
                     </div>
+
                     <div class="mb-3">
                         <label for="cedula" class="form-label">Cédula</label>
                         <input type="number" 
                         class="form-control" 
                         id="cedula" 
                         formControlName="cedula" 
-                        placeholder="Ingrese su cédula">
+                        placeholder="Ingrese su cédula"
+                        (input)="onInput('cedula')">
                         <div *ngIf="usuarioForm.get('cedula').invalid && usuarioForm.get('cedula').touched" class="validador text-danger">
                           Cédula es requerida.
                             <div *ngIf="usuarioForm.get('cedula').errors?.['required']">Cédula es requerida.</div>
@@ -34,13 +37,19 @@
                         </div>
                     </div>
                     
-                    <div class="mb-3" *ngIf="usuario.rol === 'paciente'">
+                    <div class="mb-3">
                         <label for="edad" class="form-label">Edad</label>
                         <input type="number" 
                               class="form-control" 
                               id="edad" 
                               formControlName="edad" 
-                              placeholder="Ingrese su edad">
+                              placeholder="Ingrese su edad"
+                              min="1" 
+                              max="99">
+                              <div *ngIf="usuarioForm.controls['edad'].invalid && (usuarioForm.controls['edad'].dirty || usuarioForm.controls['edad'].touched)">
+                                  <small *ngIf="usuarioForm.controls['edad'].errors?.['min']" class="text-danger">La edad mínima es 1.</small>
+                                  <small *ngIf="usuarioForm.controls['edad'].errors?.['max']" class="text-danger">La edad máxima es 99.</small>
+                              </div>
                     </div>
 
                     <div class="mb-3" *ngIf="usuario.rol === 'medico'">
@@ -49,7 +58,8 @@
                                 class="form-control" 
                                 id="especialidad" 
                                 formControlName="especialidad" 
-                                placeholder="Especialidad">
+                                placeholder="Especialidad"
+                                (input)="onInput('especialidad')">
                     </div>
 
 
@@ -72,11 +82,14 @@
                                 class="form-control" 
                                 id="telefono" 
                                 formControlName="telefono" 
-                                placeholder="Celular">
-                        <div *ngIf="usuarioForm.get('telefono').invalid && usuarioForm.get('telefono').touched" class="text-danger">
-                        campo requerido.
-                        </div>
+                                placeholder="Celular"
+                                (input)="onInput('telefono')">
+                                <div *ngIf="usuarioForm.get('telefono').invalid && usuarioForm.get('telefono').touched" class="text-danger">
+                                    <div *ngIf="usuarioForm.get('telefono').errors?.['required']">Campo obligatorio.</div>
+                                    <div *ngIf="usuarioForm.get('telefono').errors?.['pattern']">Campo debe contener 9 dígitos.</div>
+                                </div>
                     </div>
+
 
                     <div *ngIf="userRol === 'medico'" class="mb-3">
                       <label for="informacionProfesional" 

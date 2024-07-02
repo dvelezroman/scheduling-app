@@ -38,7 +38,7 @@ ngOnInit(): void {
   
   this.usuarioServicio.getUsuarioActual().subscribe(usuario => {
     this.usuarioActual = usuario;
-    console.log(usuario)
+    //console.log(usuario)
   });
   let id = this.parametro.snapshot.paramMap.get('id');
       if(id){
@@ -75,7 +75,13 @@ cancelarCita(paciente:PacienteModel) {
   }).then((result) => {
     
     if (result.isConfirmed) {
+      const turnoActual = paciente.turno;
       paciente.turno = null;
+
+      if (paciente.turnoParaMostrar) {
+        paciente.turnoParaMostrar = paciente.turnoParaMostrar.filter(t => t.fechaHora !== turnoActual);
+      }
+      
       this.servicio.refreshPaciente(paciente).subscribe();
        
       Swal.fire({

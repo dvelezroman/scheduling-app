@@ -19,6 +19,7 @@ import { MedicosDatosComponent } from './components/usuario/medicos-datos/medico
 import { PacientesTurnoDiaComponent } from './components/pacientes/pacientes-turno-dia/pacientes-turno-dia.component';
 import { PacientesDiagnosticosComponent } from './components/pacientes/pacientes-diagnosticos/pacientes-diagnosticos.component';
 import { MisDiagnosticosComponent } from './components/paciente/mis-diagnosticos/mis-diagnosticos.component';
+import { PacienteCitasComponent } from './components/paciente/paciente-citas/paciente-citas.component';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'pacientes-dia', component: PacientesTurnoDiaComponent, canActivate: [AuthGuard] },
   { path: 'pacientes-diagnosticos', component: PacientesDiagnosticosComponent, canActivate: [AuthGuard]},
   { path: 'mis-diagnosticos', component: MisDiagnosticosComponent, canActivate: [AuthGuard]},
+  { path: 'paciente-citas', component: PacienteCitasComponent, canActivate: [AuthGuard] },
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   { path: '**', redirectTo: 'home' }
 ];

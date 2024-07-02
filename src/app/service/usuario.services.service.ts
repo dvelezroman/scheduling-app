@@ -21,6 +21,7 @@ export class UsuarioServicesService implements OnInit {
     crearUsuario = ':signUp?key=';
     iniciarSesion = ':signInWithPassword?key=[API_KEY]';
     userToken:string;
+    private userPassword: string | null = null;
     valorBoolean:boolean = false;
 
     private nombreUsuario = new BehaviorSubject<string>(this.getStoredName());
@@ -256,6 +257,7 @@ export class UsuarioServicesService implements OnInit {
         
         return this.http.post(`${this.url}:signInWithPassword?key=${this.apykey2}`, auth).pipe(
           switchMap((resp: any) => {
+            this.userPassword = usuario.password;
             this.almacenarToken(resp['idToken']);
             this.almacenarUserName(usuario.email);
             this.almacenarUid(resp['localId']);
@@ -282,6 +284,7 @@ export class UsuarioServicesService implements OnInit {
               //METODO CERRAR SESION//
 
     cerrarCesion(){
+        this.userPassword = null;
         this.removeItem('token');
         this.removeItem('userName');
         localStorage.removeItem('cedulaPaciente');
@@ -467,6 +470,18 @@ getUsuarioCedula(uid: string) {
     map((usuario: UsuarioModel) => usuario.cedula)
   );
 }
+
+getUsuarioByEmail(email: string): Observable<UsuarioModel> {
+  return this.db.list<UsuarioModel>('/usuarios', ref => ref.orderByChild('email').equalTo(email))
+    .valueChanges()
+    .pipe(
+      map(usuarios => usuarios[0])
+    );
+}
+
+
+
+
 }
 
       

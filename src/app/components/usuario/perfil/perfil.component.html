@@ -24,7 +24,7 @@
             </div>
 
             <div *ngIf="usuario?.informacionProfesional?.length > 0" class="datos-profesional col-12">
-                <h3>Histórico Profesional</h3>
+                <h3>Experiencia Profesional</h3>
                 <ul class="list-group" *ngIf="usuario?.informacionProfesional?.length > 0">
                   <li class="list-group-item" *ngFor="let profesion of usuario?.informacionProfesional">{{ profesion | titlecase}}</li>
                 </ul>

@@ -8,6 +8,7 @@ import { PacienteService } from '../../service/paciente.service';
 import { TwilioService } from '../../service/twilio.service';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Component({
@@ -47,6 +48,7 @@ constructor(private servicio : PacienteService,
             private twilio : TwilioService,
             private pd : DatePipe,
             private fb : FormBuilder,
+            private afAuth: AngularFireAuth
 
  ){
     this.rangoFecha = this.fb.group({
@@ -172,6 +174,7 @@ mostrarPacientesUser():void{
   
 }
 
+//BORRAR PARA ELIMINAR PACIENTE SIN SOLICITAR CLAVE DE USUARIO//
   borrar(id:number, paciente:PacienteModel){
 
    Swal.fire({
@@ -198,6 +201,61 @@ mostrarPacientesUser():void{
     }
   });
 }
+
+//METODO PARA BORRAR PACIENTE SOLICITANDO CLAVE DE USUARIO//
+borrar2(id: number, paciente: PacienteModel) {
+  Swal.fire({
+    title: 'Introduce tu contraseña',
+    input: 'password',
+    inputLabel: 'Contraseña',
+    inputPlaceholder: 'Introduce tu contraseña',
+    showCancelButton: true,
+    confirmButtonText: 'Confirmar',
+    cancelButtonText: 'Cancelar'
+  }).then(result => {
+    if (result.isConfirmed && result.value) {
+      const enteredPassword = result.value;
+
+      if (enteredPassword === this.usuarioService['userPassword']) {
+        
+        Swal.fire({
+          title: '¿Estás seguro?',
+          text: `Eliminar a ${paciente.nombres}`,
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then(confirmResult => {
+          if (confirmResult.isConfirmed) {
+            console.log('ID del paciente a eliminar:', paciente.id);
+            this.pacientesFiltrados.splice(id, 1);
+            this.servicio.deletePaciente(paciente.id).subscribe(() => {
+              this.cargarPacientes();
+              Swal.fire({
+                title: 'Eliminado',
+                text: `${paciente.nombres} ha sido eliminado`,
+                icon: 'success',
+                timer: 1600,
+                showConfirmButton: false
+              });
+            });
+          }
+        });
+      } else {
+        
+        Swal.fire({
+          title: 'Error',
+          text: 'Contraseña incorrecta. Inténtalo de nuevo.',
+          icon: 'error',
+          timer: 2000,
+          showConfirmButton: false
+        });
+      }
+    }
+  });
+}
+
+  
 
   sendMessage(telefono: string, turno: string, paciente: PacienteModel) {
     this.to = `+593${telefono}`;

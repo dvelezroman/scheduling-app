@@ -40,6 +40,7 @@ import { PacientesDiagnosticosComponent } from './components/pacientes/pacientes
 import { FechaDiagnosticoPipe } from './pipes/fecha-diagnostico.pipe';
 import { FechaTurnoTablaPipe } from './pipes/fecha-turno-tabla.pipe';
 import { MisDiagnosticosComponent } from './components/paciente/mis-diagnosticos/mis-diagnosticos.component';
+import { PacienteCitasComponent } from './components/paciente/paciente-citas/paciente-citas.component';
 
 
 
@@ -74,6 +75,7 @@ import { MisDiagnosticosComponent } from './components/paciente/mis-diagnosticos
     FechaDiagnosticoPipe,
     FechaTurnoTablaPipe,
     MisDiagnosticosComponent,
+    PacienteCitasComponent,
 
 
    

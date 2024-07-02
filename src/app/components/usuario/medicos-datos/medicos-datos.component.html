@@ -17,11 +17,12 @@
           <div *ngFor="let medico of medicos" class="tarjetas col-12 col-md-6 col-lg-4">
             <div class="card tarjeta">
               <div class="card-body cuerpo">
-                <h5 class="card-title titulo">{{ medico.nombres }}</h5>
+                <h5 class="card-title titulo">{{ medico.nombres | titlecase }}</h5>
                 <p class="card-text texto">
-                  <strong>Especialidad:</strong> {{ medico.especialidad }}<br>
+                  <strong>Especialidad:</strong> {{ medico.especialidad | titlecase }}<br>
                   <strong>Email:</strong> {{ medico.email }}<br>
-                  <strong>Telefono:</strong> {{ medico.telefono }}
+                  <strong>Telefono:</strong> {{ medico.telefono }}<br>
+                  <strong>Dirección:</strong> {{ medico.direccionConsultorio }}
                 </p>
               </div>
             </div>

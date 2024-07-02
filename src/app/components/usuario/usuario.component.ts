@@ -27,7 +27,7 @@ constructor(private usuarioServicios : UsuarioServicesService,
     this.usuarioForm = this.fb.group({
       nombres: ['', Validators.required],
       especialidad: [''],
-      edad: [''],
+      edad: ['', [Validators.required, Validators.min(1), Validators.max(99)]],
       cedula: ['', [Validators.required, Validators.pattern(/^\d{10}$/), cedulaEcuatorianaValidator()]],
       telefono: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       direccionConsultorio: [''],
@@ -59,6 +59,10 @@ constructor(private usuarioServicios : UsuarioServicesService,
         });
 
 
+      }
+
+      onInput(controlName: string): void {
+        this.usuarioForm.get(controlName).markAsTouched();
       }
       agregarProfesion(): void {
         if (this.profesionInput.trim()) {
@@ -143,6 +147,13 @@ constructor(private usuarioServicios : UsuarioServicesService,
     
           return null;
         };
+      }
+
+      limitarLongitud(event: Event): void {
+        const input = event.target as HTMLInputElement;
+        if (input.value.length > 2) {
+          input.value = input.value.slice(0, 2);
+        }
       }
       
   }

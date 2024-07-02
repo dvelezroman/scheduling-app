@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
-import { Diagnostico, PacienteModel } from '../components/models/paciente.model';
+import { Diagnostico, PacienteModel, Turno } from '../components/models/paciente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -214,10 +214,41 @@ export class PacienteService {
           });
 
           this.totalDiagnosticosSubject.next(diagnosticos.length);
+
+          diagnosticos.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
+
           return diagnosticos;
         })
       );
     }
+
+
+
+    getTurnosByCedula(cedulaPaciente: number): Observable<Turno[]> {
+      return this.db.list<PacienteModel>('/pacientes').valueChanges().pipe(
+        map((pacientes: PacienteModel[]) => {
+          let turnos: Turno[] = [];
+          pacientes.forEach(paciente => {
+            if (paciente.turnoParaMostrar) {
+              turnos = turnos.concat(paciente.turnoParaMostrar.filter(t => t.cedulaPaciente === cedulaPaciente));
+            }
+          });
+  
+          turnos.sort((a, b) => new Date(b.fechaHora).getTime() - new Date(a.fechaHora).getTime());
+  
+          return turnos;
+        })
+      );
+    }
+
+    getPacienteByCedula(cedula: number): Observable<PacienteModel> {
+      return this.db.list<PacienteModel>('/pacientes', ref => ref.orderByChild('cedula').equalTo(cedula))
+        .valueChanges()
+        .pipe(
+          map(pacientes => pacientes[0])
+        );
+    }
+  
 
   
     solicitarCambio(cedulaPaciente: number): Observable<any> {

@@ -1,12 +1,13 @@
 import { Component, OnInit, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteService } from '../../../service/paciente.service';
-import { PacienteModel } from '../../models/paciente.model';
+import { PacienteModel, Turno } from '../../models/paciente.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { UsuarioServicesService } from '../../../service/usuario.services.service';
 
 registerLocaleData(localeEs);
 
@@ -32,6 +33,7 @@ export class AgendarTurnoComponent implements OnInit {
   
   constructor(private parametro: ActivatedRoute,
               private servicio : PacienteService,
+              private usuarioService: UsuarioServicesService,
               private pd: DatePipe,
               private fb: FormBuilder,
               private ruta: Router,
@@ -105,6 +107,7 @@ export class AgendarTurnoComponent implements OnInit {
       return horas;
     }
 
+    
     obtenerHorasOcupadas(fecha: string) {
       if (!fecha) return;
       this.servicio.getHorasOcupadas(fecha, this.paciente.registrador)
@@ -120,51 +123,62 @@ export class AgendarTurnoComponent implements OnInit {
     }
 ////////////////////////////////////////////////////////////////////////////
 
-    agendar(){
-      if(this.formTurno.invalid){
-        //console.log('Agregue una fecha');
-        Swal.fire({
-          title: "No has seleccionado una fecha",
-          text : 'Seleccione un dia entre lunes a viernes',
-          icon: "error",
-          timer: 2500,
-          showConfirmButton: false
-        });
-        return;
-      
-      }
-
-      let id = this.parametro.snapshot.paramMap.get('pacienteId');
-      if(!this.paciente.id){
-        return;
-      }
-
-        this.servicio.getPaciente(id).subscribe((data:PacienteModel) =>{
-          this.paciente = data;
-          this.paciente.id = id;
-          this.paciente.turno = `${this.formTurno.value.fecha}T${this.formTurno.value.hora}:00`;
-          this.servicio.refreshPaciente(this.paciente).subscribe();
-         // console.log(this.paciente);
-          //console.log(this.formTurno.value)
+agendar() {
+  if (this.formTurno.invalid) {
+    Swal.fire({
+      title: 'No has seleccionado una fecha',
+      text: 'Seleccione un día entre lunes a viernes',
+      icon: 'error',
+      timer: 2500,
+      showConfirmButton: false
     });
-      
+    return;
+  }
+
+  const id = this.parametro.snapshot.paramMap.get('pacienteId');
+  if (!this.paciente.id) {
+    return;
+  }
+
+  this.servicio.getPaciente(id).subscribe((data: PacienteModel) => {
+    this.paciente = data;
+    this.paciente.id = id;
+    this.paciente.turno = `${this.formTurno.value.fecha}T${this.formTurno.value.hora}:00`;
+
+    
+    this.usuarioService.getUsuarioActual().subscribe(medico => {
+      const nuevoTurno: Turno = {
+        fechaHora: this.paciente.turno,
+        cedulaPaciente: this.paciente.cedula,
+        nombreMedico: medico.nombres,
+        emailMedico: medico.email 
+      };
+
+      this.paciente.turno = nuevoTurno.fechaHora;
+      if (this.paciente.turnoParaMostrar) {
+        this.paciente.turnoParaMostrar = this.paciente.turnoParaMostrar.filter(t => t.cedulaPaciente !== this.paciente.cedula);
+      } else {
+        this.paciente.turnoParaMostrar = [];
+      }
+      this.paciente.turnoParaMostrar.push(nuevoTurno);
+      this.servicio.refreshPaciente(this.paciente).subscribe();
+
       Swal.fire({
-        title: "Fecha agregada",
+        title: 'Fecha agregada',
         text: `Su cita para la fecha ${this.formTurno.value.fecha} a las ${this.formTurno.value.hora} ha sido agendada!!`,
-        icon: "success",
+        icon: 'success',
         timer: 2000,
         showConfirmButton: false
-        
-      })
-      setTimeout(()=>{
-        this.ruta.navigate(['pacientes']);
-      },2000)
-      //setTimeout(()=>{
-       // this.ruta.navigate(['pacientes']);
-     // },3000)
+      });
 
-      return;
-    }
+      setTimeout(() => {
+        this.ruta.navigate(['pacientes']);
+      }, 2000);
+    });
+  });
+}
+
+//////////////////////////////////////////////////////////////////
     cerrarSesion(){
       localStorage.removeItem('token');
       if(this.auth){
