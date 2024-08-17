@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "baseHref": "/agenda/",
+            "baseHref": "/medi-app/",
             "outputPath": "dist/medi-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
