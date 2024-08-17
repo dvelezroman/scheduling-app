@@ -68,11 +68,22 @@ form{
 .inputFecha input{
     
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 15px;
     width: 250px;
     font-size: 13px;
     
 }
+
+.custom-select {
+    width: 250px;
+    margin-top: 5px;
+    margin-left: 15px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+
+  }
 .contenedorBtn{
     margin-top: 20px;
     display: flex;

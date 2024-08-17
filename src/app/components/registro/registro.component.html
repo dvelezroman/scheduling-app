@@ -1,7 +1,8 @@
-<div class="container forms">
-    <div class="form signup">
-        <div class="form content">
+<div class="contenedor forms">
+    <div class="form formulario">
+        <div class="form content ">
             <h1>Crear Usuario</h1>
+            <p>{{rol|titlecase}}</p>
 
             <form autocomplete="off" 
             (ngSubmit)="registrar(f)" 
@@ -21,6 +22,34 @@
                         <small *ngIf="nombres.invalid && nombres.touched"
                          class="avisos form-text text-danger animate__animated animate__fadeIn">campo obligatorio
                         </small>
+                        </div>
+
+                        <div *ngIf="usuario.rol === 'medico'" class="field input-field">
+                            <input type="text" 
+                                    placeholder="Especialidad" 
+                                    class="form-control input"
+                                    #especialidad="ngModel"
+                                    name="especialidad"
+                                    [(ngModel)]="usuario.especialidad"
+                                    required
+                                    [class.is-invalid]="especialidad.invalid && especialidad.touched">
+                            <small *ngIf="especialidad.invalid && especialidad.touched"
+                           class="avisos form-text text-danger animate__animated animate__fadeIn">campo requerido 
+                            </small>
+                        </div>
+                        
+                        <div *ngIf="usuario.rol === 'paciente'" class="field input-field">
+                            <input type="number" 
+                                    placeholder="Edad" 
+                                    class="form-control input"
+                                    #edad ="ngModel"
+                                    name="edad"
+                                    [(ngModel)]="usuario.edad"
+                                    required
+                                    [class.is-invalid]="edad.invalid && edad.touched">
+                            <small *ngIf="edad.invalid && edad.touched"
+                           class="avisos form-text text-danger animate__animated animate__fadeIn">campo requerido 
+                            </small>
                         </div>
 
                 <div class="field input-field">
@@ -56,15 +85,17 @@
                         <i (click)='toggleMostrar()' class="fa fa-eye eye-icon"></i>
                     </div>
 
-                </div>                
+                </div> 
+
+                 
                 
                 <div class="field button-field">
                     <button>Registrarse</button>
                 </div>
                
-                <div class="form-link">
-                   <span> Ya tienes cuenta?<a routerLink="/login" class="login-link">Iniciar Sesión</a></span> 
-                </div>
+             <!--   <div class="form-link">
+                   <span> Ya tienes cuenta?<a routerLink="/login"><small>Iniciar Sesión</small></a></span> 
+                </div>-->
 
             </form>
         </div>

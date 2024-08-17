@@ -1,0 +1,12 @@
+.container {
+    margin-top: 50px;
+  }
+  h1 {
+    color: #d9534f;
+  }
+  p {
+    margin: 20px 0;
+  }
+  .btn {
+    margin-top: 20px;
+  }

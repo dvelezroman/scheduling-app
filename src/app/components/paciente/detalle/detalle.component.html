@@ -1,8 +1,3 @@
-<div class="row">
-    <div class="col">
-        <i routerLink="/pacientes" class=" atras fa-solid fa-circle-left"></i>
-    </div>
-</div>
 
 
 <div class="container animate__animated animate__fadeIn" >
@@ -11,22 +6,94 @@
 
 </div>
 
+    <!--datos del paciente-->
 
 <div class="container-sm animate__animated animate__fadeIn">
     <div class="row">
         <div class="col">
             <ul class="lista">
-                <li><h3 *ngIf="paciente.registrador" class="listChild">Registrado por: <small class="listParent">{{paciente.registrador}}</small> </h3></li>
-                <li><h3 class="listChild">Nombres: <small class="listParent">{{paciente.nombres}}</small> </h3></li>
+
+                <li><h3 class="listChild">Nombres: <small class="listParent">{{paciente.nombres | titlecase}}</small> </h3></li>
                 <li><h3 class="listChild">Cédula: <small class="listParent">{{paciente.cedula}}</small> </h3></li>
                 <li><h3 class="listChild">Correo: <small class="listParent">{{paciente.correo}}</small> </h3></li>
                 <li><h3 class="listChild">Teléfono: <small class="listParent">{{paciente.telefono}}</small> </h3></li>
-                <li><h3 class="listChild">Domicilio: <small class="listParent">{{paciente.direccion}}</small> </h3></li>
-                <div *ngIf="paciente.turno"><li><h3 class="listChild" >Fecha de la cita: <small class="listParent">{{paciente.turno | date:'fullDate':'default':'es'}}</small> </h3></li></div>
+                <li><h3 class="listChild">Domicilio: <small class="listParent">{{paciente.direccion | titlecase}}</small> </h3></li>
+                <div *ngIf="paciente.turno"><li><h3 class="listChild" >Fecha de la cita: <small class="listParent"><a [matTooltip]="'Cancelar la cita?'" 
+                    matTooltipPosition="above" class="turno-texto" (click)="cancelarCita(paciente)" >{{paciente.turno | customDate: 'full'}}</a></small> </h3></li></div>
+                <li><h3 class="listChild-diag">Diagnósticos realizados: <small class="listParent"></small> </h3></li>
+
+        <!--selector de lista de diagnósticos-->
+
+                <div class="row mt-3">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <select class="form-select" [(ngModel)]="diagnosticoSeleccionadoIndex" (change)="mostrarDiagnosticoCompleto()" [ngClass]="{'default-option': diagnosticoSeleccionadoIndex === -1}">
+                            <option [ngValue]="-1">Selecciona un diagnóstico</option>
+                            <option *ngFor="let diagnostico of paciente.diagnostico; let i = index" [ngValue]="i">
+                                {{ diagnostico.fecha | date:'fullDate':'default':'es' }}
+                            </option>
+                        </select>
+                        <button *ngIf="diagnosticoSeleccionado" class="boton-eliminarDiagnostico" (click)="eliminarDiagnostico()"><i class="bi bi-trash"></i><span class="eliminar-texto">eliminar diagnóstico</span></button>
+                    </div>
+                </div>
+
+                  
             </ul>
-            <div class="boton">
-                <button class="btn btn-secondary" routerLink="/pacientes">Regresar</button>
+        </div>
+    </div>
+
+<!--contenedor tarjeta diagnostico-->
+
+    <div class="container contenedor-tarjeta">
+        <div *ngIf="diagnosticoSeleccionado" class="card mt-3">
+            <div class="card-body">
+              <h5 class="card-title">Diagnóstico</h5>
+              <p class="card-text">{{ diagnosticoSeleccionado.texto }}</p>
             </div>
         </div>
     </div>
+    
+        <div class="container">
+            <div class="contenedor-diagnostico">
+                <div class="diagnostico d-flex ">
+                    
+                    <button class="boton-agregar-diagnostico btn btn-outline-primary col-1.5 col-md-1.5 col-lg-1.5" 
+                            data-bs-title="Tooltip on top"  
+                            (click)="agregarDiagnostico()" 
+                            [disabled]="diagnosticoEnProceso" 
+                            [matTooltip]="'Agregar diagnóstico'" 
+                            matTooltipPosition="above">
+                        <i class="bi bi-clipboard-plus"></i></button>
+                    
+                    <h2 class="diagnostico-titulo col-10.5 col-md-10.5 col-lg-10.5">Diagnóstico</h2>
+                
+                </div>
+    
+            </div>
+        </div>
+        
+        <!--cuadro de texto para añadir un diagnostico-->
+
+            <div *ngIf="diagnosticoEnProceso" class="container m-3">
+                
+                <div class="contenedor-textarea">
+                        <div class="textarea col d-flex justify-content-center">
+                            <textarea class="form-control" rows="9" placeholder="Ingresar diagnóstico..." [(ngModel)]="nuevoDiagnostico.texto"></textarea>
+                        </div>
+                        
+                </div>
+                <div class="boton-textarea d-flex justify-content-center col">
+                    <button class="boton-guardar col-1.5 guardar-diagnostico btn btn-primary mt-2" (click)="guardarDiagnostico()">Guardar</button>
+                    <button class="boton-cancelar col-1.5 cancelar-diagnostico btn btn-secondary mt-2" (click)="cancelarDiagnostico()">Cancelar</button>
+                </div>
+    
+            </div>
+
 </div>
+
+        <div class="boton-regresar">
+            <button class="btn btn-secondary m-3" routerLink="/pacientes">Regresar</button>
+        </div>
+
+
+        
+    

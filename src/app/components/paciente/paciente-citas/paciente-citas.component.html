@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="turnos-container" *ngIf="turnos.length > 0">
+        <h1>Turnos agendados</h1>
+        <p class="mensaje">{{ mensajeTurnos }}</p>
+        <ul class="turnos-lista">
+          <li *ngFor="let turno of turnos" class="turno-item">
+            <p class="turno-fecha"><small class="small">Fecha y hora del turno:</small> {{ turno.fechaHora | date: 'fullDate' }} a las {{ turno.fechaHora | date: 'shortTime' }}</p>
+            <p class="turno-medico"><small class="small">Médico:</small> {{ turno.nombreMedico | titlecase }}</p>
+            <p class="turno-email"><small class="small">Correo del médico:</small> {{ turno.emailMedico }}</p>
+          </li>
+        </ul>
+    </div>
+      <div class="no-turnos" *ngIf="turnos.length === 0">
+        <p>No tienes turnos agendados actualmente.</p>
+      </div>
+</div>

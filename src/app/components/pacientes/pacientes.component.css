@@ -1,59 +1,183 @@
 
+.contenedor-principal{
+  width: 100%;
+  height: 100vh;
+  margin: 0px;
+  padding: 5rem;
+ 
+  background-color: #e5e5e5;
+}
 
 .container{
-  background-color: #fbfbfb;
-  margin-top: 2rem;
+  background-color: transparent;
   text-align: left;
-  
+}
+
+.contenedor-loading{
+  background-color: transparent;
+  margin-top: -2rem;
 }
 
 .large{
-box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-margin-top: 2rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
 }
 .textP,
 .textP-1{
-line-height: 38px;
-text-align: center;
-
-
+  line-height: 38px;
+  text-align: center;
+  font-weight: 300;
 }
+
 .textP-3{
-line-height: 38px;
-background-color: rgb(255, 255, 255);
-text-align: center;
+  line-height: 38px;
+  font-weight: 300;
+  text-align: center;
 
 }
+
 .cita{
-color: red;
+  color: rgb(224, 85, 85);
 }
+
 h1{
-text-align: center;
+  font-size: 45px;
+  text-align: center;
+  font-family: 'Rubik Dirt';
 }
 
 .enlaceNombre{
-text-decoration: none;
-color: black;
-transition: all 400ms;
+  text-decoration: none;
+  color: black;
+  transition: all 200ms;
 } 
+
 .enlaceNombre:hover{
-color: grey;
+  color: grey;
 }
+
+/* tabla de pacientes */
+
 .table{
-margin: 2rem auto;
-
+  margin: 2rem auto;
+  table-layout:fixed;
+  overflow: hidden;
+  width: 100%;
 }
+
+table.rounded-table .index-columna {
+  width: 40px;
+  text-align: center;
+}
+
+table.rounded-table .icon-cell {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-wrap: wrap; 
+  gap: 5px; 
+}
+
+
+table.rounded-table th{
+  text-align: center;
+  line-height: 50px;
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
+}
+
+
+
+table.rounded-table th:first-child,
+table.rounded-table td:first-child {
+  border-left: 0px;
+}
+
+table.rounded-table th:last-child,
+table.rounded-table td:last-child {
+  border-right: 5px;
+}
+
+
+table.rounded-table tr:first-child th:first-child {
+  border-top-left-radius: 5px;
+}
+
+table.rounded-table tr:first-child th:last-child {
+  border-top-right-radius: 5px;
+}
+
+table.rounded-table tr:last-child td:first-child {
+  border-bottom-left-radius: 0px;
+}
+
+table.rounded-table tr:last-child td:last-child {
+  border-bottom-right-radius: 0px;
+}
+
 table tr th{
-background-color: rgb(179, 201, 240);
-font-weight: 200;
+background-color: rgb(80, 152, 176);
+font-weight: 400;
 text-align: center;
+align-items: center;
+height: 4rem;
+color: white;
 }
 
-.icono{
-  font-weight: bold;
-  font-size: 25px;
+table.rounded-table td {
+  padding: 5px;
+  text-align: center;
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
 }
+
+.tabla-pacientes {
+  width: 100%;
+}
+
+
+
+/*tabla resultado de la búsqueda por fecha cita*/
+
+.large.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem auto;
+  table-layout:auto; 
+}
+
+.large.table th, .large.table td {
+  padding: 7px;
+  text-align: center;
+  overflow-wrap: break-word; 
+  word-wrap: break-word; 
+  hyphens: auto;
+}
+
+.large.table td,
+.index-columna,
+.textP-1,
+.cedula-columna,
+.correo-columna,
+.turno-columna,
+.icon-cell:hover{
+  background-color: rgba(240, 240, 240, 0.988);
+}
+
+
+.index-columna {
+  width: 40px; 
+}
+
+
+/* boton añadir */
+
+.contenedor-boton-plus .btnA{
+  border: none;
+}
+
 .btnA{
+border: none;
 display: flex;
 position: relative;
 overflow: hidden;
@@ -61,27 +185,17 @@ border: 1px solid rgb(124, 160, 214);
 }
 
 .faI{
-font-size: 13px;
-margin-left: -6px;
+font-size: 18px;
 color: rgb(124, 160, 214);
 transition: all .2s ease;
-
-
 }
+
 .btn:hover{
-background-color: white;
+background-color: transparent;
 }
-.btnA{
-width: 3px;
-transition: all 500ms;
-position: relative;
-overflow: hidden;
-z-index: 0;
-color: blue;
-}
+
 
 .bloque{
-
 width: 60px;
 text-align: end;
 position: absolute;
@@ -90,26 +204,21 @@ left: 46px;
 color: rgb(156, 183, 233);
 z-index: 1;
 cursor:default;
- 
-}
-
-
-.icon{
-  margin-right: 15px;
 }
 
 .botin{
-
 font-size: 16px;
 border: none;
 transition: all 300ms;
 color: rgb(106, 155, 187);
 }
+
 .botin:hover{
-background-color: white;
+background-color: transparent;
 scale: 1.2;
 color: rgb(83, 103, 176);
 }
+
 .botin2{
 font-size: 15px;
 border: none;
@@ -117,34 +226,40 @@ transition: all 300ms;
 color: rgb(115, 115, 140);
 
 }
+
 .botin2:hover{
-background-color: white;
+background-color: transparent;
 
 scale: 1.2;
 }
-.botin3{
 
+.botin3{
 font-size: 17px;
 border: none;
 transition: all 300ms;
 color: rgb(97, 115, 132);
 }
+
 .botin3:hover{
-background-color: white;
+background-color: transparent;
 scale: 1.2;
 color: rgb(61, 120, 148);
 }
+
 .botin4{
 border: none;
-font-size: 19px;
+font-size: 20px;
 margin-right: 3px;
-color: green;
+color: rgb(8, 162, 8);
+background-color: transparent;
 transition: all .3s;
 
 }
+
 .botin4:hover{
 transform: scale(1.2);
 }
+
 .basura{
 color: rgb(116, 108, 108);
 }
@@ -158,30 +273,11 @@ color: rgb(116, 108, 108);
 }
 
 .alerta{
-  background-color: white;
+  background-color: transparent;
   border: none;
   box-shadow: none;
 }
-.log-out{
 
-  font-size: 13px;
-  position: absolute;
-  top: 45px;
-  left: 83%;
-  cursor: pointer;
-  transition: all 250ms;
-  color: rgb(0, 0, 0);
-  font-weight: 300;
-  z-index: 1;
-  transition: all .5s;
-  z-index: 1;
-
-}
-.log-out:hover{
-  color: rgb(71, 70, 70);
-  
-  
-}
 .loading{
   text-align: center;
 }
@@ -189,6 +285,202 @@ color: rgb(116, 108, 108);
 .custom-tooltip{
   font-size: 5px;
   color: red;
+}
+
+/* filtrar por fecha */
+
+.contenedorFiltro{
+   width: 100vh;
+   padding: 25px;
+   display: flex;
+   justify-content: center;
+}
+.botonFecha{
+  text-align: end;
+  margin-right: 25px;
+}
+.botonMostrar{
+  font-size: 13px;
+  background-color: rgb(103, 160, 177);
+  border: none;
+  margin-left: 50px;
+  margin-top: -50px;
+}
+.botonMostrar:hover{
+  background-color: rgb(49, 113, 191);
+
+}
+.botonFecha2 .botonCancelar{
+  font-size: 12px;
+  margin-top: 39px;
+  margin-left: 20px;
+  background-color: #c3706e;
+  background: none;
+  border: none;
+  transition: all .3s;
+}
+.botonFecha2 .botonCancelar:hover{
+  background-color: transparent;
+  transform: scale(1.1);
+}
+.botonFecha2 .botonCancelar i{
+ font-size: 25px;
+ color: rgb(53, 51, 51);
+ 
+}
+.botonFecha2 .botonCancelar i :hover{
+  transform: scale(1.1);
+}
+
+.row{
+  position: relative;
+  text-align: start;
+}
+
+.formFecha{
+  margin: 5px;
+  flex-direction: row;
+}
+
+.formFecha1,
+.formFecha2{
+  margin-top: 15px;
+  margin: 10px;
+}
+.formFecha1{
+  margin-right: 25px;
+}
+.formFecha label{
+  font-size: 12px;
+  color: rgb(113, 113, 121);
+  margin-left: 18px;
+}
+.formFecha input{
+  min-width: 200px;
+  font-size: 13px;
+  border: 1px solid #c0bcbc;
+}
+.formFecha button{
+  font-size: 13px;
+  margin-left: 50px;
+  margin-top: 38px;
+  background-color: rgb(65, 112, 205);
+}
+.formFecha button:hover{
+  background-color: rgb(32, 100, 183);
+
+}
+h5{
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+
+@media screen and (max-width: 600px) {
+  table.rounded-table th,
+  table.rounded-table td {
+    font-size: 11px; 
+    padding: 2px; 
+  }
+
+  table tr th {
+    height: auto; 
+  }
+  table.rounded-table .icon-cell {
+    flex-direction: column;
+    font-size: 9px;
+  }
+}
+
+/*media query del filtro de busqueda fecha*/
+
+@media screen and (max-width: 768px) {
+  .contenedorFiltro {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .formFecha {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .formFecha1, .formFecha2, .botonFecha2 {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .botonFecha2 .botonCancelar {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .formFecha button {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .contenedor-loading{
+    display: flex;
+    justify-content: center;
+  }
+
+  table.rounded-table th,
+  table.rounded-table td {
+    font-size: 9px; 
+    padding: 1px; 
+  }
+
+  table tr th {
+    height: 20px; 
+  }
+
+  table.rounded-table .icon-cell {
+    flex-direction: column;
+    font-size: 9px;
+  }
+
+  .contenedorFiltro {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .formFecha {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .formFecha1, .formFecha2, .botonFecha2 {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .botonFecha2 .botonCancelar {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .formFecha button {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+  .large.table .d-flex {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.large.table .botin, 
+.large.table .botin2, 
+.large.table .botin3, 
+.large.table .botin4 {
+    margin-left: 20px;
+    padding: 0px;
+    display: flex;
+
+}
 }
 
 

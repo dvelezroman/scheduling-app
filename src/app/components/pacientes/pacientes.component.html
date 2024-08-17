@@ -1,74 +1,189 @@
 
 
-
-<div class="container mb-3 animate__animated animate__fadeInRightBig">
-
-   
-
-<div class="container2 animate__animated animate__fadeInRightBig">
-    <div class="row">
+<div class="contenedor-principal">
+  <div class="container animate__animated animate__fadeIn">
+ 
+  
+  
+    <div class="container2 animate__animated animate__fadeIn">
+      <div class="row">
         <div class="col">
-            <h1>Lista de Pacientes</h1>
-            <hr>
-            <div class="row">
-              <div class="col">
-                  <button routerLink="/pacientes/nuevo" 
-                  class=" btnA btn btn-outline-primary btn-lg" [matTooltip]="'Agregar paciente'">
-                  <i class="fa-solid fa-user-plus faI" ></i>
-                  </button>
-
-                  
-                  
-              </div>
-          </div>
-      </div>
-            <table class="large table animate__animated animate__fadeIn fast">
-                <thead class="table-primary th">
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Nombre Completo</th>
-                    <th scope="col">Cédula</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Fecha de la cita</th>
-                    <th scope="col"></th>
-                    
-                  </tr>
-                </thead>
-                <tbody *ngFor="let paciente of pacientesFiltrados; let i = index">
-                  <tr >
-                    
-                    <td class="textP" scope="row">{{i + 1}}</td>
-                    <td class="textP-1"><a class="enlaceNombre" [routerLink]="['/pacientes/paciente',paciente.id]"  [matTooltip]="'Agregado por: ' +(paciente.registrador)"  
-                      matTooltipPosition="after"
-                      matTooltipClass="custom-tooltip">{{paciente.nombres}}</a></td>
-                    <td class="textP">{{paciente.cedula}}</td>
-                    <td class="textP">{{paciente.correo}}</td>
-                    <td class="textP-3"><span class="cita" *ngIf="!paciente.turno">No tine cita</span>{{paciente.turno}}</td>
-                    <td  class="d-flex justify-content-md-center">
+  
+  <!--boton añadir pacientes-->
+  
+          <div class="row contenedor-boton-plus">
+            <div class="col">
+              <button routerLink="/pacientes/nuevo" 
+              class=" btnA btn btn-outline-primary" [matTooltip]="'Agregar paciente'"
+                 matTooltipPosition="above">
+              <i class="fa-solid fa-user-plus faI" ></i>
+              </button>
+  
+              <!--boton añadir fecha búsqueda-->
+  
+                    <div class=" botonFecha col">
+                      <button class=" botonMostrar btn btn-primary" (click)="showDateFilter =!showDateFilter" 
+                        [matTooltip]="'Buscar fechas de turno'"
+                         matTooltipPosition="above">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                      </button>
+                    </div>
+  
+                     <!--contenedor fecha desde hasta-->
+  
+                    <div class="contenedorFiltro container mt-1 ">
+  
+                      <div *ngIf="showDateFilter" class="row">
+                      
+                              <form [formGroup]="rangoFecha" (ngSubmit)="filtrarPorFecha()" class=" d-flex justify-content-md-center formFecha date-form">
+                              
+                                <div class="form-group formFecha1 col-4">
+                                    
+                                    <label for="inicio" class="form-label">Desde:</label>
+                                    <input type="date" 
+                                          [min]="fechaMinimaString"
+                                          [max]="fechaMaximaString"
+                                           id="inicio" 
+                                           formControlName="inicio" 
+                                           class="  form-control">
+                                </div>
                         
-                        <button [disabled]="!usuarioPuedeEditar(paciente)" type="button" (click)="sendMessage(paciente.telefono, paciente.turno, paciente)" class="botin4"><i class="fa-brands fa-whatsapp"></i></button>
-                        <button [disabled]="!usuarioPuedeEditar(paciente)" type="button" [routerLink]="['/pacientes','pacientes','id',paciente.id]" class="btn btn-outline-success botin3 "><i class="fa-solid fa-calendar-days"></i></button>
-                        <button [disabled]="!usuarioPuedeEditar(paciente)" type="button" [routerLink]="['/pacientes',paciente.id]" class="btn btn-outline-primary botin "><i class="fa-solid fa-pen"></i></button>
-                        <button type="button" (click)="borrar(i,paciente)" class="btn btn-outline-danger botin2"><i class="fa-solid fa-trash basura"></i></button>
-                    </td>
-                  </tr>
-        
-                </tbody>
-            </table> 
-            <div *ngIf="senal" class=" alerta alert alert-warning text-center mt-4 animate__animated animate__fadeIn">
-                <h5 class="alert-heading d-flex justify-content-md-center align-items-center">no hay pacientes</h5>
-                <i class="fa fa-exclamation fa-2x"></i>
-            </div>  
-            <div *ngIf="loading" class="loading row animated fadeIn">
-              <div class="col">
-                  <i class="fa-solid fa-spin fa-spinner fa-2x"></i>
-              </div>
+                                <div class="form-group formFecha2 col-4">
+                                    
+                                    <label for="fin" class="form-label">Hasta:</label>
+                                    <input type="date" 
+                                          [min]="fechaMinimaString"
+                                          [max]="fechaMaximaString"
+                                          id="fin" 
+                                          formControlName="fin" 
+                                          class=" form-control">
+                                </div>
+  
+                                  <div  class="botonFecha2 form-group col-5">
+                                      <button class="btn btn-primary">Buscar</button>
+                                      <button *ngIf="mostrarBotonX" type="button" [matTooltip]="'Eliminar búsqueda'" class=" botonCancelar btn btn-secondary" (click)="cancelarBusqueda()"><i class="fa-regular fa-circle-xmark"></i></button>
+                                  </div>
+  
+                              </form>
+                      </div>
+                      
+                    </div>
+                    
+                </div>
             </div>
-          
-             
-
         </div>
+  
+        <!--Tabla Principal de Pacientes-->
+  
+              <table *ngIf="mostrarLista && hayPacientes" class="table-striped tabla-pacientes rounded-table tabla large table">
+                  
+                  <thead class="table-primary th">
+                    <tr>
+                      <th scope="col" class="index-columna"></th>
+                      <th scope="col" class="th">Nombre Completo</th>
+                      <th scope="col" class="th cedula-columna">Cédula</th>
+                      <th scope="col" class="th correo-columna">Correo</th>
+                      <th scope="col" class="th turno-columna">Fecha de la cita</th>
+                      <th scope="col" class="th opciones-columna">Opciones</th>
+                      
+                    </tr>
+                  </thead>
+  
+                  <tbody *ngFor="let paciente of pacientesFiltrados; let i = index">
+                    <tr>
+                      
+                      <td class="td index-columna" scope="row">{{i + 1}}</td>
+                      <td class="td textP-1"><a class="enlaceNombre" [routerLink]="['/pacientes/paciente',paciente.id]"  
+                        matTooltipPosition="after"
+                        matTooltipClass="custom-tooltip">{{paciente.nombres}}</a></td>
+                      
+                      <td class="td textP cedula-columna">{{paciente.cedula}}</td>
+                      <td class="td textP correo-columna">{{paciente.correo}}</td>
+                      <td class="td textP-3 turno-columna"><span class="cita" *ngIf="!paciente.turno">No tiene cita</span> 
+                          <ng-container *ngIf="paciente.turno">
+                            <span [matTooltip]="paciente.turno | customDate: 'full'" matTooltipPosition="above">
+                              {{ paciente.turno | customDate: 'short' }}
+                            </span>
+                          </ng-container></td>
+  
+                      
+                      <td  class="icon-cell opciones-columna"> 
+                          <button type="button"[matTooltip]="'Enviar fecha de la cita'" 
+                          matTooltipPosition="above" (click)="sendMessage(paciente.telefono, paciente.turno, paciente)" class="botin4"><i class="fa-brands fa-whatsapp"></i></button>
+                          
+                          <button type="button" [matTooltip]="'Agendar cita'" 
+                          matTooltipPosition="above" [routerLink]="['/pacientes','pacientes','id',paciente.id]" class="btn btn-outline-success botin3 "><i class="fa-solid fa-calendar-days"></i></button>
+                          
+                          <button type="button" [matTooltip]="'Editar datos del paciente'" 
+                          matTooltipPosition="above" [routerLink]="['/pacientes',paciente.id]" class="btn btn-outline-primary botin "><i class="fa-solid fa-pen"></i></button>
+                          
+                          <button type="button" (click)="borrar2(i,paciente)" class="btn btn-outline-danger botin2" [matTooltip]="'Eliminar'" 
+                          matTooltipPosition="above"><i class="fa-solid fa-trash basura"></i></button>
+                      </td>
+                    </tr>
+          
+                  </tbody>
+            </table> 
+              <!--Tabla Principal de Pacientes Responsive-->
+  
+  
+  
+              <!--tabla de pacientes después de la búsqueda-->
+  
+            <table *ngIf="!mostrarLista" class="large table animate__animated animate__fadeIn fast">
+              <thead  class="table-primary th">
+                <tr>
+                  <th scope="col" class="index-columna"></th>
+                  <th scope="col" class="th">Nombre Completo</th>
+                  <th scope="col" class="th">Cédula</th>
+                  <th scope="col" class="th">Correo</th>
+                  <th scope="col" class="th">Fecha de la cita</th>
+                  <th scope="col" class="th"></th>
+                  
+                </tr>
+              </thead>
+              <tbody *ngFor="let paciente of pacientesFiltradosPorFecha; let i = index">
+                <tr >
+                  
+                  <td class="textP" scope="row">{{i + 1}}</td>
+                  <td class="textP-1"><a class="enlaceNombre"  
+                    matTooltipPosition="after"
+                    matTooltipClass="custom-tooltip">{{paciente.nombres}}</a></td>
+                  <td class="textP">{{paciente.cedula}}</td>
+                  <td class="textP">{{paciente.correo}}</td>
+                  <td class="textP-3"><span class="cita" *ngIf="!paciente.turno">No tine cita</span>{{paciente.turno | date:'fullDate':'default':'es'}}</td>
+                  <td  class="icon-cell d-flex justify-content-md-center">
+                          
+                    <button  type="button" (click)="sendMessage(paciente.telefono, paciente.turno, paciente)" class="botin4"><i class="fa-brands fa-whatsapp"></i></button>
+                    <button  type="button" [routerLink]="['/pacientes','pacientes','id',paciente.id]" class="btn btn-outline-success botin3 "><i class="fa-solid fa-calendar-days"></i></button>
+                    <button  type="button" [routerLink]="['/pacientes',paciente.id]" class="btn btn-outline-primary botin "><i class="fa-solid fa-pen"></i></button>
+                    <button  class="btn btn-outline-danger botin2"><i class="fa-solid fa-trash basura"></i></button>
+                  </td>
+                </tr>
+      
+              </tbody>
+        </table> 
+        
+        <div class="container contenedor-loading d-flex justify-content-sm-center">
+            <div class="row">
+  
+                <div *ngIf="senal" class="col-12 alerta alert alert-warning text-center mt-4 animate__animated animate__fadeIn">
+                    <h5 class="alert-heading d-flex justify-content-md-center align-items-center">no hay pacientes</h5>
+                    <i class="fa fa-exclamation fa-2x"></i>
+                    <i *ngIf="loading" class="fa-solid fa-spin fa-spinner fa-2x"></i>
+                </div>  
+            </div>  
+        </div>
+                
+  
+      </div>
     </div>
+      
+      
   </div>
+  
+</div>
 
+
+  
     

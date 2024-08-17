@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <h2>Pacientes con Turnos del Día</h2>
+    <table *ngIf="pacienteTurnoDia" class="table-striped table table-bordered">
+      <thead class="table-primary">
+        <tr>
+          <th>#</th>
+          <th>Nombre Completo</th>
+          <th>Correo</th>
+          <th>Turno</th>
+          <th>Enviar Recordatorio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paciente of pacienteTurnoDia; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ paciente.nombres }}</td>
+          <td>{{ paciente.correo }}</td>
+          <td>{{ paciente.turno | customDate: 'short' }}</td>
+          <td>
+            <button type="button" class="btn btn-success" (click)="sendMessage(paciente.telefono, paciente.turno, paciente)">
+              <i class="fa-brands fa-whatsapp"></i> Enviar Mensaje
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

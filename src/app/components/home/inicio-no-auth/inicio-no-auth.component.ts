@@ -1,5 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UsuarioServicesService } from '../../../service/usuario.services.service';
+import { Router } from '@angular/router';
+import { isLocalStorageAvailable } from '../../../localStorageUtils';
 
 @Component({
   selector: 'app-inicio-no-auth',
@@ -8,17 +10,24 @@ import { UsuarioServicesService } from '../../../service/usuario.services.servic
 })
 export class InicioNoAuthComponent implements OnInit {
  auth:boolean = false;
- private servicio = Inject(UsuarioServicesService)
-
+ isDropdownOpen: boolean = false;
+ 
+ private router = Inject(Router)
   ngOnInit() {
-    console.log(this.servicio.autenticado())
-    if(localStorage.getItem('token')){
-      this.auth = true;
+    if (isLocalStorageAvailable()) {
+      if (localStorage.getItem('token')) {
+        this.auth = true;
+      } else {
+        this.auth = false;
+      }
+    } 
+  }
 
-    }else{
-      this.auth = false;
-      console.log(this.auth)
-    }
-    return this.auth;
+
+  registrar(rol: string) {
+    this.router.navigate(['/registro'], { queryParams: { rol } });
+  }
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 }
