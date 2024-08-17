@@ -25,7 +25,6 @@ import { PacienteCitasComponent } from './components/paciente/paciente-citas/pac
 
 
 const routes: Routes = [
-  
   { path: 'inicio', component: InicioNoAuthComponent },
   { path: 'login', component: LoginComponent },
   { path: 'recuperaPassword', component: RecuperaPasswordComponent },
@@ -49,7 +48,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
