@@ -1,0 +1,179 @@
+
+.container{
+margin-top: 3rem;
+}
+
+.hero {
+    background-color: rgb(255, 255, 255);
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container {
+    margin-top: 8rem;
+    text-align: center;
+  }
+
+  .contenedor{
+
+    background-color: rgb(225, 225, 225);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    border-radius: 15px;
+  }
+
+
+/*HERO PRINCIPAL*/
+  
+
+  .hero-principal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    justify-content:space-around ;
+    padding: 2rem;
+    border-radius: 10px;
+    position: relative;
+  }
+
+
+
+  /*CAMPO FOTO DE USUARIO*/
+
+
+  .dato-rol{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 24%;
+    height: 280px;
+    background-color: rgba(196, 195, 195, 0.646);
+  }
+  
+  .usuario-perfil {
+    align-items: center;
+    font-size: 5rem;
+    color: rgb(255, 255, 255);
+    position: relative;
+  }
+
+  .icon-edit {
+    color: grey;
+    position: absolute;
+    top: -13%;
+    right:-2%;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 300ms;
+  }
+
+  .icon-edit:hover{
+
+    color: rgb(27, 26, 26);
+    cursor: pointer;
+    font-weight: 300;
+
+  }
+  
+
+  /*DATOS NOMBRES*/
+
+
+  .datos-nombres{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
+
+  .datos-nombres h2{
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-size: 2.7rem;
+  }
+
+  .datos-nombres .especialidad{
+    margin-top: -17px;
+    margin-left: 30px;
+  }
+
+  .datos-nombres .cedula,
+  .telefono, .direccion{
+    font-size: 2.3rem;
+    margin-right: 25px;
+    margin-left: 40px;
+    color: rgb(67, 69, 70);
+  }
+  .datos-nombres .edad{
+    font-size: 1.1rem;
+    margin-left: 39px;
+    color: rgb(67, 69, 70);
+  }
+
+  .datos-nombres .cedula{
+    color: rgb(60, 159, 198);
+  }
+
+  .datos-nombres .telefono{
+    color: rgb(45, 187, 45);
+  }
+  .datos-nombres .direccion {
+    margin-right: 21px;
+    background: rgb(19,49,194);
+    background: linear-gradient(158deg, rgba(19,49,194,1) 32%, rgba(219,77,53,1) 47%, rgba(49,179,73,1) 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+
+  /*BOTON EDITAR*/
+
+
+  .contenedor .boton-editar{
+    margin-left: 55px;
+  }
+
+ .contenedor .boton-editar button{
+    z-index: 50;
+    font-size: 12px;
+
+  }
+
+  /*DATOS PROFESIONAL*/
+
+  .contenedor .datos-profesional{
+    margin-top: 1.5rem;
+    border-radius:0px 0px 15px 15px;
+    padding: 35px 90px 30px 80px;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
+
+  .contenedor .datos-profesional .informacion-profesional{
+    text-align: justify;
+  }
+
+  .list-group {
+    margin-top: 15px;
+    background-color: rgb(225, 225, 225);
+  }
+  
+  .list-group-item {
+    background-color: rgb(225, 225, 225);
+    margin-bottom: 2px;
+  }
+  
+  .list-group-item:last-child {
+    margin-bottom: 0;
+  }

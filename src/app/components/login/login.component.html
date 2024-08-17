@@ -1,5 +1,7 @@
-<div class=" container animate__animated animate__fadeIn">
-    <div class="form login">
+
+
+<div class="contenedor">
+    <div class="form login formulario">
         <div class="form content">
             <h1>Iniciar Sesión</h1>
 
@@ -40,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="c d-flex">
+                <div class="c d-flex mt-3">
                     <div class="contact100-form-checkbox justify-content-center">
                         <input [(ngModel)]="saveUser"  class="check input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                         <label class="label-check label-checkbox100" for="ckb1">
@@ -49,7 +51,8 @@
                     </div>
                 
                     <div class="form-link forgot">
-                        <a href="#" class="forpas forgot-pass">Olvidó el password?</a>
+                        <a class="forpas forgot-pass" routerLink="/recuperaPassword">Cambiar la clave</a>
+                        
                     </div>
                 </div>
 
@@ -57,11 +60,14 @@
                     <button>Ingresar</button>
                 </div>
                
-                <div class="form-link">
-                   <span> No tienes una cuenta?<a routerLink="/registro" class="signup-link">Registrarse</a></span> 
-                </div>
+              <!--  <div class="form-link">
+                   <span> No tienes una cuenta?<a routerLink="/registro"><small>Regístrate</small> </a></span> 
+                </div> -->
+                
             </form>
         </div>
     </div>
+    
+    
 </div>
-
+<router-outlet></router-outlet>

@@ -1,10 +1,169 @@
+<div class="contenedorLogin container-fluid d-flex justify-content-between">
+    <!--<div class="d-flex align-items-center">
+      <img src="assets/medi-app.png" alt="Logo Icono" class="logo-pagina">
+    </div> --> 
+    <router-outlet/>
 
-<div class="container animate__animated animate__fadeIn-slow ">
-    <div class="row">
-        <div class="col">
-            <button [routerLink]="['/login']" class="btn1 btn btn-outline-primary">Iniciar Sesión</button>
-            <button [routerLink]="['/registro']" class="btn2 btn btn-outline-success">Registrarse</button>
-        </div>
-
+    <div class="d-flex align-items-center">
+            <button [routerLink]="['/login']" class="btn1 btn btn-outline-primary btn-iniciar-sesion">Iniciar Sesión</button>
     </div>
 </div>
+
+
+
+
+
+<section class="hero align-items-stretch ">
+    
+    <div class="hero-principal d-flex flex-column justify-content-start align-item-center">
+
+            <h1>Bienvenido a Nuestra Plataforma de Gestión Médica</h1>
+            <p>Nuestro servicio facilita el registro de pacientes, la programación de citas y la generación de diagnósticos en línea. Mejora la eficiencia y organización para médicos y pacientes.</p>
+
+            <div class="grafico1">
+              <img src="assets/grafico2.png" alt="Grafico 1" class="grafico">
+            </div>
+    </div>
+    
+</section>
+
+
+
+<div class=" experiencia seccion-clara">
+  <div class="contenedor-text">
+    <img src="assets/dispositivos-moviles.png" alt="Logo" class="expericencia-grafico">
+      <div class="text-center">
+        
+            <div class="row" >
+
+                <div class="columna columna-imagen1 columna-imagen-mover col-6">
+                  <div id="text-content" class="sub-columna">
+                    <h3 class="experiencia-titulo" >Registro de Pacientes</h3>
+                    <i class="anadir bi bi-person-add"></i>
+                  </div>
+                  <div class="parrafo">
+                    <p>Registro centralizado y accesible de información de pacientes.</p>
+                  </div>
+                </div>
+               
+
+                <div class="columna columna-imagen2 columna-imagen-mover col-6">
+                  <div id="text-content" class="sub-columna">
+                    <h3 class="experiencia-titulo" >Gestión de Citas</h3>
+                    <i class="bi bi-calendar-check" ></i>
+                  </div>
+                  <div class="parrafo">
+                    <p>Programación y gestión eficiente de citas médicas.</p>
+                  </div>
+                </div>
+
+                <div class="columna columna-imagen3 columna col-6">
+                  <div id="text-content" class="sub-columna">
+                    <h3 class="experiencia-titulo" >Diagnóstico en Línea</h3>
+                    <i class="bi bi-clipboard-check" ></i>
+                  </div>
+                  <div class="parrafo">
+                    <p>Recepción de diagnósticos de manera rápida y segura.</p>
+                  </div>
+                </div>
+
+                <div class="columna columna-imagen4 col-6">
+                  <div id="text-content" class="sub-columna">
+                    <h3 class="experiencia-titulo" >Seguridad y Privacidad</h3>
+                    <i class="bi bi-shield-check" ></i>
+                  </div>
+                  <div class="parrafo">
+                    <p>Protección robusta de toda la información médica y personal.</p>
+                  </div>
+                </div>
+
+            </div>
+      </div>
+    </div>
+</div>
+    
+
+
+    <div class="beneficios seccion-oscura">
+      <div class="contenedor-text">
+        <div class="text-center">
+              <div class="row">
+
+                  <div class="columna col-12 col-md-12">
+                      <h3>Para Médicos</h3>
+                      <ul>
+                          <li>Registro y seguimiento de pacientes eficiente.</li>
+                          <li>Gestión fácil de citas.</li>
+                          <li>Acceso rápido a historiales médicos.</li>
+                      </ul>
+                  </div>
+      
+                  <div class="columna col-12 col-md-12">
+                      <h3>Para Pacientes</h3>
+                      <ul>
+                          <li>Obtención rápida de citas.</li>
+                          <li>Diagnósticos en línea.</li>
+                          <li>Seguimiento organizado de tratamientos.</li>
+                      </ul>
+                  </div>
+      
+              </div>
+        </div>
+      </div>
+        
+    </div>
+
+
+
+
+    <section class="cta">
+      <button class="cta-button">Regístrate Ahora</button>
+    </section>
+
+  
+    <!-- Integración con Redes Sociales -->
+   
+
+    
+ <!-- FOOTER-->
+
+ <footer class="footer">
+  <div class="container">
+    <div class="row">
+      
+      <div class="grupo1 col-12 col-md-6 col-lg-6">
+          <h5>Enlaces</h5>
+          <ul class="list-unstyled">
+              <li><a href="#">Inicio</a></li>
+              <li><a href="#">Características</a></li>
+              <li><a href="#">Beneficios</a></li>
+              <li><a href="#">Sobre la App</a></li>
+              <li><a href="#">Contacto</a></li>
+          </ul>
+      </div>
+      
+      <div class="grupo2 col-12 col-md-6 col-lg-6">
+          <h5 class="h5">Contacto</h5>
+          <ul class="list-unstyled1">
+              <li>Email: www.medic-app.com</li>
+              <li>Teléfono: +593 999001087</li>
+              <li>Dirección: Calle, Portoviejo, Ecuador</li>
+          </ul>
+      </div>
+    
+    </div>
+    
+    <div class="row2">
+      <div class="rights col-12 text-center">
+        <p>&copy; 2024 Medic-app. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </div>
+
+
+</footer>
+
+
+
+
+

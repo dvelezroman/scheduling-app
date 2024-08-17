@@ -1,32 +1,63 @@
-
 <nav *ngIf="isLoggedIn" class=" nav navbar navbar-expand-sm navbar-light barra">
-    <div class="container-fluid">
+  <div class="container-fluid">
 
+    <div class='userLogin'>
+      <ul class="navbar-nav d-flex justify-content-center align-items-center">
+        
+        
+        <li class="nav-item" routerLinkActive="active-link">
+          <a class="nav-link" aria-current="page" routerLink="/home">Home</a>
+        </li>
+
+        <li *ngIf="userRol === 'paciente' || userRol === 'administrador'" class="nav-item dropdown" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link dropdown-toggle" role="button" id="menuDropdown"  data-bs-toggle="dropdown" aria-expanded="true">
+            Menú
+          </a>
+          <ul class="dropdown-menu m-2 animate__animated animate__fadeIn" aria-labelledby="menuDropdown">
+            <li><a class="dropdown-item" routerLink="/paciente-citas">Citas</a></li>
+            <li><a class="dropdown-item" routerLink="/mis-diagnosticos">Diagnósticos</a></li>
+            <li><a class="dropdown-item" routerLink="/medicos-datos">Médicos</a></li>
+          </ul>
+        </li>
+
+        <li *ngIf="userRol === 'medico' || userRol === 'administrador'" class="nav-item dropdown" routerLinkActive="active-link">
+          <a class="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="true">
+            Pacientes
+          </a>
+          <ul class="dropdown-menu m-2 animate__animated animate__fadeIn" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="/pacientes">Mostrar Todos</a></li>
+            <li><a class="dropdown-item" routerLink="/pacientes/nuevo">Agregar Paciente</a></li>
+          </ul>
+        </li>
 
       
-      <div class='userLogin'>
-        
-              <ul  class="navbar-nav d-flex justify-content-center align-items-center">
-                  <li *ngIf="isLoggedIn" class="nav-item" routerLinkActive="active-link">
-                    <a class="nav-link " aria-current="page"  routerLink="/home">Home</a>
-                  </li>
-  
-                  <li *ngIf="isLoggedIn" class="nav-item" routerLinkActive="active-link">
-                    <a class="nav-link" aria-current="page"  routerLink="/pacientes">Lista de Pacientes</a>
-                  </li>
-              </ul>
-      </div>
-      <ul class="navbar-nav2 ml-auto">
-        <li class="nav-item2" [matTooltip]="'Mi cuneta'"  matTooltipPosition="after">
-          <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon><i class="iconoUser fa-regular fa-circle-user"></i></mat-icon>
-          </button>
-          <mat-menu #menu="matMenu" class="barMenu">
-            <a class="nombreUser" mat-menu-item>{{ userName }}</a>
-            <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión <i class=" iconoLogOut fa-solid fa-arrow-right-from-bracket"></i></button>
-          </mat-menu>
-        </li>
       </ul>
     </div>
-  </nav>
-  
+
+    <ul class="navbar-nav2 ml-auto">
+
+      <li *ngIf="userRol === 'administrador'" class="nav-item">
+        <div class="btn-group dropdown">
+          <button class="btn2 btn btn-outline-success dropdown-toggle btn-registrarse" (click)="toggleDropdown()" data-bs-toggle="dropdown" id="dropdownMenuButton1" aria-expanded="false">
+            Registrar
+          </button>
+          <div class="dropdown-menu mt-2 custom-dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <a class="dropdown-item" [routerLink]="['/registro']" [queryParams]="{ rol: 'medico' }">Médico</a>
+            <a class="dropdown-item" [routerLink]="['/registro']" [queryParams]="{ rol: 'paciente' }">Paciente</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item2" [matTooltip]="'Mi Cuenta'" matTooltipPosition="above">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon><i class="iconoUser fa-regular fa-circle-user"></i></mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="barMenu">
+          <a class="nombreUser" mat-menu-item>{{ nombresUsuario | titlecase }}</a>
+          <button mat-menu-item routerLink="datos-usuario"><i class="bi bi-person-vcard-fill"></i> Mi Perfil </button>
+          <button mat-menu-item (click)="cerrarSesion()"><i class="icono-configurar bi bi-door-open"></i> Cerrar Sesión </button>
+        </mat-menu>
+      </li>
+    </ul>
+
+  </div>
+</nav>

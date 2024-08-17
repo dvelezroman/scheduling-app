@@ -1,0 +1,111 @@
+/* General */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  /* Contenedor principal */
+  .container {
+    margin-top: 6rem;
+    padding-bottom: 100px;
+  }
+
+  
+  /* Títulos */
+  .container .titulo {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    font-family: 'Rubik Dirt';
+    color: #306aa7;
+
+  }
+  
+  .nombre-paciente {
+    font-size: 1.8rem;
+    color: #223d58;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    margin-top: 20px;
+  }
+  
+  .cedula-paciente{
+    margin-right: 20px;
+    font-size: 1.3rem;
+  }
+  /* Sección del paciente */
+
+  .container .paciente-section {
+    background-color: #e0dddd;
+    border-radius: 15px;
+
+  }
+  .paciente-section .contenedor-select{
+    margin-top: -5px;
+    margin-bottom: 12px;
+
+  }
+  
+  /* Select de diagnósticos */
+
+
+  .select-diagnosticos {
+    width: 100%;
+    max-width: 520px;
+    border: 1px solid grey;
+    background-color: #6f8eacdb;
+    color: white;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 20px;
+
+  }
+
+  .select-diagnosticos:hover{
+    background-color: #1b63acdb;
+    cursor: pointer;
+  }
+  .container textarea {
+    width: 100%;
+    min-width: 300px;
+    max-width: 100%;
+    height: 200px;
+    padding: 10px;
+    font-size: 17px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    background-color: #fff;
+    border: 1px solid #61656a;
+    border-radius: 5px;
+    resize: none;
+    margin: 0 auto;
+  }
+  
+   .paciente-section .text-button .cerrar-btn {
+    margin-top: 30px;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .paciente-section .text-button .cerrar-btn:hover {
+    background-color: #223d58;
+    color: white;
+  }
+  .paciente-section .text-button{
+    margin: 25px 0px;
+  }
+  
+
+  @media (max-width: 576px) {
+    .titulo {
+      font-size: 1.5em;
+    }
+  
+    .nombre-paciente {
+      font-size: 1.2em;
+    }
+  }

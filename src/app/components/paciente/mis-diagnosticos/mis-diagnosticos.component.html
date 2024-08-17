@@ -1,0 +1,25 @@
+<div class="container">
+  <h1 class="titulo text-center">Mis Diagnósticos</h1>
+  <p class="text-center">{{ mensajeDiagnosticos }}</p>
+  <div *ngIf="diagnosticos.length > 0; else noDiagnosticos">
+    <div class="d-flex justify-content-center align-items-center mb-4">
+      <select id="diagnosticoSelect" class="form-control select-diagnosticos" (change)="mostrarDiagnostico($event)">
+        <option value="default" selected>Seleccionar diagnóstico</option>
+        <option *ngFor="let diagnostico of diagnosticos" [value]="diagnostico.fecha">
+          {{ diagnostico.fecha | fechaDiagnostico }}
+        </option>
+      </select>
+    </div>
+    <div *ngIf="diagnosticoSeleccionado" class= "diagnostico-card mb-4 p-3">
+      <h3>Realizado por: {{ diagnosticoSeleccionado.realizadoPor | titlecase }}</h3>
+      <p><strong>Fecha:</strong> {{ diagnosticoSeleccionado.fecha | fechaDiagnostico }}</p>
+      <textarea class="textarea form-control diagnostico-textarea" [(ngModel)]="diagnosticoSeleccionado.texto" readonly></textarea>
+      <div class="text-center">
+        <button class="btn btn-secondary mt-3" (click)="cerrarDiagnostico()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+  <ng-template #noDiagnosticos>
+    <p class="text-center">No hay diagnósticos disponibles.</p>
+  </ng-template>
+</div>

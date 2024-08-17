@@ -4,7 +4,8 @@ import { UsuarioModel } from '../models/usuario.model';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { PacienteModel } from '../models/paciente.model';
+import { isLocalStorageAvailable } from '../../localStorageUtils';
+
 
 @Component({
   selector: 'app-login',
@@ -15,20 +16,21 @@ export class LoginComponent implements OnInit {
 mostrar:boolean = false;
 usuario:UsuarioModel = new UsuarioModel();
 saveUser:boolean = false;
+isDropdownOpen: boolean = false;
 
   constructor(private auth : UsuarioServicesService,
               private ruta : Router){
 
 }
 
-  ngOnInit(): void {
-    if(localStorage.getItem('name')){
-      this.usuario.email = localStorage.getItem('name');
-
-        //this.saveUser = true;
+ ngOnInit(): void {
+    if (isLocalStorageAvailable()) {
+      const storedName = localStorage.getItem('name');
+      if (storedName) {
+        this.usuario.email = storedName;
+      }
     }
-   // console.log(this.saveUser);
-  } 
+  }
   
 
   ingresar(form:NgForm){
@@ -45,20 +47,18 @@ saveUser:boolean = false;
       });  
        return;
       }
-      this.auth.login(this.usuario).subscribe(data =>{
+      this.auth.login2(this.usuario).subscribe(data =>{
     
-
-
         Swal.close()
         Swal.fire({
           allowOutsideClick: false,
           icon: 'success',
-          title: 'Exito',
-          timer: 1500,
+          title: 'Listo',
+          timer: 1000,
           showConfirmButton: false
   
         });  
-        this.ruta.navigateByUrl('/home');
+        this.ruta.navigate(['/home'], { replaceUrl:true});
         
         if(this.saveUser){
           localStorage.setItem('name', this.usuario.email)
@@ -83,6 +83,10 @@ saveUser:boolean = false;
     this.mostrar = !this.mostrar;
 
   }
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
 
   }
 

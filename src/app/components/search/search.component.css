@@ -1,0 +1,27 @@
+
+nav{
+    position: absolute;
+    top: 32%;
+    left: 70%;
+    cursor: pointer;
+    padding: 0px;
+
+
+}
+.contenedor{
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    background-color: #77a2da;
+}
+.contenedor button{
+    background-color: none;
+    border: none;
+    color: black;
+}
+.contenedor button:hover{
+    background-color: #77a2da;
+    border: none;
+    color: rgb(96, 95, 95);
+
+}

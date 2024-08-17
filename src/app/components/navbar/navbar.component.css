@@ -1,6 +1,9 @@
+
+
 .navbar-nav{
+  width: 300px;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   list-style: none;
   padding: 1px;
@@ -9,18 +12,35 @@
   transition: all 0.3s;
 }
 
-
-
     .nav-link{
-        font-size: 15px;
+        font-size: 18px;
+        color: rgb(207, 202, 202);
         font-weight: 300;
-
+        text-align: end;
         padding: 1px;
         margin: 5px;
         transition: all 0.3s;
 
     }
-    
+    .nav-link:hover {
+      color: #ffffff;
+     
+    }
+    .active-link .nav-link {
+      border-bottom: 2px solid #ffffffe3;
+      
+    }
+    .nav-item{
+      color: white;
+      margin-right: 10px;
+      margin-left: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 1px;
+      transition: all 0.3s;
+    }
+
+
 
     .nombreUsuario{
         font-size: 11px;
@@ -30,58 +50,135 @@
 
     }
 
-   /* .scroll-container {
-        position: relative;
-        width: 100px; /* Ajusta esto según el tamaño de tu navbar */
-      /*  overflow: hidden;
-        white-space: nowrap;
-      }
-      
-      .scroll-text {
-        display: inline-block;
-        padding-left: 100%;
-        animation: scroll-text 7s linear;
-      }
-      
-      @keyframes scroll-text {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-100%);
-          padding-left: 100%;
-        }
-      }*/
-
     .barra{
-        background-color: #77a2da;
+        background-color: #244065;
+      margin-bottom: -2rem;
+    }
+    /* estilos del menu de pacientes*/
+
+    .nav-item.dropdown > .nav-link {
+      color: #ebe9e9; 
+    }
+    
+
+    .nav-item.dropdown.show > .nav-link,
+    .nav-item.dropdown > .nav-link:hover {
+      color: #e9e9e9; 
+    }
+    
+
+    .nav-item.dropdown > .nav-link:not(:hover) {
+      color: #cbcaca; 
+    }
+    .dropdown-item{
+      color: rgb(118, 117, 117);
+      font-size: 16px;
+      padding-top: 15px;
+      padding-right: 35px;
+      transition: all 0.3s;
+    }
+    .dropdown-item.item{
+      color: rgb(118, 117, 117);
+      font-size: 16px;
+      padding-bottom: 12px;
+
+      transition: all 0.3s;
+    }
+    .dropdown-menu{
+      background-color: rgba(245, 247, 250, 0.6);
+      backdrop-filter: blur(13px);
+      padding-top: 0px;
+      padding-right: 20px;
+      width: 200px;
+
+      border: 1px solid #212529;
     }
 
-    /* stilos del menu de usuario*/
+    .animate__animated.animate__fadeIn {
+      animation-duration: 200ms;
+    }
+
+.dropdown-menu .dropdown-item {
+  color: #3c3f42; 
+  font-weight: normal; 
+  font-weight: 300;
+  transition: all 100ms;
+  width: 100%;
+}
+
+
+.dropdown-menu .dropdown-item:hover {
+  color: #212529; 
+  font-weight: 400; 
+  background-color: transparent !important; 
+  margin-left: 4px;
+}
+
+
+.dropdown-menu .dropdown-item a {
+  color: inherit; 
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+}
+
+
+.dropdown-menu .dropdown-item a:hover {
+  text-decoration: none; 
+  font-weight: bold;
+}
+
+
+/* estilos del menu REGISTRAR*/
+
+.btn-registrarse {
+  color: #b2b1b1; 
+  border-color: #edefee; 
+  transition: all 300ms ease-in-out;
+}
+
+
+.btn-registrarse:hover,
+.btn-registrarse:focus {
+  background-color: transparent; 
+  color: #e8e9ea; 
+  border-color: #e2e3e4; 
+}
+
+
+#dropdownMenuButton1[aria-expanded="true"] {
+  background-color: transparent; 
+  color: #cfd2d5; 
+  border-color: #d7d9db; 
+}
+    
+/* stilos del menu de usuario*/
+
+
 .iconoUser{
-  font-size: 22px;
-  color: #17556c;
+  font-size: 28px;
+  color: #d2d7d9;
   position: absolute;
-  top: 14px;
+  top: 9px;
   left: 13px;
 }
 
 .nombreUser{
-
- color: grey;
+ cursor:arrow ;
+ color: rgb(71, 71, 71);
  font-size: 12px;
-}
-.iconoLogOut{
-  font-size: 15px;
-  color: #494a4a;
-  position: absolute;
-  top: 15px;
-  right: 55px;
+ font-weight: 500;
 }
 
-/* stilos del menu de usuario*/
 
+/* stilos del menu desplegable*/
 
+.barMenu{
+  background-color: #244065;
+  margin-bottom: -2rem;
+  min-width: 100%;
+
+}
 .navbar-nav2{
   display: flex;
   justify-content: end;
@@ -93,48 +190,122 @@
   transition: all 0.3s;
 }
 .nav-item2{
-  padding: 1px;
+  padding: 3px;
   border-radius: 15px;
 }
-/* stilos del menu de usuario*/
-/* stilos del menu de usuario*/
 
-    
-    .nav-link:hover {
-        color: #17556c;
-       
-      }
-      .active-link .nav-link {
-        border-bottom: 1px solid #2d6f87;
-        
-      }
-    
+.mat-menu-item .icono-configurar {
+  margin-left: auto;
+  font-size: 1.5em;  
+  margin-right: 5px;
+}
+
+
+.mat-menu-item i {
+  margin-right: 10px;
+  font-size: 1.6em;  
+
+}
+.mat-menu-item:hover, .mat-menu-item:focus {
+  text-decoration: underline;
+}
+/* estilos del menu de usuario*/    
 
     @media screen and (max-width: 611px){
 
-        .nombreUsuario{
-            display: none;
-        }
-        .navbar-nav{
-          margin: 24px;
-        }
-        .nav-link{
-          font-size: 13px;
-          margin: 2px;
-
-        }
-        .userLogin{
-
-        height: 7rem;
-
-        }
-        .logOut{
-          left: 77%;
-        }
-        .logout{
-          font-size: 11px;
-        }
-
+      .navbar-nav {
+        flex-direction: row; 
+        justify-content: center;
+        margin-left: 0;
+      }
+      
+      .nav-link {
+        font-size: 14px; 
+        margin: 2px 5px; 
+      }
+    
+      .navbar-nav2 {
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-right: 10px; 
+      }
+    
+      .iconoUser {
+        font-size: 24px; 
+      }
+    
+      .nombreUser {
+        font-size: 10px; 
+      }
+    
+      .nav-item {
+        margin: 5px;
+      }
     }
+
+
+@media (max-width: 575px) {
+  .navbar-nav .dropdown-menu {
+    position: relative;
+    float: none;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .navbar-nav .dropdown-menu.show {
+    display: block;
+    position: fixed;
+    top: 56px; 
+    left: 130px;
+    right: 0;
+    background-color: #ffffffb4;
+    z-index: 1000;
+    max-width: 30%;
+    padding: 5px;
+    
+
+  }
+
+
+  .navbar-nav .dropdown-item {
+    font-size: 12px; 
+    padding: 5px 7px;
+  }
+
+  .navbar-nav .dropdown-item a {
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-toggler-icon {
+    background-color: #007bff;
+  }
+}
+
+/* Estilos generales */
+.barMenu {
+  min-width: 200px;
+}
+
+.iconoUser {
+  margin-right: 10px;
+}
+
+button.mat-menu-item {
+  display: flex;
+  align-items: center;
+}
+
+button.mat-menu-item i {
+  margin-left: 10px;
+}
+
+    
         
+    
     

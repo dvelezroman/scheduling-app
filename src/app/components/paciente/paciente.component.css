@@ -1,15 +1,16 @@
 
 ::placeholder{
-    opacity: .6;
+    opacity: .5;
 }
 .container{
     position: relative;
     margin-left: 5rem;
+    margin-top: 5rem;
+}
 .form{
     margin-left:2.5rem;
 }
 
-}
 .tP{
     text-align: center;
     margin-bottom: 2rem;
@@ -90,4 +91,83 @@ boton2:focus{
   .validador{
     font-size: 12px;
     margin-left: 10px;
+  }
+  .cedula{
+    position: relative;
+  }
+  .icono-cedula{
+    font-size: 14px;
+    position: absolute;
+    top: 30px;
+    left: -25px;
+  }
+
+  .correo{
+    position: relative;
+  }
+  .icono-correo{
+    font-size: 14px;
+    position: absolute;
+    top: 30px;
+    left: -25px;
+  }
+  
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+         margin: 0;
+}
+    input[type=number] {
+        -moz-appearance: textfield;
+}
+    .input-group-text {
+        background-color: transparent;
+        border: none;
+}
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.invalid-feedback {
+    display: block;
+    color: #dc3545;
+}
+
+.input-group-text {
+    background-color: transparent;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin-left: 1rem;
+    }
+
+    .form {
+        margin-left: 0;
+    }
+
+}
+@media (max-width: 576px) {
+    .form-group, .input-group {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .input-group-append {
+      margin-top: 5px;
+    }
+    
+    .form-control, .input-group-text {
+      width: 100%;
+    }
+    
+    .group-boton {
+      text-align: center;
+    }
+    
+    .boton {
+
+      margin-bottom: 10px;
+    }
   }

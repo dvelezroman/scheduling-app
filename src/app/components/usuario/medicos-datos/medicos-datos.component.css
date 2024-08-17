@@ -1,0 +1,98 @@
+
+
+.body {
+  background-color: #dfdfe0;
+  min-height: 100vh; 
+  padding: 20px;
+  margin: 0;
+  width: 100%; 
+}
+
+.container {
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 10px;
+  letter-spacing: .5px;
+}
+
+.titulo-especialidad{
+  text-align: center;
+  padding: 15px;
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 20px;
+}
+
+.boton-todos,
+.boton-especialidad{
+  text-align: center;
+  font-size: 30px;
+}
+
+.titulo{
+  text-align: center;
+  padding: 15px;
+  font-size: 30px;
+}
+ 
+  .tarjetas{
+    flex-wrap: nowrap;
+    margin-bottom: 30px;
+  }
+
+  .tarjeta{
+    width: 320px;
+    height: auto;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(229, 229, 229);
+    box-shadow: 0px 0px 3px rgba(138, 138, 138, 0.764);
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .tarjeta:hover{
+    box-shadow: 1px 1px 30px rgba(138, 138, 138, 0.764) inset;
+    box-shadow: 1px 1px 30px rgba(158, 158, 158, 0.611);
+    box-shadow: -1px -1px -20px rgba(117, 117, 117, 0.611) ;
+    filter: blur(0px);
+  }
+  
+  .tarjeta:hover {
+    background-color: rgb(237, 237, 237);
+    color: rgb(102, 102, 102);
+  }
+  
+  .tarjeta:hover .card-title,
+  .tarjeta:hover .card-text {
+    color: rgb(99, 99, 99);
+  }
+  .cuerpo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .card-body {
+    word-wrap: break-word;
+  }
+  .titulo-tarjeta{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+
+  .texto{
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
+  .boton-atras {
+    margin-top: 20px;
+    margin-bottom: 150px;
+    display:flex;
+    justify-content: center;
+  }
+

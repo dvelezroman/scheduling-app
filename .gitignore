@@ -42,3 +42,16 @@ testem.log
 .DS_Store
 Thumbs.db
 
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
+
+
+# Angular environment files
+environments/*
+
+
+# Firebase Json
+firebase.json

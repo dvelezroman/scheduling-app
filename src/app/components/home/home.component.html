@@ -1,16 +1,43 @@
 
+ <!-- MOSTRAR EL NUMERO DE PACIENTES DEL DIA -->
+
+<div *ngIf="mostrarMensajeTurno" class="anuncio-paciente alert alert-info" routerLink="/pacientes-dia">
+  Tienes {{ pacientesConTurnoHoy }} paciente(s) con turno hoy.
+</div>
+
+<!-- LOGO -->
+
+<section class="hero align-items-stretch ">
+  <div class="hero-principal">
+      <img src="assets/grafico2.png" alt="Logo Medic-App" class="grafico">
+  </div>
+</section>
 
 
+<!--SECCION DE LAS FUNCIONES MEDICO O ADMINISTRADOR-->
 
-  <div class="cont">
-    <div class="container" routerLink="/pacientes">
-        <div class="row">
-            <div class="col">
-               <a class="notice" ><h3>Tienes {{numeroPacientes}} <span *ngIf="numeroPacientes<2">paciente agregado</span><span *ngIf="numeroPacientes>1">pacientes agregados</span> </h3></a> 
-                <h3 *ngIf="numeroPacientes<1"> sin pacientes</h3>
-            </div>
-        </div>
-    
+<section  *ngIf="userRol === 'medico'"  class="experiencia seccion-clara">
+  <div class="container text-center">
+      <div  class="row">
+          <div  class="columna col-12 col-md-4" routerLink="/pacientes/nuevo">
+              <i class="anadir bi bi-person-add"></i>
+              <p class="experiencia-titulo">Agregar Pacientes</p>
+              <p>Conectando tu salud con el futuro, hoy.</p>
+          </div>
+          <div class="columna col-12 col-md-4" routerLink="/pacientes-dia">
+              <i class="bi bi-calendar-check"></i>
+              <p class="experiencia-titulo" >Turnos para Hoy</p>
+              <p>Eficiencia y cuidado en cada paso hacia tu bienestar.</p>
+          </div>
+          <div class="columna col-12 col-md-4" routerLink="/pacientes-diagnosticos">
+              <i class="bi bi-clipboard2-check-fill" ></i>
+              <p class="experiencia-titulo">Diagnósticos Realizados</p>
+              <p>Precisión y claridad en cada análisis para tu salud.</p>
+          </div>
       </div>
   </div>
-  
+</section>
+
+
+
+

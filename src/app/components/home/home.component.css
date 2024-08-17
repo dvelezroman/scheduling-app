@@ -1,48 +1,119 @@
 
-  .cont{
-    transition: all .4s;
-  }
-  .cont:hover{
-    transform: scale(1.1);
-  }
-  .container{
-    width: 80vh;
-    background-color: #eeebe8;
-    margin-top: 3rem;
-    padding: 4rem;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    border-radius: 15px;
-  }
-  h3{
-    font-size: 15px;
 
-  }
-  .notice{
-    text-decoration: none;
-    cursor: pointer;
-    transition: all .3s;
-  }
- .col{
-  transition: all .2s;
-  text-align: center;
- }
- .log-out{
-  display: felx;
-  font-size: 13px;
-  position: absolute;
-  top: 45px;
-  left: 83%;
-  cursor: pointer;
-  transition: all 250ms;
-  color: rgb(0, 0, 0);
-  font-weight: 300;
-  z-index: 1;
-  transition: all .5s;
-  z-index: 1;
+/*sección logo*/
+.anuncio-paciente{
+margin-top: 30px;
+border-radius: 0px 0px 10px 10px;
+margin-bottom: 0px;
+background-color: #536697;
+color: white;
+border: none;
+cursor: pointer;
+}
+
+section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1{
+  font-size: 4.5rem;
+  font-weight: 500;
+  font-family: 'Rubik Dirt';
+  color: #1e3162;
+}
+.hero .hero-principal .grafico{
+ width: 350px;
+ margin-top: 35px;
 
 }
-.log-out:hover{
-  color: rgb(71, 70, 70);
+
+.hero{
+  background-color: #ffffff;
+  min-height: 450px;
+  text-align: center;
+
+}
+
+.hero-principal{
+  padding: 3rem;
+
+}
+
+.hero-principal h2{
+  font-size: 1rem;
+  color: #4e5a73;
+
+}
+
+.seccion-titulo{
+  font-size: 2rem;
+  padding: 15px 0px;
+  font-weight: 600;
+  color: #232836;
+  text-align: center;
+}
+
+.seccion-texto{
+  font-size: 1rem;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+}
+
+.seccion{
+  color: white;
+  background-color: #5084a5bf;
+}
+
+.seccion-clara{
+  color: rgb(239, 238, 238);
+  background-color: white;
+}
+
+.experiencia{
+  padding: 40px 40px 20px 40px;
+  background-color: #ffffff;
+  align-items: center;
+}
+
+.experiencia .row{
+  transition: all .3s ease;
+  margin-bottom: 100px;
+}
+
+.experiencia .row .columna{
   
-  
+  height: auto;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+
+}
+
+.experiencia .row .columna:hover{
+  box-shadow: 1px 1px 30px rgba(138, 138, 138, 0.764) inset;
+  box-shadow: 1px 1px 30px rgba(143, 143, 143, 0.611);
+  box-shadow: -1px -1px -20px rgba(117, 117, 117, 0.611) ;
+  filter: blur(0px);
+}
+
+.experiencia i{
+  color: rgb(22, 28, 71);
+  font-size: 2.5rem;
+  border-radius: 50%;
+}
+.experiencia-titulo{
+  font-size: 25px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: rgb(30, 39, 89);
+}
+.experiencia p{
+  padding: 5px;
+  color: rgb(23, 37, 86);
 }
