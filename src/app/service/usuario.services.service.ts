@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable, catchError,
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { PacienteService } from './paciente.service';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -57,7 +58,7 @@ export class UsuarioServicesService implements OnInit {
     constructor(private http :HttpClient,
                 private db : AngularFireDatabase,
                 private afAuth : AngularFireAuth,
-                private pacienteService: PacienteService) {
+                private router : Router) {
                 
                             this.cargarUsuarioActual2();  }
 
@@ -76,83 +77,7 @@ export class UsuarioServicesService implements OnInit {
       }
     }
 
-///////////////////////////////////////////////////////////////////////
-     //METODO PARA CREAR UN USUARIO NORMAL EN EL AUTHENTICATION DE FIREBASE//
-    registrar2(usuario:UsuarioModel){
-        const auth = {
-          ...usuario,
-          returnSecureToken: true
-        }
-        return this.http.post(`${this.url}:signUp?key=${this.apykey2}`, auth)
-        .pipe(
 
-          map( resp => {
-            this.almacenarToken(resp['idToken']);
-            this.almacenarUid(resp['localId']);
-            this.almacenarUserName(usuario.email);
-            this.almacenarName(usuario.nombres);
-            this.emailUsuario.next(usuario.email);
-            this.usuarioId.next(resp['localId']);
-            this.loggedIn.next(true);
-            return resp;
-            
-          })
-
-        )
-      };
-
-
-   ///////////////////////////////////////////////////////////////////////
-  //METODO PARA CREAR UN USUARIO EN EL REALTIME DATABASE CON EL MISMO UID QUE SE AUTENTICA//
-     registrar(usuario: UsuarioModel): Observable<any> {
-        
-        const authData = {
-          email: usuario.email,
-          password: usuario.password,
-          returnSecureToken: true
-        };
-    
-        return this.http.post(`${this.url}:signUp?key=${this.apykey2}`, authData).pipe(
-          switchMap(resp => {
-            this.almacenarToken(resp['idToken']);
-            this.almacenarUid(resp['localId']);
-            this.almacenarUserName(usuario.email);
-            this.almacenarName(usuario.nombres);
-            this.cargarUsuarioActual2();
-            this.emailUsuario.next(usuario.email);
-            this.usuarioId.next(resp['localId']);
-            this.loggedIn.next(true);
-    
-            const uid = resp['localId'];
-            usuario.id = uid;
-
-            return from(
-              this.db.object(`/usuarios/${uid}`).set({
-                id: uid,
-                nombres: usuario.nombres,
-                email: usuario.email,
-                rol: usuario.rol,
-                especialidad: usuario.especialidad || null, 
-                edad: usuario.edad || null,
-                telefono: usuario.telefono || null,
-                pacienteId: usuario.pacienteId || null,
-                informacionProfesional: usuario.informacionProfesional || null,
-                direccionConsultorio: usuario.direccionConsultorio || null
-
-              })
-            ).pipe(
-              catchError(err => {
-                console.error('Error saving user details:', err);
-                return throwError(err);
-              })
-            );
-          }),
-          catchError(err => {
-            console.error('Error during registration:', err);
-            return throwError(err);
-          })
-        );
-      }
 
 ///////////////////////////////////////////////////////////////////////
  //METODO PARA REGISTRAR USUARIO SIN QUE INICIE SESION AUTOMATICAMENTE //
@@ -224,29 +149,7 @@ export class UsuarioServicesService implements OnInit {
       );
     }
     
-///////////////////////////////////////////////////////////////////////
-                  //LOGIN ANTERIOR //
-    login(usuario:UsuarioModel): Observable<any> {
-        const auth={
-          ...usuario,
-          returnSecureToken: true
-        };
-        return this.http.post(`${this.url}:signInWithPassword?key=${this.apykey2}`, auth)
-        .pipe(
-        
-          map( resp => {
-            this.almacenarToken(resp['idToken']);
-            this.almacenarUserName(usuario.email);
-            this.almacenarUid(resp['localId']);
-            this.cargarUsuarioActual2();
-            this.emailUsuario.next(usuario.email);
-            this.usuarioId.next(resp['localId']);
-            this.loggedIn.next(true);
-            return resp;
-          })
 
-        )
-      }
 /////////////////////////////////////////////////////////////////////
         //LOGIN ACTUAL RECONOCE EL ROL DEL USUARIO QUE INGRESA//
       login2(usuario: UsuarioModel): Observable<UsuarioModel> {
@@ -295,6 +198,7 @@ export class UsuarioServicesService implements OnInit {
         this.usuarioId.next('');
         this.afAuth.signOut().then(() => {
         this.usuarioActual2.next(null);
+        this.router.navigate(['/inicio']);
         });
       
       }
@@ -441,6 +345,7 @@ getUsuarioActual(): Observable<UsuarioModel> {
 }
 
 
+//METODO PARA ACTUALIZAR LOS DATOS DEL USUARIO ACTUAL CON EL UID DE FIREBASE//
 actualizarUsuario(usuario: UsuarioModel): Observable<any> {
   const uid = usuario.id; 
 

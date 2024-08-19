@@ -2,25 +2,29 @@
   <div class="container-fluid">
 
     <div class='userLogin'>
-      <ul class="navbar-nav d-flex justify-content-center align-items-center">
+      <ul class="navbar-nav">
         
         
         <li class="nav-item" routerLinkActive="active-link">
           <a class="nav-link" aria-current="page" routerLink="/home">Home</a>
         </li>
 
-        <li *ngIf="userRol === 'paciente' || userRol === 'administrador'" class="nav-item dropdown" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link dropdown-toggle" role="button" id="menuDropdown"  data-bs-toggle="dropdown" aria-expanded="true">
-            Menú
-          </a>
-          <ul class="dropdown-menu m-2 animate__animated animate__fadeIn" aria-labelledby="menuDropdown">
-            <li><a class="dropdown-item" routerLink="/paciente-citas">Citas</a></li>
-            <li><a class="dropdown-item" routerLink="/mis-diagnosticos">Diagnósticos</a></li>
-            <li><a class="dropdown-item" routerLink="/medicos-datos">Médicos</a></li>
-          </ul>
+        <li *ngIf="userRol === 'paciente'" class="nav-item" routerLinkActive="active-link">
+          <a class="nav-link medicos" routerLink="/medicos-datos" routerLinkActive="active-link">Lista de Médicos</a>
         </li>
 
-        <li *ngIf="userRol === 'medico' || userRol === 'administrador'" class="nav-item dropdown" routerLinkActive="active-link">
+        <li *ngIf="userRol === 'paciente'" class="nav-item dropdown" [routerLinkActive]="['active-link']" [ngClass]="{'dropdown-active': isHistorialMedicoActive()}">
+          <a class="nav-link dropdown-toggle" role="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="true">
+            Historial Médico
+          </a>
+          <ul class="dropdown-menu animate__animated animate__fadeIn" aria-labelledby="menuDropdown">
+            <li routerLinkActive="active-link"><a class="dropdown-item" routerLink="/paciente-citas">Turnos Agendados</a></li>
+            <li routerLinkActive="active-link"><a class="dropdown-item" routerLink="/mis-diagnosticos">Diagnósticos</a></li>
+          </ul>
+        </li>
+       
+
+        <li *ngIf="userRol === 'medico'" class="nav-item dropdown" routerLinkActive="active-link">
           <a class="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="true">
             Pacientes
           </a>
@@ -47,12 +51,11 @@
           </div>
         </div>
       </li>
-      <li class="nav-item2" [matTooltip]="'Mi Cuenta'" matTooltipPosition="above">
+      <li class="nav-item2" [matTooltip]="nombresUsuario | titlecase " matTooltipPosition="before">
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon><i class="iconoUser fa-regular fa-circle-user"></i></mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="barMenu">
-          <a class="nombreUser" mat-menu-item>{{ nombresUsuario | titlecase }}</a>
           <button mat-menu-item routerLink="datos-usuario"><i class="bi bi-person-vcard-fill"></i> Mi Perfil </button>
           <button mat-menu-item (click)="cerrarSesion()"><i class="icono-configurar bi bi-door-open"></i> Cerrar Sesión </button>
         </mat-menu>

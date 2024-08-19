@@ -30,6 +30,9 @@ isDropdownOpen: boolean = false;
 
   }
 
+  isHistorialMedicoActive(): boolean {
+    return this.ruta.url.includes('/paciente-citas') || this.ruta.url.includes('/mis-diagnosticos');
+  }
   
 ngOnInit() {
 

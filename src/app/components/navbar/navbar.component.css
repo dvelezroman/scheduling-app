@@ -1,35 +1,49 @@
 
+.userLogin{
+  width: 900px;
+  margin-left: 30px;
+  display: flex;
+  justify-content: start;
 
+}
 .navbar-nav{
   width: 300px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   list-style: none;
   padding: 1px;
-  margin: 5px;
-  margin-left: 60px;
   transition: all 0.3s;
+}
+.navbar-nav .medicos{
+  width: 180px;
+  text-align: center;
+
 }
 
     .nav-link{
+
         font-size: 18px;
-        color: rgb(207, 202, 202);
+        color: rgb(152, 151, 151);
         font-weight: 300;
         text-align: end;
-        padding: 1px;
-        margin: 5px;
+        padding: 19px;
+        margin: 0px;
         transition: all 0.3s;
+
 
     }
     .nav-link:hover {
       color: #ffffff;
+      
      
     }
     .active-link .nav-link {
-      border-bottom: 2px solid #ffffffe3;
+      border-bottom: none;
+      color: rgb(255, 255, 255);
       
     }
+    
     .nav-item{
       color: white;
       margin-right: 10px;
@@ -42,6 +56,7 @@
 
 
 
+
     .nombreUsuario{
         font-size: 11px;
         position: absolute;
@@ -51,24 +66,27 @@
     }
 
     .barra{
-        background-color: #244065;
+      background-color: #153e73;
       margin-bottom: -2rem;
     }
+
+    
     /* estilos del menu de pacientes*/
 
     .nav-item.dropdown > .nav-link {
-      color: #ebe9e9; 
+      color: #ffffff; 
+
     }
     
 
     .nav-item.dropdown.show > .nav-link,
     .nav-item.dropdown > .nav-link:hover {
-      color: #e9e9e9; 
+      color: #eaeaea; 
     }
     
 
     .nav-item.dropdown > .nav-link:not(:hover) {
-      color: #cbcaca; 
+      color: #b2b2b2; 
     }
     .dropdown-item{
       color: rgb(118, 117, 117);
@@ -85,12 +103,11 @@
       transition: all 0.3s;
     }
     .dropdown-menu{
-      background-color: rgba(245, 247, 250, 0.6);
-      backdrop-filter: blur(13px);
+      background-color: rgb(245, 247, 250);
       padding-top: 0px;
       padding-right: 20px;
       width: 200px;
-
+      box-shadow: 1px 0px 5px grey, 0px 1px 10px grey;
       border: 1px solid #212529;
     }
 
@@ -98,35 +115,33 @@
       animation-duration: 200ms;
     }
 
-.dropdown-menu .dropdown-item {
-  color: #3c3f42; 
-  font-weight: normal; 
-  font-weight: 300;
-  transition: all 100ms;
-  width: 100%;
-}
+    .dropdown-menu .dropdown-item {
+      color: #9a9a9a; 
+      font-weight: normal; 
+      font-weight: 500;
+      transition: all 100ms;
+      width: 100%;
+    }
 
 
-.dropdown-menu .dropdown-item:hover {
-  color: #212529; 
-  font-weight: 400; 
-  background-color: transparent !important; 
-  margin-left: 4px;
-}
+    .dropdown-menu .dropdown-item:hover {
+      color: #000000;  
+      background-color: transparent;
+
+    }
 
 
-.dropdown-menu .dropdown-item a {
-  color: inherit; 
-  text-decoration: none;
-  display: block;
-  padding: 10px 15px;
-}
+    .dropdown-menu .dropdown-item a {
+      text-decoration: none;
+      display: block;
+      padding: 10px 15px;
+    }
 
 
-.dropdown-menu .dropdown-item a:hover {
-  text-decoration: none; 
-  font-weight: bold;
-}
+    .dropdown-menu .dropdown-item a:hover {
+      text-decoration: none;
+      font-weight: bold;
+    }
 
 
 /* estilos del menu REGISTRAR*/
@@ -220,6 +235,7 @@
       }
       
       .nav-link {
+       
         font-size: 14px; 
         margin: 2px 5px; 
       }

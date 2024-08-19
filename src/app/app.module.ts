@@ -41,7 +41,7 @@ import { FechaDiagnosticoPipe } from './pipes/fecha-diagnostico.pipe';
 import { FechaTurnoTablaPipe } from './pipes/fecha-turno-tabla.pipe';
 import { MisDiagnosticosComponent } from './components/paciente/mis-diagnosticos/mis-diagnosticos.component';
 import { PacienteCitasComponent } from './components/paciente/paciente-citas/paciente-citas.component';
-
+import { AuthGuard } from './guards/authentic.guard';
 
 
 
@@ -93,6 +93,7 @@ import { PacienteCitasComponent } from './components/paciente/paciente-citas/pac
     MatIconModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    
 
 
   ],
@@ -101,8 +102,8 @@ import { PacienteCitasComponent } from './components/paciente/paciente-citas/pac
     DatePipe,
     provideClientHydration(),
     provideAnimationsAsync(),
-    provideHttpClient(withFetch())
-
+    provideHttpClient(withFetch()),
+    AuthGuard
 
   ],
   bootstrap: [AppComponent]
