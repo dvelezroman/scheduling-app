@@ -321,6 +321,73 @@ button.mat-menu-item i {
   margin-left: 10px;
 }
 
+/* Estilos específicos para pantallas de hasta 480px */
+@media (max-width: 480px) {
+  .nav {
+      overflow: hidden; /* Evita que el navbar se desborde */
+      padding: 0 10px; /* Ajusta el padding para dar más espacio */
+  }
+
+  .navbar {
+    position: relative; 
+    display: flex;
+    justify-content: space-between; /* Asegura que los elementos se distribuyan entre los extremos */
+    align-items: center; /* Alinea verticalmente los elementos al centro */
+    padding: 0.3rem 0.5rem; /* Ajusta el padding del navbar */
+    height: 75px;
+}
+
+.navbar-nav {
+  flex-direction: row; /* Asegura que los elementos estén en fila */
+  align-items: center; /* Alinea los elementos verticalmente */
+  margin-left: -2rem;
+  width: auto; /* Asegura que los elementos no se desborden */
+}
+
+.nav-item {
+  margin: 0 5px; /* Ajusta el margen entre los botones */
+}
+
+.nav-link {
+  font-size: 15px; /* Ajusta el tamaño de la fuente */
+  padding: 6px 5px; /* Reduce el padding de los enlaces */
+}
+
+.navbar-nav2 {
+  position: absolute;
+  top: 44%; /* Coloca el icono en el centro vertical del navbar */
+  right: 10px; /* Alínea el icono al extremo derecho */
+  transform: translateY(-50%); /* Ajusta para centrar verticalmente */
+}
+
+.btn-registrarse {
+  padding: 4px 8px; /* Reduce el padding del botón */
+  font-size: 12px; /* Ajusta el tamaño de la fuente */
+}
+
+.iconoUser {
+  padding: 4px; /* Ajusta el padding del icono de usuario */
+  font-size: 20px; /* Ajusta el tamaño del icono */
+}
+
+  .dropdown-menu {
+      width: auto; /* Asegura que el menú desplegable se ajuste al contenido */
+      max-width: 100%; /* Evita que el menú desplegable se desborde */
+      padding: 5px;
+  }
+
+  .mat-menu-item i {
+      font-size: 1.4em; /* Ajusta el tamaño del icono en el menú */
+  }
+
+  .mat-menu-item {
+      font-size: 14px; /* Ajusta el tamaño de la fuente en el menú */
+      padding: 5px 10px;
+  }
+}
+
+
+
     
         
     

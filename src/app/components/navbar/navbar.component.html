@@ -1,18 +1,14 @@
-<nav *ngIf="isLoggedIn" class=" nav navbar navbar-expand-sm navbar-light barra">
-  <div class="container-fluid">
+<nav *ngIf="isLoggedIn" class="nav navbar navbar-expand-sm navbar-light barra">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
 
-    <div class='userLogin'>
-      <ul class="navbar-nav">
-        
-        
+    <div class='userLogin d-flex'>
+      <ul class="navbar-nav d-flex align-items-center">
         <li class="nav-item" routerLinkActive="active-link">
           <a class="nav-link" aria-current="page" routerLink="/home">Home</a>
         </li>
-
         <li *ngIf="userRol === 'paciente'" class="nav-item" routerLinkActive="active-link">
           <a class="nav-link medicos" routerLink="/medicos-datos" routerLinkActive="active-link">Lista de Médicos</a>
         </li>
-
         <li *ngIf="userRol === 'paciente'" class="nav-item dropdown" [routerLinkActive]="['active-link']" [ngClass]="{'dropdown-active': isHistorialMedicoActive()}">
           <a class="nav-link dropdown-toggle" role="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="true">
             Historial Médico
@@ -22,8 +18,6 @@
             <li routerLinkActive="active-link"><a class="dropdown-item" routerLink="/mis-diagnosticos">Diagnósticos</a></li>
           </ul>
         </li>
-       
-
         <li *ngIf="userRol === 'medico'" class="nav-item dropdown" routerLinkActive="active-link">
           <a class="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="true">
             Pacientes
@@ -33,13 +27,10 @@
             <li><a class="dropdown-item" routerLink="/pacientes/nuevo">Agregar Paciente</a></li>
           </ul>
         </li>
-
-      
       </ul>
     </div>
 
-    <ul class="navbar-nav2 ml-auto">
-
+    <div class="navbar-nav2 d-flex align-items-center">
       <li *ngIf="userRol === 'administrador'" class="nav-item">
         <div class="btn-group dropdown">
           <button class="btn2 btn btn-outline-success dropdown-toggle btn-registrarse" (click)="toggleDropdown()" data-bs-toggle="dropdown" id="dropdownMenuButton1" aria-expanded="false">
@@ -60,7 +51,7 @@
           <button mat-menu-item (click)="cerrarSesion()"><i class="icono-configurar bi bi-door-open"></i> Cerrar Sesión </button>
         </mat-menu>
       </li>
-    </ul>
+    </div>
 
   </div>
 </nav>

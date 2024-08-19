@@ -24,6 +24,7 @@ h1{
   font-family: 'Rubik Dirt';
   color: #1e3162;
 }
+
 .hero .hero-principal .grafico{
  width: 350px;
  margin-top: 35px;
@@ -88,11 +89,10 @@ h1{
 }
 
 .experiencia .row .columna{
-  
   height: auto;
   transition: all .3s ease-in-out;
   cursor: pointer;
-
+  text-align: center;
 }
 
 .experiencia .row .columna:hover{
@@ -116,4 +116,50 @@ h1{
 .experiencia p{
   padding: 5px;
   color: rgb(23, 37, 86);
+}
+
+@media (max-width: 480px) {
+  .anuncio-paciente {
+      font-size: 14px;
+      padding: 10px;
+      text-align: center;
+  }
+
+  .hero .hero-principal .grafico {
+      width: 200px; /* Reduce el tamaño del logo */
+      margin-top: 20px;
+  }
+
+  .hero-principal {
+      padding: 1.5rem; /* Reduce el padding para aprovechar mejor el espacio */
+  }
+
+  .experiencia {
+      padding: 20px 20px 10px 20px; /* Reduce el padding general */
+  }
+
+  .experiencia .row {
+      margin-bottom: 50px; /* Reduce el margen inferior */
+  }
+
+  .experiencia .row .columna {
+      margin-bottom: 20px; /* Asegura que las columnas no se junten demasiado */
+  }
+
+  .experiencia i {
+      font-size: 2rem; /* Reduce el tamaño de los íconos */
+  }
+
+  .experiencia-titulo {
+      width: 80%;
+      margin: auto;
+      font-size: 20px; /* Reduce el tamaño del texto del título */
+  }
+
+  .experiencia p {
+      width: 80%;
+      margin: auto;
+      font-size: 14px; /* Reduce el tamaño del texto de los párrafos */
+      padding: 0 10px; /* Agrega un pequeño padding para evitar que el texto se junte demasiado con los bordes */
+  }
 }

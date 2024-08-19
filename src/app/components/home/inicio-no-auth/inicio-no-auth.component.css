@@ -964,6 +964,7 @@
 .tarjeta-beneficios ul li {
     margin-bottom: 0.5rem;
     font-size: 1.3rem;
+    color: #696969;
 }
 
 /* Eliminación de hover no deseado */
@@ -1059,7 +1060,7 @@ margin: auto;
 
 .footer {
   margin-top: 7rem;
-  background: linear-gradient(90deg, #5bc0de, #007bff); /* Degradado azul claro */
+  background: linear-gradient(360deg, #5bc0de, #007bff); /* Degradado azul claro */
   padding: 2rem 20px; /* Espacio superior, inferior y lateral */
   color: white;
   font-size: 1rem;
