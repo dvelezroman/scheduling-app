@@ -7,11 +7,11 @@
           <a class="nav-link" aria-current="page" routerLink="/home">Home</a>
         </li>
         <li *ngIf="userRol === 'paciente'" class="nav-item" routerLinkActive="active-link">
-          <a class="nav-link medicos" routerLink="/medicos-datos" routerLinkActive="active-link">Lista de Médicos</a>
+          <a class="nav-link medicos" routerLink="/medicos-datos" routerLinkActive="active-link">Médicos</a>
         </li>
         <li *ngIf="userRol === 'paciente'" class="nav-item dropdown" [routerLinkActive]="['active-link']" [ngClass]="{'dropdown-active': isHistorialMedicoActive()}">
           <a class="nav-link dropdown-toggle" role="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="true">
-            Historial Médico
+            Historial
           </a>
           <ul class="dropdown-menu animate__animated animate__fadeIn" aria-labelledby="menuDropdown">
             <li routerLinkActive="active-link"><a class="dropdown-item" routerLink="/paciente-citas">Turnos Agendados</a></li>

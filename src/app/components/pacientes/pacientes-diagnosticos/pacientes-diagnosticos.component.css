@@ -17,8 +17,7 @@ body {
     font-size: 3rem;
     margin-bottom: 50px;
     margin-top: 20px;
-    font-family: 'Rubik Dirt';
-    color: #306aa7;
+    color: #2f3439;
 
   }
   
@@ -99,13 +98,70 @@ body {
     margin: 25px 0px;
   }
   
-
-  @media (max-width: 576px) {
-    .titulo {
-      font-size: 1.5em;
+  @media (max-width: 768px) {
+    /* Contenedor principal centrado */
+    .container {
+      padding: 20px;
+      margin-top: 3rem;
+      padding-bottom: 50px; /* Reduce el padding inferior */
+      max-width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centra horizontalmente el contenido */
     }
   
+    /* Título centrado y con tamaño reducido */
+    .container .titulo {
+      font-size: 2rem;
+      margin-bottom: 50px;
+      margin-top: 20px;
+      color: #2f3439;
+  
+    }
+  
+    /* Ajusta el tamaño del nombre del paciente */
     .nombre-paciente {
-      font-size: 1.2em;
+      font-size: 1.5rem; /* Reduce el tamaño del texto */
+      margin-left: 0; /* Elimina el margen izquierdo */
+      margin-right: 0; /* Elimina el margen derecho */
+      text-align: center; /* Centra el texto */
+    }
+  
+    /* Ajusta el tamaño del texto de la cédula */
+    .cedula-paciente {
+      font-size: 1.2rem; /* Reduce el tamaño de la cédula */
+      margin-right: 0; /* Elimina el margen derecho */
+    }
+  
+    /* Ajusta el tamaño del select de diagnósticos */
+    .select-diagnosticos {
+      width: 100%; /* Asegura que ocupe todo el ancho disponible */
+      max-width: 100%; /* Elimina la restricción de ancho máximo */
+      margin: 10px 0; /* Reduce el margen superior e inferior */
+      padding: 8px;
+      font-size: 1rem; /* Reduce el tamaño del texto */
+    }
+  
+    /* Ajusta la textarea */
+    .diagnostico-textarea {
+      width: 100%;
+      height: 150px; /* Reduce la altura de la textarea */
+      font-size: 16px; /* Ajusta el tamaño del texto */
+    }
+  
+    /* Botón cerrar más pequeño y centrado */
+    .cerrar-btn {
+      width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
+      font-size: 1rem; /* Reduce el tamaño del texto del botón */
+      padding: 8px 12px; /* Ajusta el padding */
+      margin-top: 20px; /* Reduce el margen superior */
+    }
+  
+    /* Centrando la sección del paciente */
+    .paciente-section {
+      width: 100%;
+      margin: 0 auto; /* Centra horizontalmente la sección */
+      padding: 15px; /* Añade un padding para mejor separación */
     }
   }
+  

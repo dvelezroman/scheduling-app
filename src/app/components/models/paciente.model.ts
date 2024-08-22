@@ -13,6 +13,7 @@ export class PacienteModel{
     usuarioUid:string;
     diagnostico:Diagnostico[];
     solicitudCambioTurno: string;
+    fotoUrl?: string;
 
 }
 export class Turno {

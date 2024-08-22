@@ -1,22 +1,23 @@
 
 .userLogin{
-  width: 900px;
-  margin-left: 30px;
+  width: 100%;
   display: flex;
   justify-content: start;
 
 }
 .navbar-nav{
-  width: 300px;
+  width: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
   list-style: none;
   padding: 1px;
+  margin-left: 1.5rem;
   transition: all 0.3s;
 }
+
 .navbar-nav .medicos{
-  width: 180px;
+  width: 100px;
   text-align: center;
 
 }
@@ -26,8 +27,8 @@
         font-size: 18px;
         color: rgb(152, 151, 151);
         font-weight: 300;
-        text-align: end;
-        padding: 19px;
+        text-align: center;
+        padding: 5px;
         margin: 0px;
         transition: all 0.3s;
 
@@ -88,27 +89,21 @@
     .nav-item.dropdown > .nav-link:not(:hover) {
       color: #b2b2b2; 
     }
+
     .dropdown-item{
       color: rgb(118, 117, 117);
-      font-size: 16px;
+      font-size: 18px;
       padding-top: 15px;
       padding-right: 35px;
       transition: all 0.3s;
     }
-    .dropdown-item.item{
-      color: rgb(118, 117, 117);
-      font-size: 16px;
-      padding-bottom: 12px;
 
-      transition: all 0.3s;
-    }
+
     .dropdown-menu{
-      background-color: rgb(245, 247, 250);
+      background-color: rgb(224, 224, 224);
       padding-top: 0px;
       padding-right: 20px;
       width: 200px;
-      box-shadow: 1px 0px 5px grey, 0px 1px 10px grey;
-      border: 1px solid #212529;
     }
 
     .animate__animated.animate__fadeIn {
@@ -116,16 +111,15 @@
     }
 
     .dropdown-menu .dropdown-item {
-      color: #9a9a9a; 
+      color: #1f5d94; 
       font-weight: normal; 
-      font-weight: 500;
       transition: all 100ms;
       width: 100%;
     }
 
 
     .dropdown-menu .dropdown-item:hover {
-      color: #000000;  
+      color: #2841d0;  
       background-color: transparent;
 
     }
@@ -145,27 +139,41 @@
 
 
 /* estilos del menu REGISTRAR*/
-
 .btn-registrarse {
-  color: #b2b1b1; 
-  border-color: #edefee; 
+  display: none;
+  color: #b2b1b1;
+  border-color: #edefee;
   transition: all 300ms ease-in-out;
 }
 
-
 .btn-registrarse:hover,
 .btn-registrarse:focus {
-  background-color: transparent; 
-  color: #e8e9ea; 
-  border-color: #e2e3e4; 
+  background-color: transparent;
+  color: #e8e9ea;
+  border-color: #e2e3e4;
+}
+
+/* Estilo para el menú desplegable de "Registrar" */
+.dropdown-menu.custom-dropdown-menu {
+  background-color: #ffffff; /* Asegura que el fondo sea blanco */
+  color: #333333; /* Asegura que el color del texto sea visible */
+  border: 1px solid #cccccc; /* Agrega un borde para definir mejor el menú */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Añade una sombra para que destaque */
+}
+
+.dropdown-menu.custom-dropdown-menu .dropdown-item {
+  color: #333333; /* Asegura que el texto sea oscuro para buena visibilidad */
+  font-size: 14px; /* Ajusta el tamaño de la fuente */
+  padding: 10px 15px; /* Añade un padding cómodo para los elementos */
+  transition: background-color 0.3s, color 0.3s; /* Añade una transición suave */
+}
+
+.dropdown-menu.custom-dropdown-menu .dropdown-item:hover {
+  background-color: #f1f1f1; /* Cambia el fondo en hover para indicar la selección */
+  color: #000000; /* Asegura que el texto sea completamente visible en hover */
 }
 
 
-#dropdownMenuButton1[aria-expanded="true"] {
-  background-color: transparent; 
-  color: #cfd2d5; 
-  border-color: #d7d9db; 
-}
     
 /* stilos del menu de usuario*/
 
@@ -282,7 +290,6 @@
 
   }
 
-
   .navbar-nav .dropdown-item {
     font-size: 12px; 
     padding: 5px 7px;
@@ -303,23 +310,6 @@
   }
 }
 
-/* Estilos generales */
-.barMenu {
-  min-width: 200px;
-}
-
-.iconoUser {
-  margin-right: 10px;
-}
-
-button.mat-menu-item {
-  display: flex;
-  align-items: center;
-}
-
-button.mat-menu-item i {
-  margin-left: 10px;
-}
 
 /* Estilos específicos para pantallas de hasta 480px */
 @media (max-width: 480px) {
@@ -340,7 +330,7 @@ button.mat-menu-item i {
 .navbar-nav {
   flex-direction: row; /* Asegura que los elementos estén en fila */
   align-items: center; /* Alinea los elementos verticalmente */
-  margin-left: -2rem;
+  margin-left: -15px;
   width: auto; /* Asegura que los elementos no se desborden */
 }
 
@@ -350,7 +340,7 @@ button.mat-menu-item i {
 
 .nav-link {
   font-size: 15px; /* Ajusta el tamaño de la fuente */
-  padding: 6px 5px; /* Reduce el padding de los enlaces */
+  padding: 4px 3px; /* Reduce el padding de los enlaces */
 }
 
 .navbar-nav2 {
@@ -381,9 +371,33 @@ button.mat-menu-item i {
   }
 
   .mat-menu-item {
-      font-size: 14px; /* Ajusta el tamaño de la fuente en el menú */
+      font-size: 4px; /* Ajusta el tamaño de la fuente en el menú */
       padding: 5px 10px;
   }
+
+  .navbar-nav .dropdown-menu.m-2 {
+    width: 150px; /* Permite que el menú se ajuste al contenido */
+    min-width: fit-content; /* Asegura que el menú no sea demasiado estrecho */
+    max-width: 80%; /* Evita que se desborde */
+  }
+
+  .navbar-nav .dropdown-item {
+    font-size: 16px; /* Incrementa el tamaño de la fuente */
+    padding: 10px 15px; /* Ajusta el padding para mayor comodidad */
+    background-color: rgb(228, 228, 228); /* Asegura el fondo gris claro */
+  }
+
+  .navbar-nav .dropdown-item a {
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+  }
+
+  .btn-registrarse {
+    display: none;
+  }
+
+
 }
 
 

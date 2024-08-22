@@ -1,43 +1,54 @@
-
- <!-- MOSTRAR EL NUMERO DE PACIENTES DEL DIA -->
-
-<div *ngIf="mostrarMensajeTurno" class="anuncio-paciente alert alert-info" routerLink="/pacientes-dia">
-  Tienes {{ pacientesConTurnoHoy }} paciente(s) con turno hoy.
-</div>
-
-<!-- LOGO -->
-
-<section class="hero align-items-stretch ">
-  <div class="hero-principal">
-      <img src="/assets/fondo home.png" alt="Logo Medic-App" class="grafico">
+<div class="contenedor-principal">
+  <!-- MOSTRAR EL NUMERO DE PACIENTES DEL DIA -->
+  <div *ngIf="mostrarMensajeTurno" class="anuncio-paciente alert alert-info" routerLink="/pacientes-dia">
+    Tienes {{ pacientesConTurnoHoy }} paciente(s) con turno hoy.
   </div>
-</section>
 
+  <!-- LOGO -->
 
-<!--SECCION DE LAS FUNCIONES MEDICO O ADMINISTRADOR-->
+  <!-- SECCION DE LAS FUNCIONES MEDICO O ADMINISTRADOR -->
+  <section *ngIf="userRol === 'medico'" class="experiencia seccion-clara">
+    <div class="container text-center">
+      <div class="row">
+        <!-- Tarjeta Agregar Pacientes -->
+        <div class="columna col-12 col-md-4" routerLink="/pacientes/nuevo">
+          <img src="/assets/registro de paciente icono.png" alt="Agregar Pacientes" class="icono-img">
+          <p class="experiencia-titulo">Agregar Pacientes</p>
+          <p>Conectando tu salud con el futuro, hoy.</p>
+        </div>
 
-<section  *ngIf="userRol === 'medico'"  class="experiencia seccion-clara">
-  <div class="container text-center">
-      <div  class="row">
-          <div  class="columna col-12 col-md-4" routerLink="/pacientes/nuevo">
-              <i class="anadir bi bi-person-add"></i>
-              <p class="experiencia-titulo">Agregar Pacientes</p>
-              <p>Conectando tu salud con el futuro, hoy.</p>
-          </div>
-          <div class="columna col-12 col-md-4" routerLink="/pacientes-dia">
-              <i class="bi bi-calendar-check"></i>
-              <p class="experiencia-titulo" >Turnos para Hoy</p>
-              <p>Eficiencia y cuidado en cada paso hacia tu bienestar.</p>
-          </div>
-          <div class="columna col-12 col-md-4" routerLink="/pacientes-diagnosticos">
-              <i class="bi bi-clipboard2-check-fill" ></i>
-              <p class="experiencia-titulo">Diagnósticos Realizados</p>
-              <p>Precisión y claridad en cada análisis para tu salud.</p>
-          </div>
+        <!-- Tarjeta Turnos para Hoy -->
+        <div class="columna col-12 col-md-4" routerLink="/pacientes-dia">
+          <img src="/assets/turnos de hoy.png" alt="Turnos para Hoy" class="icono-img">
+          <p class="experiencia-titulo">Turnos para Hoy</p>
+          <p>Eficiencia y cuidado en cada paso hacia tu bienestar.</p>
+        </div>
+
+        <!-- Tarjeta Diagnósticos Realizados -->
+        <div class="columna col-12 col-md-4" routerLink="/pacientes-diagnosticos">
+          <img src="/assets/diagnosticos realizados.png" alt="Diagnósticos Realizados" class="icono-img">
+          <p class="experiencia-titulo">Diagnósticos Realizados</p>
+          <p>Precisión y claridad en cada análisis para tu salud.</p>
+        </div>
       </div>
-  </div>
-</section>
+    </div>
+  </section>
 
-
-
-
+  <!-- SECCION DE BOTONES DE REGISTRO PARA ADMINISTRADOR -->
+  <section *ngIf="userRol === 'administrador'" class="seccion-clara">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <button class="btn btn-outline-primary w-100 mb-3" routerLink="/registro" [queryParams]="{ rol: 'medico' }">
+            Registrar Médico
+          </button>
+        </div>
+        <div class="col-12 col-md-6">
+          <button class="btn btn-outline-secondary w-100 mb-3" routerLink="/registro" [queryParams]="{ rol: 'paciente' }">
+            Registrar Paciente
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

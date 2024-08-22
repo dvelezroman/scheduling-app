@@ -1,179 +1,139 @@
-
-.container{
-margin-top: 3rem;
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Hace que el contenedor ocupe toda la altura de la pantalla */
 }
 
-.hero {
-    background-color: rgb(255, 255, 255);
-    height: 100vh; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .container {
-    margin-top: 8rem;
-    text-align: center;
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .contenedor{
+.tarjeta-perfil {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    background-color: rgb(225, 225, 225);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: auto;
-    border-radius: 15px;
-  }
+.bloque-foto {
+  margin-bottom: 2rem;
+}
 
+.usuario-perfil {
+  font-size: 5rem;
+  color: #007bff; /* Azul para el ícono de usuario */
+}
 
-/*HERO PRINCIPAL*/
-  
+.cedula {
+  color: #28a745; /* Verde para el ícono de cédula */
+  font-size: 1.5rem; /* Ajusta el tamaño si es necesario */
+}
 
-  .hero-principal {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 400px;
-    justify-content:space-around ;
-    padding: 2rem;
-    border-radius: 10px;
-    position: relative;
-  }
+.telefono {
+  color: #25d366; /* Verde de WhatsApp para el ícono de teléfono */
+  font-size: 1.5rem; /* Ajusta el tamaño si es necesario */
+}
 
+.direccion {
+  color: #dc3545; /* Rojo para el ícono de dirección */
+  font-size: 1.5rem; /* Ajusta el tamaño si es necesario */
+}
 
+.cake-icon {
+  color: #007bff; /* Azul */
+  margin-right: 8px; /* Espacio entre el ícono y el texto */
+  margin-left: 1.5px;
+  margin-bottom: 4px;
+  font-size: 1.6rem; /* Ajusta el tamaño del ícono */
+}
 
-  /*CAMPO FOTO DE USUARIO*/
+.cedula, 
+.telefono, 
+.direccion {
+  margin-right: 8px; /* Agrega un margen derecho para separar el ícono del texto */
+  vertical-align: middle; /* Alinea el ícono verticalmente con el texto */
+}
 
+.bloque-datos {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-  .dato-rol{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 24%;
-    height: 280px;
-    background-color: rgba(196, 195, 195, 0.646);
-  }
-  
-  .usuario-perfil {
-    align-items: center;
-    font-size: 5rem;
-    color: rgb(255, 255, 255);
-    position: relative;
-  }
+.bloque-datos h2 {
+  font-size: 2rem; /* Tamaño mayor para el nombre del usuario */
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333; /* Color oscuro para destacar */
+}
 
-  .icon-edit {
-    color: grey;
-    position: absolute;
-    top: -13%;
-    right:-2%;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: all 300ms;
-  }
+/* Texto de especialidad o título */
+.bloque-datos .especialidad {
+  font-size: 1.5rem; /* Tamaño adecuado para la especialidad */
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 1rem;
+  text-align: center; /* Asegura que el texto esté centrado */
+  display: block;
+}
 
-  .icon-edit:hover{
+/* Texto de edad, cédula, teléfono y dirección */
+.bloque-datos p {
+  font-size: 1.2rem; /* Tamaño estándar para los demás datos */
+  font-weight: 400;
+  color: #666; /* Color gris para el resto del texto */
+  margin-bottom: 0.5rem;
+  display: flex; /* Para alinear el ícono con el texto en línea */
+  align-items: center; /* Asegura que el texto y el ícono estén centrados verticalmente */
+}
 
-    color: rgb(27, 26, 26);
-    cursor: pointer;
-    font-weight: 300;
+/* Título de la experiencia laboral */
+.bloque-experiencia h3 {
+  font-size: 1.8rem; /* Tamaño grande para el título de la experiencia */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #333; /* Color oscuro */
+}
 
-  }
-  
+/* Lista de experiencia profesional */
+.bloque-experiencia ul {
+  font-size: 1.2rem; /* Tamaño estándar para la lista de experiencia */
+  color: #555;
+}
 
-  /*DATOS NOMBRES*/
+/* Botón de editar perfil */
+.bloque-editar button {
+  font-size: 1.2rem; /* Tamaño cómodo para el botón */
+  font-weight: 600;
+  padding: 0.75rem 1.5rem; /* Espaciado adecuado para un botón importante */
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+}
 
-
-  .datos-nombres{
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-  }
-
-  .datos-nombres h2{
-    margin-bottom: 20px;
-    margin-left: 20px;
-    font-size: 2.7rem;
-  }
-
-  .datos-nombres .especialidad{
-    margin-top: -17px;
-    margin-left: 30px;
-  }
-
-  .datos-nombres .cedula,
-  .telefono, .direccion{
-    font-size: 2.3rem;
-    margin-right: 25px;
-    margin-left: 40px;
-    color: rgb(67, 69, 70);
-  }
-  .datos-nombres .edad{
-    font-size: 1.1rem;
-    margin-left: 39px;
-    color: rgb(67, 69, 70);
-  }
-
-  .datos-nombres .cedula{
-    color: rgb(60, 159, 198);
-  }
-
-  .datos-nombres .telefono{
-    color: rgb(45, 187, 45);
-  }
-  .datos-nombres .direccion {
-    margin-right: 21px;
-    background: rgb(19,49,194);
-    background: linear-gradient(158deg, rgba(19,49,194,1) 32%, rgba(219,77,53,1) 47%, rgba(49,179,73,1) 70%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+@media (max-width: 768px) {
+  /* Reducir el tamaño del nombre del usuario */
+  .bloque-datos h2 {
+    font-size: 1.5rem; /* Tamaño reducido */
   }
 
-  p {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
+  /* Reducir el tamaño del texto de la especialidad */
+  .especialidad {
+    font-size: 1.2rem; /* Tamaño reducido */
   }
 
-  /*BOTON EDITAR*/
-
-
-  .contenedor .boton-editar{
-    margin-left: 55px;
+  /* Reducir el tamaño del resto de los textos */
+  .bloque-datos p,
+  .bloque-experiencia h3,
+  .bloque-experiencia ul,
+  .bloque-editar button {
+    font-size: 1rem; /* Tamaño reducido */
   }
-
- .contenedor .boton-editar button{
-    z-index: 50;
-    font-size: 12px;
-
-  }
-
-  /*DATOS PROFESIONAL*/
-
-  .contenedor .datos-profesional{
-    margin-top: 1.5rem;
-    border-radius:0px 0px 15px 15px;
-    padding: 35px 90px 30px 80px;
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-  }
-
-  .contenedor .datos-profesional .informacion-profesional{
-    text-align: justify;
-  }
-
-  .list-group {
-    margin-top: 15px;
-    background-color: rgb(225, 225, 225);
-  }
-  
-  .list-group-item {
-    background-color: rgb(225, 225, 225);
-    margin-bottom: 2px;
-  }
-  
-  .list-group-item:last-child {
-    margin-bottom: 0;
-  }
+}
