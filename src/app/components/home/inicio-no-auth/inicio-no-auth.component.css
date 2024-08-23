@@ -1,213 +1,351 @@
 
 
-
-/* Login de pagina */
-
-.contenedorLogin{
-    margin-right: 2rem;
-    padding-top: 45px;
-    justify-content: end;
-    align-items: center;
-    background-color: #ffffff;
-}
-
-/* Logo pagina */
-
-.logo-pagina{
-  width: 280px;
-  margin-left: 80px;
-}
-
 /*boton login*/
 
+/*heroe*/
+ .hero-container {
+
+  border-radius: 15px;
+  max-width: 100%; /* Ajusta el tamaño máximo del contenedor */
+  margin: 0 auto; /* Centra el contenedor */
+  padding: 0px 0px; /* Agrega un poco de padding para asegurar que el contenido no toque los bordes */
+  min-height: 330px;
+  overflow-x: hidden;
+}
+/* Sección hero con margen superior */
+.hero {
+  padding-top: 5rem; /* Separa la sección hero del margen superior */
+}
+.hero-container,
+.experiencia .row {
+    overflow: hidden; /* Oculta cualquier desbordamiento en las tarjetas */
+}
+
+.hero-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: none;
+
+}
+
+.hero-texto h1 {
+  font-size: 6.5rem; 
+  font-weight: bold;
+  background: linear-gradient(90deg, #2b395c, #007bff); /* Gradiente de azul oscuro a azul claro */
+  -webkit-background-clip: text; /* Recorta el fondo al texto */
+  background-clip: text; /* Recorta el fondo al texto */
+  color: transparent; /* Hace el texto transparente para que se vea el gradiente */
+  margin-bottom: 20px;
+  margin-top: 3rem;
+  
+
+}
+
+.hero-texto p {
+  font-size: 1.4rem; 
+  color: #707070; 
+  margin-bottom: 0;
+  margin-left: .2rem;
+}
+
+/* Imagen del héroe */
+
+.graficos {
+  position: relative; /* Permite el uso de propiedades de posición */
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  margin-top: 0rem;
+}
+
+.graficos .grafico {
+  max-width: 24rem; /* Tamaño adaptable basado en el ancho de la pantalla */
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 3rem;
+}
+
+.grafico2 {
+  max-width: 90%; /* Ajusta el tamaño de la segunda imagen */
+  height: auto;
+  opacity: 0.9; /* Ajusta la opacidad si quieres darle un efecto más sutil */
+ margin-right: 35%;
+ display: none;
+}
+.text-left{
+  margin-bottom: 4rem;
+}
+
 .btn-iniciar-sesion {
-  background: linear-gradient(90deg, rgb(223, 223, 226) 5%, rgb(207, 220, 223) 100%);
-  color: #2d2c2c;
-  border: 1px solid grey;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 5px;
-  transition: 0.3s ease-in-out, transform 0.2s ease-in-out;
+    background: linear-gradient(90deg, #007bff 0%, #5bc0de 100%);
+    color: white;
+    border: 1px solid #007bff;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    transition: all 0.3s ease, transform 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+    margin-top: 20px; 
+    
 }
 
 .btn-iniciar-sesion:hover {
-  color: rgb(0, 0, 0);
-  transform: scale(1.05);
+    background: linear-gradient(90deg, #0056b3 0%, #66d3ff 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 123, 255, 0.5);
 }
 
-.d-flex {
-  display: flex;
-  align-items: center;
+.btn-iniciar-sesion:active {
+    background: linear-gradient(90deg, #004494 0%, #33aaff 100%);
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
 }
 
-.btn1 {
-  margin: 10px 45px;
-}
 
-/*heroe*/
 
-  section{
+/* Responsivo para pantallas medianas */
+@media (max-width: 992px) {
+
+  .hero{
+    padding-top: 0rem;
+    margin-top: 2rem;
+  }
+
+  .hero-container {
+    padding: 0px;
+    min-height: 360px; /* Mantiene una altura mínima adecuada en pantallas de hasta 992px */
+  }
+
+  .hero-principal {
+      padding: 0px 0px;
+  }
+
+  .hero-texto h1 {
+      font-size: 4rem;
+      margin-top: 3rem;
+  }
+
+  .hero-texto p {
+      font-size: 1.3rem;
+  }
+
+  .graficos {
+    position: relative; /* Permite el uso de propiedades de posición */
+    top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 50px 50px 20px 40px;
+    justify-content: end;
+    margin-top: 0rem;
+    margin-right: 5%;
   }
+  
+  .graficos .grafico {
+    max-width: 17rem; /* Tamaño adaptable basado en el ancho de la pantalla */
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+  }
+  
 
+  .text-left {
+    display: flex;
+    justify-content: flex-start; /* Alinea el botón a la izquierda */
+    margin-top: 0rem; /* Ajusta el margen superior si es necesario */
+}
+
+.btn-iniciar-sesion {
+    margin-left: 0; /* Asegura que no haya margen adicional a la izquierda */
+}
+
+  .btn-iniciar-sesion {
+    padding: 8px 16px; /* Reduce el padding */
+    font-size: 0.8rem; /* Reduce el tamaño de la fuente */
+  }
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
   .hero{
-    min-height: 450px;
-    text-align: center;
-    background-color: #fffefe;
-    position: relative;
-    overflow: hidden;
+    padding-top: 2rem;
   }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 90%;
-    background-image: url('/assets/fondo-portada2.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.5;
-    z-index: 1;
-  }
-  
+
+  .hero-container {
+    padding: 0px 5px 0px 16px;
+    min-height: 350px; /* Ajusta la altura mínima en pantallas más pequeñas si es necesario */
+    background-image: url('/assets/fondo heroe 768px.png'); /* Ruta de la imagen de fondo */
+    background-position: 67% 20px; /* Mueve la imagen hacia la izquierda */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
   .hero-principal {
-    position: relative;
-    z-index: 2;
-    color: white;
-    padding: 20px;
-  }
-  
-  .hero h1,
-  .hero p {
+    flex-direction: column;
+    align-items: left;
     text-align: left;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0,);
   }
 
-  .hero-principal{
-    width: 100%;
-    height: 650px;
-    padding: 3rem;
-    margin-left: 20px;
-    text-align: left;
-    border-radius: 0px 45px;
-    z-index: 2;
-    overflow: hidden;
+  .hero-texto h1 {
+    margin-top: 1rem;
+    font-size: 3rem;
   }
 
-   .hero-principal h1{
-    margin-left: 29px;
-    padding: 30px 0px;
-    font-size: 6.5rem;
-    font-weight: 500;
-    margin-right: 16%;
-    font-family: 'Rubik Dirt';
-    color: #2b395c;
-    background: linear-gradient(90deg, rgb(63, 63, 123) 5%, rgb(66, 205, 230) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-stroke: .2px rgb(89, 94, 165);
+  .hero-texto p {
+    width: 75%;
+    font-size: 1.05rem;
+  }
+
+  .graficos {
+    position: relative; /* Permite el uso de propiedades de posición */
+    top: 32px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    margin-top: 0rem;
+    margin-left: -5%;
   }
   
-
-  .hero-principal p {
-    margin-right: 50%;
-    text-align: left;
-    margin-left: 35px;
-    font-size: 1.3rem;
-    color: #2b395c;
-    background: linear-gradient(90deg, rgb(63, 63, 123) 5%, rgb(40, 46, 47) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .graficos .grafico {
+    max-width: 14rem; /* Tamaño adaptable basado en el ancho de la pantalla */
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 2rem;
   }
 
-  .hero-principal .grafico1{
-    position: absolute;
-    top: 31%;
-    left:70%;
-    z-index: -1;
-    right: 5%;
-    background-image: transparent;
+.text-left{
+  margin-top: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-iniciar-sesion {
+  padding: 8px 16px; /* Reduce el padding */
+  font-size: 0.85rem; /* Reduce el tamaño de la fuente */
+}
+}
+
+/* Responsivo para pantallas muy pequeñas (móviles) */
+@media (max-width: 576px) {
+  
+  .hero-container {
+    min-height: 350px; /* Mayor altura mínima en pantallas muy pequeñas */
   }
 
-  .grafico1 img{
-    width: 380px;
-    border-radius: 50%;
+  .hero {
+    padding-top: 1rem; /* Separa la sección hero del margen superior */
+  }
+
+
+  .hero-texto h1 {
+      font-size: 1.8rem;
+  }
+
+  .hero-texto p {
+      font-size: 0.8rem;
+  }
+
+
+.hero-container .text-center {
+  display: flex;
+  justify-content: left;
+  margin-top: 20px;
+}
+
+.btn-iniciar-sesion {
+  padding: 6px 14px; /* Reduce aún más el padding */
+  font-size: 0.7rem; /* Reduce el tamaño de la fuente */
+}
+}
+
+/* Responsivo para pantallas extremadamente pequeñas (muy móviles) */
+@media (max-width: 490px) {
+  .hero {
+    padding: 0rem .2rem; /* Reduce el padding para ahorrar espacio */
+    margin-top: 0.5rem;
+  }
+
+  .hero-container {
+    margin-top: 3rem;
+    min-height: 420px; /* Ajusta la altura mínima del contenedor */
+    padding: 0 .5rem; /* Agrega padding lateral para evitar que el contenido toque los bordes */
+    display: flex; /* Cambia a flexbox para centrar */
+    flex-direction: column; /* Asegura que los elementos se apilen en una columna */
+    justify-content: flex-start; /* Alinea verticalmente al inicio */
+    align-items: flex-start;
+    background-image: url('/assets/fondo heroe movil 2.png'); /* Establece la imagen de fondo */
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+  }
+
+.hero-texto{
+  max-width: 100%;
+}
+
+  .hero-texto h1 {
+    max-width: 100%; /* Asegura que el título no exceda el ancho de su contenedor */
+    word-wrap: break-word; /* Permite que las palabras largas se dividan en varias líneas */
+    overflow-wrap: break-word; /* Similar a word-wrap, asegura que el texto no desborde */
+    white-space: normal; /* Permite que el texto se ajuste automáticamente al ancho del contenedor */
+    font-size: 2.7rem; /* Ajusta el tamaño del título */
+    margin-bottom: 1rem; /* Espacio inferior para separar el título del párrafo */
+  }
+
+  .hero-texto p {
+    width: 75%;
+    font-size: 0.95rem; /* Ajusta el tamaño del párrafo */
+    margin-bottom: 1rem; /* Espacio inferior para separar el párrafo del botón */
+    line-height: 1.2; /* Mejora la legibilidad del texto */
+   
+  }
+
+  .graficos {
+    position: relative; /* Permite el uso de propiedades de posición */
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    margin-top: 0rem;
+    margin-left: -5%;
   }
   
-  .sobre-app{
-    height: 300px;
-    padding: 200px;
+  .graficos .grafico {
+    display: none; /* Oculta la primera imagen */
   }
 
-  .sobre-app .contenedor{
-    max-width: 600px;
-    text-align: center;
+  .grafico2 {
+    display: none;
+    max-width: 4rem; /* Aumenta un poco el tamaño de la segunda imagen */
+    height: auto;
+    margin-top: 1rem; /* Espacio superior para separar la imagen del contenido */
+    opacity: 0.9;
   }
 
-  .seccion-titulo{
-    font-size: 2rem;
-    padding: 15px 0px;
-    font-weight: 600;
-    color: #c9cbd0;
-    text-align: center;
+  .text-left {
+    display: flex;
+    justify-content: flex-start; /* Alinea el botón a la izquierda */
+    margin-top: 1rem; /* Espacio superior para separar el botón del contenido */
+    margin-bottom: 3rem;
+    margin-left: 10%;
   }
 
-  .seccion-texto{
-    font-size: 1rem;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font-weight: 400;
-    color: #ededed;
-    text-align: center;
-  }
-
-  .seccion{
-    color: white;
-    background-color: #5084a5bf;
-  }
-  
-  .seccion-clara{
-    background-color: rgb(255, 255, 255);
-  }
+  .btn-iniciar-sesion {
+    padding: 3px 10px; /* Reduce el padding del botón */
+    font-size: 0.7rem; /* Reduce el tamaño de la fuente para pantallas pequeñas */
+    width: auto; /* Permite que el botón tenga un ancho adecuado */
+    max-width: 100%; /* Asegura que el botón no exceda el ancho disponible */
+    border-radius: 25px; /* Redondea un poco más las esquinas */
+}
+}
 
 
-  /*sobre app*/
 
-  .sobre-app{
-    background-color: #d9d9d9;
-    min-height: 450px;
-    text-align: center;
-    padding: 3rem;
-    margin-bottom: 50px;
-  }
-
-  .sobre-app .contenedor{
-    max-width: 600px;
-    text-align: center;
-    margin-top: 50px; 
-  }
-
-  .sobre-app .seccion-titulo{
-    font-size: 2rem;
-    margin-top: 30px; 
-    padding: 15px 0px;
-    font-weight: 600;
-    color: #232836;
-    text-align: center;
-  }
-
-  .sobre-app .seccion-texto {
-      margin-top: 20px; 
-      color: #1e3162;
-  }
   /* funcion scroll animation */
 
   .reveal {
@@ -224,65 +362,35 @@
 
   /*PAGINA INFORMATIVA CARACTERISTICAS DE LA APP*/  /*PAGINA INFORMATIVA CARACTERISTICAS DE LA APP*/
 
-  .seccion{
-    color: white;
-    background-color: #ffffff;
-  }
-  
   .experiencia{
-    padding: 50px 40px 10px 50px;
-    background-color: #ffffff;
+    margin-top: 10rem;
+    border-radius: 15px;
     text-align: center;
     flex-wrap: wrap;
   }
 
-  .experiencia .contenedor-text{
-    margin-top: -20px;
-    padding-top: 5%;
-    border-radius: 15px;
-    margin-right: -10px;
-    margin-left: -10px;
-    border-radius: 45px 0px;
-  }
-
-  .contenedor-text img{
-    width: 270px;
-    display: none;
-    align-items: flex-start;
-    margin-left: 50px;
-  }
-
-  .experiencia h1{
-    margin-top: 50px;
-    font-size: 4rem;
-    font-weight: 200;
-    font-family: 'Rubik Dirt';
-    background-color: #414548;
-    -webkit-background-clip: text;
-    background-clip: text;
+  .titulo-ofrecemos h2 {
+    font-size: 3.5rem; /* Tamaño del título */
+    font-weight: bold;
+    color: #2b395c; /* Azul oscuro para el texto */
+    text-align: center; /* Centrado */
+    margin-top: 2rem;
+    margin-bottom: 4rem; /* Espacio debajo del título */
+    background: linear-gradient(90deg, #2b395c, #007bff); /* Gradiente de azul oscuro a azul claro */
+    -webkit-background-clip: text; /* Recorta el fondo al texto */
+    background-clip: text; /* Recorta el fondo al texto */
     color: transparent;
-    flex-wrap: wrap;
-  }
- 
-
-  .experiencia .text-center{
-    display: flex;
-    justify-content: center;
-    padding: 80px 0px 80px 0px;
-    margin-top: 30px;
-    margin-bottom: 50px;
-    border-radius: 15px;
-    background-color: rgba(165, 165, 165, 0.349);
+    -webkit-text-stroke: 0.5px rgb(89, 94, 165);
   }
 
   .experiencia .row{
     display: flex;
     justify-content: space-around;
-    margin-top: 50px;
-    margin-bottom: 55px;
-    width: 90%;
+    margin: auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    width: 100%;
     min-height: 400px auto;
-    padding-top: 0px;
     transition: all .3s ease;
     border-radius: 15px;
   }
@@ -291,12 +399,18 @@
     height: 220px;
     width: 40%;
     cursor: pointer;
-    padding-top: 49px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    margin: 4.5%; /* Aumenta el margen para separar más las tarjetas */
+    text-align: center; /* Asegura que el texto esté centrado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombreado elegante */
+    transition: box-shadow 0.3s ease-in-out; /* Transición suave para el sombreado */
   }
 
-  .columna i{
-    color: #000000;
-    font-size: 2.2rem;
+  .experiencia .row .columna:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.2); /* Sombreado más fuerte al hacer hover */
   }
 
   .columna {
@@ -304,993 +418,736 @@
     border-radius: 8px;
     transition: background-color 0.3s;
   }
-
-  .experiencia p{
-    color: #000000;
-  }
-
+  
   .columna h3{
-    color: #272727;
-  }
-
-  .columna p {
-    display: none;
-    padding: 5px;
-    text-align: center;
-    padding: 5px;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  .columna:hover p {
-    font-size: 1.3rem;
-    display: block;
-    opacity: 1;
-  }
-
-  .columna:hover i {
-    display: none;
-  }
-
+    font-size: 1.8rem;
+}
+  
   .columna:hover h3 {
     display: block;
     opacity: 1;
-    color: #d8dadc;
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, rgb(40, 40, 90) 0%, rgb(33, 140, 170) 100%); /* Degradado azul oscuro */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
+  
+    .columna p{
+      font-size: 1.2rem;
+}
+
+  .columna:hover p {
+    display: block;
+    opacity: 1;
+    color: #6f6f6f;
+    font-size: 1.2rem;
+    z-index: 1;
+  }
+
 
   .columna:hover {
     cursor: pointer;
   }
   
 
-/*SECCION BENEFICIOS*//*SECCION BENEFICIOS*//*SECCION BENEFICIOS*//*SECCION BENEFICIOS*/
+    .columna-imagen1 .icono-registro,
+    .columna-imagen2 .icono-gestion-citas,
+    .columna-imagen3 .icono-diagnostico,
+    .columna-imagen4 .icono-seguridad {
+      width: 45px; /* Ajusta el tamaño del ícono según sea necesario */
+      height: auto;
+      margin-bottom: 10px; /* Espacio entre el ícono y el h3 */
+  }
 
-.beneficios{
-  margin-top: 0px;
-  margin-left: -10px;
-  margin-right: 38px;
-  padding: 40px 10px 20px 50px;
-  background-color: #ffffff;
-  align-items: center;
-}
 
-.beneficios .contenedor-text{
-  padding: 50px 0px 5px 0px;
-  margin-right: -18px;
-  border-radius:0px 45px;
-}
-.beneficios h1{
-  padding-top: 100px;
-  font-family: 'Rubik Dirt';
-  font-size: 4rem;
-  text-align: center;
-  color: rgb(43, 42, 42);
-  background-clip: text;
-}
 
-.beneficios .text-center{
-  margin-top: 90px;
-  margin-top: 25px;
-  padding: 10px 10px 10px 10px;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
+  /*PRIMERA IMAGEN DE LA SECCION EXPERIENCIA*/
+
+  .columna-imagen1 {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+    margin:20px;
+  }
+
   
+  .columna-imagen1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/registrar paciente 2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    z-index: 1;
+    transition: opacity 0.4s ease-in;
+  }
+  
+  .columna-imagen1:hover::before {
+    opacity: 0.2; 
+  }
+  
+  .columna-imagen1 .sub-columna,
+  .columna-imagen1 .parrafo {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(90deg, rgb(40, 40, 90) 0%, rgb(33, 140, 170) 100%); /* Degradado azul oscuro */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0; 
+    transition: opacity 0.4s ease-in; 
+  }
+  
+  .columna-imagen1:hover .sub-columna,
+  .columna-imagen1:hover .parrafo {
+    opacity: 1;
+  }
+  /*SEGUNDA IMAGEN DE LA SECCION EXPERIENCIA*/
+ 
+  .columna-imagen2 {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+    margin:20px;
+  }
+  
+  .columna-imagen2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/tercera. imagen experiencia.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    z-index: 1;
+    transition: opacity 0.4s ease-in;
+  }
+  
+  .columna-imagen2:hover::before {
+    opacity: 0.2;
+  }
+  
+  .columna-imagen2 .sub-columna,
+  .columna-imagen2 .parrafo {
+    position: relative;
+    z-index: 2; 
+    color: white; 
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+  }
+
+  .columna-imagen2:hover .sub-columna,
+  .columna-imagen2:hover .parrafo {
+    opacity: 1;
+  }
+
+
+  /*TERCERA IMAGEN DE LA SECCION EXPERIENCIA*/
+
+  .columna-imagen3 {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+    margin:20px;
+  }
+  
+  .columna-imagen3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/imagen diagnostico el linea.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    z-index: 1;
+    transition: opacity 0.4s ease-in;
+  }
+  
+  .columna-imagen3:hover::before {
+    opacity: 0;
+  }
+  
+  .columna-imagen3 .sub-columna,
+  .columna-imagen3 .parrafo {
+    position: relative;
+    z-index: 2; 
+    color: white; 
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+  }
+
+  .columna-imagen3:hover .sub-columna,
+  .columna-imagen3:hover .parrafo {
+    opacity: 1;
+  }
+
+ 
+
+  /*CUARTA IMAGEN DE LA SECCION EXPERIENCIA*/
+
+
+  .columna-imagen4 {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+    margin:20px;
+  }
+  
+  .columna-imagen4::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/seguridad datos 2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    z-index: 1;
+    transition: opacity 0.4s ease-in;
+  }
+  
+  .columna-imagen4:hover::before {
+    opacity: 0.2;
+  }
+  
+  .columna-imagen4 .sub-columna,
+  .columna-imagen4 .parrafo {
+    position: relative;
+    z-index: 2; 
+    color: white; 
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+  }
+
+  .columna-imagen4:hover .sub-columna,
+  .columna-imagen4:hover .parrafo {
+    opacity: 1;
+  }
+
+
+   .experiencia .row .columna{
+    height: 200px;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+  }
+ 
+  .columna:hover .columna-imagen1{
+    display: none;
+  }
+  
+  @media (max-width: 992px) {
+    .experiencia{
+      margin-top: 6rem;
+    }
+
+    .experiencia .row .columna {
+      width: 80%; /* Las columnas ocupan todo el ancho disponible */
+      margin: 20px 0; /* Espacio entre las columnas */
+      box-shadow: none; /* Sombreado elegante */
+    }
+  
+    .experiencia .row {
+      flex-direction: column; /* Asegura que las columnas se dispongan en una sola columna */
+      align-items: center; /* Centra las columnas */
+    }
+  
+    .titulo-ofrecemos h2 {
+      font-size: 2.5rem; /* Ajusta el tamaño del título para pantallas más pequeñas */
+      margin-bottom: 30px; /* Espacio inferior ajustado */
+    }
+
+    .columna-imagen1 .icono-registro,
+    .columna-imagen2 .icono-gestion-citas,
+    .columna-imagen3 .icono-diagnostico,
+    .columna-imagen4 .icono-seguridad {
+      width: 45px; /* Ajusta el tamaño del ícono según sea necesario */
+      height: auto;
+      margin-bottom: 2.4rem; /* Espacio entre el ícono y el h3 */
+  }
+
+  .columna-imagen1::before,
+  .columna-imagen2::before,
+  .columna-imagen3::before,
+  .columna-imagen4::before {
+    display: none; /* Oculta las imágenes */
+  }
+
+  .columna h3,
+  .columna p {
+    display: block ; /* Asegura que el texto siempre esté visible */
+    opacity: 1; /* Asegura que el texto esté completamente visible */
+    transition: none; /* Elimina cualquier transición que pueda estar afectando la visibilidad */
+  }
+
+  .columna h3 {
+    font-size: 1.6rem; /* Tamaño del texto h3 */
+    background: linear-gradient(90deg, rgb(40, 40, 90) 0%, rgb(33, 140, 170) 100%); /* Degradado azul oscuro */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .columna p {
+    font-size: 1.2rem; /* Tamaño del texto p */
+    color: #818181; /* Color del texto p */
+  }
+  .columna-imagen1 .sub-columna,
+  .columna-imagen1 .parrafo,
+  .columna-imagen2 .sub-columna,
+  .columna-imagen2 .parrafo,
+  .columna-imagen3 .sub-columna,
+  .columna-imagen3 .parrafo,
+  .columna-imagen4 .sub-columna,
+  .columna-imagen4 .parrafo {
+    background: linear-gradient(90deg, rgb(40, 40, 90) 0%, rgb(33, 140, 170) 100%); /* Degradado azul oscuro */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 1; 
+  }
+
+  .columna:hover h3,
+  .columna:hover p {
+    opacity: 1; /* Asegura que no haya cambios de opacidad en hover */
+    transform: none; /* Asegura que no haya transformaciones en hover */
+
+  }
+
+  .columna:hover h3{
+    font-size: 1.6rem;
+  }
+
+  .experiencia .row .columna {
+    box-shadow: none; /* Sin sombra en estado normal */
+    transition: none; /* Elimina la transición de sombra */
 }
 
-.beneficios .row{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 25px 25px 25px 25px;
+.experiencia .row .columna:hover {
+    box-shadow: none; /* Sin sombra al hacer hover */
+    transition: none; /* Elimina la transición en hover */
+}
+
+  }
+
+
+  @media (max-width: 768px) {
+
+    .experiencia{
+      margin-top: 6rem;
+    }
+
+    .experiencia .row .columna {
+      width: 80%; /* Las columnas ocupan todo el ancho disponible */
+      margin: 20px 0; /* Espacio entre las columnas */
+      box-shadow: none; /* Sombreado elegante */
+      cursor: default;
+    }
+  
+    .experiencia .row {
+      flex-direction: column; /* Asegura que las columnas se dispongan en una sola columna */
+      align-items: center; /* Centra las columnas */
+    }
+  
+    .titulo-ofrecemos h2 {
+      width: 80%;
+      margin: auto;
+      font-size: 2.2rem; /* Ajusta el tamaño del título para pantallas más pequeñas */
+      margin-bottom: -30px; /* Espacio inferior ajustado */
+
+    }
+
+    .columna-imagen1 .icono-registro,
+    .columna-imagen2 .icono-gestion-citas,
+    .columna-imagen3 .icono-diagnostico,
+    .columna-imagen4 .icono-seguridad {
+      width: 45px; /* Ajusta el tamaño del ícono según sea necesario */
+      height: auto;
+      margin-bottom: 2rem; /* Espacio entre el ícono y el h3 */
+  }
+
+    .columna h3,
+    .columna p {
+      display: block ; /* Asegura que el texto siempre esté visible */
+      opacity: 1; /* Asegura que el texto esté completamente visible */
+      transition: none; /* Elimina cualquier transición que pueda estar afectando la visibilidad */
+    }
+
+    .columna h3 {
+      font-size: 1.4rem; /* Tamaño del texto h3 */
+      background: linear-gradient(90deg, rgb(40, 40, 90) 0%, rgb(33, 140, 170) 100%); /* Degradado azul oscuro */
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .columna p {
+      font-size: 1.1rem; /* Tamaño del texto p */
+      color: #818181; /* Color del texto p */
+    }
+
+    .columna:hover h3 {
+      font-size: 1.4rem;
+    }
+    
+    .columna:hover p {
+      font-size: 1.1rem;
+    }
+
+  }
+
+  @media (max-width: 480px) {
+
+    .experiencia{
+      width: 100%;
+      margin-top: 3rem;
+    }
+
+    .experiencia .row {
+      flex-direction: column; /* Asegura que las columnas se dispongan en una sola columna */
+      align-items: center; /* Centra las columnas */
+      margin: 0; /* Elimina márgenes para maximizar el uso del espacio */
+      width: 100%;
+    }
+
+    .experiencia .row .columna {
+      width: 100%; /* Las columnas ocupan todo el ancho disponible */
+      margin: o auto; /* Espacio entre las columnas */
+      box-shadow: none; /* Sombreado elegante */
+      cursor: default;
+    }
+  
+    .titulo-ofrecemos h2 {
+      width: 90%;
+      margin: auto;
+      font-size: 1.8rem; /* Ajusta el tamaño del título para pantallas más pequeñas */
+      margin-bottom: 2rem; /* Espacio inferior ajustado */
+    }
+
+    .columna-imagen1 .icono-registro,
+    .columna-imagen2 .icono-gestion-citas,
+    .columna-imagen3 .icono-diagnostico,
+    .columna-imagen4 .icono-seguridad {
+      width: 40px; /* Ajusta el tamaño del ícono según sea necesario */
+      height: auto;
+      margin-bottom: 2rem; /* Espacio entre el ícono y el h3 */
+  }
+
+    .columna h3,
+    .columna p {
+      display: block ; /* Asegura que el texto siempre esté visible */
+      opacity: 1; /* Asegura que el texto esté completamente visible */
+      transition: none; /* Elimina cualquier transición que pueda estar afectando la visibilidad */
+    }
+
+    .columna h3 {
+      font-size: 1.4rem; /* Tamaño del texto h3 */
+      background: linear-gradient(90deg, rgb(40, 40, 90) 0%, rgb(33, 140, 170) 100%); /* Degradado azul oscuro */
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .columna p {
+      width: 72%;
+      margin: auto;
+      font-size: 1.1rem; /* Tamaño del texto p */
+      color: #818181; /* Color del texto p */
+    }
+
+    .columna:hover h3 {
+      font-size: 1.4rem;
+    }
+    
+    .columna:hover p {
+      font-size: 1.1rem;
+    }
+
+  }
+
+
+
+  /*BENEICIOS TARJETA*/
+  .beneficios {
+    margin-top: 11rem;
+    overflow-x: hidden;
+}
+
+.titulo-beneficios {
+    font-size: 3.4rem; /* Tamaño del título */
+    font-weight: bold;
+    color: #2b395c; /* Color del título principal */
+    text-align: center;
+    margin-bottom: 2rem; /* Espacio debajo del título */
+    background: linear-gradient(90deg, #2b395c, #007bff); 
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 0.5px rgb(89, 94, 165);
+}
+
+.beneficios .row {
+    display: flex;
+    flex-direction: column; /* Apila las tarjetas verticalmente */
+    align-items: center; /* Centra el contenido de cada tarjeta */
+}
+
+.tarjeta-beneficios {
+    margin-top: 3rem;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para las tarjetas */
+    color: #2b395c;
+    width: 100%; /* Ocupa el 100% del ancho del contenedor */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.beneficio-imagen {
+  max-width: 49%; /* Ajusta el tamaño máximo de la imagen */
+  margin-left: 20px; /* Añade espacio entre el texto y la imagen */
+  align-self: flex-end; /* Alinea la imagen al extremo derecho */
+}
+
+.beneficio-imagen img {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
   height: auto;
-  width: 100%;
-  border-radius: 10px;
 }
 
-.beneficios .row .columna{
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 300px;
+.beneficio-texto {
+  text-align: left;
+  flex: 1; /* Permite que el texto ocupe más espacio */
+}
+
+.tarjeta-beneficios h3 {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    color: #2b395c;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tarjeta-beneficios ul {
+    list-style-type: none;
+    text-align: center;
+    padding-left: 0;
+}
+
+.tarjeta-beneficios ul li {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    color: #696969;
+}
+
+/* Eliminación de hover no deseado */
+.tarjeta-beneficios {
+    transition: none;
+    box-shadow: none;
+}
+
+.tarjeta-beneficios:hover {
+    box-shadow: none;
+    transform: none;
+}
+
+.tarjeta-beneficios h3 {
+    transition: none;
+}
+
+.tarjeta-beneficios h3:hover {
+    background: none;
+    text-shadow: none;
+    color: #2b395c;
+}
+
+
+
+@media (max-width: 768px) {
+  .beneficios .row {
+    flex-direction: column; /* Apila las tarjetas verticalmente */
+    align-items: center; /* Centra el contenido de cada tarjeta */
+  }
+
+  .tarjeta-beneficios {
+    flex-direction: column; /* Apila la imagen y el texto en una columna */
+    align-items: center; /* Centra la imagen y el texto */
+    text-align: center; /* Centra el texto dentro de la tarjeta */
+    margin-top: 2rem; /* Reduce el margen superior */
+    padding: 15px; /* Ajusta el padding para pantallas pequeñas */
+  }
+
+  .beneficio-imagen {
+    max-width: 80%; /* Ajusta el tamaño máximo de la imagen */
+    margin: 0 0 1rem 0; /* Espacio entre la imagen y el texto */
+    align-self: center; /* Centra la imagen */
+  }
+
+  .tarjeta-beneficios h3 {
+    font-size: 2rem; /* Ajusta el tamaño del título para pantallas más pequeñas */
+    margin-bottom: 0.8rem; /* Ajusta el espacio inferior del título */
+  }
+
+  .tarjeta-beneficios ul li {
+    font-size: 1.2rem; /* Ajusta el tamaño del texto de la lista */
+    color: #818181;
+  }
+}
+
+@media (max-width: 490px){
+
+  .beneficios{
+    margin-top: 4rem;
+  }
+
+
+.beneficios .row {
+width: 100%;
+margin: auto;
+}
+
+  .titulo-beneficios {
+    font-size: 2rem; /* Tamaño del título */
+
+}
+
+
+.tarjeta-beneficios h3 {
+  font-size: 1.5rem; /* Ajusta el tamaño del título para pantallas más pequeñas */
+  margin-bottom: 0.8rem; /* Ajusta el espacio inferior del título */
+}
+
+.tarjeta-beneficios ul li {
+  font-size: 1rem; /* Ajusta el tamaño del texto de la lista */
+  width: 90%;
+  margin: auto;
+  color: #818181;
+}
+
+
+}
+
+
   
-  margin: 45px 0px 45px 0px;
-  cursor: default;
-  border-radius: 15px;
-  padding-left: 6px;
-  background-color: white;
-}
-
-.beneficios .row .columna h3{
-  font-size: 1.6rem; 
-  margin-bottom: 23px;
-  font-weight: 500;
-  color: black;
-}
-
-.beneficios .row .columna ul{
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  cursor: default;
-}
-
-.beneficios .row .columna ul li{
-  margin: 5px;
-  font-size: 1.1rem;
-  text-align: center;
-  margin-right: 20px;
-}
-
-
-/*FOOTER*//*FOOTER*//*FOOTER*//*FOOTER*//*FOOTER*/
+/*FOOTER TARJETA*/
 
 .footer {
-  margin-top: 100px;
-  background: rgb(0, 0, 0);
-color: white;
-  padding-top: 40px
+  margin-top: 7rem;
+  background: linear-gradient(360deg, #5bc0de, #007bff); /* Degradado azul claro */
+  padding: 2rem 20px; /* Espacio superior, inferior y lateral */
+  color: white;
+  font-size: 1rem;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .footer .row {
- padding: 25px;
- display: flex;
- justify-content: center;
+  display: flex;
+  justify-content: space-around; /* Centra las tarjetas en la fila */
+  align-items: center; /* Centra verticalmente */
+  margin-bottom: 20px; /* Espacio inferior entre filas */
 }
 
-.footer .row2{
- padding: 25px;
- display: flex;
- justify-content: center;
-}
-
-.footer .row .grupo1{
-
+.footer .grupo1,
+.footer .grupo2 {
+  text-align: center; /* Centra el contenido de cada tarjeta */
+  padding: 20px; /* Agrega padding a las tarjetas */
+  flex: 1; /* Asegura que las tarjetas ocupen espacio uniforme */
+  max-width: 300px; /* Limita el ancho máximo de las tarjetas */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: left;
+  justify-content: center; /* Asegura que los títulos se alineen al inicio */
+  min-height: 100px; /* Ajusta la altura mínima para asegurar alineación */
 }
 
-.footer .row .grupo2{
-  display: flex;
-  flex-direction: column;
-  align-items:center ;
-}
-
-.footer .grupo1 h5 {
-  font-size: 1.6rem;
-  margin-bottom: 20px;
-  text-align: left;
-  
-}
-
-.footer .grupo2 li{
-  margin: 5px;
-  font-size: 1.1rem;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.footer a {
-  color: rgb(170, 170, 170);
-  text-decoration: none;
-
-  transition: all .2s ease-in;
-}
-
-.footer a:hover {
-  text-shadow: 1px 1px 3px grey;
- 
-}
-
-.footer .list-unstyled {
-  width: 300px;
-  text-align: center;
-  list-style: none;
-  
- 
-}
-
-.footer .list-unstyled1{
-
-  width: 350px;
-  text-align: center;
-  list-style: none;
- 
-}
-
-.row .grupo2 .h5{
-  margin-bottom: 35px;
-}
-
-.footer .list-unstyled li {
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-  transition: all .2s ease-in;
-  
-}
-
-.footer .list-unstyled li:hover{
-  transform: scale(1.1);
-  text-shadow: 1px 1px 4px rgb(196, 196, 196);
-
-}
-.footer .list-unstyled li a:hover{
-
-  text-shadow: 1px 1px 4px rgb(196, 196, 196);
-  color: white;
-
-}
-
-.benefits {
-  display: flex;
-  justify-content: space-around;
-  background: #eef;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
-}
-
-.benefit {
-  text-align: center;
-  width: 30%;
-}
-
-.benefit i {
+.footer h5 {
   font-size: 2rem;
-  color: #007bff;
-  margin-bottom: 10px;
-}
-
-
-/* Llamadas a la Acción (CTA) Claras */
-.cta {
+  margin-bottom: 20px; /* Espacio inferior debajo del título */
+  color: #dedede; /* Color blanco para los títulos */
   text-align: center;
-  margin-bottom: 40px;
 }
 
-.cta-button {
-  background: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.cta-button:hover {
-  background: #0056b3;
+.grupo1 h5{
+  margin-top: 2.6rem;
 }
 
 
-
-/*MEDIAS QUERY*//*MEDIAS QUERY*//*MEDIAS QUERY*//*MEDIAS QUERY*/
-
-@media (max-width: 999px) {
-  .columna {
-    flex: 1 1 80%;
-  }
-
-  section h1{
-    margin-left: 0px;
-    font-size: 4.5rem;
-    margin-right: 15%;
-  }
-  .hero-principal{
-    height: 590px;
-    padding: 2rem;
-    text-align: left;
-
-    border-radius: 0px 45px;
-  }
-  .hero-principal p {
-    margin-top: -14px;
-    margin-right: 20%;
-    text-align: left;
-    margin-left: 34px;
-    font-size: 1.0rem;
-  }
-  .contenedor-text{
-    margin-top: 0px;
-  }
-
-  .experiencia .text-center{
-    margin-left: 0%;
-  }
-
-  
-  .experiencia h3 {
-    font-size: 1.5rem; 
-    margin-bottom: 23px;
-  }
-
-  .experiencia i {
-    font-size: 2.6rem; 
-    margin-bottom: 23px;
-  }
-  
-  .experiencia .row .columna{
-    height: 200px;
-
-    transition: all .3s ease-in-out;
-    cursor: pointer;
-  }
-
-  .columna:hover p {
-    display: block;
-    opacity: 1;
-    color: #454343;
-    font-size: 15px;
-  }
-
-  .beneficios .row{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    width: 100%;
-    border-radius: 10px;
-  }
-  .beneficios .row .columna{
-    margin-bottom: 25px;
-    width: 50%;
-    padding-left: 6px;
-
-  }
-  .beneficios .row .columna h3{
-    font-size: 1.8rem; 
-    margin-bottom: 23px;
-    font-weight: 500;
-  }
-  
-  .beneficios .row .columna ul{
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    cursor: default;
-  
-  }
-  .beneficios .row .columna ul li{
-    margin: 5px;
-    font-size: 1rem;
-    text-align: center;
-    margin-right: 20px;
-  }
+.footer ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
 }
 
+.footer ul li {
+  margin-bottom: 10px; /* Espacio entre elementos de la lista */
+}
 
-@media (max-width: 1000px) {
+.footer ul li a {
+  color: #dedede; /* Color blanco para los enlaces */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
-  .columna {
-    flex: 1 1 100%;
-  }
+.footer ul li a:hover {
+  color: #ffffff; /* Cambia a un tono más claro al hacer hover */
+}
 
-  section h1{
-    margin-left: 0px;
-    font-size: 4.9rem;
-    margin-right: 21%;
-  }
-  .hero-principal .grafico1{
-
-   display: none;
-  }
-
-  
-  .hero-principal{
-    height: 550px;
-    padding: 3rem;
-    text-align: left;
-    border-radius: 0px 45px;
-  }
-  .hero-principal p {
-    margin-right: 17%;
-    text-align: left;
-    margin-left: 34px;
-    font-size: 1.1rem;
-  }
-
-  .experiencia .text-center{
-    margin-left: 0%;
-    margin-right: -15px;
-
-  }
-  .experiencia h3 {
-    font-size: 1.2rem; 
-    margin-bottom: 23px;
-  }
-  .experiencia i {
-    font-size: 2.3rem; 
-    margin-bottom: 23px;
-  }
-  .experiencia .row .columna{
-    height: 200px;
-    width: 50%;
-    transition: all .3s ease-in-out;
-    cursor: pointer;
-  }
-
-  .columna:hover p {
-    display: block;
-    opacity: 1;
-    color: #fcfcfc;
-    font-size: 1rem;
-  }
-
-.beneficios .row{
-  padding: 0px;
-  width: 100%;
+.footer .rights {
+  padding-top: 20px;
+  font-size: 1rem; /* Tamaño de fuente más pequeño */
   display: flex;
-  flex-direction: column;
-}
-  
-  .beneficios .row .columna ul{
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    cursor: default;
-  
-  }
-  .beneficios .row .columna ul li{
-
-    font-size: 1.1rem;
-    text-align: center;
-    margin-right: 20px;
-  }
-  
+  justify-content: center;
+  align-items: center;
 }
 
-
-  @media (min-width: 1299px){
-
-    section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 50px 50px 20px 40px;
-      background-color: #ffffff;
-    }
-
-    .hero {
-      height: auto;
-    }
-
-    .hero-principal h1 {
-      font-size: 5.9rem;
-    }
-
-    .hero-principal p {
-      margin-right: 30%;
-      text-align: left;
-      margin-left: 34px;
-      font-size: 1.5rem;
-    }
-
-    .experiencia .text-center{
-      margin-left: 0%;
-      margin-right: -8px;
-
-    }
-
-    /*PRIMERA IMAGEN DE LA SECCION EXPERIENCIA*/
-
-    .columna-imagen1 {
-      position: relative;
-      padding: 20px;
-      border-radius: 20px;
-      overflow: hidden;
-      color: white;
-      margin:20px;
-    }
-
-    
-    .columna-imagen1::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('/assets/medico-recetando.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.8;
-      z-index: 1;
-      transition: opacity 0.4s ease-in;
-    }
-    
-    .columna-imagen1:hover::before {
-      opacity: 0.2; 
-    }
-    
-    .columna-imagen1 .sub-columna,
-    .columna-imagen1 .parrafo {
-      position: relative;
-      z-index: 2;
-      color: white;
-      opacity: 0; 
-      transition: opacity 0.4s ease-in; 
-    }
-    
-    .columna-imagen1:hover .sub-columna,
-    .columna-imagen1:hover .parrafo {
-      opacity: 1;
-    }
-    /*SEGUNDA IMAGEN DE LA SECCION EXPERIENCIA*/
-   
-    .columna-imagen2 {
-      position: relative;
-      padding: 20px;
-      border-radius: 20px;
-      overflow: hidden;
-      color: white;
-      margin:20px;
-    }
-    
-    .columna-imagen2::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('/assets/agendar-citas.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.8;
-      z-index: 1;
-      transition: opacity 0.4s ease-in;
-    }
-    
-    .columna-imagen2:hover::before {
-      opacity: 0.2;
-    }
-    
-    .columna-imagen2 .sub-columna,
-    .columna-imagen2 .parrafo {
-      position: relative;
-      z-index: 2; 
-      color: white; 
-      opacity: 0;
-      transition: opacity 0.4s ease-in;
-    }
-
-    .columna-imagen2:hover .sub-columna,
-    .columna-imagen2:hover .parrafo {
-      opacity: 1;
-    }
-
-
-    /*TERCERA IMAGEN DE LA SECCION EXPERIENCIA*/
-
-    .columna-imagen3 {
-      position: relative;
-      padding: 20px;
-      border-radius: 20px;
-      overflow: hidden;
-      color: white;
-      margin:20px;
-    }
-    
-    .columna-imagen3::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('/assets/diagnostico-digital.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.8;
-      z-index: 1;
-      transition: opacity 0.4s ease-in;
-    }
-    
-    .columna-imagen3:hover::before {
-      opacity: 0.2;
-    }
-    
-    .columna-imagen3 .sub-columna,
-    .columna-imagen3 .parrafo {
-      position: relative;
-      z-index: 2; 
-      color: white; 
-      opacity: 0;
-      transition: opacity 0.4s ease-in;
-    }
-
-    .columna-imagen3:hover .sub-columna,
-    .columna-imagen3:hover .parrafo {
-      opacity: 1;
-    }
-
-    /*CUARTA IMAGEN DE LA SECCION EXPERIENCIA*/
-
-
-    .columna-imagen4 {
-      position: relative;
-      padding: 20px;
-      border-radius: 20px;
-      overflow: hidden;
-      color: white;
-      margin:20px;
-    }
-    
-    .columna-imagen4::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('/assets/seguridad-datos.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.8;
-      z-index: 1;
-      transition: opacity 0.4s ease-in;
-    }
-    
-    .columna-imagen4:hover::before {
-      opacity: 0.2;
-    }
-    
-    .columna-imagen4 .sub-columna,
-    .columna-imagen4 .parrafo {
-      position: relative;
-      z-index: 2; 
-      color: white; 
-      opacity: 0;
-      transition: opacity 0.4s ease-in;
-    }
-
-    .columna-imagen4:hover .sub-columna,
-    .columna-imagen4:hover .parrafo {
-      opacity: 1;
-    }
-
-
-     .experiencia .row .columna{
-      height: 200px;
-      transition: all .3s ease-in-out;
-      cursor: pointer;
-    }
-   
-    .columna:hover h3{
-      color: #000000;
-    }
-
-    .columna:hover p {
-      display: block;
-      opacity: 1;
-      color: #000000;
-      font-size: 1.1rem;
-      z-index: 1;
-    }
-
-    .columna:hover .columna-imagen1{
-      display: none;
-    }
-    
-
+.row2 {
+  display: flex;
+  justify-content: center; /* Centra el texto de derechos de autor */
 }
 
-
-  @media (max-width: 1400px) {
-
-    .columna {
-      flex: 1 1 100%;
-    }
-
-    section h1{
-      margin-left: 0px;
-      font-size: 6.5rem;
-      margin-right: 15%;
-      background-color: green;
-    }
-
-    .hero-principal{
-      height: 550px;
-      padding: 3rem;
-      text-align: left;
-      border-radius: 0px 45px;
-    }
-    .hero-principal p {
-      margin-right: 25%;
-      font-size: 1.3rem;
-    }
-    .hero-principal h1 {
-      font-size: 4rem;
-    }
-    .hero-principal .grafico1{
-      display: none;
-      position: absolute;
-      top: 40%;
-      left:70%;
-      z-index: -1;
-      right: 5%;
-    }
-    .grafico1 .grafico{
-      width: 300px;
-    }
-
-    .experiencia .text-center{
-      margin-left: 0%;
-      margin-right: -15px;
-
-    }
-    .experiencia h3 {
-      font-size: 1.6rem; 
-      margin-bottom: 23px;
-      color: #4b4747;
-    }
-    .experiencia i {
-      font-size: 2.6rem; 
-      margin-bottom: 23px;
-      color: #4b4747;
-    }
-    .experiencia .row .columna{
-      height: 200px;
-      transition: all .3s ease-in-out;
-      cursor: pointer;
-    }
-    .columna:hover h3{
-      color: #4b4747;
-    }
-    .columna:hover p {
-      display: block;
-      opacity: 1;
-      color: #4b4747;
-      font-size: 1.1rem;
-    }
-  }
-
-  
-  
-
-  @media (max-width: 768px) {
-    .btn1{
-      margin-right: 40px;
-      margin-top: 15px;
-      padding:5px 15px;
-    }
-    .columna {
-      flex: 1 1 100%;
-    }
-
-    .hero-principal h1{
-      margin-left: 0px;
-      font-size: 3.2rem;
-      margin-right: 0%;
-    }
-    .hero-principal p {
-      margin-right: 20%;
-      text-align: left;
-      margin-left: 6%;
-      font-size: .9rem;
-    }
-    .experiencia .text-center{
-
-      margin: 0px 50px 15px 15px;
-    }
-
-    .experiencia h1{
-      font-size: 3.4rem;
-    }
-    .experiencia h3 {
-      font-size: 1.3rem; 
-    }
-    .experiencia .row .columna i {
-      font-size: 2rem; 
-    }
-    .experiencia .row .columna{
-      height: 150px;
-      width: 50%;
-      transition: all .3s ease-in-out;
-      cursor: pointer;
-    }
-    .experiencia .text-center{
-      margin-left: 0%;
-      margin-right: 5px;
-    }
-    .columna:hover p {
-      display: block;
-      opacity: 1;
-      color: #4b4747;
-      font-size: 14px;
-    }
-
-    .beneficios h1{
-      font-size: 3.2rem;
-    }
-
-    .beneficios .row{
-      padding: 25px 25px 25px 25px;
-      height: auto;
-      width: 85%;
-      border-radius: 10px;
-
-    
-    }
-    .beneficios .row .columna{
-      margin-bottom: 25px;
-      background-color: #f7f7f7;
-      padding-left: 6px;
-
-    }
-
-    .beneficios .row .columna h3{
-      font-size: 1.8rem; 
-      margin-bottom: 23px;
-      font-weight: 500;
-      color: black;
-    }
-    
-    .beneficios .row .columna ul{
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-      cursor: default;
-    
-    }
-    .beneficios .row .columna ul li{
-      margin: 5px;
-      font-size: 1rem;
+@media (max-width: 768px) {
+  .footer .row {
+      flex-direction: column; /* Cambia a disposición en columna en pantallas pequeñas */
       text-align: center;
-      margin-right: 20px;
-    }
-    
-    .footer {
-      text-align: center;
-    }
-  
-    .footer .col-12 {
+  }
+
+  .footer .grupo1, 
+  .footer .grupo2 {
       margin-bottom: 20px;
-    }
-    
-    
+      max-width: 100%; /* Asegura que las tarjetas ocupen todo el ancho disponible en pantallas pequeñas */
   }
-  @media (max-width: 767px){
+}
 
 
-    .logo-pagina{
-      width: 110px;
-      margin-left: 40px;
-    
-    }
-    .btn1{
-      font-size: .9rem;
-      margin-right: 40px;
-      margin-top: 15px;
-      padding:5px 15px;
-    }
-    .columna {
-      flex: 1 1 100%;
-    }
-    .hero-principal h1{
-      margin-left: 0px;
-      font-size: 2.2rem;
-      margin-right: 0%;
-    }
-    .hero{
-      height: 400px;
-      padding: 2rem;
-      text-align: left;
-      border-radius: 0px 45px;
-
-    }
-    .hero-principal{
-      border: none;
-      margin-left: 0px;
-
-    }
-    .hero-principal p {
-      margin-right: 20%;
-      text-align: left;
-      margin-left: 0%;
-      font-size: .4rem;
-    }
-    .hero-principal .grafico1{
-      display: block;
-      position: absolute;
-      top: 60%;
-      left:33%;
-      z-index: -1;
-      right: 5%;
-    }
-    .grafico1 .grafico{
-      width: 190px;
-    }
-    .experiencia .text-center{
-
-      margin: -40px 50px 15px 15px;
-    }
-
-    .seccion-clara h1{
-      font-size: 1.7rem;
-    }
-    .text-center .columna h3 {
-      font-size: 1.3rem; 
-    }
-    .text-center .columna i {
-      font-size: 2.5rem; 
-    }
-    .text-center .columna{
-      height: 150px;
-      transition: all .3s ease-in-out;
-      cursor: pointer;
-    }
-    .experiencia .text-center{
-      margin-left: 0%;
-      margin-right: 5px;
-    }
-    .columna:hover p {
-      display: block;
-      opacity: 1;
-      color: #4b4747;
-      font-size: 14px;
-    }
-
-    .beneficios h1{
-      font-size: 2.1rem;
-    }
-
-    .beneficios .row{
-      padding: 2px 2px 2px 2px;
-      height: auto;
-      width: 100%;
-      border-radius: 10px;
-
-    
-    }
-    .beneficios .row .columna{
-      margin-bottom: 25px;
-      background-color: #ffffffc4;
-      padding-left: 6px;
-
-    }
-
-    .beneficios .row .columna h3{
-      font-size: 1.5rem; 
-      margin-bottom: 23px;
-      font-weight: 500;
-      color: black;
-    }
-    
-    .beneficios .row .columna ul{
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-      cursor: default;
-    
-    }
-    .beneficios .row .columna ul li{
-      margin: 5px;
-      font-size: .8rem;
-      text-align: center;
-      margin-right: 20px;
-    }
-    
-    .footer {
-      text-align: center;
-    }
-  
-    .footer .col-12 {
-      margin-bottom: 20px;
-    }
-    
-  }
-
-  
- 

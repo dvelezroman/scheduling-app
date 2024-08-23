@@ -22,8 +22,6 @@ import { MisDiagnosticosComponent } from './components/paciente/mis-diagnosticos
 import { PacienteCitasComponent } from './components/paciente/paciente-citas/paciente-citas.component';
 
 
-
-
 const routes: Routes = [
   { path: 'inicio', component: InicioNoAuthComponent },
   { path: 'login', component: LoginComponent },

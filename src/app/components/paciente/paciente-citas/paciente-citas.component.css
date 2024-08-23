@@ -1,54 +1,61 @@
 
 .container{
-    margin-top: 50px;
+    margin-top: 110px;
 
 }
-.turnos-container {
-    background-color: #f0f8ff;
-    border: 1px solid #007bff;
-    border-radius: 8px;
-    padding: 20px;
-    max-width: 600px;
-    margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .turnos-container h1 {
-    color: #45698f;
-    text-align: center;
-  }
+
+.container h1 {
+  color: #45698f;
+  text-align: center;
+}
   
   .mensaje {
     color: #333;
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
   }
 
-  .turnos-container .turnos-lista .small{
+
+  .row .turnos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: start;
+    list-style-type: none;
+    padding: 15px;
+    margin-top: 100px;
+  }
+  
+  .turno-item {
+    background-color: #b6c8f57d;
+    border: 1px solid #9e9e9e;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(68, 205, 243, 0.35);
+  }
+  
+  .turnos-lista .turno-fecha {
+    color: #0056b3;
+    padding: 10px 10px 0px;
+  }
+
+  .turnos-lista .turno-medico{
+    padding:0px 10px 0px;
+  }
+
+  .turnos-fecha .turnos-lista li{
+    text-align: center;
+  }
+
+  .row .turnos-lista .small{
     color: black;
     font-weight: bold;
     font-size: 1.1rem;
     margin-right: 5px;
   }
   
-  .turnos-lista {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .turno-item {
-    background-color: #e6f0ff;
-    border: 1px solid #007bff;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .turno-fecha {
-    color: #0056b3;
-    font-size: 1.3;
-  }
   
   .no-turnos {
     background-color: #f0f8ff;

@@ -1,8 +1,10 @@
-
+.contenedor-principal {
+  padding-top: 4rem; /* Ajusta el padding superior según sea necesario */
+}
 
 /*sección logo*/
 .anuncio-paciente{
-margin-top: 30px;
+margin-top: -2rem;
 border-radius: 0px 0px 10px 10px;
 margin-bottom: 0px;
 background-color: #536697;
@@ -18,28 +20,9 @@ section{
   justify-content: center;
 }
 
-h1{
-  font-size: 4.5rem;
-  font-weight: 500;
-  font-family: 'Rubik Dirt';
-  color: #1e3162;
-}
-.hero .hero-principal .grafico{
- width: 350px;
- margin-top: 35px;
 
-}
-
-.hero{
-  background-color: #ffffff;
-  min-height: 450px;
-  text-align: center;
-
-}
-
-.hero-principal{
-  padding: 3rem;
-
+.hero-principal {
+  padding: 2rem 0; /* Reduce el padding superior e inferior para acercar la imagen a la siguiente sección */
 }
 
 .hero-principal h2{
@@ -72,48 +55,174 @@ h1{
 }
 
 .seccion-clara{
+
   color: rgb(239, 238, 238);
   background-color: white;
 }
 
 .experiencia{
-  padding: 40px 40px 20px 40px;
+  
+  padding: 20px 40px 10px 40px;
   background-color: #ffffff;
   align-items: center;
 }
 
 .experiencia .row{
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea si no caben en una fila */
+  justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+  align-items: center; 
   transition: all .3s ease;
-  margin-bottom: 100px;
+  margin-bottom: 40px;
+  margin-top: 0;
 }
 
 .experiencia .row .columna{
-  
   height: auto;
+  width: 75%;
+  margin: auto;
   transition: all .3s ease-in-out;
   cursor: pointer;
-
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .experiencia .row .columna:hover{
-  box-shadow: 1px 1px 30px rgba(138, 138, 138, 0.764) inset;
-  box-shadow: 1px 1px 30px rgba(143, 143, 143, 0.611);
-  box-shadow: -1px -1px -20px rgba(117, 117, 117, 0.611) ;
+
   filter: blur(0px);
 }
 
-.experiencia i{
-  color: rgb(22, 28, 71);
-  font-size: 2.5rem;
-  border-radius: 50%;
+
+
+.seccion-clara {
+  background-color: #ffffff;
+  padding: 20px 0;
 }
-.experiencia-titulo{
-  font-size: 25px;
-  font-weight: bold;
-  margin: 10px 0;
-  color: rgb(30, 39, 89);
+
+.btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
 }
-.experiencia p{
-  padding: 5px;
-  color: rgb(23, 37, 86);
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-outline-secondary {
+  color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.icono-img {
+  width: 70px; /* Ajusta este tamaño según sea necesario */
+  height: 70px; /* Asegura que la imagen mantenga una forma cuadrada */
+  margin-bottom: 15px; /* Espacio debajo de la imagen para separar del texto */
+}
+
+.experiencia .columna {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.experiencia .columna:hover {
+  transform: scale(1.05); /* Añade un ligero efecto de zoom al hacer hover */
+}
+
+.experiencia-titulo {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #1e3162;
+}
+
+  .experiencia  {
+  font-size: 1.2rem;
+  color: #4e5a73;
+}
+
+
+@media (max-width: 480px) {
+  .anuncio-paciente {
+      font-size: 14px;
+      padding: 10px;
+      text-align: center;
+  }
+
+  .hero .hero-principal .grafico {
+      width: 100px; /* Reduce el tamaño del logo */
+
+  }
+
+  .hero-principal {
+      padding: 1.5rem; /* Reduce el padding para aprovechar mejor el espacio */
+  }
+
+  .experiencia {
+   
+      padding: 30px 20px 10px 20px; /* Reduce el padding general */
+  }
+
+  .experiencia .row {
+      margin-bottom: 0px; /* Reduce el margen inferior */
+  }
+
+  .experiencia .row .columna {
+      margin-bottom: 20px; /* Asegura que las columnas no se junten demasiado */
+  }
+
+  .experiencia i {
+      font-size: 2rem; /* Reduce el tamaño de los íconos */
+  }
+
+  .experiencia-titulo {
+      width: 80%;
+      margin: auto;
+      font-size: 1rem; /* Reduce el tamaño del texto del título */
+  }
+
+    .columna p  {
+      width: 90%;
+      margin: auto;
+      font-size: .9rem; /* Reduce el tamaño del texto de los párrafos */
+      padding: 0 10px; /* Agrega un pequeño padding para evitar que el texto se junte demasiado con los bordes */
+  }
+
+  .icono-img {
+    width: 50px; /* Ajusta este tamaño según sea necesario */
+    height: 50px; /* Asegura que la imagen mantenga una forma cuadrada */
+    margin-bottom: 15px; /* Espacio debajo de la imagen para separar del texto */
+  }
+  
+  .experiencia .columna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .experiencia .columna:hover {
+    transform: scale(1.05); /* Añade un ligero efecto de zoom al hacer hover */
+  }
+  
 }

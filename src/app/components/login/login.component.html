@@ -1,8 +1,14 @@
 
 
 <div class="contenedor">
+    <div class="top-link">
+        <a routerLink="/inicio" class="home-link">
+            <i class="fa fa-arrow-left"></i> Página Inicio
+        </a>
+    </div>
     <div class="form login formulario">
         <div class="form content">
+            
             <h1>Iniciar Sesión</h1>
 
             <form (submit)="ingresar(f)"
@@ -52,7 +58,6 @@
                 
                     <div class="form-link forgot">
                         <a class="forpas forgot-pass" routerLink="/recuperaPassword">Cambiar la clave</a>
-                        
                     </div>
                 </div>
 

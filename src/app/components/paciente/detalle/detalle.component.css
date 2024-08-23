@@ -8,12 +8,10 @@
     margin-left: 2rem;
 }
 
-.titulo{
-    margin-left: 3rem;
+.container .titulo{
+  margin-top: 3rem;
 }
-.h2{
-    text-align: center;
-}
+
 
 .tituloPaciente{
     font-weight:lighter;
@@ -199,18 +197,126 @@ border: none;
 /*media query tarjeta diagnostico*/
 
 @media (max-width: 768px) {
-  .diagnostico-card {
-      margin: 10px;
-      padding: 10px;
+
+  /* Ajusta el contenedor principal */
+  .container {
+    margin-top: 3rem;
+    padding: 0 15px;
+    text-align: center;
+    max-width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
   }
-  .diagnostico-card .card-body {
-      padding: 15px;
+
+  /* Ajusta el título */
+  .titulo {
+    font-size: 1.5rem; /* Reduce el tamaño del título */
+    margin-left: 0; /* Centra el título eliminando el margen izquierdo */
+    text-align: center; /* Asegura que el título esté centrado */
   }
-  .diagnostico-card .card-title {
-      font-size: 20px;
+
+  .container .form-label,
+  .container .listChild,
+  .container .listChild-diag,
+  .container .card-title,
+  .container .card-text,
+  .form-select,
+  .diagnostico-titulo,
+  .boton-guardar,
+  .boton-cancelar {
+    font-size: 0.875rem; /* Reduce el tamaño de todos estos textos */
+    margin-left: 5px;
   }
-  .diagnostico-card .card-text {
-      font-size: 14px;
+
+  /* Ajusta la lista de datos del paciente */
+  .lista {
+    padding: 0;
+    margin: 15px auto; /* Centra la lista */
+    max-width: 100%; /* Asegura que la lista ocupe todo el ancho disponible */
   }
+
+  .listChild {
+    font-size: 1.2rem; /* Reduce el tamaño del texto */
+  }
+
+  .listChild-diag {
+    margin-top: 20px;
+    font-size: 1.5rem; /* Reduce el tamaño del título de diagnósticos */
+  }
+
+  /* Ajusta el select de diagnósticos */
+  .form-select {
+    font-size: 0.875rem; /* Reduce el tamaño del texto dentro del select */
+    padding: 0.5rem 0.75rem; /* Reduce el padding para hacer el select más compacto */
+    max-width: 80%; /* Asegura que el select no ocupe todo el ancho disponible */
+    margin: 10px auto; /* Centra el select horizontalmente */
+
+    text-align: left;
+  }
+
+  /* Ajusta la tarjeta de diagnóstico */
+  .contenedor-tarjeta {
+    margin: 15px auto; /* Centra la tarjeta */
+    max-width: 100%; /* Asegura que la tarjeta ocupe todo el ancho disponible */
+  }
+
+  .card {
+    padding: 10px; /* Ajusta el padding de la tarjeta */
+    text-align: left; /* Alinea el texto a la izquierda */
+  }
+
+  .card-title {
+    font-size: 1.5rem; /* Reduce el tamaño del título en la tarjeta */
+  }
+
+  .card-text {
+    font-size: 1rem; /* Ajusta el tamaño del texto en la tarjeta */
+  }
+
+  /* Ajusta el contenedor del área de texto */
+
+
+    /* Ajustes para el contenedor principal del diagnóstico en proceso */
+
+  
+    .contenedor-textarea {
+      padding: 0;
+      margin: 10px auto; /* Centra el contenedor en la pantalla */
+      max-width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    }
+  
+    .textarea {
+      width: 90%; /* Asegura que el área de texto ocupe todo el ancho disponible */
+      margin: 0 auto;
+    }
+  
+    .textarea .form-control {
+      width: 90%; /* Reduce el ancho del textarea */
+      font-size: 0.875rem; /* Reduce el tamaño del texto dentro del textarea */
+      padding: 0.75rem; /* Ajusta el padding para hacer el textarea más compacto */
+      margin: 0 auto; /* Centra el textarea */
+    }
+  
+    .boton-textarea {
+      flex-direction: column; /* Coloca los botones en columna */
+      gap: 10px; /* Reduce el espacio entre los botones */
+      margin-top: 15px; /* Ajusta el margen superior */
+      margin-bottom: 15px; /* Ajusta el margen inferior */
+    }
+  
+    .guardar-diagnostico,
+    .cancelar-diagnostico {
+      width: 50%; /* Asegura que los botones ocupen todo el ancho disponible */
+      margin: auto;
+      font-size: 1rem; /* Ajusta el tamaño del texto de los botones */
+      padding: 5px; /* Ajusta el padding de los botones */
+    }
+
+
+  /* Ajusta el botón de regresar */
+  .boton-regresar {
+    text-align: center;
+    margin: 20px 0;
+  }
+ 
 }
+
 
