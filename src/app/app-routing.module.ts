@@ -23,7 +23,6 @@ import { PacienteCitasComponent } from './components/paciente/paciente-citas/pac
 
 
 const routes: Routes = [
-  
   { path: 'inicio', component: InicioNoAuthComponent },
   { path: 'login', component: LoginComponent },
   { path: 'recuperaPassword', component: RecuperaPasswordComponent },
