@@ -1,37 +1,34 @@
-<section class="hero align-items-stretch ">
+<section class="hero align-items-stretch">
     <div class="container d-flex justify-content-center">
-
-        <div class="contenedor col-12">
-
-            <div class="hero-principal d-flex">
-                <div class=" dato-rol">
-                    <div><i class="usuario-perfil fa-solid fa-user"></i></div> 
-                </div>
-                
-                <div class="datos-nombres col-9">
-                    <h2>{{usuario?.nombres | titlecase}}</h2>
-                    <p class="especialidad" *ngIf="usuario?.rol === 'medico' || usuario?.rol === 'administrador'">{{ usuario?.especialidad | titlecase }}</p>
-                    <p *ngIf="usuario?.rol === 'paciente'" class="edad"><strong>Edad:</strong> {{ usuario?.edad }} años</p>
-                    <p *ngIf="usuario?.cedula"><i class="cedula bi bi-person-vcard-fill"></i>{{ usuario?.cedula}}</p>
-                    <p *ngIf="usuario?.telefono"><i class="telefono bi bi-whatsapp"></i>{{ usuario?.telefono}}</p>
-                    <p *ngIf="usuario?.rol === 'medico' || usuario?.rol === 'administrador' || usuario?.rol === 'paciente'"><i class="direccion bi bi-geo-alt-fill"></i> {{ usuario?.direccionConsultorio | titlecase }}</p>
-                    
-                </div>
-            
-            </div>
-            <div class="boton-editar col-1">
-                <button class="btn btn-secondary" routerLink="/configuracion-usuario">Editar Perfil</button>
-            </div>
-
-            <div *ngIf="usuario?.informacionProfesional?.length > 0" class="datos-profesional col-12">
-                <h3>Experiencia Profesional</h3>
-                <ul class="list-group" *ngIf="usuario?.informacionProfesional?.length > 0">
-                  <li class="list-group-item" *ngFor="let profesion of usuario?.informacionProfesional">{{ profesion | titlecase}}</li>
-                </ul>
-                <p class="informacion-profesional" *ngIf="usuario?.informacionProfesional?.length === 0">No hay información profesional disponible.</p>
-            </div>
-
+      <div class="tarjeta-perfil col-12 col-md-10 col-lg-8">
+        <!-- Primer Bloque: Foto del Usuario -->
+        <div class="bloque-foto d-flex justify-content-center align-items-center">
+          <div><i class="usuario-perfil fa-solid fa-user"></i></div> 
         </div>
+  
+        <!-- Segundo Bloque: Datos del Usuario -->
+        <div class="bloque-datos">
+          <h2>{{usuario?.nombres | titlecase}}</h2>
+          <p class="especialidad" *ngIf="usuario?.rol === 'medico' || usuario?.rol === 'administrador'">{{ usuario?.especialidad | titlecase }}</p>
+          <p *ngIf="usuario?.rol === 'paciente' || usuario?.rol === 'medico'" class="edad"><i class="fa-solid fa-cake-candles cake-icon"></i> {{ usuario?.edad }} años</p>
+          <p *ngIf="usuario?.cedula"><i class="cedula bi bi-person-vcard-fill"></i>{{ usuario?.cedula}}</p>
+          <p *ngIf="usuario?.telefono"><i class="telefono bi bi-whatsapp"></i>{{ usuario?.telefono}}</p>
+          <p *ngIf="usuario?.rol === 'medico' || usuario?.rol === 'administrador' || usuario?.rol === 'paciente'"><i class="direccion bi bi-geo-alt-fill"></i> {{ usuario?.direccionConsultorio | titlecase }}</p>
+        </div>
+  
+        <!-- Tercer Bloque: Experiencia Laboral -->
+        <div *ngIf="usuario?.informacionProfesional?.length > 0" class="bloque-experiencia">
+          <h3>Experiencia Profesional</h3>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let profesion of usuario?.informacionProfesional">{{ profesion | titlecase}}</li>
+          </ul>
+        </div>
+  
+        <!-- Cuarto Bloque: Botón para Editar Información -->
+        <div class="bloque-editar">
+          <button class="btn btn-secondary" routerLink="/configuracion-usuario">Editar Perfil</button>
+        </div>
+      </div>
     </div>
-</section>
-
+  </section>
+  

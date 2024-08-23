@@ -1,9 +1,7 @@
 .container {
     margin-top: 100px;
-    border: 1px solid grey;
     padding: 55px 50px;
     border-radius: 9px;
-    background-color: #e5e0e0; 
 }
 
 .container h2 {
@@ -138,3 +136,57 @@
 }
 
 
+@media (max-width: 768px) {
+  .container {
+    margin-top: 50px; /* Ajusta el margen superior */
+    padding: 30px 20px; /* Reduce el padding para aprovechar mejor el espacio en pantallas pequeñas */
+    border-radius: 9px;
+
+  }
+
+  .container h2 {
+    font-size: 2rem; /* Reduce el tamaño del título */
+    margin-bottom: 20px; /* Reduce el margen inferior del título */
+  }
+
+  .container .form-control {
+    margin-top: 5px;
+    margin-bottom: 15px; /* Reduce el margen inferior entre los campos del formulario */
+    padding: 8px; /* Reduce el padding para ajustarse a pantallas más pequeñas */
+  }
+
+  .container .form-label {
+    font-size: 1.1rem; /* Reduce el tamaño de las etiquetas de los campos */
+    margin-bottom: 5px; /* Ajusta el margen inferior de las etiquetas */
+  }
+
+  .boton-anadir {
+    font-size: 14px; /* Reduce el tamaño del botón */
+    height: 40px; /* Ajusta la altura del botón */
+    margin-top: -10px; /* Ajusta la posición del botón */
+  }
+
+  .container .button {
+    flex-direction: column; /* Coloca los botones en columna para pantallas pequeñas */
+    align-items: center; /* Centra los botones */
+    margin-top: 15px;
+  }
+
+  .container .button .boton-cancelar,
+  .container .button .boton-actualizar {
+    width: 50%; /* Asegura que los botones ocupen todo el ancho disponible */
+    margin: 10px 0; /* Ajusta el margen entre los botones */
+   
+  }
+  .container .button .boton-cancelar {
+    background-color: #6c757d; /* Color gris típico para botones de cancelar */
+    color: #fff; /* Texto en blanco para contraste */
+    border: none; /* Elimina el borde */
+  }
+  
+  .container .button .boton-actualizar {
+    background-color: #007bff; /* Color azul típico para botones de acción primaria */
+    color: #fff; /* Texto en blanco para contraste */
+    border: none; /* Elimina el borde */
+  }
+}

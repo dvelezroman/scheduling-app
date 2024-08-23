@@ -37,7 +37,7 @@ constructor(private pacienteService: PacienteService,
         
        obtenerTurnos(): void {
         this.pacienteService.getTurnosByCedula(this.cedulaPaciente).subscribe(turnos => {
-          this.turnos = turnos;
+          this.turnos = turnos.sort((a, b) => new Date(a.fechaHora).getTime() - new Date(b.fechaHora).getTime());
           this.totalTurnos = turnos.length;
           this.mensajeTurnos = this.totalTurnos === 1 ? 'Tienes 1 turno agendado' : `Tienes ${this.totalTurnos} turnos agendados`;
         }, error => {
@@ -45,6 +45,5 @@ constructor(private pacienteService: PacienteService,
         });
       }
 
-//METODOS SECUNDARIOS PARA OBTENER INFORMACION DEL MEDICO DEL TURNO PACIENTE//
 
 }

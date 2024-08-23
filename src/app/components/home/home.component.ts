@@ -85,45 +85,7 @@ contarPacientesConTurnoHoy() {
   }
 }
 
-
-     //METODO PARA CANCELAR O CAMBIAR CITAS DEL PACIENTE//
      
-     solicitarCambioOTurno(): void {
-      Swal.fire({
-        title: 'Solicitud',
-        text: '¿Qué deseas solicitar?',
-        icon: 'question',
-        showCancelButton: true,
-        showDenyButton: true,
-        confirmButtonText: 'Solicitar Cambio de Turno',
-        denyButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.solicitarCambio();
-        } else {
-         return;
-        }
-      });
-    }
 
-  
-    solicitarCambio(): void {
-      Swal.fire({
-        title: '¿Estás seguro?',
-        text: '¿Deseas solicitar el cambio de tu turno?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, solicitar',
-        cancelButtonText: 'No, cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.servicio.solicitarCambio(this.cedulaPaciente).subscribe(response => {
-            Swal.fire('Solicitud Enviada', 'Tu solicitud de cambio ha sido enviada.', 'success');
-          }, error => {
-            Swal.fire('Error', 'Ocurrió un error al enviar tu solicitud. Inténtalo nuevamente.', 'error');
-          });
-        }
-      });
-    }
 
 }

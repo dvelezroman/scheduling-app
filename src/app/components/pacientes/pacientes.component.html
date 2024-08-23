@@ -126,7 +126,57 @@
             </table> 
               <!--Tabla Principal de Pacientes Responsive-->
   
-  
+            <!--Tarjeta de Pacientes se activa en 992px-->
+
+
+
+            <!-- Tarjetas de Pacientes -->
+<div class="card-container" *ngIf="mostrarLista && hayPacientes">
+  <div [routerLink]="['/pacientes/paciente', paciente.id]" class="card-paciente" *ngFor="let paciente of pacientesFiltrados; let i = index">
+    <!-- Bloque 1: Imagen del Paciente -->
+    <div class="card-image">
+      <img [src]="paciente.fotoUrl ? paciente.fotoUrl : 'assets/fondo foto paciente.png'" alt="Foto de {{paciente.nombres}}">
+    </div>
+
+    <!-- Bloque 2: Datos del Paciente -->
+    <div class="card-details ">
+      <p class="nombre">{{paciente.nombres}}</p>
+      <p class="correo">{{paciente.correo}}</p>
+      <p class="turno">
+        <span *ngIf="!paciente.turno">No tiene cita</span>
+        <ng-container *ngIf="paciente.turno">
+          <span [matTooltip]="paciente.turno | customDate: 'full'" matTooltipPosition="above">
+            {{ paciente.turno | customDate: 'short' }}
+          </span>
+        </ng-container>
+      </p>
+    </div>
+
+    <!-- Bloque 3: Iconos de Acción -->
+    <div class="card-actions">
+      <button type="button" [matTooltip]="'Enviar fecha de la cita'" 
+        matTooltipPosition="above" (click)="sendMessage(paciente.telefono, paciente.turno, paciente)" class="botin4">
+        <i class="fa-brands fa-whatsapp"></i>
+      </button>
+
+      <button type="button" [matTooltip]="'Agendar cita'" 
+        matTooltipPosition="above" [routerLink]="['/pacientes','pacientes','id',paciente.id]" class="btn btn-outline-success botin3 ">
+        <i class="fa-solid fa-calendar-days"></i>
+      </button>
+
+      <button type="button" [matTooltip]="'Editar datos del paciente'" 
+        matTooltipPosition="above" [routerLink]="['/pacientes',paciente.id]" class="btn btn-outline-primary botin ">
+        <i class="fa-solid fa-pen"></i>
+      </button>
+
+      <button type="button" (click)="borrar2(i,paciente)" class="btn btn-outline-danger botin2" [matTooltip]="'Eliminar'" 
+        matTooltipPosition="above">
+        <i class="fa-solid fa-trash basura"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
   
               <!--tabla de pacientes después de la búsqueda-->
   

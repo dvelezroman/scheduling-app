@@ -250,11 +250,6 @@ export class PacienteService {
     }
   
 
-  
-    solicitarCambio(cedulaPaciente: number): Observable<any> {
-      const solicitud = { cedulaPaciente, solicitud: 'cambio' };
-      return this.http.post(`${this.url}/solicitudes.json`, solicitud);
-    }
 
   }
     

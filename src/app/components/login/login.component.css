@@ -6,39 +6,66 @@
     box-sizing: border-box;
 }
 
-
- body {
-    height: 100%;
-    margin: 0px;
-    padding: 0;
-
-
-}
 body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.contenedor{
+
+
+.contenedor {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     background-color: #aebcc283;
+    padding: 20px;
 }
 
-.formulario{
+.top-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.home-link {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    background-color: #0171d3;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: background-color 200ms ease-in-out;
+}
+
+.home-link i {
+    margin-right: 8px;
+}
+
+.home-link:hover {
+    background-color: #014a82;
+}
+
+
+.formulario {
     background-color: #ffffffd1;
     box-shadow: 0px 0px 3px rgba(138, 138, 138, 0.764);
     transition: all .4s;
     filter: blur(.3px);
-    
 }
-.formulario:hover{
+
+.formulario:hover {
     box-shadow: 1px 1px 30px rgba(138, 138, 138, 0.764) inset;
     box-shadow: 1px 1px 30px rgba(158, 158, 158, 0.611);
-    box-shadow: -1px -1px -20px rgba(117, 117, 117, 0.611) ;
+    box-shadow: -1px -1px -20px rgba(117, 117, 117, 0.611);
     filter: blur(0px);
 }
 
@@ -60,7 +87,7 @@ form {
     margin-top: 30px;
 }
 
-form .field {
+.field {
     height: 50px;
     width: 100%;
     margin-top: 20px;
@@ -76,8 +103,7 @@ form .field {
     font-weight: 400;
     border-radius: 6px;
     margin-bottom: -4px;
-    border: 1px solid  rgba(189, 191, 193, 0.615)inset;
-
+    border: 1px solid rgba(189, 191, 193, 0.615) inset;
 }
 
 ::placeholder {
@@ -86,41 +112,45 @@ form .field {
     font-size: 13px;
 }
 
-
 .field input {
     font-size: 15px;
-    padding: 0 15px;
+    padding: 12px;
     border: 2px solid #cdcfd1;
     transition: all .3s ease;
 }
+
 .field input:hover {
     font-size: 15px;
-    padding: 0 15px;
+    padding: 12px;
     border: 2px solid #bac2cb;
-
 }
 
 .eye-icon {
-    font-size: 12px;
+    font-size: 16px;
     color: #66769f;
     position: absolute;
     top: 50%;
-    right: 8%;
+    right: 12px;
     transform: translateY(-50%);
     cursor: pointer;
     transition: all 300ms;
 }
 
 .field button {
-    background: rgb(207, 208, 209);
+    background: linear-gradient(360deg, #1a73e8, #3c9cec);
     transition: all 250ms ease-in-out;
-    color: rgb(59, 58, 58);
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 1.5rem;
 }
 
 .field button:hover {
-    background: rgb(62, 145, 239);
-    border: 1px solid rgb(39, 112, 195) inset;
+    background: linear-gradient(360deg, #258bdf, #1a73e8);
     color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .form-link {
@@ -131,18 +161,30 @@ form .field {
     position: relative;
     display: flex;
     justify-content: space-between;
-    margin-top: 3px;
+    align-items: center; /* Alinea verticalmente los elementos en el centro */
+    margin-top: 15px;
+}
+
+.contact100-form-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.form-link.forgot {
+    margin-left: auto; /* Empuja el enlace hacia el extremo derecho */
+    margin-top:  -3px;
 }
 
 .label-check {
     font-size: 12px;
-    margin-left: 18px;
+    margin-left: 8px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .check {
-    position: absolute;
-    top: 25%;
-    left: 1%;
+    vertical-align: middle;
+    margin-top: 0; /* Asegura que el checkbox esté alineado con el texto */
 }
 
 .form-link span,
@@ -166,13 +208,92 @@ form .field {
 
 .forpas {
     margin-right: 5px;
+    font-size: 12px;
 }
 
 small {
     font-size: 12px;
     margin-top: -5px;
     margin-left: 2px;
-
-
 }
 
+/* Ajustes para pantallas móviles de hasta 480px */
+@media (max-width: 480px) {
+
+    .top-link {
+        top: 10px;
+        left: 10px;
+    }
+
+    .home-link {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .home-link i {
+        margin-right: 6px;
+        font-size: 12px;
+    }
+
+    .contenedor {
+        padding: 20px;
+    }
+    
+    .form {
+        padding: 20px;
+        max-width: 100%;
+    }
+    
+    .field input, .field button {
+        font-size: 14px;
+        padding: 10px;
+
+    }
+
+    .field.button-field {
+        margin-bottom: 20px; /* Aumenta el espacio entre el botón y el margen inferior */
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .eye-icon {
+        font-size: 16px;
+        right: 10px;
+    }
+
+    .c {
+        flex-direction: row; /* Mantiene los elementos en la misma fila */
+        justify-content: space-between; /* Distribuye los elementos entre sí */
+        align-items: center; /* Alinea los elementos verticalmente al centro */
+    }
+    
+    .label-check {
+        font-size: 10px;
+        margin-left: 10px;
+    }
+    
+    .check {
+        vertical-align: middle; /* Asegura que el checkbox esté alineado con el texto */
+        margin-top: 0;
+    }
+
+    .form-link.forgot {
+        margin-left: auto; /* Mantiene el enlace a la derecha */
+        margin-top: -3px; /* Elimina cualquier margen superior */
+    }
+    
+    .form-link span,
+    .form-link a {
+        font-size: 12px;
+    }
+    
+    .forpas {
+        font-size: 12px;
+    }
+    
+    small {
+        font-size: 10px;
+    }
+}

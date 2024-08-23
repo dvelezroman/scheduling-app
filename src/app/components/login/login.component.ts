@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {  NgForm } from '@angular/forms';
 import { UsuarioModel } from '../models/usuario.model';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
-import Swal from 'sweetalert2';
+import   Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { isLocalStorageAvailable } from '../../localStorageUtils';
 
