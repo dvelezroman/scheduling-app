@@ -32,7 +32,6 @@ import { CedulaEcuatorianaValidatorDirective } from './components/paciente/cedul
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { RoleTransformPipe } from './pipes/role-transform.pipe';
-import { environment } from '../../environments/environment';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 import { MedicosDatosComponent } from './components/usuario/medicos-datos/medicos-datos.component';
 import { PacientesTurnoDiaComponent } from './components/pacientes/pacientes-turno-dia/pacientes-turno-dia.component';
@@ -42,6 +41,7 @@ import { FechaTurnoTablaPipe } from './pipes/fecha-turno-tabla.pipe';
 import { MisDiagnosticosComponent } from './components/paciente/mis-diagnosticos/mis-diagnosticos.component';
 import { PacienteCitasComponent } from './components/paciente/paciente-citas/paciente-citas.component';
 import { AuthGuard } from './guards/authentic.guard';
+import {environment} from "../environments/environment";
 
 
 
@@ -49,7 +49,7 @@ import { AuthGuard } from './guards/authentic.guard';
 
 @NgModule({
   declarations: [
-    
+
     AppComponent,
     NavbarComponent,
     PacientesComponent,
@@ -78,7 +78,7 @@ import { AuthGuard } from './guards/authentic.guard';
     PacienteCitasComponent,
 
 
-   
+
   ],
   imports: [
     BrowserModule,
@@ -93,7 +93,7 @@ import { AuthGuard } from './guards/authentic.guard';
     MatIconModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    
+
 
 
   ],
