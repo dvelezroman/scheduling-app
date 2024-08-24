@@ -132,9 +132,9 @@
 
             <!-- Tarjetas de Pacientes -->
 <div class="card-container" *ngIf="mostrarLista && hayPacientes">
-  <div [routerLink]="['/pacientes/paciente', paciente.id]" class="card-paciente" *ngFor="let paciente of pacientesFiltrados; let i = index">
+  <div  class="card-paciente" *ngFor="let paciente of pacientesFiltrados; let i = index">
     <!-- Bloque 1: Imagen del Paciente -->
-    <div class="card-image">
+    <div [routerLink]="['/pacientes/paciente', paciente.id]" class="card-image">
       <img [src]="paciente.fotoUrl ? paciente.fotoUrl : 'assets/fondo foto paciente.png'" alt="Foto de {{paciente.nombres}}">
     </div>
 
