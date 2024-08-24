@@ -41,6 +41,7 @@ export class PacientesComponent implements OnInit {
   mostrarBotonX:boolean = false;  
   hayPacientes: boolean = false;
   
+  imagenesPacientes: { [key: string]: string } = {};
 
 constructor(private servicio : PacienteService,
             private usuarioService : UsuarioServicesService,
@@ -88,6 +89,7 @@ constructor(private servicio : PacienteService,
       this.usuarioService.registrador$.subscribe(valor => this.puedeEditar = (valor === this.usuarioLogin));
       
       this.cargarPacientes();
+      this.cargarPacientesConImagen();
       
       this.servicio.cargarPacientes().subscribe( (pacientes:PacienteModel[]) => {
           this.pacientes = pacientes;
@@ -99,6 +101,7 @@ constructor(private servicio : PacienteService,
           
 
           this.loading = false;
+
    
   }); 
 }
@@ -110,9 +113,20 @@ cargarPacientes(): void {
     this.pacientesFiltrados = pacientes.filter(paciente => paciente.registrador === this.usuarioLogin);
     this.eliminarFechasPasadas();
     this.senal = this.pacientesFiltrados.length === 0;
+    this.hayPacientes = this.pacientesFiltrados.length > 0;
     this.loading = false;
   });
 }
+
+cargarPacientesConImagen(): void {
+  this.servicio.cargarPacientes2().subscribe((pacientes: PacienteModel[]) => {
+    this.imagenesPacientes = {}; // Reiniciar el objeto de imágenes
+    pacientes.forEach(paciente => {
+      this.imagenesPacientes[paciente.cedula] = paciente.fotoUrl;
+    });
+  });
+}
+
 
 
 toggleDateFilter(){

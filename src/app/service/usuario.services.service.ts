@@ -140,6 +140,15 @@ export class UsuarioServicesService implements OnInit {
         } as UsuarioModel;
       }
 
+      getUsuarios(): Observable<UsuarioModel[]> {
+        return this.db.list<UsuarioModel>('/usuarios').valueChanges().pipe(
+          catchError(err => {
+            console.error('Error al obtener usuarios:', err);
+            return throwError(err);
+          })
+        );
+      }
+
 
  ///////////////////////////////////////////////////////////////////////
      //METODO PARA OBTENER A TODOS LOS MEDICOS REGISTRADOS //

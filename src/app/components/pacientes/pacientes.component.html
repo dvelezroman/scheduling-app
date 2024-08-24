@@ -15,7 +15,7 @@
     <!-- Primer Bloque: Iconos de Acciones -->
     <div class="col-12 d-flex justify-content-center align-items-center mb-3">
       <button routerLink="/pacientes/nuevo" 
-              class="btnA gradient-blue  btn btn-outline-primary no-border me-4" 
+              class="btnA gradient-blue  btn btn-outline-primary no-border me-2" 
               [matTooltip]="'Agregar paciente'" 
               matTooltipPosition="above">
         <i class="fa-solid fa-user-plus faI"></i>
@@ -127,16 +127,17 @@
 
 
 
-            <!-- Tarjetas de Pacientes -->
-<div class="card-container" *ngIf="mostrarLista && hayPacientes">
-  <div  class="card-paciente" *ngFor="let paciente of pacientesFiltrados; let i = index">
-    <!-- Bloque 1: Imagen del Paciente -->
-    <div [routerLink]="['/pacientes/paciente', paciente.id]" class="card-image">
-      <img [src]="paciente.fotoUrl ? paciente.fotoUrl : 'assets/fondo foto paciente.png'" alt="Foto de {{paciente.nombres}}">
-    </div>
+       <!-- Tarjetas de Pacientes -->
+       <div class="card-container" *ngIf="mostrarLista && hayPacientes">
+        <div class="card-paciente" *ngFor="let paciente of pacientesFiltrados; let i = index">
+          <!-- Bloque 1: Imagen del Paciente -->
+          <div [routerLink]="['/pacientes/paciente', paciente.id]" class="card-image">
+            <img [src]="imagenesPacientes[paciente.cedula] ? imagenesPacientes[paciente.cedula] : 'assets/fondo foto paciente.png'" 
+                 alt="Foto de {{paciente.nombres}}">
+          </div>     
 
     <!-- Bloque 2: Datos del Paciente -->
-    <div class="card-details ">
+    <div [routerLink]="['/pacientes/paciente', paciente.id]" class="card-details ">
       <p class="nombre">{{paciente.nombres}}</p>
       <p class="correo">{{paciente.correo}}</p>
       <p class="turno">
