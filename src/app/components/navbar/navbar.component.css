@@ -193,6 +193,20 @@
  font-weight: 500;
 }
 
+.user-photo {
+  width:55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: middle;
+  position: absolute;
+  top: -8%;
+  left: 5%;
+  background-color: white;
+}
+
+
 
 /* stilos del menu desplegable*/
 
@@ -212,9 +226,9 @@
   margin-right: 3rem;
   transition: all 0.3s;
 }
-.nav-item2{
-  padding: 3px;
-  border-radius: 15px;
+.navbar-nav2 {
+  display: flex;
+  align-items: center;
 }
 
 .mat-menu-item .icono-configurar {

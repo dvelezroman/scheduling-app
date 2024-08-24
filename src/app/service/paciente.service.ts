@@ -208,19 +208,27 @@ export class PacienteService {
         map((pacientes: PacienteModel[]) => {
           let diagnosticos: Diagnostico[] = [];
           pacientes.forEach(paciente => {
-            if (paciente.diagnostico) {
-              diagnosticos = diagnosticos.concat(paciente.diagnostico.filter(d => d.cedulaPaciente === cedulaPaciente));
+            if (paciente.cedula === cedulaPaciente) {
+              if (paciente.diagnostico) {
+                // Verifica si `paciente.diagnostico` es un array o un objeto
+                if (Array.isArray(paciente.diagnostico)) {
+                  // Si es un array, úsalo directamente
+                  diagnosticos = diagnosticos.concat(paciente.diagnostico);
+                } else if (typeof paciente.diagnostico === 'object') {
+                  // Si es un objeto, conviértelo en un array
+                  diagnosticos = diagnosticos.concat(Object.values(paciente.diagnostico));
+                }
+              }
             }
           });
-
-          this.totalDiagnosticosSubject.next(diagnosticos.length);
-
+    
+          // Ordenar los diagnósticos por fecha
           diagnosticos.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
-
           return diagnosticos;
         })
       );
     }
+    
 
 
 

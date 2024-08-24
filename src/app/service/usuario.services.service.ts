@@ -3,12 +3,15 @@ import { Injectable, OnInit } from '@angular/core';
 import { UsuarioModel } from '../components/models/usuario.model';
 
 import { BehaviorSubject, Observable, catchError, 
+         finalize, 
          from, map, of, switchMap, take, tap, throwError } from 'rxjs';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { PacienteService } from './paciente.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 
 @Injectable({
@@ -17,7 +20,7 @@ import { Router } from '@angular/router';
 
 export class UsuarioServicesService implements OnInit {
   
-    apykey2 = 'AIzaSyABv3KzkWITNxeRKkyba_oqDfHGRYexHo0';
+  apykey2 = environment.firebaseConfig.apiKey;
     url = 'https://identitytoolkit.googleapis.com/v1/accounts';
     crearUsuario = ':signUp?key=';
     iniciarSesion = ':signInWithPassword?key=[API_KEY]';
@@ -58,7 +61,8 @@ export class UsuarioServicesService implements OnInit {
     constructor(private http :HttpClient,
                 private db : AngularFireDatabase,
                 private afAuth : AngularFireAuth,
-                private router : Router) {
+                private router : Router,
+                private storage: AngularFireStorage) {
                 
                             this.cargarUsuarioActual2();  }
 
@@ -384,13 +388,21 @@ getUsuarioByEmail(email: string): Observable<UsuarioModel> {
     );
 }
 
+subirFotoPerfil(file: File, userId: string): Observable<void> {
+  const filePath = `usuarios/${userId}/profilePicture`;
+  const fileRef = this.storage.ref(filePath);
+  const uploadTask = this.storage.upload(filePath, file);
 
-
-
+  return uploadTask.snapshotChanges().pipe(
+    switchMap(() => fileRef.getDownloadURL()),
+    switchMap((url: string) => {
+      // Guarda la URL en la base de datos del usuario
+      return this.db.object(`/usuarios/${userId}`).update({ fotoUrl: url });
+    })
+  );
 }
-
       
       
 
  
-
+}

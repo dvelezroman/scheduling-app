@@ -90,6 +90,14 @@
                                 </div>
                     </div>
 
+                    <div class="mb-3">
+                      <label for="fotoPerfil" class="form-label">Foto de Perfil</label>
+                      <input type="file" 
+                             class="form-control" 
+                             id="fotoPerfil" 
+                             (change)="onFileSelected($event)">
+                  </div>
+
 
                     <div *ngIf="userRol === 'medico'" class="mb-3">
                       <label for="informacionProfesional" 

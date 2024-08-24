@@ -21,8 +21,22 @@
   align-items: center;
 }
 
+/* Estilos para el contenedor de la foto */
 .bloque-foto {
-  margin-bottom: 2rem;
+  width: 150px; /* Ancho del contenedor de la foto */
+  height: 150px; /* Altura del contenedor de la foto */
+  border-radius: 50%; /* Hace el contenedor redondo */
+  overflow: hidden; /* Asegura que la imagen no se salga del contenedor */
+  margin-bottom: 20px; /* Espacio debajo de la foto */
+}
+
+/* Estilos para la imagen */
+.bloque-foto img {
+  width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+  height: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+  object-fit: cover; /* Hace que la imagen se ajuste al contenedor y mantenga su proporción */
+  border-radius: 50%; /* Hace la imagen redonda */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Añade una sombra para darle más estilo */
 }
 
 .usuario-perfil {

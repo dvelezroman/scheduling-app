@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent implements OnInit {
 
-
+usuario: UsuarioModel;
 pacientesFiltrados:PacienteModel[] = [];
 pacientes:PacienteModel[] = [];
 usuarioLogin:string;
@@ -49,6 +49,7 @@ ngOnInit(): void {
     if (usuario) {
       this.userRol = usuario.rol;
       this.cedulaPaciente = usuario.cedula;
+       this.usuario = usuario;
 
     }
   });

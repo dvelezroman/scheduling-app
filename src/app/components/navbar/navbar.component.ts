@@ -23,6 +23,7 @@ nombresUsuario:string;
 userRol: string = '';
 showDateFilter: boolean = false;
 isDropdownOpen: boolean = false;
+usuario: UsuarioModel;
 
   constructor(public userService:UsuarioServicesService,
               private ruta :Router
@@ -41,6 +42,8 @@ ngOnInit() {
       this.nombresUsuario = usuario.nombres;
       this.isLoggedIn = true;
       this.userRol = usuario.rol;
+      this.usuario = usuario;
+      console.log('Foto URL:', usuario.fotoUrl);
     } else {
       this.nombresUsuario = '';
       this.userRol = '';

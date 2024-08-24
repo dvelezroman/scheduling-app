@@ -3,7 +3,12 @@
       <div class="tarjeta-perfil col-12 col-md-10 col-lg-8">
         <!-- Primer Bloque: Foto del Usuario -->
         <div class="bloque-foto d-flex justify-content-center align-items-center">
-          <div><i class="usuario-perfil fa-solid fa-user"></i></div> 
+          <div *ngIf="usuario?.fotoUrl; else defaultIcon">
+            <img [src]="usuario.fotoUrl" alt="Foto de {{ usuario?.nombres }}" class="img-fluid rounded-circle">
+          </div>
+          <ng-template #defaultIcon>
+            <i class="usuario-perfil fa-solid fa-user"></i>
+          </ng-template>
         </div>
   
         <!-- Segundo Bloque: Datos del Usuario -->
