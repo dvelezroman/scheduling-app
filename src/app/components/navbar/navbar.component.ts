@@ -43,7 +43,6 @@ ngOnInit() {
       this.isLoggedIn = true;
       this.userRol = usuario.rol;
       this.usuario = usuario;
-      console.log('Foto URL:', usuario.fotoUrl);
     } else {
       this.nombresUsuario = '';
       this.userRol = '';

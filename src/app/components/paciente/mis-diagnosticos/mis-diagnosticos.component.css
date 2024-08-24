@@ -133,4 +133,20 @@
 }
 
 
+.btn-imprimir {
+  background: linear-gradient(to right, #007bff, #00c6ff);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-imprimir i {
+  margin-right: 5px;
+}
+
+.btn-imprimir:hover {
+  background: linear-gradient(to right, #0056b3, #0080ff);
+}
 

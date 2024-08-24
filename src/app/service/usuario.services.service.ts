@@ -396,7 +396,7 @@ subirFotoPerfil(file: File, userId: string): Observable<void> {
   return uploadTask.snapshotChanges().pipe(
     switchMap(() => fileRef.getDownloadURL()),
     switchMap((url: string) => {
-      // Guarda la URL en la base de datos del usuario
+
       return this.db.object(`/usuarios/${userId}`).update({ fotoUrl: url });
     })
   );
