@@ -1059,6 +1059,7 @@ margin: auto;
 /*FOOTER TARJETA*/
 
 .footer {
+  width: 100%;
   margin-top: 7rem;
   background: linear-gradient(360deg, #5bc0de, #007bff); /* Degradado azul claro */
   padding: 2rem 20px; /* Espacio superior, inferior y lateral */
@@ -1068,6 +1069,7 @@ margin: auto;
 }
 
 .footer .container {
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

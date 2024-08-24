@@ -63,9 +63,9 @@
                     </div>
 
 
-                    <div *ngIf="usuario.rol === 'medico'" class="mb-3">
+                    <div *ngIf="usuario.rol === 'medico' || 'administrador' || 'paciente'" class="mb-3">
                       <label for="direccionConsultorio" 
-                              class="form-label">Dirección del Consultorio
+                              class="form-label">Dirección
                       </label>
                             <input type="text" 
                             class="form-control" 

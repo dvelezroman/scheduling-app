@@ -267,7 +267,36 @@
       }
     }
 
-
+    @media (max-width: 768px) {
+      .navbar-nav .dropdown-menu {
+        width: auto;
+        max-width: 100%;
+        padding: 5px;
+      }
+    
+      .navbar-nav .dropdown-item {
+        font-size: 14px; /* Reduce el tamaño del texto para que se ajuste mejor en pantallas móviles */
+        padding: 8px 10px; /* Ajusta el padding para que el menú no se vea demasiado grande */
+        line-height: 1.2; /* Ajusta la altura de línea para ahorrar espacio vertical */
+        white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+        overflow: hidden; /* Esconde el texto que se sale del contenedor */
+        text-overflow: ellipsis; /* Añade puntos suspensivos (...) al final si el texto es demasiado largo */
+      }
+    
+      .navbar-nav .dropdown-item a {
+        white-space: nowrap; /* Asegura que el texto no se divida en líneas múltiples */
+        overflow: hidden; /* Oculta el desbordamiento */
+        text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
+      }
+    
+      .navbar-nav .dropdown-menu.animate__animated.animate__fadeIn {
+        width: 100%; /* Asegura que el menú ocupe todo el ancho disponible */
+      }
+    
+      .navbar-nav .dropdown-toggle::after {
+        display: none; /* Oculta el ícono de flecha del dropdown para que no ocupe espacio innecesario */
+      }
+    }
 @media (max-width: 575px) {
   .navbar-nav .dropdown-menu {
     position: relative;
@@ -382,12 +411,13 @@
   }
 
   .navbar-nav .dropdown-item {
-    font-size: 16px; /* Incrementa el tamaño de la fuente */
-    padding: 10px 15px; /* Ajusta el padding para mayor comodidad */
+    font-size: 12px; /* Incrementa el tamaño de la fuente */
+    padding: 6px 8px; /* Ajusta el padding para mayor comodidad */
     background-color: rgb(228, 228, 228); /* Asegura el fondo gris claro */
   }
 
   .navbar-nav .dropdown-item a {
+    font-size: 12px;
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis;

@@ -94,5 +94,43 @@
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 30px;
+    margin-top: 30px;
+  }
+
+  .titulo {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .select-diagnosticos {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .diagnostico-card {
+    padding: 10px;
+  }
+
+  .nombre-paciente {
+    font-size: 1.4rem;
+  }
+
+  .diagnostico-textarea {
+    min-height: 120px;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .btn {
+    width: 90px;
+    padding: 5px;
+    font-size: 14px;
+  }
+}
+
 
 
