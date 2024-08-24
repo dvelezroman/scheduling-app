@@ -194,14 +194,14 @@
 }
 
 .user-photo {
-  width:55px;
-  height: 55px;
+  width:45px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
   display: inline-block;
   vertical-align: middle;
   position: absolute;
-  top: -8%;
+  top: -2%;
   left: 5%;
   background-color: white;
 }
@@ -252,7 +252,6 @@
 
       .navbar-nav {
         flex-direction: row; 
-        justify-content: center;
         margin-left: 0;
       }
       
@@ -439,6 +438,19 @@
 
   .btn-registrarse {
     display: none;
+  }
+
+  .user-photo {
+    width: 35px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    top: 8%;
+    left: 20%;
+    background-color: white;
   }
 
 

@@ -109,32 +109,7 @@ cancelarDiagnostico(): void {
   this.diagnosticoEnProceso = false;
 }
 
-guardarDiagnostico1(): void {
-  if (this.nuevoDiagnostico.texto.trim() == '') {
-    Swal.fire({
-  
-      text: 'no hay información que se pueda guardar',
-      icon: 'info',
-      timer: 1800,
-      showConfirmButton: false
-      });
-    
-  }else{
-    
-    this.paciente.diagnostico.unshift({ ...this.nuevoDiagnostico });
-    this.nuevoDiagnostico = { fecha: new Date(), texto: '' };
-    this.diagnosticoEnProceso = false;
-    this.actualizarPaciente();
-    this.diagnosticoSeleccionadoIndex = -1;
-    Swal.fire({
-      title: 'Agregado',
-      text: 'Diagnóstico agregado al paciente',
-      icon: 'success',
-      timer: 1500,
-      showConfirmButton: false
-      });
-  }
-}
+
 guardarDiagnostico(): void {
   if (this.nuevoDiagnostico.texto.trim() === '') {
     Swal.fire({
@@ -147,7 +122,9 @@ guardarDiagnostico(): void {
     const nuevoDiagnosticoConCedula: Diagnostico = {
       ...this.nuevoDiagnostico,
       cedulaPaciente: this.paciente.cedula,
-      realizadoPor: this.usuarioActual.nombres
+      realizadoPor: this.usuarioActual.nombres,
+      leido: false, 
+      id: this.generateUniqueId()
     };
     this.paciente.diagnostico.unshift(nuevoDiagnosticoConCedula);
     this.nuevoDiagnostico = { fecha: new Date(), texto: '', cedulaPaciente: null, realizadoPor: '' };
@@ -162,6 +139,10 @@ guardarDiagnostico(): void {
       showConfirmButton: false
     });
   }
+}
+
+generateUniqueId(): string {
+  return Math.random().toString(36).substr(2, 9);
 }
 
 

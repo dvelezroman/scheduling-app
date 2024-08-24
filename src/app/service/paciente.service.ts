@@ -3,7 +3,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, from, Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 import { Diagnostico, PacienteModel, Turno } from '../components/models/paciente.model';
@@ -210,19 +210,19 @@ export class PacienteService {
           pacientes.forEach(paciente => {
             if (paciente.cedula === cedulaPaciente) {
               if (paciente.diagnostico) {
-                // Verifica si `paciente.diagnostico` es un array o un objeto
+
                 if (Array.isArray(paciente.diagnostico)) {
-                  // Si es un array, úsalo directamente
+
                   diagnosticos = diagnosticos.concat(paciente.diagnostico);
                 } else if (typeof paciente.diagnostico === 'object') {
-                  // Si es un objeto, conviértelo en un array
+
                   diagnosticos = diagnosticos.concat(Object.values(paciente.diagnostico));
                 }
               }
             }
           });
     
-          // Ordenar los diagnósticos por fecha
+
           diagnosticos.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
           return diagnosticos;
         })
@@ -256,7 +256,8 @@ export class PacienteService {
           map(pacientes => pacientes[0])
         );
     }
-  
+
+
 
 
   }
