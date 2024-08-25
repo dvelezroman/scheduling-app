@@ -96,7 +96,12 @@
                              class="form-control" 
                              id="fotoPerfil" 
                              (change)="onFileSelected($event)">
-                  </div>
+                      <!-- Botón para subir la imagen -->
+                      <button type="button" class="btn btn-outline-primary mt-2" 
+                              (click)="subirImagen()">
+                        Subir Imagen
+                      </button>
+                    </div>
 
 
                     <div *ngIf="userRol === 'medico'" class="mb-3">

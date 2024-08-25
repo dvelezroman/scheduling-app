@@ -151,3 +151,35 @@
     font-size: 1rem; /* Tamaño reducido */
   }
 }
+
+@media (max-width: 526px) {
+  /* Reducir el tamaño del nombre del usuario */
+  .bloque-datos h2 {
+    font-size: 1.5rem; /* Tamaño reducido */
+  }
+
+  /* Reducir el tamaño del texto de la especialidad */
+  .especialidad {
+    font-size: 1.2rem; /* Tamaño reducido */
+  }
+
+  /* Reducir el tamaño del resto de los textos */
+  .bloque-datos p,
+  .bloque-experiencia h3,
+  .bloque-experiencia ul,
+  .bloque-editar button {
+    font-size: 1rem; /* Tamaño reducido */
+  }
+
+  .bloque-editar button {
+    font-size: 1rem; /* Tamaño cómodo para el botón */
+    font-weight: 400;
+    padding: 0.75rem 1.5rem; /* Espaciado adecuado para un botón importante */
+    border: none;
+    border-radius: 8px;
+  }
+  
+  .btn-full-width {
+    width: 100%;
+  }
+}

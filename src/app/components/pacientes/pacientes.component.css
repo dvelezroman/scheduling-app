@@ -527,13 +527,14 @@ color: rgb(116, 108, 108);
     margin-bottom: 2.5rem;
     gap: 5px;
     width: 150px; /* Reduce aún más el ancho de la tarjeta */
-    padding: 4px; /* Reduce el padding para aprovechar mejor el espacio */
+    padding: 10px; /* Reduce el padding para aprovechar mejor el espacio */
   }
 
   .card-image img {
-    max-width: 50%; /* Reduce el tamaño de la imagen al 50% del contenedor */
+    width: 100%; /* Reduce el tamaño de la imagen al 50% del contenedor */
     margin-bottom: 2px;
-    height: auto;
+    margin-top: 5px;
+    height: 100%;
   }
 
   .card-details {

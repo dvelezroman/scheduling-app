@@ -3,12 +3,10 @@ import { Injectable, OnInit } from '@angular/core';
 import { UsuarioModel } from '../components/models/usuario.model';
 
 import { BehaviorSubject, Observable, catchError, 
-         finalize, 
          from, map, of, switchMap, take, tap, throwError } from 'rxjs';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { PacienteService } from './paciente.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
@@ -397,7 +395,7 @@ getUsuarioByEmail(email: string): Observable<UsuarioModel> {
     );
 }
 
-subirFotoPerfil(file: File, userId: string): Observable<void> {
+subirFotoPerfil2(file: File, userId: string): Observable<void> {
   const filePath = `usuarios/${userId}/profilePicture`;
   const fileRef = this.storage.ref(filePath);
   const uploadTask = this.storage.upload(filePath, file);
@@ -410,6 +408,24 @@ subirFotoPerfil(file: File, userId: string): Observable<void> {
     })
   );
 }
+
+
+//METODO SUBIR FOTOPERFIL ACTUALIZADO
+subirFotoPerfil(file: File, userId: string): Observable<string> {
+  const filePath = `usuarios/${userId}/profilePicture`;
+  const fileRef = this.storage.ref(filePath);
+  const uploadTask = this.storage.upload(filePath, file);
+
+  return uploadTask.snapshotChanges().pipe(
+    switchMap(() => fileRef.getDownloadURL()), 
+    switchMap((url: string) => {
+      return from(this.db.object(`/usuarios/${userId}`).update({ fotoUrl: url })).pipe(
+        map(() => url) 
+      );
+    })
+  );
+}
+
       
       
 

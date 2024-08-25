@@ -69,10 +69,6 @@ section{
   }
 }
 
-
-
-
-
 .hero-principal {
   padding: 2rem 0; /* Reduce el padding superior e inferior para acercar la imagen a la siguiente sección */
 }
@@ -293,7 +289,7 @@ section{
   border: none;
   color: white;
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: 14px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -304,68 +300,3 @@ section{
   background: linear-gradient(45deg, #0055ff, #00aaff);
 }
 
-
-.diagnostico-card {
-  background-color: white;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.titulo {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.btn-leer {
-  background: linear-gradient(to right, #00c6ff, #0072ff);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 500px;
-  background-color: #fefefe;
-  padding: 20px;
-  border-radius: 8px;
-  z-index: 1000;
-}
-
-.modal.show {
-  display: block;
-}
-
-.modal-content h4 {
-  margin-top: 0;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.modal-content p {
-  margin: 20px 0;
-  font-size: 16px;
-}
-
-.btn-marcar-leido {
-  background: linear-gradient(to right, #00c6ff, #0072ff);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
-}

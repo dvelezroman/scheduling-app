@@ -66,18 +66,15 @@ ngOnInit(): void {
 contarPacientesConTurnoHoy() {
   const today = new Date();
   const todayStr = today.toISOString().split('T')[0];
-  //console.log('Fecha de hoy:', todayStr);
 
   this.pacientesConTurnoHoy = this.pacientesFiltrados.filter(paciente => {
     if (paciente.turno) {
       const turnoDate = new Date(paciente.turno);
       const turnoDateStr = turnoDate.toISOString().split('T')[0];
-      //console.log(`Turno del paciente ${paciente.nombres}:`, turnoDateStr);
       return turnoDateStr === todayStr;
     }
     return false;
   }).length;
-  //console.log('Pacientes con turno hoy:', this.pacientesConTurnoHoy);
 
   if (this.pacientesConTurnoHoy > 0) {
     this.mostrarMensajeTurno = true;

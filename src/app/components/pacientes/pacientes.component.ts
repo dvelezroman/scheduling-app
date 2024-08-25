@@ -88,9 +88,6 @@ constructor(private servicio : PacienteService,
       this.usuarioService.editar$.subscribe(valor => this.editar = valor);
       this.usuarioService.registrador$.subscribe(valor => this.puedeEditar = (valor === this.usuarioLogin));
       
-      this.cargarPacientes();
-      this.cargarPacientesConImagen();
-      
       this.servicio.cargarPacientes().subscribe( (pacientes:PacienteModel[]) => {
           this.pacientes = pacientes;
           this.pacientesFiltrados = pacientes;
@@ -98,14 +95,14 @@ constructor(private servicio : PacienteService,
           this.eliminarFechasPasadas();
           this.senal = this.pacientesFiltrados.length === 0;
           this.hayPacientes = this.pacientesFiltrados.length > 0;
-          
-
           this.loading = false;
 
+          this.cargarPacientes();
+          this.cargarPacientesConImagen();
    
   }); 
 }
-//esta funcion carga los pacientes luego los filtra por cada usuario//
+
 
 cargarPacientes(): void {
   this.servicio.cargarPacientes().subscribe((pacientes: PacienteModel[]) => {
@@ -120,18 +117,15 @@ cargarPacientes(): void {
 
 cargarPacientesConImagen(): void {
   this.servicio.cargarPacientes2().subscribe((pacientes: PacienteModel[]) => {
-    this.imagenesPacientes = {}; // Reiniciar el objeto de imágenes
+    this.imagenesPacientes = {}; 
     pacientes.forEach(paciente => {
       this.imagenesPacientes[paciente.cedula] = paciente.fotoUrl;
     });
   });
 }
 
-
-
 toggleDateFilter(){
   this.showDateFilter = !this.showDateFilter;
-  
  }
 
 filtrarPorFecha(){
