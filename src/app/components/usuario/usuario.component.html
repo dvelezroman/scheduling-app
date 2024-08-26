@@ -63,9 +63,9 @@
                     </div>
 
 
-                    <div *ngIf="usuario.rol === 'medico'" class="mb-3">
+                    <div *ngIf="usuario.rol === 'medico' || 'administrador' || 'paciente'" class="mb-3">
                       <label for="direccionConsultorio" 
-                              class="form-label">Dirección del Consultorio
+                              class="form-label">Dirección
                       </label>
                             <input type="text" 
                             class="form-control" 
@@ -88,6 +88,19 @@
                                     <div *ngIf="usuarioForm.get('telefono').errors?.['required']">Campo obligatorio.</div>
                                     <div *ngIf="usuarioForm.get('telefono').errors?.['pattern']">Campo debe contener 9 dígitos.</div>
                                 </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="fotoPerfil" class="form-label">Foto de Perfil</label>
+                      <input type="file" 
+                             class="form-control" 
+                             id="fotoPerfil" 
+                             (change)="onFileSelected($event)">
+                      <!-- Botón para subir la imagen -->
+                      <button type="button" class="btn btn-outline-primary mt-2" 
+                              (click)="subirImagen()">
+                        Subir Imagen
+                      </button>
                     </div>
 
 

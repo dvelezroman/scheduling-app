@@ -28,6 +28,7 @@
   max-width: 1200px;
   margin: 0 auto;
   background: none;
+  padding:0rem 2rem;
 
 }
 
@@ -117,7 +118,7 @@
   }
 
   .hero-container {
-    padding: 0px;
+    padding: 0px 5rem;
     min-height: 360px; /* Mantiene una altura mínima adecuada en pantallas de hasta 992px */
   }
 
@@ -367,6 +368,8 @@
     border-radius: 15px;
     text-align: center;
     flex-wrap: wrap;
+    max-width: 80%;
+    margin: auto;
   }
 
   .titulo-ofrecemos h2 {
@@ -396,8 +399,8 @@
   }
   
   .experiencia .row .columna{
-    height: 220px;
-    width: 40%;
+    height:420px;
+    width: 50%;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -687,7 +690,7 @@
     .columna-imagen4 .icono-seguridad {
       width: 45px; /* Ajusta el tamaño del ícono según sea necesario */
       height: auto;
-      margin-bottom: 2.4rem; /* Espacio entre el ícono y el h3 */
+      margin-bottom: 2.2rem; /* Espacio entre el ícono y el h3 */
   }
 
   .columna-imagen1::before,
@@ -705,7 +708,7 @@
   }
 
   .columna h3 {
-    font-size: 1.6rem; /* Tamaño del texto h3 */
+    font-size: 1.4rem; /* Tamaño del texto h3 */
     background: linear-gradient(90deg, rgb(40, 40, 90) 0%, rgb(33, 140, 170) 100%); /* Degradado azul oscuro */
     -webkit-background-clip: text;
     background-clip: text;
@@ -713,7 +716,7 @@
   }
 
   .columna p {
-    font-size: 1.2rem; /* Tamaño del texto p */
+    font-size: 1.1rem; /* Tamaño del texto p */
     color: #818181; /* Color del texto p */
   }
   .columna-imagen1 .sub-columna,
@@ -888,13 +891,47 @@
     }
 
   }
+/* LOGO TARJETA*/
+/* Estilos para la tarjeta con el logo */
+.tarjeta-logo {
+  margin-bottom: 30px;
+}
 
+.tarjeta-imagen-logo {
+  padding: 20px;
+  background-color: #f8f9fa; /* Color de fondo suave para la tarjeta */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-img {
+  width: 100%; /* Ocupa el 100% del contenedor */
+  max-width: 600px; /* Ancho máximo para evitar que crezca demasiado en pantallas grandes */
+  height: auto; /* Mantiene la proporción de la imagen */
+  margin: 0 auto; /* Centra la imagen */
+}
+
+/* Media queries para ajustar el tamaño en pantallas más pequeñas */
+@media (max-width: 768px) {
+  .logo-img {
+    max-width: 400px; /* Reduce el tamaño máximo en pantallas medianas */
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-img {
+    max-width: 300px; /* Reduce el tamaño máximo en pantallas pequeñas */
+  }
+}
 
 
   /*BENEICIOS TARJETA*/
+
   .beneficios {
     margin-top: 11rem;
     overflow-x: hidden;
+    max-width: 80%;
+    margin: auto;
 }
 
 .titulo-beneficios {
@@ -921,7 +958,7 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para las tarjetas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.78); /* Sombra sutil para las tarjetas */
     color: #2b395c;
     width: 100%; /* Ocupa el 100% del ancho del contenedor */
     box-sizing: border-box;
@@ -932,25 +969,50 @@
 
 
 .beneficio-imagen {
-  max-width: 49%; /* Ajusta el tamaño máximo de la imagen */
-  margin-left: 20px; /* Añade espacio entre el texto y la imagen */
+  max-width: 40%; /* Ajusta el tamaño máximo de la imagen */
+  margin: auto; /* Añade espacio entre el texto y la imagen */
   align-self: flex-end; /* Alinea la imagen al extremo derecho */
 }
 
-.beneficio-imagen img {
-  width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
-  height: auto;
+.beneficio-imagen.medico{
+  border-radius: 25px 0px 0px 25px;
 }
 
+.beneficio-imagen.paciente{
+  border-radius: 0px 25px 25px;
+}
+
+
 .beneficio-texto {
+  display: flex;
+  flex-direction: column;
   text-align: left;
   flex: 1; /* Permite que el texto ocupe más espacio */
+  background-color: #ffffff;
+  height: 380px;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.beneficio-texto.medico{
+  border-radius: 0px 25px 25px 0px;
+}
+
+.beneficio-texto.paciente{
+  border-radius: 25px 0px 0px 25px;
 }
 
 .tarjeta-beneficios h3 {
     font-size: 2.6rem;
     margin-bottom: 1rem;
-    color: #2b395c;
+    background: linear-gradient(90deg, #496eca, #87CEEB);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -o-background-clip: text;
+    -ms-background-clip: text;
+    background-clip: text;
+    color: transparent;
     font-weight: bold;
     text-align: center;
 }
@@ -988,7 +1050,44 @@
     color: #2b395c;
 }
 
+@media (max-width: 992px) {
+.titulo-beneficios{
+  font-size: 2.5rem;
+}
 
+  .beneficios .row {
+    flex-direction: column; /* Apila las tarjetas verticalmente */
+    align-items: center; /* Centra el contenido de cada tarjeta */
+  }
+
+  .tarjeta-beneficios {
+    flex-direction: column; /* Apila la imagen y el texto en una columna */
+    align-items: center; /* Centra la imagen y el texto */
+    text-align: center; /* Centra el texto dentro de la tarjeta */
+    margin-top: 2rem; /* Reduce el margen superior */
+    padding: 15px; /* Ajusta el padding para pantallas pequeñas */
+  }
+
+  .beneficio-imagen {
+    max-width: 60%; /* Ajusta el tamaño máximo de la imagen */
+    margin: 0 0 1rem 0; /* Espacio entre la imagen y el texto */
+    align-self: center; /* Centra la imagen */
+  }
+
+  .beneficio-texto{
+    background-color: none;
+  }
+
+  .tarjeta-beneficios h3 {
+    font-size: 2rem; /* Ajusta el tamaño del título para pantallas más pequeñas */
+    margin-bottom: 0.8rem; /* Ajusta el espacio inferior del título */
+  }
+
+  .tarjeta-beneficios ul li {
+    font-size: 1.1rem; /* Ajusta el tamaño del texto de la lista */
+    color: #818181;
+  }
+}
 
 @media (max-width: 768px) {
   .beneficios .row {
@@ -1010,13 +1109,26 @@
     align-self: center; /* Centra la imagen */
   }
 
+  .beneficio-texto {
+    background-color: #ffffff;
+    height: 480px;
+  }
+  
+  .beneficio-texto.medico{
+    border-radius: 0px 25px 25px 0px;
+  }
+  
+  .beneficio-texto.paciente{
+    border-radius: 25px 0px 0px 25px;
+  }
+
   .tarjeta-beneficios h3 {
-    font-size: 2rem; /* Ajusta el tamaño del título para pantallas más pequeñas */
+    font-size: 1.6rem; /* Ajusta el tamaño del título para pantallas más pequeñas */
     margin-bottom: 0.8rem; /* Ajusta el espacio inferior del título */
   }
 
   .tarjeta-beneficios ul li {
-    font-size: 1.2rem; /* Ajusta el tamaño del texto de la lista */
+    font-size: 1rem; /* Ajusta el tamaño del texto de la lista */
     color: #818181;
   }
 }
@@ -1059,6 +1171,7 @@ margin: auto;
 /*FOOTER TARJETA*/
 
 .footer {
+  width: 100%;
   margin-top: 7rem;
   background: linear-gradient(360deg, #5bc0de, #007bff); /* Degradado azul claro */
   padding: 2rem 20px; /* Espacio superior, inferior y lateral */
@@ -1068,6 +1181,7 @@ margin: auto;
 }
 
 .footer .container {
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

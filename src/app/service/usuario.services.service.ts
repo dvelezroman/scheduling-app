@@ -7,8 +7,9 @@ import { BehaviorSubject, Observable, catchError,
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { PacienteService } from './paciente.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
 
 export class UsuarioServicesService implements OnInit {
   
-    apykey2 = 'AIzaSyABv3KzkWITNxeRKkyba_oqDfHGRYexHo0';
+  apykey2 = environment.firebaseConfig.apiKey;
     url = 'https://identitytoolkit.googleapis.com/v1/accounts';
     crearUsuario = ':signUp?key=';
     iniciarSesion = ':signInWithPassword?key=[API_KEY]';
@@ -58,7 +59,8 @@ export class UsuarioServicesService implements OnInit {
     constructor(private http :HttpClient,
                 private db : AngularFireDatabase,
                 private afAuth : AngularFireAuth,
-                private router : Router) {
+                private router : Router,
+                private storage: AngularFireStorage) {
                 
                             this.cargarUsuarioActual2();  }
 
@@ -134,6 +136,15 @@ export class UsuarioServicesService implements OnInit {
           direccionConsultorio: null,
           informacionProfesional: null 
         } as UsuarioModel;
+      }
+
+      getUsuarios(): Observable<UsuarioModel[]> {
+        return this.db.list<UsuarioModel>('/usuarios').valueChanges().pipe(
+          catchError(err => {
+            console.error('Error al obtener usuarios:', err);
+            return throwError(err);
+          })
+        );
       }
 
 
@@ -384,13 +395,39 @@ getUsuarioByEmail(email: string): Observable<UsuarioModel> {
     );
 }
 
+subirFotoPerfil2(file: File, userId: string): Observable<void> {
+  const filePath = `usuarios/${userId}/profilePicture`;
+  const fileRef = this.storage.ref(filePath);
+  const uploadTask = this.storage.upload(filePath, file);
+
+  return uploadTask.snapshotChanges().pipe(
+    switchMap(() => fileRef.getDownloadURL()),
+    switchMap((url: string) => {
+
+      return this.db.object(`/usuarios/${userId}`).update({ fotoUrl: url });
+    })
+  );
+}
 
 
+//METODO SUBIR FOTOPERFIL ACTUALIZADO
+subirFotoPerfil(file: File, userId: string): Observable<string> {
+  const filePath = `usuarios/${userId}/profilePicture`;
+  const fileRef = this.storage.ref(filePath);
+  const uploadTask = this.storage.upload(filePath, file);
 
+  return uploadTask.snapshotChanges().pipe(
+    switchMap(() => fileRef.getDownloadURL()), 
+    switchMap((url: string) => {
+      return from(this.db.object(`/usuarios/${userId}`).update({ fotoUrl: url })).pipe(
+        map(() => url) 
+      );
+    })
+  );
 }
 
       
       
 
  
-
+}

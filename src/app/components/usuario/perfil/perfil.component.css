@@ -21,8 +21,22 @@
   align-items: center;
 }
 
+/* Estilos para el contenedor de la foto */
 .bloque-foto {
-  margin-bottom: 2rem;
+  width: 150px; /* Ancho del contenedor de la foto */
+  height: 150px; /* Altura del contenedor de la foto */
+  border-radius: 50%; /* Hace el contenedor redondo */
+  overflow: hidden; /* Asegura que la imagen no se salga del contenedor */
+  margin-bottom: 20px; /* Espacio debajo de la foto */
+}
+
+/* Estilos para la imagen */
+.bloque-foto img {
+  width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+  height: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+  object-fit: cover; /* Hace que la imagen se ajuste al contenedor y mantenga su proporción */
+  border-radius: 50%; /* Hace la imagen redonda */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Añade una sombra para darle más estilo */
 }
 
 .usuario-perfil {
@@ -135,5 +149,37 @@
   .bloque-experiencia ul,
   .bloque-editar button {
     font-size: 1rem; /* Tamaño reducido */
+  }
+}
+
+@media (max-width: 526px) {
+  /* Reducir el tamaño del nombre del usuario */
+  .bloque-datos h2 {
+    font-size: 1.5rem; /* Tamaño reducido */
+  }
+
+  /* Reducir el tamaño del texto de la especialidad */
+  .especialidad {
+    font-size: 1.2rem; /* Tamaño reducido */
+  }
+
+  /* Reducir el tamaño del resto de los textos */
+  .bloque-datos p,
+  .bloque-experiencia h3,
+  .bloque-experiencia ul,
+  .bloque-editar button {
+    font-size: 1rem; /* Tamaño reducido */
+  }
+
+  .bloque-editar button {
+    font-size: 1rem; /* Tamaño cómodo para el botón */
+    font-weight: 400;
+    padding: 0.75rem 1.5rem; /* Espaciado adecuado para un botón importante */
+    border: none;
+    border-radius: 8px;
+  }
+  
+  .btn-full-width {
+    width: 100%;
   }
 }

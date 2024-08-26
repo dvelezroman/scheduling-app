@@ -9,9 +9,8 @@
   .container h2 {
     text-align: center;
     margin-bottom: 4rem;
-    font-family: 'Rubik Dirt';
-    color: #3266bf;
-    font-size: 3rem;
+    color: #333538;
+    font-size: 2.8rem;
   }
   
   .table {
@@ -65,7 +64,30 @@
     font-size: 1.25rem;
   }
 
-  @media (max-width: 767.98px) {
+  @media (max-width: 992px) {
+    
+    .table-responsive {
+      overflow-x: auto;
+    }
+  
+    .container h2 {
+      font-size: 2rem;
+    }
+  
+    .table th,
+    .table td {
+      font-size: 0.875rem;
+      padding: 0.5rem;
+    }
+  
+    .table .btn {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+
     .table-responsive {
       overflow-x: auto;
     }

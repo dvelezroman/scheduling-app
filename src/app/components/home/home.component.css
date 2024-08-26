@@ -20,6 +20,54 @@ section{
   justify-content: center;
 }
 
+/* TARJETA BIENVENIDA PACIENTE */
+
+.bienvenida-paciente {
+  background-color: transparent; /* Fondo transparente */
+  padding: 20px 0; /* Espacio arriba y abajo */
+}
+
+.bienvenida-contenido {
+  max-width: 100%; /* Ocupa todo el ancho */
+  text-align: center;
+  padding: 20px 10px; /* Sin padding */
+  border: none; /* Sin borde */
+}
+
+.bienvenida-saludo {
+  font-size: 2.5rem; /* Tamaño grande para el saludo */
+}
+
+.bienvenida-imagen {
+  width: 80px; /* Tamaño grande para la imagen */
+  height: 80px;
+}
+
+.bienvenida-texto {
+  font-weight: bold; /* Texto en negrita */
+  color: #333; /* Color del texto */
+}
+
+.bienvenida-mensaje {
+  font-size: 1.2rem; /* Tamaño del texto del mensaje */
+  color: #555; /* Color del mensaje */
+  margin-top: 20px; /* Espacio encima del mensaje */
+}
+
+@media (max-width: 768px) {
+  .bienvenida-saludo {
+    font-size: 2rem; /* Tamaño ajustado para pantallas más pequeñas */
+  }
+
+  .bienvenida-imagen {
+    width: 60px; /* Ajuste de tamaño de la imagen en pantallas más pequeñas */
+    height: 60px;
+  }
+
+  .bienvenida-mensaje {
+    font-size: 1.2rem; /* Ajuste del tamaño del mensaje */
+  }
+}
 
 .hero-principal {
   padding: 2rem 0; /* Reduce el padding superior e inferior para acercar la imagen a la siguiente sección */
@@ -226,3 +274,29 @@ section{
   }
   
 }
+
+
+
+.diagnosticos-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente el botón */
+  align-items: center; /* Centra verticalmente si el contenedor tiene altura */
+  margin-top: 20px; /* Espacio superior para el botón */
+}
+
+.btn-diagnosticos {
+  background: linear-gradient(45deg, #00aaff, #0055ff);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-diagnosticos:hover {
+  background: linear-gradient(45deg, #0055ff, #00aaff);
+}
+

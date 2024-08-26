@@ -179,16 +179,7 @@ agendar() {
 }
 
 //////////////////////////////////////////////////////////////////
-    cerrarSesion(){
-      localStorage.removeItem('token');
-      if(this.auth){
-        this.auth = true;
-      }else{
-        this.auth = false
-      }
-    
-    
-    }
+
   
 
 }

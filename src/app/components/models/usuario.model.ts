@@ -12,5 +12,5 @@ export class UsuarioModel{
     pacienteId?:string;
     informacionProfesional?: string;
     direccionConsultorio?: string; 
-
+    fotoUrl?: string;
 }

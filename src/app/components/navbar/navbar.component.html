@@ -41,16 +41,20 @@
             <a class="dropdown-item" [routerLink]="['/registro']" [queryParams]="{ rol: 'paciente' }">Paciente</a>
           </div>
         </div>
-      </li>
-      <li class="nav-item2" [matTooltip]="nombresUsuario | titlecase " matTooltipPosition="before">
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon><i class="iconoUser fa-regular fa-circle-user"></i></mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" class="barMenu">
-          <button mat-menu-item routerLink="datos-usuario"><i class="bi bi-person-vcard-fill"></i> Mi Perfil </button>
-          <button mat-menu-item (click)="cerrarSesion()"><i class="icono-configurar bi bi-door-open"></i> Cerrar Sesión </button>
-        </mat-menu>
-      </li>
+        <li class="nav-item2" [matTooltip]="nombresUsuario | titlecase" matTooltipPosition="before">
+          <button mat-icon-button [matMenuTriggerFor]="menu" style="background: none; border: none;">
+            <ng-container *ngIf="usuario?.fotoUrl; else defaultIcon">
+              <img [src]="usuario.fotoUrl" alt="Foto de perfil" class="user-photo"/>
+            </ng-container>
+            <ng-template #defaultIcon>
+              <mat-icon><i class="iconoUser fa-regular fa-circle-user"></i></mat-icon>
+            </ng-template>
+          </button>
+          <mat-menu #menu="matMenu" class="barMenu">
+            <button mat-menu-item routerLink="datos-usuario"><i class="bi bi-person-vcard-fill"></i> Mi Perfil </button>
+            <button mat-menu-item (click)="cerrarSesion()"><i class="icono-configurar bi bi-door-open"></i> Cerrar Sesión </button>
+          </mat-menu>
+        </li>
     </div>
 
   </div>

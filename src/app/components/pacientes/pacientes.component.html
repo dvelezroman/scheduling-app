@@ -11,66 +11,63 @@
   
   <!--boton añadir pacientes-->
   
-          <div class="row contenedor-boton-plus">
-            <div class="col">
-              <button routerLink="/pacientes/nuevo" 
-              class=" btnA btn btn-outline-primary" [matTooltip]="'Agregar paciente'"
-                 matTooltipPosition="above">
-              <i class="fa-solid fa-user-plus faI" ></i>
-              </button>
+  <div class="row justify-content-center mb-5">
+    <!-- Primer Bloque: Iconos de Acciones -->
+    <div class="col-12 d-flex justify-content-center align-items-center mb-3">
+      <button routerLink="/pacientes/nuevo" 
+              class="btnA gradient-blue  btn btn-outline-primary no-border me-2" 
+              [matTooltip]="'Agregar paciente'" 
+              matTooltipPosition="above">
+        <i class="fa-solid fa-user-plus faI"></i>
+      </button>
   
-              <!--boton añadir fecha búsqueda-->
+      <button class=" gradient-blue btn btn-primary botonMostrar" 
+              (click)="showDateFilter =!showDateFilter" 
+              [matTooltip]="'Buscar fechas de turno'" 
+              matTooltipPosition="above">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
   
-                    <div class=" botonFecha col">
-                      <button class=" botonMostrar btn btn-primary" (click)="showDateFilter =!showDateFilter" 
-                        [matTooltip]="'Buscar fechas de turno'"
-                         matTooltipPosition="above">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                      </button>
-                    </div>
+    <!-- Segundo Bloque: Formulario de Búsqueda por Fecha -->
+    <div class="col-12">
+      <div *ngIf="showDateFilter" class="contenedorFiltro container mt-1">
+        <form [formGroup]="rangoFecha" (ngSubmit)="filtrarPorFecha()" class="d-flex justify-content-center formFecha">
+          <div class="form-group formFecha1 me-3">
+            <label for="inicio" class="form-label">Desde:</label>
+            <input type="date" 
+                  [min]="fechaMinimaString"
+                  [max]="fechaMaximaString"
+                   id="inicio" 
+                   formControlName="inicio" 
+                   class="form-control">
+          </div>
+    
+          <div class="form-group formFecha2 me-3">
+            <label for="fin" class="form-label">Hasta:</label>
+            <input type="date" 
+                  [min]="fechaMinimaString"
+                  [max]="fechaMaximaString"
+                  id="fin" 
+                  formControlName="fin" 
+                  class="form-control">
+          </div>
   
-                     <!--contenedor fecha desde hasta-->
+          <div class="botonFecha2 form-group d-flex align-items-center">
+            <button class="btn btn-primary me-2">Buscar</button>
+            <button *ngIf="mostrarBotonX" 
+                    type="button" 
+                    class="botonCancelar btn btn-secondary" 
+                    [matTooltip]="'Eliminar búsqueda'" 
+                    (click)="cancelarBusqueda()">
+              <i class="fa-regular fa-circle-xmark"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   
-                    <div class="contenedorFiltro container mt-1 ">
-  
-                      <div *ngIf="showDateFilter" class="row">
-                      
-                              <form [formGroup]="rangoFecha" (ngSubmit)="filtrarPorFecha()" class=" d-flex justify-content-md-center formFecha date-form">
-                              
-                                <div class="form-group formFecha1 col-4">
-                                    
-                                    <label for="inicio" class="form-label">Desde:</label>
-                                    <input type="date" 
-                                          [min]="fechaMinimaString"
-                                          [max]="fechaMaximaString"
-                                           id="inicio" 
-                                           formControlName="inicio" 
-                                           class="  form-control">
-                                </div>
-                        
-                                <div class="form-group formFecha2 col-4">
-                                    
-                                    <label for="fin" class="form-label">Hasta:</label>
-                                    <input type="date" 
-                                          [min]="fechaMinimaString"
-                                          [max]="fechaMaximaString"
-                                          id="fin" 
-                                          formControlName="fin" 
-                                          class=" form-control">
-                                </div>
-  
-                                  <div  class="botonFecha2 form-group col-5">
-                                      <button class="btn btn-primary">Buscar</button>
-                                      <button *ngIf="mostrarBotonX" type="button" [matTooltip]="'Eliminar búsqueda'" class=" botonCancelar btn btn-secondary" (click)="cancelarBusqueda()"><i class="fa-regular fa-circle-xmark"></i></button>
-                                  </div>
-  
-                              </form>
-                      </div>
-                      
-                    </div>
-                    
-                </div>
-            </div>
         </div>
   
         <!--Tabla Principal de Pacientes-->
@@ -130,16 +127,17 @@
 
 
 
-            <!-- Tarjetas de Pacientes -->
-<div class="card-container" *ngIf="mostrarLista && hayPacientes">
-  <div [routerLink]="['/pacientes/paciente', paciente.id]" class="card-paciente" *ngFor="let paciente of pacientesFiltrados; let i = index">
-    <!-- Bloque 1: Imagen del Paciente -->
-    <div class="card-image">
-      <img [src]="paciente.fotoUrl ? paciente.fotoUrl : 'assets/fondo foto paciente.png'" alt="Foto de {{paciente.nombres}}">
-    </div>
+       <!-- Tarjetas de Pacientes -->
+       <div class="card-container" *ngIf="mostrarLista && hayPacientes">
+        <div class="card-paciente" *ngFor="let paciente of pacientesFiltrados; let i = index">
+          <!-- Bloque 1: Imagen del Paciente -->
+          <div [routerLink]="['/pacientes/paciente', paciente.id]" class="card-image">
+            <img [src]="imagenesPacientes[paciente.cedula] ? imagenesPacientes[paciente.cedula] : 'assets/fondo foto paciente.png'" 
+                 alt="Foto de {{paciente.nombres}}">
+          </div>     
 
     <!-- Bloque 2: Datos del Paciente -->
-    <div class="card-details ">
+    <div [routerLink]="['/pacientes/paciente', paciente.id]" class="card-details ">
       <p class="nombre">{{paciente.nombres}}</p>
       <p class="correo">{{paciente.correo}}</p>
       <p class="turno">

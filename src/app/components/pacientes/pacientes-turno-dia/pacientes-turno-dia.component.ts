@@ -13,6 +13,7 @@ import { TwilioService } from '../../../service/twilio.service';
 export class PacientesTurnoDiaComponent implements OnInit {
 
   pacienteTurnoDia: PacienteModel[] = [];
+  hayPacientesHoy: boolean = false;
   to: string;
   usuarioLogin: string;
 
@@ -26,6 +27,7 @@ constructor(private servicio: PacienteService,
 
     this.servicio.getPacientesConTurnosDelDia(this.usuarioLogin).subscribe(pacientes => {
       this.pacienteTurnoDia = pacientes;
+      this.hayPacientesHoy = this.pacienteTurnoDia.length > 0;
     });
     
   }

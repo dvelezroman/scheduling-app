@@ -16,6 +16,8 @@ export class UsuarioComponent implements OnInit {
   usuarioForm: FormGroup;
   profesionInput: string = '';
   userRol:string = '';
+  selectedFile: File = null;
+  imagenSubida: boolean = false;
 
 
 constructor(private usuarioServicios : UsuarioServicesService,
@@ -31,13 +33,14 @@ constructor(private usuarioServicios : UsuarioServicesService,
       cedula: ['', [Validators.required, Validators.pattern(/^\d{10}$/), cedulaEcuatorianaValidator()]],
       telefono: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       direccionConsultorio: [''],
-      informacionProfesional: ['']
+      informacionProfesional: [''],
+      fotoPerfil: [null]
     });
 
         this.usuarioServicios.getUsuarioActual().subscribe(usuario => {
           if (usuario) {
             this.usuario = usuario;
-           // console.log(this.usuario)
+
            this.usuarioForm.patchValue({
             nombres: usuario.nombres || '',
             edad: usuario.edad || '',
@@ -46,6 +49,7 @@ constructor(private usuarioServicios : UsuarioServicesService,
             telefono: usuario.telefono || '',
             informacionProfesional: Array.isArray(usuario.informacionProfesional) ? usuario.informacionProfesional : [],
             direccionConsultorio: usuario.direccionConsultorio || ''
+           
             });
           }
         }, error => {
@@ -78,6 +82,37 @@ constructor(private usuarioServicios : UsuarioServicesService,
         profesiones.splice(index, 1);
         this.usuarioForm.patchValue({ informacionProfesional: profesiones });
       }
+
+
+      onFileSelected(event: Event) {
+        const file = (event.target as HTMLInputElement).files[0];
+        if (file) {
+          this.selectedFile = file;
+          this.usuarioForm.get('fotoPerfil').setValue(file); 
+        }
+      }
+
+      // METODO SUBIR IMAGEN ANTES DE ACTUALIZAR
+      subirImagen() {
+        if (this.selectedFile) {
+          this.usuarioServicios.subirFotoPerfil(this.selectedFile, this.usuario.id).subscribe({
+            next: (url: string) => {
+              this.usuario.fotoUrl = url; 
+              Swal.fire({
+                icon: 'success',
+                title: 'Imagen subida correctamente',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            },
+            error: (error) => {
+              this.mostrarErrorSwal('Ocurrió un error al subir la imagen. Inténtalo de nuevo.');
+              console.error('Error al subir la imagen:', error);
+            }
+          });
+        }
+      }
+      
       enviar() {
         if (this.usuarioForm.valid) {
           const updatedUsuario = {
@@ -89,30 +124,58 @@ constructor(private usuarioServicios : UsuarioServicesService,
             edad: this.usuarioForm.value.edad || null,
             informacionProfesional: this.usuarioForm.value.informacionProfesional || [],
             direccionConsultorio: this.usuarioForm.value.direccionConsultorio || null
+            
           };
     
-          this.usuarioServicios.actualizarUsuario(updatedUsuario).subscribe(() => {
-            //console.log(this.usuario)
-            Swal.fire({
-              icon: 'success',
-              title: 'Actualización Exitosa',
-              text: 'Los datos del usuario han sido actualizado correctamente',
-              timer: 1800,
-              showConfirmButton: false
-              
-            }).then(()=>{
-              this.ruta.navigate(['/datos-usuario']);
-
+          // Subir imagen y actualizar usuario
+          if (this.selectedFile) {
+            this.usuarioServicios.subirFotoPerfil(this.selectedFile, this.usuario.id).subscribe({
+              next: (url) => {
+                updatedUsuario.fotoUrl = url;
+                this.actualizarUsuarioDatos(updatedUsuario);
+              },
+              error: (error) => {
+                this.mostrarErrorSwal(error);
+              }
             });
-          }, error => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'Ocurrió un error al actualizar los datos del usuario. Inténtalo de nuevo.'
-            });
-            //console.error(error);
-          });
+          } else {
+            this.actualizarUsuarioDatos(updatedUsuario);
+          }
         }
+      }
+    
+      actualizarUsuarioDatos(usuario: UsuarioModel) {
+        this.usuarioServicios.actualizarUsuario(usuario).subscribe({
+          next: () => {
+            this.mostrarExitoSwal();
+          },
+          error: (error) => {
+            this.mostrarErrorSwal(error);
+          }
+        });
+      }
+    
+     
+      
+      mostrarExitoSwal() {
+        Swal.fire({
+          icon: 'success',
+          title: 'Actualización Exitosa',
+          text: 'Los datos del usuario han sido actualizados correctamente',
+          timer: 1800,
+          showConfirmButton: false
+        }).then(() => {
+          this.ruta.navigate(['/datos-usuario']);
+        });
+      }
+    
+      mostrarErrorSwal(error: any) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Ocurrió un error al actualizar los datos del usuario. Inténtalo de nuevo.'
+        });
+        console.error(error);
       }
       cancelar() {
         this.ruta.navigate(['/datos-usuario']);

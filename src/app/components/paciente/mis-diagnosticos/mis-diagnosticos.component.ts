@@ -58,5 +58,22 @@ export class MisDiagnosticosComponent implements OnInit {
       selectElement.value = 'default';
     }
   }
+
+  imprimirDiagnostico(): void {
+    if (this.diagnosticoSeleccionado) {
+      const printContent = `
+        <div>
+          <h3>Diagnóstico</h3>
+          <p><strong>Realizado por:</strong> ${this.diagnosticoSeleccionado.realizadoPor}</p>
+          <p><strong>Fecha:</strong> ${this.diagnosticoSeleccionado.fecha}</p>
+          <p><strong>Texto:</strong> ${this.diagnosticoSeleccionado.texto}</p>
+        </div>
+      `;
+      const ventana = window.open('', '_blank', 'width=800,height=600');
+      ventana!.document.write(printContent);
+      ventana!.document.close();
+      ventana!.print();
+    }
+  }
 }
 

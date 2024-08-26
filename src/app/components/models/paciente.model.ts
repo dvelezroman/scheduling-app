@@ -24,8 +24,10 @@ export class Turno {
   }
 
 export class Diagnostico{
+    id?: string;
     fecha: Date;
     texto: string;
     cedulaPaciente?: number;
     realizadoPor?: string;
+    leido?: boolean;
 }

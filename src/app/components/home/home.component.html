@@ -4,7 +4,37 @@
     Tienes {{ pacientesConTurnoHoy }} paciente(s) con turno hoy.
   </div>
 
-  <!-- LOGO -->
+  <!-- TARJETA DE BIENVENIDA PARA PACIENTE -->
+  <section *ngIf="userRol === 'paciente'" class="seccion-clara bienvenida-paciente">
+    <div class="container text-center">
+      <div class="row justify-content-center">
+
+        <div class="col-12 col-md-10 bienvenida-contenido">
+
+          <div class="d-flex align-items-center justify-content-center bienvenida-saludo">
+            <img src="/assets/saludo.png" alt="Saludo" class="img-fluid bienvenida-imagen">
+            <h2 class="mb-0 ms-3 bienvenida-texto">Hola, {{ usuario?.nombres | titlecase }}!</h2>
+          </div>
+
+          <div class="mensaje-bienvenida mt-4">
+            <p class="bienvenida-mensaje">¡Qué bueno es tenerte de vuelta!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="diagnosticos-container" *ngIf="userRol === 'paciente'">
+    <button class="btn btn-diagnosticos" routerLink="/mis-diagnosticos">
+      Ver Diagnósticos
+    </button>
+  </div>
+
+
+  
+
+
+  
 
   <!-- SECCION DE LAS FUNCIONES MEDICO O ADMINISTRADOR -->
   <section *ngIf="userRol === 'medico'" class="experiencia seccion-clara">
