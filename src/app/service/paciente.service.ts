@@ -1,11 +1,8 @@
-
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-
 import { Diagnostico, PacienteModel, Turno } from '../components/models/paciente.model';
 import { UsuarioServicesService } from './usuario.services.service';
 
@@ -21,13 +18,13 @@ export class PacienteService {
   totalDiagnosticos$ = this.totalDiagnosticosSubject.asObservable();
 
   private pacientesFiltrados: PacienteModel[] = [];
-  
+
   constructor(private http : HttpClient,
               private db : AngularFireDatabase,
               private usuarioService: UsuarioServicesService
                 ) { }
-  
- 
+
+
 /////////////////////////////////////////////////////////////////////////////
         //METODO PARA CREAR PACIENTES//
 
@@ -64,34 +61,34 @@ export class PacienteService {
       return this.usuarioService.getUsuarios().pipe(
         switchMap(usuarios => {
           const usuariosPacientes = usuarios.filter(u => u.rol === 'paciente');
-    
+
           return this.http.get<{ [key: string]: PacienteModel }>(`${this.url}/pacientes.json`).pipe(
             map(pacientesObj => {
               const pacientes: PacienteModel[] = Object.keys(pacientesObj || {}).map(key => {
                 const paciente = pacientesObj[key];
-    
+
                 const usuario = usuariosPacientes.find(u => {
                   return String(u.cedula).trim() === String(paciente.cedula).trim();
                 });
-                
+
                 if (usuario) {
-                  paciente.fotoUrl = usuario.fotoUrl; 
+                  paciente.fotoUrl = usuario.fotoUrl;
                 } else {
-                  paciente.fotoUrl = 'assets/fondo foto paciente.png'; 
+                  paciente.fotoUrl = 'assets/fondo foto paciente.png';
                 }
-    
+
                 return paciente;
               });
-    
+
               return pacientes;
             })
           );
         })
       );
     }
-    
 
-    
+
+
  ////////////////////////////////////////////////////////////////////////////////////
         //METODO PARA CARGAR PACIENTE QUE TENGAN DIAGNOSTICOS REALIZADOS//
 
@@ -100,7 +97,7 @@ export class PacienteService {
         map(this.crearArreglo),
         map((pacientes: PacienteModel[]) => {
           const usuarioLogin = localStorage.getItem('userName');
-          return pacientes.filter(paciente => 
+          return pacientes.filter(paciente =>
             paciente.registrador === usuarioLogin && paciente.diagnostico && paciente.diagnostico.length > 0
           );
         })
@@ -132,7 +129,7 @@ export class PacienteService {
       }
 
 
-      
+
       getPaciente(id:string){
         return this.http.get(`${this.url}/pacientes/${id}.json`)
       }
@@ -142,14 +139,14 @@ export class PacienteService {
 
 
       getMedicoId(): string {
-        return localStorage.getItem('userUid'); 
+        return localStorage.getItem('userUid');
       }
-  
+
 //////////////////////////////////////////////////////////////////////////////
           //METODO PARA ACTUALIZAR LA LISTA DE PACIENTES EN FIREBASE//
 
   refreshPaciente(paciente:PacienteModel):Observable<PacienteModel>{
-    
+
     const PacienteT = {
       ...paciente
     };
@@ -161,7 +158,7 @@ export class PacienteService {
           //METODO PARA BORRAR UN PACIENTE EN FIREBASE//
 
   deletePaciente(id: string): Observable<any> {
-    console.log(`Deleting paciente with id: ${id}`); 
+    console.log(`Deleting paciente with id: ${id}`);
     return this.http.delete(`${this.url}/pacientes/${id}.json`).pipe(
       map(() => {
         this.pacientesFiltrados = this.pacientesFiltrados.filter(paciente => paciente.id !== id);
@@ -182,16 +179,16 @@ export class PacienteService {
   ////////////////////////////////////////////////////////////////////////////////////////
                   //METODO PARA VALIDAR CEDULA SI EXISTE O NO//
   verificarCedulaUnica(cedula: number, registrador: string, pacienteId?: string): boolean {
-    return this.pacientesFiltrados.some(paciente => 
+    return this.pacientesFiltrados.some(paciente =>
       paciente.cedula === cedula && paciente.registrador === registrador && paciente.id !== pacienteId
     );
   }
 
 
- 
+
 
   getHorasOcupadas(fecha: string, registrador: string): Observable<string[]> {
-    return this.db.list<PacienteModel>('/pacientes', ref => 
+    return this.db.list<PacienteModel>('/pacientes', ref =>
       ref.orderByChild('turno').startAt(fecha).endAt(fecha + "\uf8ff"))
       .valueChanges()
       .pipe(
@@ -199,7 +196,7 @@ export class PacienteService {
           .filter(paciente => paciente.registrador === registrador)
           .map(paciente => {
             const turnoDate = new Date(paciente.turno);
-            turnoDate.setHours(turnoDate.getHours() - 5); 
+            turnoDate.setHours(turnoDate.getHours() - 5);
             return turnoDate.toISOString().split('T')[1].substring(0, 5);
           })
         )
@@ -227,12 +224,12 @@ export class PacienteService {
         map(pacientes => pacientes.map(paciente => {
           if (paciente.diagnostico) {
             paciente.diagnostico.forEach(diag => {
-              const turnoDate = new Date(diag.fecha); 
+              const turnoDate = new Date(diag.fecha);
               turnoDate.setMinutes(turnoDate.getMinutes());
               diag.fecha = turnoDate;
             });
           } else {
-            paciente.diagnostico = []; 
+            paciente.diagnostico = [];
           }
           return paciente;
         }))
@@ -258,14 +255,14 @@ export class PacienteService {
               }
             }
           });
-    
+
 
           diagnosticos.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
           return diagnosticos;
         })
       );
     }
-    
+
 
 
 
@@ -278,9 +275,9 @@ export class PacienteService {
               turnos = turnos.concat(paciente.turnoParaMostrar.filter(t => t.cedulaPaciente === cedulaPaciente));
             }
           });
-  
+
           turnos.sort((a, b) => new Date(b.fechaHora).getTime() - new Date(a.fechaHora).getTime());
-  
+
           return turnos;
         })
       );
@@ -298,7 +295,7 @@ export class PacienteService {
 
 
   }
-    
+
 
 
 

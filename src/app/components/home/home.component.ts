@@ -1,9 +1,8 @@
-import { Component, EventEmitter, NgZone, OnInit, Output, Renderer2 } from '@angular/core';
-import { Diagnostico, PacienteModel } from '../models/paciente.model';
+import { Component, NgZone, OnInit } from '@angular/core';
+import {  PacienteModel } from '../models/paciente.model';
 import { PacienteService } from '../../service/paciente.service';
 import { UsuarioModel } from '../models/usuario.model';
 import { UsuarioServicesService } from '../../service/usuario.services.service';
-import Swal from 'sweetalert2';
 
 
 @Component({
@@ -88,7 +87,7 @@ contarPacientesConTurnoHoy() {
   }
 }
 
-     
+
 
 
 }

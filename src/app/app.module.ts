@@ -41,13 +41,7 @@ import { FechaTurnoTablaPipe } from './pipes/fecha-turno-tabla.pipe';
 import { MisDiagnosticosComponent } from './components/paciente/mis-diagnosticos/mis-diagnosticos.component';
 import { PacienteCitasComponent } from './components/paciente/paciente-citas/paciente-citas.component';
 import { AuthGuard } from './guards/authentic.guard';
-import {environment} from '../environments/environment';
-
-
-
-
-
-
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -78,9 +72,6 @@ import {environment} from '../environments/environment';
     FechaTurnoTablaPipe,
     MisDiagnosticosComponent,
     PacienteCitasComponent,
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -95,9 +86,6 @@ import {environment} from '../environments/environment';
     MatIconModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-
-
-
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },
@@ -106,7 +94,6 @@ import {environment} from '../environments/environment';
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
     AuthGuard
-
   ],
   bootstrap: [AppComponent]
 })

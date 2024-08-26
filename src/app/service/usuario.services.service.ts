@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { UsuarioModel } from '../components/models/usuario.model';
-
-import { BehaviorSubject, Observable, catchError, 
+import { BehaviorSubject, Observable, catchError,
          from, map, of, switchMap, take, tap, throwError } from 'rxjs';
-
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import {environment} from "../../environments/environment";
 
 
 @Injectable({
@@ -17,7 +15,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 })
 
 export class UsuarioServicesService implements OnInit {
-  
+
   apykey2 = environment.firebaseConfig.apiKey;
     url = 'https://identitytoolkit.googleapis.com/v1/accounts';
     crearUsuario = ':signUp?key=';
@@ -55,20 +53,20 @@ export class UsuarioServicesService implements OnInit {
       get isLoggedIn(){
         return this.loggedIn.asObservable();}
 
-     
+
     constructor(private http :HttpClient,
                 private db : AngularFireDatabase,
                 private afAuth : AngularFireAuth,
                 private router : Router,
                 private storage: AngularFireStorage) {
-                
+
                             this.cargarUsuarioActual2();  }
 
 
     ngOnInit(): void {}
 
     getUsuarioActual2(): Observable<UsuarioModel> {
-      return this.usuarioActual2.asObservable(); 
+      return this.usuarioActual2.asObservable();
     }
     private cargarUsuarioActual2() {
       const uid = this.getStoredUserUid();
@@ -129,12 +127,12 @@ export class UsuarioServicesService implements OnInit {
           email: this.getStoredUserName(),
           nombres: this.getStoredName(),
           id: this.getStoredUserUid(),
-          password: '', 
-          rol: '', 
-          especialidad: null, 
+          password: '',
+          rol: '',
+          especialidad: null,
           edad: null,
           direccionConsultorio: null,
-          informacionProfesional: null 
+          informacionProfesional: null
         } as UsuarioModel;
       }
 
@@ -159,7 +157,7 @@ export class UsuarioServicesService implements OnInit {
         })
       );
     }
-    
+
 
 /////////////////////////////////////////////////////////////////////
         //LOGIN ACTUAL RECONOCE EL ROL DEL USUARIO QUE INGRESA//
@@ -168,7 +166,7 @@ export class UsuarioServicesService implements OnInit {
           ...usuario,
           returnSecureToken: true
         };
-        
+
         return this.http.post(`${this.url}:signInWithPassword?key=${this.apykey2}`, auth).pipe(
           switchMap((resp: any) => {
             this.userPassword = usuario.password;
@@ -179,7 +177,7 @@ export class UsuarioServicesService implements OnInit {
             this.emailUsuario.next(usuario.email);
             this.usuarioId.next(resp['localId']);
             this.loggedIn.next(true);
-            
+
             return this.db.object<UsuarioModel>(`/usuarios/${resp['localId']}`).valueChanges().pipe(
               take(1),
               map(user => {
@@ -211,7 +209,7 @@ export class UsuarioServicesService implements OnInit {
         this.usuarioActual2.next(null);
         this.router.navigate(['/inicio']);
         });
-      
+
       }
 
  /////////////////////////////////////////////////////////////////////
@@ -244,12 +242,12 @@ export class UsuarioServicesService implements OnInit {
         getStoredUserUid(): string {
           return this.getItem('userUid') || '';}
 
-      
+
       almacenarToken(idToken:string){
         this.userToken = idToken
         this.setItem('token', idToken);
       }
-      
+
       obtenerToken(){
         if(localStorage.getItem('token')){
           this.userToken = this.getItem('token')
@@ -338,7 +336,7 @@ export class UsuarioServicesService implements OnInit {
               }
 
 // datos configuracion del usuario //
-      
+
 //METODO PARA OBTENER LOS DATOS DEL USUARIO ACTUAL CON EL UID DE FIREBASE//
 
 getUsuarioActual(): Observable<UsuarioModel> {
@@ -358,7 +356,7 @@ getUsuarioActual(): Observable<UsuarioModel> {
 
 //METODO PARA ACTUALIZAR LOS DATOS DEL USUARIO ACTUAL CON EL UID DE FIREBASE//
 actualizarUsuario(usuario: UsuarioModel): Observable<any> {
-  const uid = usuario.id; 
+  const uid = usuario.id;
 
   return from(this.db.object(`/usuarios/${uid}`).update({
     nombres: usuario.nombres,
@@ -368,8 +366,8 @@ actualizarUsuario(usuario: UsuarioModel): Observable<any> {
     edad: usuario.edad,
     direccionConsultorio: usuario.direccionConsultorio,
     informacionProfesional: usuario.informacionProfesional,
-    
-    
+
+
   })).pipe(
     tap(() => {
       //console.log('datos actualizados');
@@ -417,17 +415,17 @@ subirFotoPerfil(file: File, userId: string): Observable<string> {
   const uploadTask = this.storage.upload(filePath, file);
 
   return uploadTask.snapshotChanges().pipe(
-    switchMap(() => fileRef.getDownloadURL()), 
+    switchMap(() => fileRef.getDownloadURL()),
     switchMap((url: string) => {
       return from(this.db.object(`/usuarios/${userId}`).update({ fotoUrl: url })).pipe(
-        map(() => url) 
+        map(() => url)
       );
     })
   );
 }
 
-      
-      
 
- 
+
+
+
 }
