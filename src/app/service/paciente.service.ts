@@ -2,11 +2,12 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, from, Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 import { Diagnostico, PacienteModel, Turno } from '../components/models/paciente.model';
+import { UsuarioServicesService } from './usuario.services.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class PacienteService {
   
   constructor(private http : HttpClient,
               private db : AngularFireDatabase,
+              private usuarioService: UsuarioServicesService
                 ) { }
   
  
@@ -55,6 +57,41 @@ export class PacienteService {
         })
       );
     }
+
+
+
+    cargarPacientes2(): Observable<PacienteModel[]> {
+      return this.usuarioService.getUsuarios().pipe(
+        switchMap(usuarios => {
+          const usuariosPacientes = usuarios.filter(u => u.rol === 'paciente');
+    
+          return this.http.get<{ [key: string]: PacienteModel }>(`${this.url}/pacientes.json`).pipe(
+            map(pacientesObj => {
+              const pacientes: PacienteModel[] = Object.keys(pacientesObj || {}).map(key => {
+                const paciente = pacientesObj[key];
+    
+                const usuario = usuariosPacientes.find(u => {
+                  return String(u.cedula).trim() === String(paciente.cedula).trim();
+                });
+                
+                if (usuario) {
+                  paciente.fotoUrl = usuario.fotoUrl; 
+                } else {
+                  paciente.fotoUrl = 'assets/fondo foto paciente.png'; 
+                }
+    
+                return paciente;
+              });
+    
+              return pacientes;
+            })
+          );
+        })
+      );
+    }
+    
+
+    
  ////////////////////////////////////////////////////////////////////////////////////
         //METODO PARA CARGAR PACIENTE QUE TENGAN DIAGNOSTICOS REALIZADOS//
 
@@ -208,19 +245,27 @@ export class PacienteService {
         map((pacientes: PacienteModel[]) => {
           let diagnosticos: Diagnostico[] = [];
           pacientes.forEach(paciente => {
-            if (paciente.diagnostico) {
-              diagnosticos = diagnosticos.concat(paciente.diagnostico.filter(d => d.cedulaPaciente === cedulaPaciente));
+            if (paciente.cedula === cedulaPaciente) {
+              if (paciente.diagnostico) {
+
+                if (Array.isArray(paciente.diagnostico)) {
+
+                  diagnosticos = diagnosticos.concat(paciente.diagnostico);
+                } else if (typeof paciente.diagnostico === 'object') {
+
+                  diagnosticos = diagnosticos.concat(Object.values(paciente.diagnostico));
+                }
+              }
             }
           });
-
-          this.totalDiagnosticosSubject.next(diagnosticos.length);
+    
 
           diagnosticos.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
-
           return diagnosticos;
         })
       );
     }
+    
 
 
 
@@ -248,7 +293,8 @@ export class PacienteService {
           map(pacientes => pacientes[0])
         );
     }
-  
+
+
 
 
   }

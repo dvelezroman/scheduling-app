@@ -64,6 +64,8 @@ h1{
   color: grey;
 }
 
+
+
 /* tabla de pacientes */
 
 .table{
@@ -124,7 +126,7 @@ table.rounded-table tr:last-child td:last-child {
 }
 
 table tr th{
-background-color: rgb(80, 152, 176);
+background-color: rgb(39, 126, 198);
 font-weight: 400;
 text-align: center;
 align-items: center;
@@ -180,27 +182,29 @@ table.rounded-table td {
 
 /* boton añadir */
 
-.contenedor-boton-plus .btnA{
-  border: none;
+.botonFecha i, .btnA i {
+  font-size: 1.3rem; /* Ajusta el tamaño del ícono */
 }
 
-.btnA{
-border: none;
-display: flex;
-position: relative;
-overflow: hidden;
-border: 1px solid rgb(124, 160, 214);
+.formFecha1, .formFecha2 {
+  max-width: 200px; /* Ajusta el ancho máximo de los inputs */
 }
 
-.faI{
-font-size: 18px;
-color: rgb(124, 160, 214);
-transition: all .2s ease;
+.no-border {
+  border: none !important; /* Elimina el borde */
+  box-shadow: none !important; /* Elimina cualquier sombra */
 }
 
-.btn:hover{
-background-color: transparent;
+.gradient-blue {
+  background: linear-gradient(to right, #00c6ff, #0072ff); /* Gradiente azul celeste */
+  color: white; /* Color del texto blanco */
+  border: none; /* Eliminar bordes */
 }
+
+.gradient-blue:hover {
+  background: linear-gradient(to right, #0072ff, #00c6ff); /* Invertir el gradiente al hacer hover */
+}
+
 
 
 .bloque{
@@ -295,95 +299,7 @@ color: rgb(116, 108, 108);
   color: red;
 }
 
-/* filtrar por fecha */
 
-.contenedorFiltro{
-   width: 100vh;
-   padding: 25px;
-   display: flex;
-   justify-content: center;
-   margin-bottom: 3rem;
-}
-.botonFecha{
-  text-align: end;
-  margin-right: 25px;
-}
-.botonMostrar{
-  font-size: 13px;
-  background-color: rgb(103, 160, 177);
-  border: none;
-  margin-left: 50px;
-  margin-top: -50px;
-}
-.botonMostrar:hover{
-  background-color: rgb(49, 113, 191);
-
-}
-.botonFecha2 .botonCancelar{
-  font-size: 12px;
-  margin-top: 39px;
-  margin-left: 20px;
-  background-color: #c3706e;
-  background: none;
-  border: none;
-  transition: all .3s;
-}
-.botonFecha2 .botonCancelar:hover{
-  background-color: transparent;
-  transform: scale(1.1);
-}
-.botonFecha2 .botonCancelar i{
- font-size: 25px;
- color: rgb(53, 51, 51);
- 
-}
-.botonFecha2 .botonCancelar i :hover{
-  transform: scale(1.1);
-}
-
-.row{
-  position: relative;
-  text-align: start;
-}
-
-.formFecha{
-  margin: 5px;
-  flex-direction: row;
-}
-
-.formFecha1,
-.formFecha2{
-  margin-top: 15px;
-  margin: 10px;
-}
-.formFecha1{
-  margin-right: 25px;
-}
-.formFecha label{
-  font-size: 12px;
-  color: rgb(113, 113, 121);
-  margin-left: 18px;
-}
-.formFecha input{
-  min-width: 200px;
-  font-size: 13px;
-  border: 1px solid #c0bcbc;
-}
-.formFecha button{
-  font-size: 13px;
-  margin-left: 50px;
-  margin-top: 38px;
-  background-color: rgb(65, 112, 205);
-}
-.formFecha button:hover{
-  background-color: rgb(32, 100, 183);
-
-}
-h5{
-  font-size: 14px;
-  font-weight: 400;
-  margin-top: 5px;
-}
 
 
 @media screen and (max-width: 600px) {
@@ -506,15 +422,15 @@ h5{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 16px;
+    gap: 8px;
     width: 100%;
     box-sizing: border-box;
     overflow-x: hidden; /* Elimina el scroll horizontal */
   }
 
   .card-paciente {
-    flex: 1 1 calc(50% - 16px); /* Hace que cada tarjeta ocupe 50% menos el gap */
-    max-width: calc(50% - 16px); /* Asegura que el tamaño máximo también sea 50% menos el gap */
+    flex: 1 1 calc(40% - 8px); /* Hace que cada tarjeta ocupe 50% menos el gap */
+    max-width: calc(40% - 8px); /* Asegura que el tamaño máximo también sea 50% menos el gap */
     box-sizing: border-box; 
     flex-direction: column;
     border: 1px solid #ddd;
@@ -526,51 +442,43 @@ h5{
     align-items: center; /* Centra horizontalmente el contenido */
     justify-content: center; /* Centra verticalmente el contenido */
     text-align: center; /* Asegura que el texto esté centrado */
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+    padding: 6px;
   }
 
   .card-image {
     display: flex;
-    justify-content: center; /* Centra horizontalmente la imagen */
-    align-items: center; /* Centra verticalmente la imagen, si tiene un contenedor con altura específica */
-    width: 100%; /* Asegura que el contenedor de la imagen ocupe todo el ancho disponible */
-    padding: 16px; /* Espacio alrededor de la imagen */
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 150px; /* Ajusta esta altura según prefieras */
+    overflow: hidden;
+    background-color: #f0f0f0; /* Fondo para imágenes que no llenan el contenedor */
+    border-radius: 8px; /* Ajusta si quieres bordes redondeados */
   }
   
   .card-image img {
-    max-width: 100%; /* Ajusta la imagen para que no se desborde del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
+    width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+    height: 100%; /* Hace que la imagen ocupe todo el alto del contenedor */
+    object-fit: cover; /* Cubre el área del contenedor manteniendo la proporción */
   }
 
   .card-details {
-    flex: 2;
-    padding: 16px;
+    padding: 10px; /* Reduce el padding dentro de la sección de detalles */
   }
 
-  .card-details .nombre {
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-
-  .card-details .correo,
-  .card-details .turno {
-    margin-bottom: 4px;
+  .card-details p {
+    line-height: 1.5; /* Reduce el interlineado */
+    margin-bottom: 2px; /* Reduce el margen inferior */
   }
 
   .card-actions {
-    display: flex;
-    flex-direction: row; /* Coloca los iconos en fila */
-    justify-content: center; /* Centra horizontalmente los iconos */
-    gap: 8px; /* Espacio entre los iconos */
-    padding: 16px;
-  }
-
-  .card-actions button {
-    margin-bottom: 8px;
+    gap: 4px; /* Reduce el espacio entre los iconos */
+    padding: 10px; /* Reduce el padding alrededor de los iconos */
   }
 
   .card-actions i {
-    font-size: 1.2rem;
+    font-size: 1.4rem; /* Reduce el tamaño de los iconos */
   }
 }
 
@@ -582,23 +490,73 @@ h5{
     margin: auto;
     width: 220px;
     margin-bottom: 16px;
+    
     padding: 0 5px; /* Reduce el padding para aprovechar mejor el espacio */
   }
+
+  .card-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 150px; /* Ajusta esta altura según prefieras */
+    overflow: hidden;
+    background-color: #f0f0f0; /* Fondo para imágenes que no llenan el contenedor */
+    border-radius: 8px; /* Ajusta si quieres bordes redondeados */
+  }
+
+ 
 }
 
 @media (max-width: 768px) {
   .card-image img {
     max-width: 75%; /* Reduce el tamaño de la imagen al 80% del contenedor */
     height: auto; /* Mantiene la proporción de la imagen */
+   
+  }
+  .card-actions i {
+    font-size: 1.1rem; /* Reduce el tamaño de los iconos */
   }
 }
 
 @media (max-width: 525px) {
+  .card-paciente {
+    flex: 1 1 100%;
+    max-width: 80%;
+    margin: auto;
+    margin-bottom: 2.5rem;
+    gap: 5px;
+    width: 150px; /* Reduce aún más el ancho de la tarjeta */
+    padding: 10px; /* Reduce el padding para aprovechar mejor el espacio */
+  }
+
   .card-image img {
-    max-width: 60%; /* Reduce el tamaño de la imagen al 60% del contenedor en pantallas más pequeñas */
-    height: auto; /* Mantiene la proporción de la imagen */
+    width: 100%; /* Reduce el tamaño de la imagen al 50% del contenedor */
+    margin-bottom: 2px;
+    margin-top: 5px;
+    height: 100%;
+  }
+
+  .card-details {
+    padding: 6px; /* Reduce el padding en los detalles */
+  }
+
+  .card-details p {
+    line-height: 1.5; /* Reduce más el interlineado */
+    margin-bottom: 1px; /* Reduce el margen inferior */
+    font-size: 1rem; /* Reduce el tamaño de la fuente */
+  }
+
+  .card-actions {
+    padding: 4px; /* Reduce el padding de las acciones */
+    gap: 2px; /* Reduce el espacio entre los íconos */
+  }
+
+  .card-actions i {
+    font-size: 1.6rem; /* Reduce el tamaño de los iconos */
   }
 }
+
 
 
 

@@ -1,57 +1,59 @@
-<!--<app-detalle [paciente]="paciente"></app-detalle>-->
 
-
-<div class="row">
-    <div class="col">
-        <i routerLink="/pacientes" class=" atras fa-solid fa-circle-left"></i>
+  <div class="container mt-4 animate__animated animate__fadeIn">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8 text-center">
+        <h2>Agendar un turno</h2>
+        <hr>
+      </div>
     </div>
-</div>
-
-<div class="container mt-4 animate__animated animate__fadeIn">
-    
-    <div class="row ">
-        <div class="col titulo1">
-            <h2>Agendar un turno</h2>
-            <hr class="hr">
+  
+    <div class="row justify-content-center mt-4">
+      <div class="col-12 col-md-10 col-lg-8 tarjeta p-4">
+        
+        <!-- Bloque 1: Nombre del Paciente -->
+        <div class="bloque-nombre text-center mb-4">
+          <h4>Paciente: <small>{{paciente.nombres}}</small></h4>
         </div>
-    </div>
-    <div class="row cuadroCita">
-        <div class="col-8 col-md-7 col-lg-7 titulo4">
-            <h4 class="pacienteName">Paciente: <small>{{paciente.nombres}}</small></h4>
-            <div>
-                <p  *ngIf="paciente.turno">Tiene cita para el <span> {{paciente.turno | date: 'fullDate':'':'es'}} </span></p>
-                <p class="info" *ngIf="!paciente.turno">No tiene cita</p>
+        
+        <!-- Bloque 2: Información de la cita -->
+        <div class="bloque-info mb-4 text-center">
+          <p *ngIf="paciente.turno">
+            Tiene cita para el <span>{{paciente.turno | date: 'fullDate':'':'es'}}</span>
+          </p>
+          <p class="info" *ngIf="!paciente.turno">No tiene cita</p>
+          <p class="cambiar" *ngIf="paciente.turno">¿Desea hacer un cambio de fecha?</p>
+        </div>
+  
+        <!-- Bloque 3: Formulario de fecha y hora -->
+        <div class="bloque-formulario mb-5">
+          <form [formGroup]="formTurno" (submit)="agendar()">
+            <div class="mb-3">
+              <label *ngIf="!paciente.turno">Seleccionar fecha:</label>
+              <label *ngIf="paciente.turno">Seleccionar otra fecha:</label>
+              <input type="date" appFecha
+                [min]="fechaMinimaString"
+                [max]="fechaMaximaString"
+                class="form-control"
+                formControlName="fecha"
+                required>
             </div>
-            <div><p class="cambiar" *ngIf="paciente.turno">Desea hacer un cambio de fecha?</p></div>
-            
-            <form  [formGroup]="formTurno" (submit)="agendar()">
-                
-                <div class=" inputFecha field input-field mt-3 m-5">
-                    <label *ngIf="!paciente.turno">Seleccionar fecha:</label>
-                    <label *ngIf="paciente.turno">Seleccionar otra fecha:</label>
-                    <input type="date" appFecha
-                    [min]="fechaMinimaString"
-                    [max]="fechaMaximaString"
-                    class="form-control input"
-                    [class.is-invalid]=""
-                    formControlName="fecha"
-                    required>
-
-                    <select formControlName="hora" class="form-control mt-2 custom-select">
-                        <option value="">Seleccione una hora</option>
-                        <option *ngFor="let hora of horasDisponibles" [value]="hora">{{ hora }}</option>
-                    </select>
-                
-
-                        <div class="contenedorBtn">
-                            <button class="btn btn-primary">Agendar</button>
-                            <button type="button" class="btn btn-secondary boton2" routerLink="/pacientes">Cancelar</button>
-                        </div>    
-                
-                </div>
-            </form>
-                
+  
+            <div class="mb-3">
+              <select formControlName="hora" class="form-control">
+                <option value="">Seleccione una hora</option>
+                <option *ngFor="let hora of horasDisponibles" [value]="hora">{{hora}}</option>
+              </select>
+            </div>
+          </form>
         </div>
+  
+        <!-- Bloque 4: Botones -->
+        <div class="bloque-botones text-center">
+          <button class="btn btn-primary" (click)="agendar()">Agendar</button>
+          <button class="btn btn-secondary" type="button" routerLink="/pacientes">Cancelar</button>
+        </div>
+  
+      </div>
     </div>
-</div>
-
+  </div>
+  
